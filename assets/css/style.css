@@ -3,11 +3,18 @@
     margin: 0px;
     box-sizing: border-box;
 }
-
+hr {
+    color: black;
+}
 /* -------HEADER---------- */
 .header {
     background-color: #FEECE2;
     width: 100%;
+}
+.nav_hover:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    transition: 0.1s;
 }
 .header-top {
     display: flex;
@@ -16,11 +23,17 @@
 }
 .header-top .cart-button {
     display: inline-block;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
+    transition: .1s;
+}
+.header-top .cart-button:hover {
+    color: white;
+    transition: .1s;
+    cursor: pointer;
 }
 .header-top .user-button {
     display: inline-block;
-    border-right: 1px solid black;
+    border-right: 1px solid grey;
 }
 .header-top .user-button .login {
     display:  inline-block;
@@ -48,16 +61,13 @@
 }
 .header-bottom .nav-list .nav-item {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 5px 20px;
     position: relative;
     transition: 0.2s;
 }
-.header-bottom .nav-list .nav-item:hover {
-   text-decoration: underline;
-   cursor: pointer;
-}
 .header-bottom .subnav {
-    display: none;
+    display: block;
+    overflow: hidden;
     color: black;
     background-color: white;
     position: absolute;
@@ -65,12 +75,20 @@
     padding: 5 10;
     top: 100%;
     left: 0;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
+}
+#nav1 i { 
+    transform: rotate(0deg);
+    transition: 0.4s;
 }
 .header-bottom #nav1:hover > #subnav1 {
-    display: block;
+    max-height: 300px;
+    transition: max-height 0.2s ease-in;
 }
 .header-bottom #nav2:hover > #subnav2 {
-    display: block;
+    max-height: 300px;
+    transition: max-height 0.2s ease-in;
 }
 .header-bottom .subnav li {
     padding: 5px 10px;
@@ -82,14 +100,17 @@
     color: white;
     cursor: pointer;
     text-decoration: underline;
+    transition: 0.1s;
 }
 .header-bottom .search-button {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 5px 0px;
+    padding-left: 20px;
     float: right;
     transition: 0.1s;
 }
 .header-bottom .search-button:hover {
     cursor: pointer;
     color: white;
+    transition: 0.1s;
 }
