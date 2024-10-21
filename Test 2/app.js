@@ -18,10 +18,16 @@ const showSignUp = document.querySelector('.show-signup');
 const signUpContainer = document.querySelector('.signup-container');
 const signInContainer = document.querySelector('.signin-container');
 
-const openModalBtn = document.querySelector('.open-modal-btn');
-if (openModalBtn) {
-    openModalBtn.addEventListener('click', () => {
+const openModalBtn1 = document.querySelector('.open-modal-btn-up');
+const openModalBtn2 = document.querySelector('.open-modal-btn-in');
+if (openModalBtn1) {
+    openModalBtn1.addEventListener('click', () => {
         signUpContainer.classList.remove('hide');
+    });
+}
+if (openModalBtn2) {
+    openModalBtn2.addEventListener('click', () => {
+        signInContainer.classList.remove('hide');
     });
 }
 
