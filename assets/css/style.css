@@ -1,0 +1,95 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+/* -------HEADER---------- */
+.header {
+    background-color: #FEECE2;
+    width: 100%;
+}
+.header-top {
+    display: flex;
+    justify-content: end;
+    padding: 5px 40px;
+}
+.header-top .cart-button {
+    display: inline-block;
+    padding: 10px;
+}
+.header-top .user-button {
+    display: inline-block;
+    border-right: 1px solid black;
+}
+.header-top .user-button .login {
+    display:  inline-block;
+    padding: 10px;
+}
+.header-top .user-button .signup {
+    display: inline-block;
+    padding: 10px;
+    border-right: 1px solid black;
+}
+.header-top .user-button i {
+    display: none;
+}
+.header-bottom {
+    padding: 40px 40px;
+}
+.header-bottom .logo-div {
+    display: inline-block;
+    background-color: black;
+    width: 130px;
+}
+.header-bottom .nav-list {
+    display: inline-block;
+    float: right;
+}
+.header-bottom .nav-list .nav-item {
+    display: inline-block;
+    padding: 5px 10px;
+    position: relative;
+    transition: 0.2s;
+}
+.header-bottom .nav-list .nav-item:hover {
+   text-decoration: underline;
+   cursor: pointer;
+}
+.header-bottom .subnav {
+    display: none;
+    color: black;
+    background-color: white;
+    position: absolute;
+    list-style-type: none;
+    padding: 5 10;
+    top: 100%;
+    left: 0;
+}
+.header-bottom #nav1:hover > #subnav1 {
+    display: block;
+}
+.header-bottom #nav2:hover > #subnav2 {
+    display: block;
+}
+.header-bottom .subnav li {
+    padding: 5px 10px;
+    width: 100px;
+    transition: 0.1s;
+}
+.header-bottom .subnav li:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.header-bottom .search-button {
+    display: inline-block;
+    padding: 5px 10px;
+    float: right;
+    transition: 0.1s;
+}
+.header-bottom .search-button:hover {
+    cursor: pointer;
+    color: white;
+}
