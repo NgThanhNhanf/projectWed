@@ -1,3 +1,4 @@
+/* -------Common */
 * {
     padding: 0px;
     margin: 0px;
@@ -6,10 +7,22 @@
 hr {
     color: black;
 }
+.col-2 {
+    width: calc(100% / 2);
+    display: inline-block;
+}
+.col-3 {
+    width: calc(100% / 3);
+    display: inline-block;
+}
+.col-4 {
+    width: calc(100% / 4);
+    display: inline-block;
+}
 /* -------HEADER---------- */
 .header {
-    background-color: #FEECE2;
     width: 100%;
+    position: fixed;
 }
 .nav_hover:hover{
     text-decoration: underline;
@@ -48,12 +61,16 @@ hr {
     display: none;
 }
 .header-bottom {
-    padding: 40px 40px;
+    padding: 20px 40px;
 }
 .header-bottom .logo-div {
     display: inline-block;
-    background-color: black;
     width: 130px;
+    padding: 5px 20px;
+}
+.logo-div img {
+    width: 100%;
+    height: 100%;
 }
 .header-bottom .nav-list {
     display: inline-block;
@@ -64,6 +81,8 @@ hr {
     padding: 5px 20px;
     position: relative;
     transition: 0.2s;
+    font-family: monospace, "Monaco"; 
+    text-shadow: 0 0 2px #ffffff;
 }
 .header-bottom .subnav {
     display: block;
@@ -77,6 +96,7 @@ hr {
     left: 0;
     max-height: 0;
     transition: max-height 0.2s ease-out;
+    font-family: monospace, "Monaco";
 }
 #nav1 i { 
     transform: rotate(0deg);
@@ -92,7 +112,7 @@ hr {
 }
 .header-bottom .subnav li {
     padding: 5px 10px;
-    width: 100px;
+    max-width: 200px;
     transition: 0.1s;
 }
 .header-bottom .subnav li:hover {
@@ -113,4 +133,34 @@ hr {
     cursor: pointer;
     color: white;
     transition: 0.1s;
+}
+
+/* -------------Slider------------------ */
+.slider-container {
+    width: 100%;
+}
+.slider-container .slide {
+    /* display: none; */
+}
+
+/* --------------Collection--------------- */
+.new-collect {
+    width: 100%; 
+    display: block;
+    float: left;
+}
+.new-collect .text-container {
+    height: 100px;
+}
+.collect-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% - 200px);
+    margin-left: auto;
+    margin-right: auto;
+}
+.collect-list .collect {
+    background-color: aqua;
+    padding: 0 20px;
+    height: 100px;
 }
