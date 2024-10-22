@@ -12,8 +12,8 @@
         <div class="header">
             <div class="header-top">
                 <div class="user-button">
-                    <div class="login nav_hover">Login</div>
-                    <div class="signup nav_hover">Sign up</div>
+                    <div class="login nav_hover open-modal-btn-in">Login</div>
+                    <div class="signup nav_hover open-modal-btn-up">Sign up</div>
                     <i class="fa-regular fa-user"></i>
                 </div>
                 <div class="cart-button">
@@ -52,19 +52,19 @@
             </div>
         </div>
         <div class="slider-container">
-            <div class="slide">
+            <!-- <div class="slide">
                 <img src="/assets/img/slider3.png" alt="" style="width: 100%;">
-            </div>
+            </div> -->
             <!-- <div class="slide">
                 <img src="/assets/img/slider1.jpg" alt="" style="width: 100%">
             </div> -->
-            <!-- <div class="slide">
+            <div class="slide">
                 <img src="/assets/img/slider2.jpg" alt="" style="width: 100%">
-            </div> -->
+            </div>
         </div>
         <div class="new-collect">
             <div class="text-container">
-
+                
             </div>
             <div class="collect-list">
                 <div class="collect col-3">
@@ -96,6 +96,72 @@
         <div class="footer">
 
         </div>
+    </div>
+    <div class="modal-login hide">
+        <div class="container signup-container hide">
+            <div class="signup-section">
+                <div class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="signup-box">
+                    <h1>Sign up</h1>
+                    <button class="google-signup">Sign up with Google</button>
+                    <p class="or">or</p>
+                    <button class="email-signup">
+                        <i class="fa-regular fa-envelope"></i>
+                        Continue with email
+                    </button>
+                    <p class="terms">
+                        By creating an account you agree with our 
+                        <a href="#">Terms of Service</a>, 
+                        <a href="#">Privacy Policy</a>, and our 
+                        default <a href="#">Notification Settings</a>.
+                    </p>
+                    <p class="signup-link">
+                        Already have an account? <a href="#" class="show-signin">Login</a>
+                    </p>
+                </div>
+            </div>
+            <div class="image-section">
+                <img src="/assets/img/max-okhrimenko-7sivW9dzDro-unsplash.jpg" alt="Sign Up Image">
+            </div>
+        </div>
+    
+        <!-- Sign In -->
+        <div class="container signin-container hide">
+            <div class="signin-section">
+                <div class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="signin-box">
+                    <h1>welcome back !</h1>
+                    <form>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+    
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password">
+    
+                        <div class="remember-forgot">
+                            <label>
+                                <input type="checkbox"> Remember here
+                            </label>
+                            <a href="#">Forgot Password</a>
+                        </div>
+    
+                        <button class="signin-btn">Sign In</button>
+                        <button class="google-signin-btn">Sign in with Google</button>
+                    </form>
+                    <p class="signup-link">
+                        Don't have an account? <a href="#" class="show-signup">Sign up</a>
+                    </p>
+                </div>
+            </div>
+            <div class="image-section">
+                <img src="/assets/img/max-okhrimenko-7sivW9dzDro-unsplash.jpg" alt="Sign In Image">
+            </div>
+        </div>
+        <script src="/assets/js/login.js"></script>
     </div>
 </body>
 </html>
