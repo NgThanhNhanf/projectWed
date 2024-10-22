@@ -1,0 +1,344 @@
+/* -------Common------------ */
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+hr {
+    color: black;
+}
+body {
+    position: relative;
+}
+:root{
+    --primay-color: #5e4533;
+}
+.col-2 {
+    width: calc(100% / 2);
+    display: inline-block;
+}
+.col-3 {
+    width: calc(100% / 3);
+    display: inline-block;
+}
+.col-4 {
+    width: calc(100% / 4);
+    display: inline-block;
+}
+/* -------HEADER---------- */
+.header {
+    width: 100%;
+    position: fixed;
+}
+.nav_hover:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    transition: 0.1s;
+}
+.header-top {
+    display: flex;
+    justify-content: end;
+    padding: 5px 40px;
+}
+.header-top .cart-button {
+    display: inline-block;
+    padding: 10px 0 10px 10px;
+    transition: .1s;
+}
+.header-top .cart-button:hover {
+    color: white;
+    transition: .1s;
+    text-shadow: 0 0 2px #000000;
+    cursor: pointer;
+}
+.header-top .user-button {
+    display: inline-block;
+    border-right: 1px solid grey;
+}
+.header-top .user-button .login {
+    display:  inline-block;
+    padding: 10px;
+}
+.header-top .user-button .signup {
+    display: inline-block;
+    padding: 10px;
+    border-right: 1px solid black;
+}
+.header-top .user-button i {
+    display: none;
+}
+.header-bottom {
+    padding: 20px 40px;
+}
+.header-bottom .logo-div {
+    display: inline-block;
+    width: 130px;
+    padding: 5px 20px;
+}
+.logo-div img {
+    width: 100%;
+    height: 100%;
+}
+.header-bottom .nav-list {
+    display: inline-block;
+    float: right;
+}
+.header-bottom .nav-list .nav-item {
+    display: inline-block;
+    padding: 5px 20px;
+    position: relative;
+    transition: 0.2s;
+    font-family: monospace, "Monaco"; 
+    text-shadow: 0 0 2px #ffffff;
+}
+.header-bottom .subnav {
+    display: block;
+    overflow: hidden;
+    color: black;
+    background-color: white;
+    position: absolute;
+    list-style-type: none;
+    padding: 5 10;
+    top: 100%;
+    left: 0;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
+    font-family: monospace, "Monaco";
+}
+#nav1 i { 
+    transform: rotate(0deg);
+    transition: 0.4s;
+}
+.header-bottom #nav1:hover > #subnav1 {
+    max-height: 300px;
+    transition: max-height 0.2s ease-in;
+}
+.header-bottom #nav2:hover > #subnav2 {
+    max-height: 300px;
+    transition: max-height 0.2s ease-in;
+}
+.header-bottom .subnav li {
+    padding: 5px 10px;
+    max-width: 200px;
+    transition: 0.1s;
+}
+.header-bottom .subnav li:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: 0.1s;
+}
+.header-bottom .search-button {
+    display: inline-block;
+    padding: 5px 0px;
+    padding-left: 20px;
+    float: right;
+    transition: 0.1s;
+}
+.header-bottom .search-button:hover {
+    cursor: pointer;
+    color: white;
+    text-shadow: 0 0 2px #000000;
+    transition: 0.1s;
+}
+
+/* -------------Slider------------------ */
+.slider-container {
+    width: 100%;
+}
+.slider-container .slide {
+    /* display: none; */
+}
+
+/* --------------Collection--------------- */
+.new-collect {
+    width: 100%; 
+    display: block;
+    float: left;
+}
+.new-collect .text-container {
+    height: 100px;
+}
+.collect-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% - 200px);
+    margin-left: auto;
+    margin-right: auto;
+}
+.collect-list .collect {
+    background-color: aqua;
+    padding: 0 20px;
+    height: 100px;
+}
+
+/* ------------modal-login--------------- */
+.modal-login {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+  
+.container {
+    display: flex;
+    width: 70%;
+    max-width: 1000px;
+    height: 80vh;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.signup-section, .signin-section {
+    width: 50%;
+    background-color: #fff;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.image-section {
+    width: 50%;
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.signup-box {
+    max-width: 400px;
+    margin-top: 80px;
+}
+.signin-box{
+    max-width: 400px;
+    margin: 0 auto;
+}
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    display: flex;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #333;
+    margin-left: 0;
+}
+
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    margin-right: -30px;
+}
+.remember-forgot a{
+    color: black;
+    font-size: 13px;
+}
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signin-btn, .google-signin-btn{
+    font-family: "Bodoni Moda", serif;
+    background-color: var(--primay-color);
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+    width: 115%;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    border: 1px solid var(--primay-color);
+    transition: 0.2s;
+    margin: 10px 0;
+    &:hover {
+        box-shadow: 5px 5px 20px -7px rgba(0,0,0,0.5);
+        background: white;
+        color: var(--primay-color);
+    }
+}
+.terms {
+    font-size: 12px;
+    color: #666;
+    margin: 20px 0;
+}
+.google-signup, .email-signup  {
+    font-family: "Bodoni Moda", serif;
+    background-color: var(--primay-color);
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+    width: 80%;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    border: 1px solid var(--primay-color);
+    transition: 0.2s;
+    &:hover {
+      box-shadow: 5px 5px 20px -7px rgba(0,0,0,0.5);
+      background: white;
+      color: var(--primay-color);
+    }
+}
+.email-signup  {
+    background: white;
+    color: black;
+    border: 1px solid black;
+    &:hover {
+        box-shadow: 5px 5px 20px -7px rgba(0,0,0,0.5);
+        background: white;
+        color: black;
+    }
+}
+.signup-link a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.back-button {
+    position: absolute;
+    font-size: 20px;
+    margin-bottom: 30px;
+    left: 50px; 
+    cursor: pointer;
+    color: #333;
+}
+
+.hide {
+    display: none;
+}
