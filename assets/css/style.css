@@ -25,10 +25,32 @@ body {
     width: calc(100% / 4);
     display: inline-block;
 }
+.white-background {
+    background-color: #ffffff;
+}
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-140px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes pullDown {
+    from {
+        transform: translateY(-50px);
+    } to {
+        transform: translateY(0);
+    }
+}
 /* -------HEADER---------- */
 .header {
     width: 100%;
     position: fixed;
+    z-index: 1;
+    transition: 0.2s;
 }
 .nav_hover:hover{
     text-decoration: underline;
@@ -39,6 +61,8 @@ body {
     display: flex;
     justify-content: end;
     padding: 5px 40px;
+    border-bottom: #000000 1px solid;
+    animation: pullDown ease 0.1s;
 }
 .header-top .cart-button {
     display: inline-block;
@@ -112,10 +136,12 @@ body {
 .header-bottom #nav1:hover > #subnav1 {
     max-height: 300px;
     transition: max-height 0.2s ease-in;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .header-bottom #nav2:hover > #subnav2 {
     max-height: 300px;
     transition: max-height 0.2s ease-in;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .header-bottom .subnav li {
     padding: 5px 10px;
@@ -199,7 +225,7 @@ body {
     position: absolute;
     right: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /*note*/
     top: 80%;
     text-align: center;
     align-content: center;
@@ -373,14 +399,4 @@ body {
 }
 .hide {
     display: none;
-}
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-140px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
