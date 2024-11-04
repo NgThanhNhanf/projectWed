@@ -304,156 +304,191 @@ body {
     right: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(190, 235, 179, 0.2);
     animation: modalFadeIn ease .5s;
     z-index: 100;
-}
-.container {
-    display: flex;
-    width: 70%;
-    max-width: 1000px;
-    height: 80vh;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
-}
-.signup-section, .signin-section {
-    width: 50%;
-    background-color: #fff;
-    padding: 50px;
     display: flex;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.image-section {
+.displayForm{
+    position: relative;
+    width: 800px;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.125);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.displayForm .box{
+    position: relative;
     width: 50%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
 }
-.image-section img {
+.displayForm .box h2{
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.displayForm .box button{
+    cursor: pointer;
+    padding: 10px 20px;
+    background: #00dfc4;
+    color: #333;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    transition: 0.5s;
+    border-radius: 25px;
+    &:hover{
+        background: #223243;
+        color: #00dfc4;
+        font-size: 20px;
+    }
+}
+.form{
+    position: absolute;
+    left: 50px;
+    width: 350px;
+    height: 480px;
+    z-index: 1000;
+    background: #fff;
+    overflow: hidden;
+    background: #223243;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    transition: 0.5s;
+    transition-delay: 0.1s;
+}
+.active{
+    background: rgba(42, 223, 183, 0.125);
+}
+.active .form{
+    left: 400px;
+}
+.slideForm{
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-}
-.signup-box {
-    max-width: 400px;
-    margin-top: 80px;
-}
-.signin-box{
-    max-width: 400px;
-    margin: 0 auto;
-}
-.modal-login h1 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.modal-login label {
     display: flex;
-    margin-bottom: 5px;
-    font-size: 16px;
-    color: #333;
-    margin-left: 0;
-}
-.modal-login input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-}
-.remember-forgot {
-    display: flex;
-    justify-content: space-between;
+    justify-self: center;
     align-items: center;
-    margin-bottom: 25px;
-    margin-right: -30px;
+    flex-direction: column;
+    gap: 20px;
+    transition: 0.5s;
 }
-.remember-forgot a{
-    color: black;
-    font-size: 13px;
+.form .slideForm.signup{
+    top: 100%;
+    transition-delay: 0s;
 }
-.modal-login button {
+.active .form .slideForm.signup{
+    top: 0;
+    transition-delay: 0.5s;
+}
+.form .slideForm.signin{
+    top: 0;
+    transition-delay: 0.5s;
+}
+.active .form .slideForm.signin{
+    top: -100%;
+    transition-delay: 0s;
+}
+.slideForm h3{
+    position: absolute;
+    top: 50px;
+    font-size: 40px;
+    color: #00dfc4;
+}
+.inputBox{
+    position: relative;
+    top: 180px;
+    width: 300px;
+}
+.inputBox input{
+    padding: 12px 10px 12px 48px;
     width: 100%;
-    padding: 15px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-.signin-btn, .google-signin-btn{
-    font-family: "Bodoni Moda", serif;
-    background-color: var(--primay-color);
-    color: white;
-    font-size: 18px;
-    padding: 12px;
-    width: 115%;
-    border-radius: 2px;
-    cursor: pointer;
-    margin-bottom: 5px;
-    border: 1px solid var(--primay-color);
-    transition: 0.2s;
-    margin: 10px 0;
-    &:hover {
-        box-shadow: 5px 5px 20px -7px rgba(0,0,0,0.5);
-        background: white;
-        color: var(--primay-color);
-    }
-}
-.terms {
-    font-size: 12px;
-    color: #666;
-    margin: 20px 0;
-}
-.google-signup, .email-signup  {
-    font-family: "Bodoni Moda", serif;
-    background-color: var(--primay-color);
-    color: white;
-    font-size: 18px;
-    padding: 12px;
-    width: 80%;
-    border: none;
+    background: #223243;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #fff;
+    font-weight: 300;
     border-radius: 25px;
-    cursor: pointer;
-    margin-bottom: 5px;
-    border: 1px solid var(--primay-color);
-    transition: 0.2s;
-    &:hover {
-      box-shadow: 5px 5px 20px -7px rgba(0,0,0,0.5);
-      background: white;
-      color: var(--primay-color);
-    }
+    font-size: 1em;
+    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.35);
+    transition: 0.5s;
+    outline: none;
 }
-.email-signup  {
-    background: white;
-    color: black;
-    border: 1px solid black;
-    &:hover {
-        box-shadow: 5px 5px 20px -7px rgba(0,0,0,0.5);
-        background: white;
-        color: black;
-    }
+.inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 12px 10px 12px 48px;
+    pointer-events: none;
+    font-size: 1em;
+    font-weight: 300;
+    transition: 0.5s;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.5);
 }
-.signup-link a {
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
+.inputBox input:valid~span,
+.inputBox input:focus~span{
+    color: #00dfc4;
+    border: 1px solid #00dfc4;
+    background: #223243;
+    transform: translateX(25px) translateY(-7px);
+    font-size: 0.6em;
+    padding: 0 8px;
+    border-radius: 10px;
+    letter-spacing: 0.1em;
 }
-.signup-link a:hover {
-    text-decoration: underline;
+.inputBox input:valid,
+.inputBox input:focus{
+    border: 1px solid #00dfc4;
+}
+.inputBox i{
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    width: 25px;
+    padding: 2px 0;
+    padding-right: 8px;
+    color: #00dfc4;
+    border-right: 1px solid #00dfc4;
 }
 .back-button {
     position: absolute;
+    color: #00dfc4;
     font-size: 20px;
-    margin-bottom: 30px;
-    left: 50px; 
+    top: 10px;
+    right: 10px; 
     cursor: pointer;
-    color: #333;
+    &:hover{
+        color: #fff;
+        box-shadow: rgba(255, 255, 255, 0.1);
+    }
+}
+.inputBox input[type="submit"]{
+    background: #00dfc4;
+    color: #223243;
+    padding: 10px 0;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.35), inset -5px -5px 15px rgba(255, 255, 255, 0.1), inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+    &:hover{
+        background: #223243;
+        color: #00dfc4;
+    }
 }
 .hide {
     display: none;
