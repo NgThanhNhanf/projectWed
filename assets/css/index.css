@@ -320,6 +320,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    /*  */
+    padding: 40px;
+    border-radius: 20px;
+    border: 8px solid #223243;
+    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.35), inset -5px -5px 15px rgba(255, 255, 255, 0.1), inset 5px 5px 15px rgba(0, 0, 0, 0.35);
 }
 .displayForm .box{
     position: relative;
@@ -388,6 +393,10 @@ body {
     flex-direction: column;
     gap: 20px;
     transition: 0.5s;
+
+    
+    border: 8px solid #223243;
+    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.35), inset -5px -5px 15px rgba(255, 255, 255, 0.1), inset 5px 5px 15px rgba(0, 0, 0, 0.35);
 }
 .form .slideForm.signup{
     top: 100%;
@@ -407,14 +416,25 @@ body {
 }
 .slideForm h3{
     position: absolute;
-    top: 50px;
+    top: 40px;
     font-size: 40px;
+    color: #00dfc4;
+}
+.signup h3{
+    position: absolute;
+    top: 25px;
+    font-size: 35px;
     color: #00dfc4;
 }
 .inputBox{
     position: relative;
-    top: 180px;
-    width: 300px;
+    top: 150px;
+    width: 280px;
+}
+.signup .inputBox{
+    position: relative;
+    top: 100px;
+    width: 280px;
 }
 .inputBox input{
     padding: 12px 10px 12px 48px;
@@ -470,7 +490,7 @@ body {
     position: absolute;
     color: #00dfc4;
     font-size: 20px;
-    top: 10px;
+    top: 15px;
     right: 10px; 
     cursor: pointer;
     &:hover{
@@ -484,6 +504,7 @@ body {
     padding: 10px 0;
     font-weight: 500;
     cursor: pointer;
+    margin-top: 20px;
     box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.35), inset -5px -5px 15px rgba(255, 255, 255, 0.1), inset 5px 5px 15px rgba(0, 0, 0, 0.35);
     &:hover{
         background: #223243;
