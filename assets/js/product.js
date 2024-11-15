@@ -336,3 +336,20 @@ document.querySelector('.quantity-btn:nth-child(1)').onclick = () => {
 closeModalIcon.onclick = () => {
     document.getElementById('productModal').style.display = 'none';
 };
+
+
+//ICON CART
+const cartIcon = document.getElementById('cartIcon');
+const cartIframe = document.getElementById('cartIframe');
+
+// Khi click vào icon giỏ hàng, mở iframe
+cartIcon.addEventListener('click', () => {
+    cartIframe.classList.toggle('open'); // Toggle mở/đóng iframe
+});
+
+// Đóng giỏ hàng từ bên trong iframe bằng message
+window.addEventListener('message', (event) => {
+    if (event.data === 'closeCart') {
+        cartIframe.classList.remove('open');
+    }
+});

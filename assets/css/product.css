@@ -75,6 +75,31 @@ body {
     background-color: #555;
 }
 
+.cart-icon {
+    font-size: 20px;
+    position: fixed;
+    cursor: pointer; 
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+}
+
+.cart-iframe {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 1300px;
+    height: 100vh;
+    border: none;
+    box-shadow: -40px 0 50px rgba(0, 0, 0, 0.1);
+    transition: right 0.9s ease-in-out;
+    z-index: 2;
+}
+
+.cart-iframe.open {
+    right: 0;
+}
+
 .side-image {
     flex: 0 0 30%;
     height: 80%;
