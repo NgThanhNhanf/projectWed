@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALL PRODUCT</title>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="assets/css/product.css">
+</head>
+<body>
+    <!-- Slideshow Container -->
+    <div class="decorative-frame">
+        <div class="slideshow-container">
+            <div class="slide active">
+                <div class="content-section">
+                    <h2>Picked Every Item With Care, <strong>You Must Try</strong></h2>
+                    <p>Discover our collection carefully selected for your needs.</p>
+                </div>
+                <img src="assets/img/product/img2.jpg" alt="Collection Image" class="side-image">
+            </div>
+            <div class="slide">
+                <div class="content-section">
+                    <h2>Best Seller</h2>
+                    <p>Discover our best-selling products that customers love.</p>
+                </div>
+                <img src="assets/img/product/img6.jpg" alt="Best Seller Image" class="side-image">
+            </div>
+            <div class="slide">
+                <div class="content-section">
+                    <h2>Exclusive Discounts</h2>
+                    <p>Get your favorite items at great discounts today.</p>
+                </div>
+                <img src="assets/img/product/mau7.jpg" alt="Discount Image" class="side-image">
+            </div>
+        </div>
+    </div>
+    
+    
+    <!--  -->
+
+    <div class="content">
+        <div class="left-panel">
+            <div class="list-fill">
+                <h2 class="title">Filters</h2>
+                <ul class="ct"></ul>
+                <button class="btn-removeAll">Remove</button>
+            </div>
+            <div class="list">
+                
+                <div class="type-product">
+                    <h4>Type</h4>
+                    <input type="checkbox" id="T-shirt" value="T-shirt">
+                    <label for="T-shirt">T-shirt</label>
+                    <br>
+                    <input type="checkbox" id="Polo" value="Polo">
+                    <label for="Polo">Polo</label>
+                    <br>
+                    <input type="checkbox" id="Shirt" value="Shirt">
+                    <label for="Shirt">Shirt</label>
+                </div>
+                <div class="size-product">
+                    <h4>Size</h4>
+                    <input type="checkbox" id="s" value="Small">
+                    <label for="s">Small</label>
+                    <br>
+                    <input type="checkbox" id="m" value="Medium">
+                    <label for="m">Medium</label>
+                    <br>
+                    <input type="checkbox" id="l" value="Large">
+                    <label for="l">Large</label>
+                </div>
+                <div class="color-product">
+                    <h4>Color</h4>
+                    <input type="checkbox" id="white" name="color" value="white">
+                    <label for="white"></label>
+                    <br>
+                    <input type="checkbox" id="grey" name="color" value="grey">
+                    <label for="grey"></label>
+                    <br>
+                    <input type="checkbox" id="black" name="color" value="black">
+                    <label for="black"></label>
+                    <br>
+                    <input type="checkbox" id="blue" name="color" value="blue">
+                    <label for="blue"></label>
+                    <br>
+                </div>
+                <div class="price-product">
+                    <h4>Price</h4>
+                    <label for="min">From</label>
+                    <select id="min">
+                        <option value="100000">100,000</option>
+                        <option value="200000">200,000</option>
+                        <option value="300000">300,000</option>
+                        <option value="400000">400,000</option>
+                    </select>
+                    
+                    <label for="max">To</label>
+                    <select id="max">
+                        <option value="100000">100,000</option>
+                        <option value="200000">200,000</option>
+                        <option value="300000">300,000</option>
+                        <option value="400000">400,000</option>
+                    </select>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="center-panel">
+            <div class="countResults">
+                Found <b id="count">5</b> results
+            </div>
+            <div class="cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <!-- HIEN THI DANH SACH -->
+            <div class="product-grid">
+                <!-- <div class="product">
+                    <div class="ima">
+                        <img src="img/img1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div>-->
+            
+            </div>
+            <button id="toTop"></button>
+        </div>
+    </div>
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <i class="fa-solid fa-xmark close"></i>
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="Product Image">
+            </div>
+            <div class="modal-details">
+                <h2 id="modalName">Lose Oversized Shirt</h2>
+                <p id="modalPrice" class="price">$65.00 <span class="old-price">$90.00</span></p>
+                <p id="modalDescription">Mo ta</p>
+                <div class="modal-options">
+                    <div class="quantity-selector">
+                        <button class="quantity-btn">-</button>
+                        <span id="quantity">1</span>
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <select id="sizeSelect">
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button class="wishlist">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/js/product.js"></script>
+</body>
+</html>
