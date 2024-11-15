@@ -1,0 +1,67 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+        <title>GIO HANG</title>
+    </head>
+    <body>
+        <style>
+            body{
+                margin: 0px;
+                padding: 0px;
+                overflow-x: hidden;
+            }
+            .cart-icon i {
+                color: black;
+            }
+            .cart-icon {
+                font-size: 20px;
+                position: fixed;
+                cursor: pointer; 
+                top: 10px;
+                right: 10px;
+                z-index: 1;
+            }
+
+            .cart-iframe {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 1300px;
+                height: 100vh;
+                border: none;
+                box-shadow: -40px 0 50px rgba(0, 0, 0, 0.1);
+                transition: right 0.9s ease-in-out;
+                z-index: 2;
+            }
+            .cart-iframe.open {
+                right: 0;
+            }
+        </style>
+        <div class="cart-icon" id="cartIcon">
+            <i class="fa fa-shopping-cart"></i>
+        </div>
+    
+        <!-- Iframe hiển thị nội dung giỏ hàng -->
+        <iframe src="main.html" class="cart-iframe" id="cartIframe"></iframe>
+
+        <script>
+            const cartIcon = document.getElementById('cartIcon');
+            const cartIframe = document.getElementById('cartIframe');
+    
+            // Khi click vào icon giỏ hàng, mở iframe
+            cartIcon.addEventListener('click', () => {
+                cartIframe.classList.toggle('open'); // Toggle mở/đóng iframe
+            });
+    
+            // Đóng giỏ hàng từ bên trong iframe bằng message
+            window.addEventListener('message', (event) => {
+                if (event.data === 'closeCart') {
+                    cartIframe.classList.remove('open');
+                }
+            });
+        </script>
+    </body>
+    </html> 
