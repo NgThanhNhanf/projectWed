@@ -161,9 +161,6 @@
 .cart-section .quantity i {
     cursor: pointer;
     display: block;
-    margin-bottom: 20px;
-    font-size: 13px;
-
 }
 
 .cart-section .quantity span {
@@ -231,6 +228,12 @@
     right: 20px;
     font-size: 25px;
     color: black;
+    transition: transform 0.3s ease-in;
+    
+}
+
+.cart-section .header-right #closeBtn:hover {
+    transform: rotate(90deg);
 }
 
 .cart-section .header-right h2 {
@@ -713,14 +716,17 @@
 
 /*------------payment method---------------*/
 .paymentMethod {
-   position: absolute;
-   z-index: -1;
-   transform: translateY(100%);
-   transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-   background: #e7e1e1;
-   width: 70%;
-   height: 100vh;
-   padding: 20px;
+    position: absolute;
+    z-index: -1;
+    transform: translateY(100%);
+    transition: transform 0.5s ease-out;
+    background: #e7e1e1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; 
+    width: 70%;
+    height: 100vh;
+    padding: 30px;
+    visibility: hidden; 
 }
 
 .paymentMethod.active {
@@ -737,51 +743,97 @@
     transform: translateY(100%);
 }
 
+.paymentMethod .nodejs {
+    transition: transform 0.3s ease-in;
+}
+
+.paymentMethod .nodejs:hover {
+    cursor: pointer;
+    font-size: 25px;
+    /* font-weight: bold; */
+    transform: rotate(360deg);
+}
+
+.paymentMethod form {
+    margin: 0 auto;
+    width: 50%;
+}
+
 .paymentMethod form h2 {
     text-transform: capitalize;
     margin-bottom: 20px;
     font-size: 25px;
+    color: #333;
+    text-align: center; 
 }
 
 .paymentMethod .payment-option {
-    margin-bottom: 5px;
-    font-size: 20px;
+    margin-bottom: 10px; 
+    color: #555; 
+    display: flex;
+    align-items: center; 
 }
 
 .paymentMethod .payment-option input {
-    margin-right: 3px;
+    margin-right: 8px; 
 }
 
 .paymentMethod .infor {
     margin-top: 20px;
-    gap: 20px;
-    font-size: 15px;
     display: flex;
-    justify-content: space-between;
-    width: 60%;
+    flex-direction: column; 
+    gap: 15px; 
+    font-size: 15px;
 }
 
+.paymentMethod .infor label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #333;
+}
 
 .paymentMethod .infor input {
-    border: none;
+    border: 1px solid #ddd;
     outline: none;
-    background-color: transparent;
-    margin-left: 2px;
-    border-bottom: 1px solid grey;
-    width: 80%;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 8px;
+    margin-top: 5px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.paymentMethod .infor input:focus {
+    border-color: #007bff; 
 }
 
 .paymentMethod .expiration-code {
     margin-top: 20px;
+    display: flex;
     gap: 20px;
+    justify-content: space-between;
+}
+
+.paymentMethod .expiration-code label {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #333;
 }
 
 .paymentMethod .expiration-code input {
-    border: none;
+    border: 1px solid #ddd;
     outline: none;
-    background-color: transparent;
-    border-bottom: 1px solid grey;
-    margin-right: 50px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 8px;
+    margin-top: 5px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.paymentMethod .expiration-code input:focus {
+    border-color: #007bff;
 }
 
 .paymentMethod .checkbox-group {
@@ -789,11 +841,33 @@
     flex-direction: column;
     margin-top: 30px;
     gap: 10px;
+    font-size: 14px;
+    color: #555;
 }
 
-.payment-option .payment-form .pay {
+.paymentMethod .checkbox-group input {
+    margin-right: 8px;
+}
+
+.paymentMethod .pay {
     margin-top: 20px;
-    width: 500px;
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    background-color: #007bff; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.paymentMethod .pay:hover {
+    background-color: #0056b3;
 }
 
 

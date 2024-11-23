@@ -54,6 +54,15 @@
         payment.classList.add('hidden');
     }); 
 
+    //lắng nghe sự kiện click vào nodejs 
+    const nodejs = document.querySelector('.nodejs');
+    nodejs.addEventListener('click',() => {
+        paymentMethod.classList.remove('active');
+        paymentMethod.classList.add('hidden');
+        payment.classList.remove('hidden');
+        payment.classList.add('active')
+    });
+
 
     //cac hàm thực hiện các chức năng riêng
 
@@ -89,7 +98,9 @@
                     </div>
                     <div class="size column">${item.size}</div>
                     <div class="quantity column">
+                        <i class="fas fa-minus minus"></i>
                         <span class="quantity-cnt">${item.quantity}</span>
+                        <i class="fas fa-plus plus"></i>
                     </div>
                     <div class="price column">
                         <span class="priceNumber">${(item.price * item.quantity).toLocaleString()}</span>
@@ -100,6 +111,7 @@
                 </div>`;
             cartItemContent.appendChild(cartItem);
         });
+        solveQuantity(cart);
         solveIconX(cart)
         updateCart(cart)
 
@@ -170,7 +182,42 @@
             });
         });
     }
+    function solveQuantity(cart) {
+        const minusIcon = document.querySelectorAll('.minus');
+        const plusIcon = document.querySelectorAll('.plus');
+            // console.log(minusIcon);
+            // console.log(plusIcon)
+            // console.log(cart)
+        minusIcon.forEach((button,index) =>{
+            button.addEventListener('click',() => {
+                if(cart[index].quantity > 1) {
+                    cart[index].quantity--;
+                    displayQuantilyAlterUpdate(index,cart[index].quantity);
+                    storeCartInLocalStorage(cart);
+                    updateCart(cart)
+                    displayCart(cart)
+                    displayCheckout(cart)
+                }
+            });
+        });
 
+        plusIcon.forEach((button,index) => {
+            button.addEventListener('click',() => {
+                cart[index].quantity++;
+                displayQuantilyAlterUpdate(index,cart[index].quantity);
+                storeCartInLocalStorage(cart)
+                updateCart(cart)
+                displayCart(cart)
+                displayCheckout(cart)
+            });
+        });
+    }
+
+    function displayQuantilyAlterUpdate(index,quantity){
+        const quantityElement = document.querySelectorAll('.quantity-cnt');
+        quantityElement[index].textContent = quantity;
+    }
+  
     function updateCart(cart) {
         //  const cart = getCartFromLocalStorage();
         var subtotal = sumProductInCart(cart);
@@ -199,6 +246,7 @@
 
     
 window.addEventListener('DOMContentLoaded',()=> {
+    var cus = getCusTomerFromLocalStorage();
     var cart = getCartFromLocalStorage();
     displayCart(cart);
     totalAll(cart)
@@ -217,29 +265,45 @@ window.addEventListener('DOMContentLoaded',()=> {
         var lastname = formdk.lastName.value;
         if (email === '') {
             alert('email khong duoc rong');
-            email.focus();
+            formdk.email.focus();
             return false;
         }
 
         if (firstname === '') {
             alert('firstname khong duoc rong');
-            firstname.focus();
+            formdk.firstname.focus();
             return false;
         }
 
         if (lastname === '') {
             alert('lastname khong duoc rong');
-            lastname.focus();
+            formdk.lastname.focus();
             return false;
         }
+        addCustomerToLocalStorage();
         return true;
     }
 
-    const emails = formdk.email;
-    emails.addEventListener('click',() => {
-        
-    });
+    function addCustomerToLocalStorage() {
+            const idCus = Math.floor(Math.random() * 100);
+            const emailCus = formdk.email.value;
+            const firstNameCus = formdk.firstName.value;
+            const lastNameCus = formdk.lastName.value;
+            var customerData = {
+                idCus,
+                firstNameCus,
+                lastNameCus,
+                emailCus,
+            };
+            
+            localStorage.setItem('cusData',JSON.stringify(customerData));
+       
+    }
 
+    function getCusTomerFromLocalStorage() {
+        const cus = localStorage.getItem('cusData');
+        return cus ? JSON.parse(cus) : [];
+    }
 
 //hien thi ten san pham | so luong | gia tien ben cot phai
 function displayCheckout(cart) {

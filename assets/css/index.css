@@ -422,7 +422,7 @@ body {
     color: #fff; 
 }
 
-.fa-cart-shopping {
+.cart-item {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -434,7 +434,7 @@ body {
     font-size: 16px;
 }
 
-.fa-cart-shopping:hover {
+.cart-item:hover {
     background-color: rgba(0, 0, 0, 1);
     color: #ffff;
     transform: scale(1.3);
