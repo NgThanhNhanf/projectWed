@@ -703,6 +703,19 @@ body {
     color: #00dfc4;
     border-right: 1px solid #00dfc4;
 }
+.inputBox .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 16px; 
+    transform: translateX(230px) translateY(-9px);
+    cursor: pointer;
+    color: #00dfc4;
+    transition: 0.3s;
+    border: none;
+}
+.inputBox .toggle-password:hover {
+    color: aqua;
+}
 .back-button {
     position: absolute;
     color: #00dfc4;
