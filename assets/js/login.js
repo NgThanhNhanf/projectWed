@@ -1,10 +1,10 @@
 
 const backButtons = document.querySelectorAll('.back-button');
 
+const signUpContainer = document.querySelector('.signup-container');
+const signInContainer = document.querySelector('.signin-container');
 backButtons.forEach(backButton => {
     backButton.addEventListener('click', () => {
-        const signUpContainer = document.querySelector('.signup-container');
-        const signInContainer = document.querySelector('.signin-container');
         if (!signUpContainer.classList.contains('hide')) {
             modalLogin.classList.add('hide');
             signUpContainer.classList.add('hide');
@@ -15,10 +15,6 @@ backButtons.forEach(backButton => {
     });
 });
 
-const showSignIn = document.querySelector('.show-signin');
-const showSignUp = document.querySelector('.show-signup');
-const signUpContainer = document.querySelector('.signup-container');
-const signInContainer = document.querySelector('.signin-container');
 const modalLogin = document.querySelector('.modal-login')
 
 const openModalBtn1 = document.querySelector('.open-modal-btn-up');
@@ -27,24 +23,29 @@ if (openModalBtn1) {
     openModalBtn1.addEventListener('click', () => {
         modalLogin.classList.remove('hide');
         signUpContainer.classList.remove('hide');
+        signInContainer.classList.remove('hide');
+        modalLogin.classList.add("active");
     });
 }
 if (openModalBtn2) {
     openModalBtn2.addEventListener('click', () => {
         modalLogin.classList.remove('hide');
         signInContainer.classList.remove('hide');
+        signUpContainer.classList.remove('hide');
+        modalLogin.classList.remove("active"); 
     });
 }
 
-showSignIn.addEventListener('click', () => {
-    signUpContainer.classList.add('hide');
-    modalLogin.classList.remove('hide');
-    signInContainer.classList.remove('hide');
-});
+//
 
-showSignUp.addEventListener('click', () => {
-    signInContainer.classList.add('hide');
-    modalLogin.classList.remove('hide');
-    signUpContainer.classList.remove('hide');
-});
+const signinBtn = document.querySelector(".SigninBtn");
+const signupBtn = document.querySelector(".SignupBtn");
+signupBtn.onclick = function() {
+    modalLogin.classList.remove("active"); 
+};
 
+signinBtn.onclick = function() {
+    modalLogin.classList.add("active"); 
+};
+
+//
