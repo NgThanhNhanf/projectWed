@@ -101,7 +101,7 @@
                             <h4>Product 1</h4>
                             <p>99$</p>
                         </div>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-solid fa-cart-shopping cart-item"></i>
                         <i class="fa-regular fa-heart"></i>
                     </div>
                     <div class="product best-item">
@@ -112,7 +112,7 @@
                             <h4>Product 1</h4>
                             <p>99$</p>
                         </div>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-solid fa-cart-shopping cart-item"></i>
                         <i class="fa-regular fa-heart"></i>
                     </div>
                     <div class="product best-item">
@@ -123,7 +123,7 @@
                             <h4>Product 1</h4>
                             <p>99$</p>
                         </div>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-solid fa-cart-shopping cart-item"></i>
                         <i class="fa-regular fa-heart"></i>
                     </div>
                     <div class="product best-item">
@@ -134,7 +134,7 @@
                             <h4>Product 1</h4>
                             <p>99$</p>
                         </div>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-solid fa-cart-shopping cart-item"></i>
                         <i class="fa-regular fa-heart"></i>
                     </div>
                     <div class="product best-item">
@@ -145,7 +145,7 @@
                             <h4>Product 1</h4>
                             <p>99$</p>
                         </div>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-solid fa-cart-shopping cart-item"></i>
                         <i class="fa-regular fa-heart"></i>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                         <h4>Product 1</h4>
                         <p>99$</p>
                     </div>
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
                     <i class="fa-regular fa-heart"></i>
                 </div>
                 <div class="product col-4">
@@ -185,7 +185,7 @@
                         <h4>Product 1</h4>
                         <p>99$</p>
                     </div>
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
                     <i class="fa-regular fa-heart"></i>
                 </div>
                 <div class="product col-4">
@@ -196,7 +196,7 @@
                         <h4>Product 1</h4>
                         <p>99$</p>
                     </div>
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
                     <i class="fa-regular fa-heart"></i>
                 </div>
                 <div class="product col-4">
@@ -207,7 +207,7 @@
                         <h4>Product 1</h4>
                         <p>99$</p>
                     </div>
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
                     <i class="fa-regular fa-heart"></i>
                 </div>
             </div>
@@ -229,7 +229,7 @@
             </div>
         </div>
         <div class="insta">
-
+            
         </div>
         <div class="footer">
 
@@ -238,75 +238,69 @@
         <script src="/assets/js/slider-product.js"></script>
     </div>
     <div class="modal-login hide">
-        <div class="displayForm">
-            <div class="box signup">
-                <h2>Already Have an Account ?</h2>
-                <button class="SignupBtn">Log In</button>
-            </div>
-            <div class="box signin">
-                <h2>Don't Have an Account ?</h2>
-                <button class="SigninBtn">Sign Up</button>
-            </div>
-            <div class="form">
-                <!-- Sign In -->
-                <div class="signin-container hide">
-                    <div class="slideForm signin">
-                        <div class="back-button">
-                            <i class="fa-solid fa-xmark"></i>
-                        </div>
-                        <h3>Log In</h3>
-                        <div class="inputBox">
-                            <input type="text" required="required">
-                            <i class="fa-regular fa-envelope"></i>
-                            <span>email address</span>
-                        </div>
-                        <div class="inputBox">
-                            <input type="password" required="required">
-                            <i class="fa-solid fa-lock"></i>
-                            <span>password</span>
-                        </div>
-                        <div class="inputBox">
-                            <input type="submit" value="Create Account">
-                            
-                        </div>
-                    </div>
+        <div class="container signup-container hide">
+            <div class="signup-section">
+                <div class="back-button">
+                    <i class="fa-solid fa-xmark"></i>
                 </div>
-            
-                <!-- Sign Up -->
-                <div class="signup-container hide">
-                    <div class="slideForm signup">
-                        <div class="back-button">
-                            <i class="fa-solid fa-xmark"></i>
-                        </div>
-                        <h3>Sign Up</h3>
-                        <div class="inputBox">
-                            <input type="text" required="required">
-                            <i class="fa-regular fa-user"></i>
-                            <span>username</span>
-                        </div>
-                        <div class="inputBox">
-                            <input type="text" required="required">
-                            <i class="fa-regular fa-envelope"></i>
-                            <span>email address</span>
-                        </div>
-                        <div class="inputBox">
-                            <input type="password" required="required">
-                            <i class="fa-solid fa-lock"></i>
-                            <span>create password</span>
-                        </div>
-                        <div class="inputBox">
-                            <input type="text" required="required">
-                            <i class="fa-solid fa-lock"></i>
-                            <span>confirm password</span>
-                        </div>
-                        <div class="inputBox">
-                            <input type="submit" value="Create Account">
-                        </div>
-                    </div>
+                <div class="signup-box">
+                    <h1>Sign up</h1>
+                    <button class="google-signup">Sign up with Google</button>
+                    <p class="or">or</p>
+                    <button class="email-signup">
+                        <i class="fa-regular fa-envelope"></i>
+                        Continue with email
+                    </button>
+                    <p class="terms">
+                        By creating an account you agree with our 
+                        <a href="#">Terms of Service</a>, 
+                        <a href="#">Privacy Policy</a>, and our 
+                        default <a href="#">Notification Settings</a>.
+                    </p>
+                    <p class="signup-link">
+                        Already have an account? <a href="#" class="show-signin">Login</a>
+                    </p>
                 </div>
+            </div>
+            <div class="image-section">
+                <img src="/assets/img/max-okhrimenko-7sivW9dzDro-unsplash.jpg" alt="Sign Up Image">
             </div>
         </div>
-
+    
+        <!-- Sign In -->
+        <div class="container signin-container hide">
+            <div class="signin-section">
+                <div class="back-button">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div class="signin-box">
+                    <h1>welcome back !</h1>
+                    <form>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+    
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password">
+    
+                        <div class="remember-forgot">
+                            <label>
+                                <input type="checkbox"> Remember here
+                            </label>
+                            <a href="#">Forgot Password</a>
+                        </div>
+    
+                        <button class="signin-btn">Sign In</button>
+                        <button class="google-signin-btn">Sign in with Google</button>
+                    </form>
+                    <p class="signup-link">
+                        Don't have an account? <a href="#" class="show-signup">Sign up</a>
+                    </p>
+                </div>
+            </div>
+            <div class="image-section">
+                <img src="/assets/img/max-okhrimenko-7sivW9dzDro-unsplash.jpg" alt="Sign In Image">
+            </div>
+        </div>
         <script src="/assets/js/login.js"></script>
     </div>
 </body>
