@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/758055a090.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <title>Shopping Cart</title>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Cart Section -->
+        <div class="container cart-section">
+            <div class="left">
+                <div class="header-left">
+                    <div class="left-section">
+                        <i class="fa fa-less-than"></i>
+                        <a href="">Back to Store</a>
+                    </div>
+                    <div class="left-title">
+                        <span>Shopping Cart</span>
+                    </div>
+                    <div class="left-countItem">
+                        <span>3 items</span>
+                    </div>
+                </div>
+
+                <div class="content-left">
+                    <div class="item-header">
+                        <div class="column">Item</div>
+                        <div class="column">Size</div>
+                        <div class="column">Quantity</div>
+                        <div class="column">Price</div>
+                    </div>
+                    <div class="item">
+                        <div class="product column">
+                            <div class="product-img">
+                                <img src="assets/img/Cart/Levent-DolphinTee.webp" alt="">
+                            </div>
+                            <div class="product-info">
+                                <a href="">Levents® Dolphin Tee</a>
+                            </div>
+                        </div>
+                        <div class="size column">L</div>
+                        <div class="quantity column">
+                            <i class="fa fa-minus minus"></i> <span class="quantily-cnt">1</span> <i class="fas fa-plus plus"></i>
+                        </div>
+                        <div class="price column"><span class="priceNumber" data-price ="42">42</span><i class="fa fa-dollar-sign iconDola"></i> <i class="fa fa-times iconX"></i></div>
+                    </div>
+
+                    <div class="item">
+                        <div class="product column">
+                            <div class="product-img">
+                                <img src="assets/img/Cart/Levent-StripedBaseballJersey.webp" alt="">
+                            </div>
+                            <div class="product-info">
+                                <a href="">Levents® Striped Baseball Jersey</a>
+                            </div>
+                        </div>
+                        <div class="size column">XL</div>
+                        <div class="quantity column">
+                            <i class="fa fa-minus minus" ></i> <span class="quantily-cnt">1</span> <i class="fas fa-plus plus"></i>
+                        </div>
+                        <div class="price column"><span class="priceNumber" data-price="22">22</span><i class="fa fa-dollar-sign iconDola"></i> <i class="fa fa-times iconX"></i></div>
+                    </div>
+
+                    <div class="item">
+                        <div class="product column">
+                            <div class="product-img">
+                                <img src="assets/img/Cart/Levent-CrocodieHoodie.webp" alt="">
+                            </div>
+                            <div class="product-info">
+                                <a href="">Levents® Crocodile Hoodie/ Blue</a>
+                            </div>
+                        </div>
+                        <div class="size column">L</div>
+                        <div class="quantity column">
+                            <i class="fa fa-minus minus" ></i> <span class="quantily-cnt">1</span> <i class="fas fa-plus plus"></i>
+                        </div>
+                        <div class="price column"><span class="priceNumber" data-price="100">100</span><i class="fa fa-dollar-sign iconDola"></i> <i class="fa fa-times iconX"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="header-right">
+                    <h2>Summary</h2>
+                    <i class="fa fa-times" id="closeBtn"></i>
+                </div>
+
+                <div class="content-right">
+                    <div class="row">
+                        <div class="label">Subtotal</div>
+                        <div class="value">252.00</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Shipping</div>
+                        <div class="value">0.00</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Tax</div>
+                        <div class="value">100.00</div>
+                    </div>
+                    <div class="row-4">
+                        <div class="label">Promote</div>
+                        <div class="value"><input type="text" placeholder="enter code" name="enter code"></div>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-total">
+                        <div class="total">Total</div>
+                        <div id="price-total">255.00</div>
+                    </div>
+                    <button id="checkout-btn">CHECKOUT</button>
+                </div>
+            </div>
+        </div>
+        <!-- Checkout Section -->
+        <div class="container checkout-section">
+            <div class="left">
+                <div class="header-left">
+                    <div class="images-header">
+                        <p>ALISA</p>
+                    </div>
+                </div>
+                <div class="content-left">
+                    <div class="content-left-columnsleft">
+                        <p id="close-checkout">Back To Cart</p>
+                    </div>
+                    <div class="content-left-columnsright">
+                        <h1>Who is placing this order?</h1>
+                        <form action="" name="formdk">
+                            <!-- <label for="">enter your email</label> -->
+                            <input type="email" name="email" placeholder="email" required>
+                            <div class="name-group">
+                                <input type="text" name="firstName" placeholder="First Name" required>
+                                <input type="text" name="lastName" placeholder="Last Name" required>
+                            </div>
+                            <button type="button" class="preceed-btn">PRECEED TO SHIPPING</button>
+                        </form>
+    
+                    </div>
+                </div>
+            </div>
+    
+            <div class="right">
+                <div class="header-right">
+                    <h3>Items</h3>
+                    <span>Edit cart</span>
+                </div>
+    
+                <div class="content-right">
+                    <div class="information">
+                        <div class="information-left">
+                            <p>product 1</p>
+                        </div>
+    
+                        <div class="information-right">
+                            <span>1x</span>
+                            <span>40 <i class="fa fa-donate"></i></span>
+                        </div>
+                    </div>
+    
+                    <div class="information">
+                        <div class="information-left">
+                            <p>product 1</p>
+                        </div>
+    
+                        <div class="information-right">
+                            <span>1x</span>
+                            <span>40 <i class="fa fa-donate"></i></span>
+                        </div>
+                    </div>
+    
+                    <div class="information">
+                        <div class="information-left">
+                            <p>product 1</p>
+                        </div>
+    
+                        <div class="information-right">
+                            <span>1x</span>
+                            <span>40 <i class="fa fa-donate"></i></span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="footer-right">
+                    <div class="footer-promocode">
+                        <label>Promocode</label>
+                        <input type="text" name="promocode" placeholder="enter code" required>
+                    </div>
+    
+                    <div class="footer-total">
+                        Total
+                        <span>255.00 <i class="fa fa-donate"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment -->
+        <form class="infor-payment">
+            <h1>Where would you like your order sent?</h1>
+            <!-- Thông tin quốc gia và địa chỉ -->
+            <input type="text" name="country" placeholder="Country" required aria-label="Country">
+            <input type="text" name="address" placeholder="Address" required aria-label="Address">
+            <div class="city-phone">
+                <input type="text" name="city" placeholder="City" required aria-label="City">
+                <input type="tel" name="phone" placeholder="Phone number" required aria-label="Phone number">
+            </div>
+    
+            <!-- Tùy chọn thanh toán -->
+            <div class="option">
+                <span>Delivery Options</span>
+                <div class="option-payment">
+                    <div class="option-payment-left">
+                        <label for="cash">Cash Payment</label>
+                        <input type="radio" name="paymentMethod" id="cash" value="cash" required>
+                    </div>
+                    <div class="option-payment-right">
+                        <span>0.00 <i class="fa fa-dollar-sign"></i></span>
+                    </div>
+                </div>
+                <div class="option-payment">
+                    <div class="option-payment-left">
+                        <label for="card">Card Payment</label>
+                        <input type="radio" name="paymentMethod" id="card" value="card" required>
+                    </div>
+                    <div class="option-payment-right">
+                        <span>200.00 <i class="fa fa-dollar-sign"></i></span>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Nút thực hiện thanh toán -->
+            <button type="submit" class="preceed-btn">PROCEED TO PAYMENT</button>
+        </form>
+    </div>
+
+    <script src="/assets/js/cart.js"></script>
+</body>
+
+</html>
