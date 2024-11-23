@@ -256,17 +256,18 @@
                         </div>
                         <h3>Log In</h3>
                         <div class="inputBox">
-                            <input type="text" required="required">
+                            <input type="text" name="email" required="required">
                             <i class="fa-regular fa-envelope"></i>
                             <span>email address</span>
                         </div>
                         <div class="inputBox">
-                            <input type="password" required="required">
+                            <input type="password" name="password" required="required" id="signin-password">
                             <i class="fa-solid fa-lock"></i>
-                            <span>password</span>
+                            <span>Password</span>
+                            <i class="fa-solid fa-eye-slash toggle-password" data-toggle="#signin-password"></i>
                         </div>
                         <div class="inputBox">
-                            <input type="submit" value="Create Account">
+                            <input type="submit" value="Login">
                             
                         </div>
                     </div>
@@ -280,24 +281,26 @@
                         </div>
                         <h3>Sign Up</h3>
                         <div class="inputBox">
-                            <input type="text" required="required">
+                            <input type="text" name="username" required="required">
                             <i class="fa-regular fa-user"></i>
                             <span>username</span>
                         </div>
                         <div class="inputBox">
-                            <input type="text" required="required">
+                            <input type="text" name="email" required="required">
                             <i class="fa-regular fa-envelope"></i>
                             <span>email address</span>
                         </div>
                         <div class="inputBox">
-                            <input type="password" required="required">
+                            <input type="password" name="password" required="required" id="signup-password">
                             <i class="fa-solid fa-lock"></i>
-                            <span>create password</span>
+                            <span>Password</span>
+                            <i class="fa-solid fa-eye-slash toggle-password" data-toggle="#signup-password"></i>
                         </div>
                         <div class="inputBox">
-                            <input type="text" required="required">
+                            <input type="password" name="confirmPassword" required="required" id="confirm-password">
                             <i class="fa-solid fa-lock"></i>
-                            <span>confirm password</span>
+                            <span>Confirm Password</span>
+                            <i class="fa-solid fa-eye-slash toggle-password" data-toggle="#confirm-password"></i>
                         </div>
                         <div class="inputBox">
                             <input type="submit" value="Create Account">
