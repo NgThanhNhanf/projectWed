@@ -290,7 +290,7 @@ const modalPrice = document.getElementById('modalPrice');
 const closeModal = document.querySelector('.close');
 const quantily = document.getElementById('quantity');
 const product = document.querySelectorAll('.product');
-var allProductss = JSON.parse(localStorage.getItem('allProducts'));
+// var allProductss = JSON.parse(localStorage.getItem('allProducts'));
 // console.log(product);
 // console.log(allProductss);
 
