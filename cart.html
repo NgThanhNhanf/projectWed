@@ -107,14 +107,28 @@
                         <div class="content-left-columnsright">
                             <h1>Ai là người đặt hàng ?</h1>
                             <form action="" name="formdk">
-                                <!-- <label for="">enter your email</label> -->
-                                <input type="email" name="email" placeholder="email" required>
-                                <div class="name-group">
-                                    <input type="text" name="firstName" placeholder="First Name" required>
-                                    <input type="text" name="lastName" placeholder="Last Name" required>
+                                <!-- Email Input -->
+                                <div class="input-group">
+                                    <input type="email" name="email" id="email" placeholder="" required>
+                                    <label for="email">Email</label>
                                 </div>
-                                <button type="button" class="preceed-btn" onclick="return solvePreceed()">Tiến hành vận chuyển</button>
+                            
+                                <!-- First Name và Last Name -->
+                                <div class="name-group">
+                                    <div class="input-group">
+                                        <input type="text" name="firstName" id="firstName" placeholder="" required>
+                                        <label for="firstName">First Name</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" name="lastName" id="lastName" placeholder="" required>
+                                        <label for="lastName">Last Name</label>
+                                    </div>
+                                </div>
+                            
+                                <!-- Button -->
+                                <button type="button" class="preceed-btn">Tiến hành vận chuyển</button>
                             </form>
+                            
         
                         </div>
                     </div>
@@ -123,7 +137,7 @@
                 <div class="right">
                     <div class="header-right">
                         <h3>Items</h3>
-                        <span>Edit cart</span>
+                        <!-- <span>Edit cart</span>  -->
                     </div>
         
                     <div class="content-right">
@@ -132,50 +146,66 @@
         
                     <div class="footer-right">
                         <div class="footer-total">
-                            Total
-                            <span>255.00</span> <i class="fa fa-donate"></i>
+                            Thành Tiền
+                            <span>0</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- -------------Payment---------------- -->
-            <form class="infor-payment">
+            <form class="infor-payment" name="formPy">
                 <div class="checkout">
                     <p class="close-payment">
                         <i class="fa-brands fa-docker"></i>
-                        Back
+                        Quay lại
                     </p>
                  </div>
-                <h1>Where would you like your order sent?</h1>
-                <input type="text" name="country" placeholder="Country" required aria-label="Country">
-                <input type="text" name="address" placeholder="Address" required aria-label="Address">
-                <div class="city-phone">
-                    <input type="text" name="city" placeholder="City" required aria-label="City">
-                    <input type="tel" name="phone" placeholder="Phone number" required aria-label="Phone number">
+                <h1>Bạn muốn gửi đơn hàng tới đâu ? </h1>
+                <div class="form-group">
+                    <input type="text" id="country" name="country" placeholder="" required>
+                    <label for="country">Country</label>
+
+                </div>
+                <div class="form-group">
+                    <input type="text" id="address" name="address" placeholder="" required>
+                    <label for="address">Address</label>
+
+                </div>
+                <div class="form-group city-phone">
+                    <div>
+                        <input type="text" id="city" name="city" placeholder="" required>
+                        <label for="city">City</label>
+
+                    </div>
+                    <div>
+                        <input type="tel" id="phone" name="phone" placeholder="" required>
+                        <label for="phone">Phone Number</label>
+
+                    </div>
                 </div>
                 <div class="option">
-                    <span>Delivery Options</span>
+                    <span>Tùy chọn giao dịch</span>
                     <div class="option-payment">
                         <div class="option-payment-left">
-                            <label for="cash">Cash Payment</label>
+                            <label for="cash">Tiền mặt</label>
                             <input type="radio" name="paymentMethod" id="cash" value="cash" required>
                         </div>
                         <div class="option-payment-right">
-                            <span>0.00 <i class="fa fa-dollar-sign"></i></span>
+                            <span></span>
                         </div>
                     </div>
                     <div class="option-payment">
                         <div class="option-payment-left">
-                            <label for="card">Card Payment</label>
+                            <label for="card">Khác</label>
                             <input type="radio" name="paymentMethod" id="card" value="card" required>
                         </div>
                         <div class="option-payment-right">
-                            <span>200.00 <i class="fa fa-dollar-sign"></i></span>
+                            <span></span>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="proceed-btn">PROCEED TO PAYMENT</button>
+                <button type="submit" class="proceed-btn">Thanh toán</button>
             </form>
 
             <!-- Payment-method -->
@@ -183,63 +213,54 @@
                     <div class="close-paymentMethod">
                         <i class="fab fa-node-js nodejs"></i>
                     </div>
-                <form action="" class="payment-form" style="margin-left: 150px; margin-top: 100px;">
-                    <h2>how would like to pay ?</h2>
+                <form action="" class="payment-form">
+                    <h2>Bạn muốn thanh toán như thế nào ?</h2>
                     <div class="payment-option">
-                        <label>
-                            <input type="radio" name="payment">
-                            Pay With Creadit Card
-                        </label>
+                        <input type="radio" id="vnpay" name="payment" />
+                        <label for="vnpay">VN Pay</label>
                     </div>
                     <div class="payment-option">
-                        <label>
-                            <input type="radio" name="payment">
-                            Pay With PayPal
-                        </label>
+                        <input type="radio" id="momo" name="payment" />
+                        <label for="momo">Ví điện tử Momo</label>
                     </div>
                     <div class="payment-option">
-                        <label>
-                            <input type="radio" name="payment">
-                            Used Giftcard
-                        </label>
+                        <input type="radio" id="card-swipe" name="payment" />
+                        <label for="card-swipe">Quẹt thẻ</label>
                     </div>
-    
+                    
                     <div class="infor">
-                        <label>
-                            Name on Card
-                            <input type="text" placeholder="name">
-                        </label>
-    
-                        <label>
-                            Card Number
-                            <input type="text" placeholder="1234 5678 9101 1121">
-                        </label>
+                        <div class="input-group">
+                            <input type="text" id="card-name" placeholder=" " required />
+                            <label for="card-name">Tên Thẻ</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="card-number" placeholder=" " required />
+                            <label for="card-number">Số Thẻ</label>
+                        </div>
                     </div>
-    
+                    
                     <div class="expiration-code">
-                        <label>
-                            Expiration
-                            <input type="date" placeholder="MM/YYYY">
-                        </label>
-    
-                        <label>
-                            Code
-                            <input type="password" placeholder="...">
-                        </label>
-                    </div>
-    
+                        <div class="input-group">
+                            <input type="month" id="expiry-date" placeholder=" " required />
+                            <label for="expiry-date">Ngày hết hạn</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="cvv" placeholder=" " required />
+                            <label for="cvv">Mã Thẻ</label>
+                        </div>
+                    </div>    
                     <div class="checkbox-group">
                         <label>
                             <input type="checkbox">
-                            Use shipping address as billing address
+                            Sử dụng địa chỉ giao hàng làm địa chỉ thanh toán
                         </label>
     
                         <label>
                             <input type="checkbox">
-                            I accept ALISA Terms & Conditions
+                            Tôi chấp nhận Điều khoản & Điều kiện ALISA
                         </label>
                     </div>
-                    <button type="submit" class="pay">Pay</button>
+                    <button type="submit" class="pay">Thanh Toán</button>
                 </form>
             </div>
         </div>
