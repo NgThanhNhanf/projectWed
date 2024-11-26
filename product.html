@@ -11,6 +11,7 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     />
+    <!-- <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="assets/css/product.css">
 </head>
 
@@ -43,6 +44,15 @@
                 <img src="assets/img/product/mau7.jpg" alt="Discount Image" class="side-image">
             </div>
         </div>
+
+            <ul class="navItems">
+                <li class="nav-item">
+                    <a href="index.html">Trang chu</a>
+                </li>
+                <li class="nav-item">
+                    <Strong>all products</Strong>
+                </li>
+            </ul>
     </div>
     
     
@@ -66,7 +76,7 @@
                     <label for="Polo">Polo</label>
                     <br>
                     <input type="checkbox" id="Shirt" value="Shirt">
-                    <label for="Shirt">Shirt</label>
+                    <label for="Shirt</label>
                 </div>
                 <div class="size-product">
                     <h4>Size</h4>
@@ -122,7 +132,8 @@
             </div>
             <div class="cart-icon" id="cartIcon">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <iframe src="cart.html" class="cart-iframe" id="cartIframe"></iframe>
+                <span id="amount-cart">0</span>
+                
             </div>
             <!-- HIEN THI DANH SACH -->
             <div class="product-grid">
@@ -132,7 +143,7 @@
                     </div>
                     <div class="product-detail">
                         <h4>Product 1</h4>
-                        <p>99$</p>
+                        <p>99$</p>  
                     </div>
                     <i class="fa-solid fa-cart-shopping"></i>
                     <i class="fa-regular fa-heart"></i>
@@ -159,9 +170,9 @@
                         <button class="quantity-btn">+</button>
                     </div>
                     <select id="sizeSelect">
-                        <option>Small</option>
-                        <option>Medium</option>
-                        <option>Large</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
                     </select>
                 </div>
                 <div class="modal-actions">
@@ -170,7 +181,8 @@
             </div>
         </div>
     </div>
-    
+    <!-- the iframe de hien thi gio hang -->
+    <iframe src="cart.html" class="cart-iframe" id="cartIframe"></iframe>
     <script src="assets/js/product.js"></script>
 </body>
 </html>

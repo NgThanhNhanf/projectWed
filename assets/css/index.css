@@ -134,6 +134,14 @@ body {
     font-family: monospace, "Monaco"; 
     text-shadow: 0 0 2px #ffffff;
 }
+
+.header-bottom .nav-list .nav-item a {
+    text-decoration: none;
+    font-family: monospace, "Monaco"; 
+    transition: 0.2s;
+    color: #000000;
+}
+
 .header-bottom .subnav {
     display: block;
     overflow: hidden;
@@ -193,6 +201,31 @@ body {
     color: white;
     text-shadow: 0 0 2px #000000;
     transition: 0.1s;
+}
+
+/*CART ICON*/
+.cart-icon {
+    font-size: 17px;
+    position: fixed;
+    cursor: pointer;
+    top: 15px;
+    right: 10px;
+    z-index: 1;
+}
+
+.cart-iframe {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 1300px;
+    height: 100vh;
+    border: none;
+    box-shadow: -40px 0 50px rgba(0, 0, 0, 0.1);
+    transition: right 0.9s ease-in-out;
+    z-index: 2;
+}
+.cart-iframe.open {
+    right: 0;
 }
 
 /* -------------Slider------------------ */
@@ -389,7 +422,7 @@ body {
     color: #fff; 
 }
 
-.fa-cart-shopping {
+.cart-item {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -401,7 +434,7 @@ body {
     font-size: 16px;
 }
 
-.fa-cart-shopping:hover {
+.cart-item:hover {
     background-color: rgba(0, 0, 0, 1);
     color: #ffff;
     transform: scale(1.3);

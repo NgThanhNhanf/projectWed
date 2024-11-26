@@ -1,245 +1,270 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/758055a090.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/cart.css">
-    <title>Shopping Cart</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/758055a090.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="assets/css/cart.css">
+        <title>Shopping Cart</title>
+    </head>
 
-<body>
-    <div class="main-container">
-        <!-- Cart Section -->
-        <div class="container cart-section">
-            <div class="left">
-                <div class="header-left">
-                    <div class="left-section">
-                        <i class="fa fa-less-than"></i>
-                        <a href="">Back to Store</a>
+    <body>
+        <div class="main-container">
+            <!-- Cart Section -->
+            <div class="container cart-section">
+                <div class="left">
+                    <div class="header-left">
+                        <div class="left-section">
+                            <i class="fa fa-less-than"></i>
+                            <a href="">Quay về cửa hàng</a>
+                        </div>
+                        <div class="left-title">
+                            <span>Giỏ hàng của bạn</span>
+                        </div>
+                        <div class="left-countItem">
+                            <!-- <span></span> -->
+                        </div>
                     </div>
-                    <div class="left-title">
-                        <span>Shopping Cart</span>
+
+                    <div class="content-left">
+                        <div class="item-header">
+                            <div class="column">Sản phẩm</div>
+                            <div class="column">Kích thước</div>
+                            <div class="column">Số lượng</div>
+                            <div class="column">Giá tiền</div>
+                        </div>
+                        <div class="cartItemContent">
+                            <!-- <div class="item">
+                                <div class="product column">
+                                    <div class="product-img">
+                                        <img src="${item.image}" alt="${item.name}">
+                                    </div>
+                                    <div class="product-info">
+                                        <a href="#">${item.name}</a>
+                                    </div>
+                                </div>
+                                <div class="size column">${item.size}</div>
+                                <div class="quantity column">
+                                    <span class="quantity-cnt">${item.quantity}</span>
+                                </div>
+                                <div class="price column">
+                                    <span class="priceNumber">${(item.price * item.quantity).toLocaleString()}</span>
+                                </div>
+                                <div class = "iconX">
+                                    <i class="fa-solid fa-xmark"></i>    
+                                </div>
+                            </div> -->
+                        </div>
                     </div>
-                    <div class="left-countItem">
-                        <span>3 items</span>
+                </div>  
+
+                <div class="right">
+                    <div class="header-right">
+                        <h2>Tóm tắt</h2>
+                        <i class="fa fa-times" id="closeBtn"></i>
+                    </div>
+
+                    <div class="content-right">
+                        <div class="row subtotal">
+                            <div class="label">Tổng tạm tính</div>
+                            <div class="value">0</div>
+                        </div>
+                        <div class="row shipping">
+                            <div class="label">Tiền ship</div>
+                            <div class="value">0</div>
+                        </div>
+                        <div class="row tax">
+                            <div class="label">Thuế</div>
+                            <div class="value">0</div>
+                        </div>
+                        <div class="row-4">
+                            <div class="label">Mã giảm giá</div>
+                            <div class="value"><input type="text" placeholder="enter code" name="enter code"></div>
+                        </div>
+                    </div>
+                    <div class="footer-right">
+                        <div class="footer-total">
+                            <div class="total">Thành tiền</div>
+                            <div id="price-total">0</div>
+                        </div>
+                        <button id="checkout-btn">CHECKOUT</button>
                     </div>
                 </div>
-
-                <div class="content-left">
-                    <div class="item-header">
-                        <div class="column">Item</div>
-                        <div class="column">Size</div>
-                        <div class="column">Quantity</div>
-                        <div class="column">Price</div>
+            </div>
+            <!-- Checkout Section -->
+            <div class="container checkout-section">
+                <div class="left">
+                    <div class="header-left">
+                        <div class="images-header">
+                            <p>ALESIA</p>
+                        </div>
                     </div>
-                    <div class="item">
-                        <div class="product column">
-                            <div class="product-img">
-                                <img src="assets/img/Cart/Levent-DolphinTee.webp" alt="">
-                            </div>
-                            <div class="product-info">
-                                <a href="">Levents® Dolphin Tee</a>
-                            </div>
+                    <div class="content-left">
+                        <div class="content-left-columnsleft">
+                            <p id="close-checkout">Quay lại giỏ hàng</p>
                         </div>
-                        <div class="size column">L</div>
-                        <div class="quantity column">
-                            <i class="fa fa-minus minus"></i> <span class="quantily-cnt">1</span> <i class="fas fa-plus plus"></i>
+                        <div class="content-left-columnsright">
+                            <h1>Ai là người đặt hàng ?</h1>
+                            <form action="" name="formdk">
+                                <!-- Email Input -->
+                                <div class="input-group">
+                                    <input type="email" name="email" id="email" placeholder="" required>
+                                    <label for="email">Email</label>
+                                </div>
+                            
+                                <!-- First Name và Last Name -->
+                                <div class="name-group">
+                                    <div class="input-group">
+                                        <input type="text" name="firstName" id="firstName" placeholder="" required>
+                                        <label for="firstName">First Name</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" name="lastName" id="lastName" placeholder="" required>
+                                        <label for="lastName">Last Name</label>
+                                    </div>
+                                </div>
+                            
+                                <!-- Button -->
+                                <button type="button" class="preceed-btn">Tiến hành vận chuyển</button>
+                            </form>
+                            
+        
                         </div>
-                        <div class="price column"><span class="priceNumber" data-price ="42">42</span><i class="fa fa-dollar-sign iconDola"></i> <i class="fa fa-times iconX"></i></div>
                     </div>
-
-                    <div class="item">
-                        <div class="product column">
-                            <div class="product-img">
-                                <img src="assets/img/Cart/Levent-StripedBaseballJersey.webp" alt="">
-                            </div>
-                            <div class="product-info">
-                                <a href="">Levents® Striped Baseball Jersey</a>
-                            </div>
-                        </div>
-                        <div class="size column">XL</div>
-                        <div class="quantity column">
-                            <i class="fa fa-minus minus" ></i> <span class="quantily-cnt">1</span> <i class="fas fa-plus plus"></i>
-                        </div>
-                        <div class="price column"><span class="priceNumber" data-price="22">22</span><i class="fa fa-dollar-sign iconDola"></i> <i class="fa fa-times iconX"></i></div>
+                </div>
+        
+                <div class="right">
+                    <div class="header-right">
+                        <h3>Items</h3>
+                        <!-- <span>Edit cart</span>  -->
                     </div>
-
-                    <div class="item">
-                        <div class="product column">
-                            <div class="product-img">
-                                <img src="assets/img/Cart/Levent-CrocodieHoodie.webp" alt="">
-                            </div>
-                            <div class="product-info">
-                                <a href="">Levents® Crocodile Hoodie/ Blue</a>
-                            </div>
+        
+                    <div class="content-right">
+                       
+                    </div>
+        
+                    <div class="footer-right">
+                        <div class="footer-total">
+                            Thành Tiền
+                            <span>0</span>
                         </div>
-                        <div class="size column">L</div>
-                        <div class="quantity column">
-                            <i class="fa fa-minus minus" ></i> <span class="quantily-cnt">1</span> <i class="fas fa-plus plus"></i>
-                        </div>
-                        <div class="price column"><span class="priceNumber" data-price="100">100</span><i class="fa fa-dollar-sign iconDola"></i> <i class="fa fa-times iconX"></i></div>
                     </div>
                 </div>
             </div>
 
-            <div class="right">
-                <div class="header-right">
-                    <h2>Summary</h2>
-                    <i class="fa fa-times" id="closeBtn"></i>
-                </div>
+            <!-- -------------Payment---------------- -->
+            <form class="infor-payment" name="formPy">
+                <div class="checkout">
+                    <p class="close-payment">
+                        <i class="fa-brands fa-docker"></i>
+                        Quay lại
+                    </p>
+                 </div>
+                <h1>Bạn muốn gửi đơn hàng tới đâu ? </h1>
+                <div class="form-group">
+                    <input type="text" id="country" name="country" placeholder="" required>
+                    <label for="country">Country</label>
 
-                <div class="content-right">
-                    <div class="row">
-                        <div class="label">Subtotal</div>
-                        <div class="value">252.00</div>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="address" name="address" placeholder="" required>
+                    <label for="address">Address</label>
+
+                </div>
+                <div class="form-group city-phone">
+                    <div>
+                        <input type="text" id="city" name="city" placeholder="" required>
+                        <label for="city">City</label>
+
                     </div>
-                    <div class="row">
-                        <div class="label">Shipping</div>
-                        <div class="value">0.00</div>
-                    </div>
-                    <div class="row">
-                        <div class="label">Tax</div>
-                        <div class="value">100.00</div>
-                    </div>
-                    <div class="row-4">
-                        <div class="label">Promote</div>
-                        <div class="value"><input type="text" placeholder="enter code" name="enter code"></div>
+                    <div>
+                        <input type="tel" id="phone" name="phone" placeholder="" required>
+                        <label for="phone">Phone Number</label>
+
                     </div>
                 </div>
-                <div class="footer-right">
-                    <div class="footer-total">
-                        <div class="total">Total</div>
-                        <div id="price-total">255.00</div>
+                <div class="option">
+                    <span>Tùy chọn giao dịch</span>
+                    <div class="option-payment">
+                        <div class="option-payment-left">
+                            <label for="cash">Tiền mặt</label>
+                            <input type="radio" name="paymentMethod" id="cash" value="cash" required>
+                        </div>
+                        <div class="option-payment-right">
+                            <span></span>
+                        </div>
                     </div>
-                    <button id="checkout-btn">CHECKOUT</button>
+                    <div class="option-payment">
+                        <div class="option-payment-left">
+                            <label for="card">Khác</label>
+                            <input type="radio" name="paymentMethod" id="card" value="card" required>
+                        </div>
+                        <div class="option-payment-right">
+                            <span></span>
+                        </div>
+                    </div>
                 </div>
+                <button type="submit" class="proceed-btn">Thanh toán</button>
+            </form>
+
+            <!-- Payment-method -->
+            <div class="paymentMethod">
+                    <div class="close-paymentMethod">
+                        <i class="fab fa-node-js nodejs"></i>
+                    </div>
+                <form action="" class="payment-form">
+                    <h2>Bạn muốn thanh toán như thế nào ?</h2>
+                    <div class="payment-option">
+                        <input type="radio" id="vnpay" name="payment" />
+                        <label for="vnpay">VN Pay</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="momo" name="payment" />
+                        <label for="momo">Ví điện tử Momo</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="card-swipe" name="payment" />
+                        <label for="card-swipe">Quẹt thẻ</label>
+                    </div>
+                    
+                    <div class="infor">
+                        <div class="input-group">
+                            <input type="text" id="card-name" placeholder=" " required />
+                            <label for="card-name">Tên Thẻ</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="card-number" placeholder=" " required />
+                            <label for="card-number">Số Thẻ</label>
+                        </div>
+                    </div>
+                    
+                    <div class="expiration-code">
+                        <div class="input-group">
+                            <input type="month" id="expiry-date" placeholder=" " required />
+                            <label for="expiry-date">Ngày hết hạn</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="cvv" placeholder=" " required />
+                            <label for="cvv">Mã Thẻ</label>
+                        </div>
+                    </div>    
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox">
+                            Sử dụng địa chỉ giao hàng làm địa chỉ thanh toán
+                        </label>
+    
+                        <label>
+                            <input type="checkbox">
+                            Tôi chấp nhận Điều khoản & Điều kiện ALISA
+                        </label>
+                    </div>
+                    <button type="submit" class="pay">Thanh Toán</button>
+                </form>
             </div>
         </div>
-        <!-- Checkout Section -->
-        <div class="container checkout-section">
-            <div class="left">
-                <div class="header-left">
-                    <div class="images-header">
-                        <p>ALISA</p>
-                    </div>
-                </div>
-                <div class="content-left">
-                    <div class="content-left-columnsleft">
-                        <p id="close-checkout">Back To Cart</p>
-                    </div>
-                    <div class="content-left-columnsright">
-                        <h1>Who is placing this order?</h1>
-                        <form action="" name="formdk">
-                            <!-- <label for="">enter your email</label> -->
-                            <input type="email" name="email" placeholder="email" required>
-                            <div class="name-group">
-                                <input type="text" name="firstName" placeholder="First Name" required>
-                                <input type="text" name="lastName" placeholder="Last Name" required>
-                            </div>
-                            <button type="button" class="preceed-btn">PRECEED TO SHIPPING</button>
-                        </form>
-    
-                    </div>
-                </div>
-            </div>
-    
-            <div class="right">
-                <div class="header-right">
-                    <h3>Items</h3>
-                    <span>Edit cart</span>
-                </div>
-    
-                <div class="content-right">
-                    <div class="information">
-                        <div class="information-left">
-                            <p>product 1</p>
-                        </div>
-    
-                        <div class="information-right">
-                            <span>1x</span>
-                            <span>40 <i class="fa fa-donate"></i></span>
-                        </div>
-                    </div>
-    
-                    <div class="information">
-                        <div class="information-left">
-                            <p>product 1</p>
-                        </div>
-    
-                        <div class="information-right">
-                            <span>1x</span>
-                            <span>40 <i class="fa fa-donate"></i></span>
-                        </div>
-                    </div>
-    
-                    <div class="information">
-                        <div class="information-left">
-                            <p>product 1</p>
-                        </div>
-    
-                        <div class="information-right">
-                            <span>1x</span>
-                            <span>40 <i class="fa fa-donate"></i></span>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="footer-right">
-                    <div class="footer-promocode">
-                        <label>Promocode</label>
-                        <input type="text" name="promocode" placeholder="enter code" required>
-                    </div>
-    
-                    <div class="footer-total">
-                        Total
-                        <span>255.00 <i class="fa fa-donate"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Payment -->
-        <form class="infor-payment">
-            <h1>Where would you like your order sent?</h1>
-            <!-- Thông tin quốc gia và địa chỉ -->
-            <input type="text" name="country" placeholder="Country" required aria-label="Country">
-            <input type="text" name="address" placeholder="Address" required aria-label="Address">
-            <div class="city-phone">
-                <input type="text" name="city" placeholder="City" required aria-label="City">
-                <input type="tel" name="phone" placeholder="Phone number" required aria-label="Phone number">
-            </div>
-    
-            <!-- Tùy chọn thanh toán -->
-            <div class="option">
-                <span>Delivery Options</span>
-                <div class="option-payment">
-                    <div class="option-payment-left">
-                        <label for="cash">Cash Payment</label>
-                        <input type="radio" name="paymentMethod" id="cash" value="cash" required>
-                    </div>
-                    <div class="option-payment-right">
-                        <span>0.00 <i class="fa fa-dollar-sign"></i></span>
-                    </div>
-                </div>
-                <div class="option-payment">
-                    <div class="option-payment-left">
-                        <label for="card">Card Payment</label>
-                        <input type="radio" name="paymentMethod" id="card" value="card" required>
-                    </div>
-                    <div class="option-payment-right">
-                        <span>200.00 <i class="fa fa-dollar-sign"></i></span>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Nút thực hiện thanh toán -->
-            <button type="submit" class="preceed-btn">PROCEED TO PAYMENT</button>
-        </form>
-    </div>
-
-    <script src="/assets/js/cart.js"></script>
-</body>
-
+        <script src="/assets/js/product.js"></script>
+        <script src="/assets/js/cart.js"></script>
+    </body>
 </html>

@@ -11,157 +11,433 @@ const closeCheckout = document.getElementById('close-checkout');
 const cartsection = document.querySelector('.cart-section');
 const checkoutsection = document.querySelector('.checkout-section');
 
-buttonCheckout.addEventListener('click' , () => {
+buttonCheckout.addEventListener('click', () => {
     cartsection.style.transform = 'translateX(-100%)';
     checkoutsection.style.transform = 'translateX(0)';
 });
 // lắng nghe sự kiện click vào back to checkout
-closeCheckout.addEventListener('click' , () => {
+closeCheckout.addEventListener('click', () => {
     checkoutsection.style.transform = 'translateX(-100%)';
     cartsection.style.transform = 'translateX(0)';
 });
 
-//lắng nghe sự kiện click vào preceed to shipping
+//lắng nghe sự kiện click vào tiến hành vận chuyển 
 const preceedtoshipping = document.querySelector('.preceed-btn');
 const payment = document.querySelector('.infor-payment');
 const leftcheckout = document.querySelector('.checkout-section .left');
 preceedtoshipping.addEventListener('click', () => {
-    if(solvePreceed()){
+    if (solvePreceed()) {
+        leftcheckout.classList.remove('active');
         leftcheckout.classList.add('hidden');
+        payment.classList.remove('hidden');
+        payment.classList.add('active');
     }
-    payment.classList.add('active');
 });
+
+//lắng nghe sự kiện click vào back to checkout
+const backToCheckout = document.querySelector('.close-payment');
+// console.log(backToCheckout)
+backToCheckout.addEventListener('click', () => {
+    payment.classList.remove('active');
+    payment.classList.add('hidden');
+    leftcheckout.classList.remove('hidden');
+    leftcheckout.classList.add('active');
+});
+
+//lắng nghe sự kiện click vào Thanh toán
+const proceedToPayment = document.querySelector('.proceed-btn');
+const paymentMethod = document.querySelector('.paymentMethod');
+proceedToPayment.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (isCheckPayment()) {
+        if (document.getElementById('cash').checked) {
+            alert("thanh toan thanh cong");
+        } else if (document.getElementById('card').checked) {
+            proceedToPayment.textContent = "chon phuong thuc thanh toan";
+            paymentMethod.classList.remove('hidden');
+            paymentMethod.classList.add('active');
+            payment.classList.remove('active');
+            payment.classList.add('hidden');
+        } else {
+            alert("vui long chon tuy chon thanh toan!");
+        }
+    }
+});
+
+//lắng nghe sự kiện click vào nodejs 
+const nodejs = document.querySelector('.nodejs');
+nodejs.addEventListener('click', () => {
+    paymentMethod.classList.remove('active');
+    paymentMethod.classList.add('hidden');
+    payment.classList.remove('hidden');
+    payment.classList.add('active')
+});
+
 
 //cac hàm thực hiện các chức năng riêng
 
-//tang giam so luong san pham => price tăng hoặc giảm
-function solveQuantily() {
-    var minusButton = document.querySelectorAll('.minus');
-    // console.log(minusButton);
-    var plusButton = document.querySelectorAll('.plus');
-    // console.log(plusButton);
-    var quantily = document.querySelectorAll('.quantily-cnt');
-
-    //giam bang nut -
-    minusButton.forEach((minus,i) => {
-        var cnt = quantily[i];
-           minus.addEventListener('click' , () => {
-               var childpriceproduct  = parseFloat(priceproduct[i].getAttribute('data-price'));
-               var quantilyInt = parseInt(cnt.textContent);
-                if(quantilyInt > 1){
-                    quantilyInt--;
-                    var totalPrice = quantilyInt * childpriceproduct;
-                    priceproduct[i].textContent = totalPrice;
-                    cnt.textContent = quantilyInt;
-                    solveSumAllProduct();
-            }
-        });
-    });
-    
-    //tang bang nut +
-    plusButton.forEach((plus,i) => {
-        var cnt = quantily[i];
-        plus.addEventListener('click' , () => {
-            var quantilyInt = parseInt(cnt.textContent);
-            var childpriceproduct  = parseFloat(priceproduct[i].getAttribute('data-price'));
-            quantilyInt++;
-            var totalPrice = quantilyInt * childpriceproduct;
-            cnt.textContent = quantilyInt;
-            priceproduct[i].textContent = totalPrice;
-            solveSumAllProduct();
-        });
-    });
-}
-solveQuantily();
-
-//caculatorAllProduct
-var sumProduct = 0;
-var subtotal = document.querySelector('.row .value');
-var priceproduct = document.querySelectorAll('.priceNumber');
-console.log(priceproduct);
-function solveSumAllProduct() {
-    sumProduct = 0;
-    priceproduct = document.querySelectorAll('.priceNumber');
-    priceproduct.forEach((priceNumber) => {
-        var price = parseFloat(priceNumber.textContent);
-        sumProduct += price;
-    });
-    // console.log(sumProduct);
-    subtotal.textContent = sumProduct.toFixed(2);
-    solveTotal();
+//lay gio hang ra 
+function getCartFromLocalStorage() {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
 }
 
-//total = subtotal + tax + shipping
-var total = document.getElementById('price-total');
-var sum = 0;
-function solveTotal() {
-    var totalPayment = document.querySelectorAll('.row .value');
-    // console.log(totalPayment);
-    sum = 0;
-    totalPayment.forEach(value =>{
-        var res = parseFloat(value.textContent);
-        sum+= res;
-    });
-    total.textContent = sum.toFixed(2);
+//Luu cart trong localStorage
+function storeCartInLocalStorage(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+// console.log(cart)
+function displayCart(cart) {
+    const cartItemContent = document.querySelector('.cartItemContent');
+    // console.log(cartItemContent);
+    cartItemContent.innerHTML = ''; // Xóa nội dung cũ
 
+    cart.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+                <div class="item">
+                    <div class="product column">
+                        <div class="product-img">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="product-info">
+                            <a href="#">${item.name}</a>
+                        </div>
+                    </div>
+                    <div class="size column">${item.size}</div>
+                    <div class="quantity column">
+                        <i class="fas fa-minus minus"></i>
+                        <span class="quantity-cnt">${item.quantity}</span>
+                        <i class="fas fa-plus plus"></i>
+                    </div>
+                    <div class="price column">
+                        <span class="priceNumber">${(item.price * item.quantity).toLocaleString()}</span>
+                    </div>
+                    <div class = "iconX">
+                        <i class="fa-solid fa-xmark"></i>    
+                    </div>
+                </div>`;
+        cartItemContent.appendChild(cartItem);
+    });
+    solveQuantity(cart);
+    solveIconX(cart)
+    updateCart(cart)
+
+}
+// displayCart(cart);
+
+//tinh tien all san pham trong cart => luu vao subtotal
+var cartItem = document.querySelectorAll('.item');
+// console.log(cartItem)
+var subtotal = document.querySelector('.subtotal .value');
+var subtotalInt = parseInt(subtotal.textContent);
+
+function sumProductInCart(cart) {
+    return cart.reduce((sum, item) => {
+        return sum + (item.price * item.quantity);
+    }, 0);
+}
+// sumProductInCart();
+
+//tinh ship dua tren subtotal
+function shipping(subtal) {
+    return subtal > 1000 ? 50 : 0;
+}
+// shipping();
+
+//tinh thue dua vao tien ship
+function tax(shipCost) {
+    return shipCost === 50 ? 20 : 0;
+}
+// tax();
+
+//cong don vao total tong
+function totalAll(cart) {
+    var subtal = sumProductInCart(cart)
+    var shipCost = shipping(subtal)
+    var istax = tax(shipCost)
+    return subtal + shipCost + istax;
+}
 //nhap ma giam gia se giam 20%
 function solvePromocode() {
     var promocode = document.querySelector('.value input');
-    //ma giam gia se la gg123
-    promocode.addEventListener('input' , () => {
-        solveTotal();
-       if(promocode.value === 'gg123') {
-           total.textContent = (sum * 0.8).toFixed(2);
-       }else {
-           total.textContent = sum.toFixed(2);
-       }
+    //ma giam gia se la giamgia123
+    promocode.addEventListener('change', () => {
+        var cart = getCartFromLocalStorage();
+        var sum = totalAll(cart);
+        if (promocode.value === 'gg123') {
+            sum = (sum * 0.8);
+            var totalAlterPromocode = document.getElementById('price-total');
+            totalAlterPromocode.textContent = sum;
+        }
     });
 }
 solvePromocode();
 
-//click vao x se xoa san pham
-function solveIconX() {
-    var icon = document.querySelectorAll('.iconX');
-    var item = document.querySelectorAll('.item');
-    var content = document.querySelector('.content-left');
-    console.log(item);
-    icon.forEach((iconX,i) =>{
-        iconX.addEventListener('click' , () =>{
-            content.removeChild(item[i]);
-            solveSumAllProduct();
+//click vao x se xoa san pham va cap nhap lai cac gia tri
+function solveIconX(cart) {
+    var cartItem = document.querySelectorAll('.item');
+    // console.log(cartItem)
+    var iconX = document.querySelectorAll('.iconX');
+    iconX.forEach((icon, index) => {
+        icon.addEventListener('click', () => {
+            cartItem[index].remove();
+            cart.splice(index, 1);
+            storeCartInLocalStorage(cart)
+            displayCart(cart)
+            updateCart(cart)
+            displayCheckout(cart)
         });
     });
 }
-solveIconX();
-solveSumAllProduct();
-solveTotal();
+function solveQuantity(cart) {
+    const minusIcon = document.querySelectorAll('.minus');
+    const plusIcon = document.querySelectorAll('.plus');
+    // console.log(minusIcon);
+    // console.log(plusIcon)
+    // console.log(cart)
+    minusIcon.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity--;
+                displayQuantilyAlterUpdate(index, cart[index].quantity);
+                storeCartInLocalStorage(cart);
+                updateCart(cart)
+                displayCart(cart)
+                displayCheckout(cart)
+            }
+        });
+    });
+
+    plusIcon.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            cart[index].quantity++;
+            displayQuantilyAlterUpdate(index, cart[index].quantity);
+            storeCartInLocalStorage(cart)
+            updateCart(cart)
+            displayCart(cart)
+            displayCheckout(cart)
+        });
+    });
+}
+
+function displayQuantilyAlterUpdate(index, quantity) {
+    const quantityElement = document.querySelectorAll('.quantity-cnt');
+    quantityElement[index].textContent = quantity;
+}
+
+function updateCart(cart) {
+    //  const cart = getCartFromLocalStorage();
+    var subtotal = sumProductInCart(cart);
+    var shippingCost = shipping(subtotal);
+    var taxCost = tax(shippingCost);
+    var total = subtotal + shippingCost + taxCost;
+
+    document.querySelector('.subtotal .value').textContent = subtotal.toLocaleString();
+    document.querySelector('.shipping .value').textContent = shippingCost;
+    document.querySelector('.tax .value').textContent = taxCost;
+    document.getElementById('price-total').textContent = total.toLocaleString();
+    //cap nhap cho total ben checkout
+    document.querySelector('.checkout-section .footer-total span').textContent = total.toLocaleString();
+
+}
+
+//dong bo gio hang khi co thay doi trong localstorage
+window.addEventListener('storage', (event) => {
+    if (event.key === 'cart') {
+        var update = JSON.parse(event.newValue) || [];
+        displayCart(update)
+        totalAll(cart)
+        displayCheckout(cart)
+    }
+});
 
 
-//from order
+window.addEventListener('DOMContentLoaded', () => {
+    var cus = getCusTomerFromLocalStorage();
+    var cart = getCartFromLocalStorage();
+    displayCart(cart);
+    totalAll(cart)
+    storeCartInLocalStorage(cart);
+    displayCheckout(cart)
+});
+
+
+//------------CHECKOUT RIGHT--------------
+
+//form order
+var formdk = document.formdk;
 function solvePreceed() {
-    var formdk = document.formdk;
     var email = formdk.email.value;
     var firstname = formdk.firstName.value;
     var lastname = formdk.lastName.value;
-    if(email === ''){
+    if (email === '') {
         alert('email khong duoc rong');
-        email.focus();
+        formdk.email.focus();
         return false;
     }
 
-    if(firstname === '') {
+    if (firstname === '') {
         alert('firstname khong duoc rong');
-        firstname.focus();
+        formdk.firstname.focus();
         return false;
     }
 
-    if(lastname === ''){
+    if (lastname === '') {
         alert('lastname khong duoc rong');
-        lastname.focus();
+        formdk.lastname.focus();
         return false;
+    }
+    addCustomerToLocalStorage();
+    return true;
+}
+
+function addCustomerToLocalStorage() {
+    const emailCus = formdk.email.value;
+    const firstNameCus = formdk.firstName.value;
+    const lastNameCus = formdk.lastName.value;
+    var customerFormLocalStorage = getCusTomerFromLocalStorage();
+
+    const customerExist = customerFormLocalStorage.findIndex((customer) => {
+        return customer.emailCus === emailCus;
+    });
+
+    if (customerExist !== -1) {
+        customerFormLocalStorage[customerExist].indexLogin += 1;
+    } else {
+        var customerData =
+        {
+            firstNameCus,
+            lastNameCus,
+            emailCus,
+            indexLogin: 1,
+        };
+        customerFormLocalStorage.push(customerData);
+    }
+    localStorage.setItem('cusData', JSON.stringify(customerFormLocalStorage));
+}
+
+function getCusTomerFromLocalStorage() {
+    var cus = localStorage.getItem('cusData');
+    return cus ? JSON.parse(cus) : [];
+}
+
+//hien thi ten san pham | so luong | gia tien ben cot phai
+function displayCheckout(cart) {
+    const contentInCheckoutRight = document.querySelector('.checkout-section .content-right');
+    contentInCheckoutRight.innerHTML = '';
+
+    cart.forEach(item => {
+        const checkoutItem = document.createElement('div');
+        checkoutItem.classList.add('checkout-item');
+        checkoutItem.innerHTML = `
+            <div class = "information">
+                <div class = "information-left">
+                    <p>${item.name}</p>
+                </div>
+
+                <div class = "information-right">
+                    <span class = "amount">${item.quantity}</span><i>x</i>
+                    <span class = "inforPrice"> <span>${item.price}</span> </span>
+                </div>
+            </div> `;
+        contentInCheckoutRight.appendChild(checkoutItem);
+    });
+}
+
+//---click vao thanh toan -> thong bao vui long chon tuy chon giao dich
+//-> nếu chọn tiền mặt thì -> thanh toán thành công 
+//-> nếu chọn thẻ ngân hàng -> nút thanh toán đổi thành chọn phương thức thanh toán
+
+function isCheckPayment() {
+    const formPayment = document.formPy;
+    const country = formPayment.country.value;
+    const address = formPayment.address.value;
+    const city = formPayment.city.value;
+    const phone = formPayment.phone.value;
+    if (country === '') {
+        alert("que quan khong duoc trong!");
+        country.focus();
+        return false;
+    }
+    if (address === '') {
+        alert("dia chi khong duoc trong!");
+        address.focus();
+        return false;
+    }
+    if (city === '') {
+        alert("thanh pho khong duoc trong!");
+        city.focus();
+    }
+    if (phone === '') {
+        alert("so dien thoai khong duoc trong!");
+        phone.focus();
+        return false;
+    }
+
+    if (document.getElementById('cash').checked) {
+        var priceInCash = document.querySelector('.option-payment-right');
+        var totalRight = document.querySelector(".footer-total span");
+        priceInCash.textContent = totalRight.textContent;
     }
     return true;
 }
+
+//----------xử lí thanh toán-----------
+document.addEventListener("DOMContentLoaded", function () {
+    // Lấy các phần tử
+    const form = document.querySelector(".payment-form");
+    const paymentOptions = document.querySelectorAll(".payment-option input");
+    const inputs = document.querySelectorAll(".input-group input");
+    const checkboxes = document.querySelectorAll(".checkbox-group input");
+    const submitButton = document.querySelector(".pay");
+
+    // Xử lý khi submit form
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Ngăn chặn hành động mặc định
+
+        // Kiểm tra phương thức thanh toán
+        const selectedPayment = Array.from(paymentOptions).find(option => option.checked);
+        if (!selectedPayment) {
+            alert("Vui lòng chọn phương thức thanh toán!");
+            return;
+        }
+
+        // Kiểm tra các trường input
+        let isValid = true;
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+                input.classList.add("error");
+            } else {
+                input.classList.remove("error");
+            }
+        });
+
+        if (!isValid) {
+            alert("Vui lòng điền đầy đủ thông tin!");
+            return;
+        }
+
+        // Kiểm tra các checkbox
+        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+        if (!allChecked) {
+            alert("Vui lòng chấp nhận điều khoản và sử dụng địa chỉ thanh toán!");
+            return;
+        }
+
+        // Xử lý thanh toán thành công
+        alert("Thanh toán thành công! Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.");
+        form.reset(); // Reset form sau khi thanh toán thành công
+    });
+
+    // Xử lý hiệu ứng khi focus input
+    inputs.forEach(input => {
+        input.addEventListener("focus", function () {
+            input.classList.remove("error");
+        });
+    });
+});
 

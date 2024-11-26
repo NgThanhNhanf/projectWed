@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
     padding: 0;
@@ -75,7 +74,9 @@ body {
     background-color: #555;
 }
 
+/* open icon cart */
 .cart-icon {
+    /* position: relative; */
     font-size: 20px;
     position: fixed;
     cursor: pointer; 
@@ -93,12 +94,25 @@ body {
     border: none;
     box-shadow: -40px 0 50px rgba(0, 0, 0, 0.1);
     transition: right 0.9s ease-in-out;
-    z-index: 2;
+    z-index: 5;
 }
 
 .cart-iframe.open {
     right: 0;
 }
+
+#amount-cart {
+    position: absolute;
+    right: 10px;
+    font-size: 14px;
+    top: 10px;
+    background: red;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    border-radius: 60%;
+}
+
 
 .side-image {
     flex: 0 0 30%;
@@ -112,7 +126,7 @@ body {
 .slide:nth-child(1) {
     background: 
         linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('img/mau4 (2).jpg');
+        url('/assets/img/product/img4.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -121,19 +135,54 @@ body {
 .slide:nth-child(2) {
     background: 
         linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('img/mau6.jpg');
+        url('/assets/img/product/img6.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .slide:nth-child(3) {
-    background: 
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('img/mau7.jpg');
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/assets/img/product/mau7.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+/* -------quay ve trang chu------- */
+ul.navItems {
+    display: flex;
+    list-style-type: none;
+    gap: 10px;
+    background: #eee;
+    margin: 5px 0 5px 0;
+    height: 40px;
+}
+
+ul li.nav-item {
+    display: block;
+    margin-top: 5px;
+    margin-left: 10px;
+    color: rgb(87, 85, 85);
+    font-size: 14px;
+    font-style: italic;
+}
+
+ul li.nav-item a {
+    text-decoration: none;
+    color: #174ea6;
+    transition: line-hight 0.4s ease-in;
+}
+
+ul li.nav-item a:hover {
+    line-height: 1.2;
+    color: #007bff;
+}
+
+ul li:nth-child(1).nav-item::after {
+    margin-left: 10px;
+    content: ">";
+    color: rgb(87, 85, 85);
 }
 
 /*  */
@@ -442,7 +491,7 @@ button:hover {
     right: 10px;
     width: 50px;
     height: 50px;
-    background-image: url(img/totop.png);
+    background-image: url(assets/img/product/totop.png);
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
