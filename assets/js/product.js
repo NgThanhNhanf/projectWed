@@ -147,39 +147,7 @@ function displayNoResult() {
 document.getElementById('min').addEventListener('change', filterProducts);
 document.getElementById('max').addEventListener('change', filterProducts);
 
-// HIEN THI SAN PHAM
-function displayProducts(products) {
-    count.innerText = products.length;
-    const productGrid = document.querySelector('.product-grid');
-    productGrid.innerHTML = '';
-
-    products.forEach(product => {
-        const div = document.createElement('div');
-        div.setAttribute('class', 'product');
-        div.innerHTML = `
-            <div class="ima">
-                <img src="${product.image}" alt="">                 
-            </div>
-            <div class="product-detail">
-                <h4>${product.name}</h4>
-                <p>${product.price.toLocaleString()} đ</p>
-            </div>
-            <i class="fa-solid fa-cart-shopping"></i>
-            <i class="fa-regular fa-heart"></i>
-        `;
-        productGrid.appendChild(div);
-    });
-    addClickEventToProducts();
-}
-
-document.querySelectorAll('.list input[type="checkbox"]').forEach(checkbox => {
-    checkbox.addEventListener('click', function () {
-        handleCheckboxClick(this);
-    });
-});
-
-// ALL PRODUCT
-
+//ALL PRODUCTS
 let allProducts = [
     {
         id: 1,
@@ -524,7 +492,81 @@ function getProductFromLocalStorage() {
     }else return allProducts;
 }
 var allProduct = getProductFromLocalStorage();
-displayProducts(allProduct);
+
+// HIEN THI SAN PHAM + PHAN TRANG
+const itemInOnePage = 8;
+const numberOfPages = Math.ceil(allProduct.length / itemInOnePage);
+let currentPage = 1;
+console.log(numberOfPages)
+function displayProducts(page) {
+    const start = (page - 1) * itemInOnePage;
+    console.log(start)
+    const end = start + itemInOnePage;
+    console.log(end)
+    const itemInPage = allProduct.slice(start,end);
+    // console.log(itemInPage);
+    // count.innerText = products.length;
+    const productGrid = document.querySelector('.product-grid');
+    productGrid.innerHTML = '';
+
+    itemInPage.forEach(product => {
+        const div = document.createElement('div');
+        div.setAttribute('class', 'product');
+        div.innerHTML = `
+            <div class="ima">
+                <img src="${product.image}" alt="">                 
+            </div>
+            <div class="product-detail">
+                <h4>${product.name}</h4>
+                <p>${product.price.toLocaleString()} đ</p>
+            </div>
+        `;
+        productGrid.appendChild(div);
+    });
+
+    //update so trang
+    updatePageNumber();
+    addClickEventToProducts();
+}
+
+//nút quay lại trang trước
+function previousPage() {
+    if(currentPage > 1) {
+        currentPage--;
+        displayProducts(currentPage);
+    }
+}
+
+//nut tien toi trang truoc
+function nextPage() {
+    if(currentPage < numberOfPages) {
+        currentPage++;
+        displayProducts(currentPage);
+    }
+}
+
+//update so trang 
+function updatePageNumber() {
+    const page = document.getElementById('pageNumber');
+    page.textContent = currentPage;
+}
+
+//click r chuyen trang
+document.querySelector('.buttonPrevious').addEventListener('click',previousPage);
+document.querySelector('.buttonNext').addEventListener('click',nextPage);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayProducts(currentPage);
+});
+
+
+document.querySelectorAll('.list input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('click', function () {
+        handleCheckboxClick(this);
+    });
+});
+
 // XOA ALL(REMOVE)
 const removeBtn = document.querySelector('.btn-removeAll');
 removeBtn.addEventListener('click', () => {
@@ -558,9 +600,6 @@ const modalPrice = document.getElementById('modalPrice');
 const closeModal = document.querySelector('.close');
 const quantily = document.getElementById('quantity');
 const product = document.querySelectorAll('.product');
-// var allProductss = JSON.parse(localStorage.getItem('allProducts'));
-// console.log(product);
-// console.log(allProductss);
 
 // Hàm mở modal và hiển thị thông tin sản phẩm
 function openModal(product) {

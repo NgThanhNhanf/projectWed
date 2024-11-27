@@ -137,13 +137,14 @@ function updateUI() {
         
         if (currentUser) {
             userButton.innerHTML = `
+                <i class="fa-regular fa-user iconUser"></i>
                 <div class="username">${currentUser.username}</div>
                <ul class = "nav-menuUser">
                     <li> <a href = "#"> Tài khoản của tôi</a> </li>
                     <li> <a href = "#"> Đơn hàng đã mua </a> </li>
                     <li> <a href = "#" class = "logout"> Thoát tài khoản </a> </li> 
                </ul>
-               <i class="fa-regular fa-user iconUser"></i>
+               
             `;
             
             // Reattach logout event listener
@@ -161,7 +162,6 @@ function updateUI() {
             userButton.innerHTML = `
                 <div class="login nav_hover open-modal-btn-in">Login</div>
                 <div class="signup nav_hover open-modal-btn-up">Sign up</div>
-                <i class="fa-regular fa-user"></i>
             `;
             
             // Reattach modal open event listeners
