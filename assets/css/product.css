@@ -264,10 +264,10 @@ button:hover {
     transform: scale(1.2);
 }
 
-#white + label { background-color: #fff; }
-#grey + label { background-color: grey; }
-#black + label { background-color: black; }
-#blue + label { background-color: #007bff; }
+#White + label { background-color: #fff; }
+#Grey + label { background-color: grey; }
+#Black + label { background-color: black; }
+#Blue + label { background-color: #007bff; }
 
 
 .price-product {
@@ -365,9 +365,7 @@ button:hover {
 
 /* PRODUCT */
 .center-panel {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: inline;
     align-content: flex-start;
     width: calc(100% - 270px);
     background: white;
@@ -491,7 +489,7 @@ button:hover {
     right: 10px;
     width: 50px;
     height: 50px;
-    background-image: url(assets/img/product/totop.png);
+    background-image: url(/assets/img/product/totop.png);
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
