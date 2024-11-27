@@ -187,7 +187,7 @@ let allProducts = [
         price: 205600,
         quantity: 0,
         image: 'assets/img/product/img1.jpg',
-        nature: { color: ['white', 'black'], size: ['S', 'M', 'L'], type: 'T-shirt' },
+        nature: { color: ['White', 'Black'], size: ['S', 'M', 'L'], type: 'T-shirt' },
         date: '2024-01-15'
     },
     {
@@ -196,7 +196,7 @@ let allProducts = [
         price: 300000,
         quantity: 30,
         image: 'assets/img/product/img2.jpg',
-        nature: { color: ['white', 'black', 'grey'], size: ['S', 'M', 'L'], type: 'Polo' },
+        nature: { color: ['white', 'Black', 'Grey'], size: ['S', 'M', 'L'], type: 'Polo' },
         date: '2024-02-10'
     },
     {
@@ -205,7 +205,7 @@ let allProducts = [
         price: 200000,
         quantity: 30,
         image: 'assets/img/product/img3.jpg',
-        nature: { color: ['black'], size: ['S', 'M', 'L'], type: 'T-shirt' },
+        nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'T-shirt' },
         date: '2024-03-25'
     },
     {
@@ -214,7 +214,7 @@ let allProducts = [
         price: 400000,
         quantity: 30,
         image: 'assets/img/product/img4.jpg',
-        nature: { color: ['black', 'blue'], size: ['S', 'M', 'L'], type: 'T-shirt' },
+        nature: { color: ['Black', 'Blue'], size: ['S', 'M', 'L'], type: 'T-shirt' },
         date: '2024-04-20'
     },
     {
@@ -223,7 +223,7 @@ let allProducts = [
         price: 320000,
         quantity: 5,
         image: 'assets/img/product/img5.jpg',
-        nature: { color: ['brown'], size: ['S', 'M', 'L'], type: 'Polo' },
+        nature: { color: ['Brown'], size: ['S', 'M', 'L'], type: 'Polo' },
         date: '2024-05-05'
     },
     {
@@ -232,7 +232,7 @@ let allProducts = [
         price: 100000,
         quantity: 50,
         image: 'assets/img/product/img6.jpg',
-        nature: { color: ['white', 'black'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        nature: { color: ['White', 'Black'], size: ['S', 'M', 'L'], type: 'Shirt' },
         date: '2024-06-15'
     },
     {
@@ -241,7 +241,7 @@ let allProducts = [
         price: 233000,
         quantity: 50,
         image: 'assets/img/product/quan12.png',
-        nature: { color: [ 'black'], size: ['S', 'M', 'L'], type: 'Sort' },
+        nature: { color: [ 'Black'], size: ['S', 'M', 'L'], type: 'Sort' },
         date: '2024-06-15'
     },
     {
@@ -250,7 +250,7 @@ let allProducts = [
         price: 233000,
         quantity: 50,
         image: 'assets/img/product/quan11.png',
-        nature: { color: ['white'], size: ['S', 'M', 'L'], type: 'Sort' },
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Sort' },
         date: '2024-06-15'
     },
     {
@@ -349,7 +349,7 @@ let allProducts = [
         price: 233000,
         quantity: 50,
         image: 'assets/img/product/somi2.jpg',
-        nature: { color: ['Blue'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        nature: { color: ['Blue', 'Black'], size: ['S', 'M', 'L'], type: 'Shirt' },
         date: '2024-06-15'
     },
     {
