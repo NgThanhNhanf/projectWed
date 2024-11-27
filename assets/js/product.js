@@ -184,7 +184,8 @@ let allProducts = [
             color: ['white', 'black'],
             size: ['S', 'M', 'L'],
             type: 'T-shirt'
-        }
+        },
+        date: '2024-01-15'
     },
     {
         id: 2,
@@ -196,7 +197,8 @@ let allProducts = [
             color: ['white', 'black', 'grey'],
             size: ['S', 'M', 'L'],
             type: 'Polo'
-        }
+        },
+        date: '2024-01-15'
     },
     {
         id: 3,
@@ -208,7 +210,8 @@ let allProducts = [
             color: ['black'],
             size: ['S', 'M', 'L'],
             type: 'T-shirt'
-        }
+        },
+        date: '2024-01-15'
     },
     {
         id: 4,
@@ -220,7 +223,8 @@ let allProducts = [
             color: ['black', 'blue'],
             size: ['S', 'M', 'L'],
             type: 'T-shirt'
-        }
+        },
+        date: '2024-01-15'
     },
     {
         id: 5,
@@ -232,7 +236,8 @@ let allProducts = [
             color: ['brown'],
             size: ['S', 'M', 'L'],
             type: 'Polo'
-        }
+        },
+        date: '2024-01-15'
     },
     {
         id: 6,
@@ -244,7 +249,8 @@ let allProducts = [
             color: ['white', 'black'],
             size: ['S', 'M', 'L'],
             type: 'Shirt'
-        }
+        },
+        date: '2024-01-15'
     },
 ];
 
