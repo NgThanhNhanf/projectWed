@@ -93,7 +93,7 @@ document.querySelector('.signup-container .inputBox input[type="submit"]').addEv
     }
 });
 
-// Login
+// Login    
 document.querySelector('.signin-container .inputBox input[type="submit"]').addEventListener('click', (e) => {
     e.preventDefault();
     try {
@@ -138,8 +138,12 @@ function updateUI() {
         if (currentUser) {
             userButton.innerHTML = `
                 <div class="username">${currentUser.username}</div>
-                <div class="logout nav_hover">Đăng xuất</div>
-                <i class="fa-regular fa-user"></i>
+               <ul class = "nav-menuUser">
+                    <li> <a href = "#"> Tài khoản của tôi</a> </li>
+                    <li> <a href = "#"> Đơn hàng đã mua </a> </li>
+                    <li> <a href = "#" class = "logout"> Thoát tài khoản </a> </li> 
+               </ul>
+               <i class="fa-regular fa-user iconUser"></i>
             `;
             
             // Reattach logout event listener
@@ -147,6 +151,11 @@ function updateUI() {
             logoutBtn?.addEventListener('click', () => {
                 localStorage.removeItem('currentUser');
                 updateUI();
+            });
+            
+            userButton.addEventListener('click', () => {
+                const menuUser = userButton.querySelector('.nav-menuUser');
+                menuUser.style.display = menu.style.display === 'block' ? 'none' : 'block';
             });
         } else {
             userButton.innerHTML = `
