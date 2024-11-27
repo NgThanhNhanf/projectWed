@@ -187,11 +187,7 @@ let allProducts = [
         price: 205600,
         quantity: 0,
         image: 'assets/img/product/img1.jpg',
-        nature: {
-            color: ['white', 'black'],
-            size: ['S', 'M', 'L'],
-            type: 'T-shirt'
-        },
+        nature: { color: ['white', 'black'], size: ['S', 'M', 'L'], type: 'T-shirt' },
         date: '2024-01-15'
     },
     {
@@ -200,12 +196,8 @@ let allProducts = [
         price: 300000,
         quantity: 30,
         image: 'assets/img/product/img2.jpg',
-        nature: {
-            color: ['white', 'black', 'grey'],
-            size: ['S', 'M', 'L'],
-            type: 'Polo'
-        },
-        date: '2024-01-15'
+        nature: { color: ['white', 'black', 'grey'], size: ['S', 'M', 'L'], type: 'Polo' },
+        date: '2024-02-10'
     },
     {
         id: 3,
@@ -213,12 +205,8 @@ let allProducts = [
         price: 200000,
         quantity: 30,
         image: 'assets/img/product/img3.jpg',
-        nature: {
-            color: ['black'],
-            size: ['S', 'M', 'L'],
-            type: 'T-shirt'
-        },
-        date: '2024-01-15'
+        nature: { color: ['black'], size: ['S', 'M', 'L'], type: 'T-shirt' },
+        date: '2024-03-25'
     },
     {
         id: 4,
@@ -226,39 +214,306 @@ let allProducts = [
         price: 400000,
         quantity: 30,
         image: 'assets/img/product/img4.jpg',
-        nature: {
-            color: ['black', 'blue'],
-            size: ['S', 'M', 'L'],
-            type: 'T-shirt'
-        },
-        date: '2024-01-15'
+        nature: { color: ['black', 'blue'], size: ['S', 'M', 'L'], type: 'T-shirt' },
+        date: '2024-04-20'
     },
     {
         id: 5,
         name: 'Name product brown',
         price: 320000,
-        quantity: 30,
+        quantity: 5,
         image: 'assets/img/product/img5.jpg',
-        nature: {
-            color: ['brown'],
-            size: ['S', 'M', 'L'],
-            type: 'Polo'
-        },
-        date: '2024-01-15'
+        nature: { color: ['brown'], size: ['S', 'M', 'L'], type: 'Polo' },
+        date: '2024-05-05'
     },
     {
         id: 6,
         name: 'Name product white-black',
         price: 100000,
-        quantity: 30,
+        quantity: 50,
         image: 'assets/img/product/img6.jpg',
-        nature: {
-            color: ['white', 'black'],
-            size: ['S', 'M', 'L'],
-            type: 'Shirt'
-        },
-        date: '2024-01-15'
+        nature: { color: ['white', 'black'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        date: '2024-06-15'
     },
+    {
+        id: 7,
+        name: 'Black Shorts',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan12.png',
+        nature: { color: [ 'black'], size: ['S', 'M', 'L'], type: 'Sort' },
+        date: '2024-06-15'
+    },
+    {
+        id: 8,
+        name: 'White Shorts',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan11.png',
+        nature: { color: ['white'], size: ['S', 'M', 'L'], type: 'Sort' },
+        date: '2024-06-15'
+    },
+    {
+        id: 9,
+        name: 'Yellow Shorts',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan13.png',
+        nature: { color: ['Yellow'], size: ['S', 'M', 'L'], type: 'Sort' },
+        date: '2024-06-15'
+    },
+    {
+        id: 10,
+        name: 'Pink Shorts',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan14.png',
+        nature: { color: ['Pink'], size: ['S', 'M', 'L'], type: 'Sort' },
+        date: '2024-06-15'
+    },
+    {
+        id: 11,
+        name: 'Blue Shorts',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan15.png',
+        nature: { color: ['Blue'], size: ['S', 'M', 'L'], type: 'Sort' },
+        date: '2024-06-15'
+    },
+    {
+        id: 12,
+        name: 'Wide-leg Brown pants',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan1.jpg',
+        nature: { color: ['Brown'], size: ['S', 'M', 'L'], type: 'Kaki' },
+        date: '2024-06-15'
+    },
+    {
+        id: 13,
+        name: 'Wide-leg White pants',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan7.jpg',
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Kaki' },
+        date: '2024-06-15'
+    },
+    {
+        id: 14,
+        name: 'Wide-leg Black pants',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan3.jpg',
+        nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'Kaki' },
+        date: '2024-06-15'
+    },
+    {
+        id: 15,
+        name: 'Wide-leg Cream pants',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan2.jpg',
+        nature: { color: ['Cream'], size: ['S', 'M', 'L'], type: 'Kaki' },
+        date: '2024-06-15'
+    },
+    {
+        id: 16,
+        name: 'Wide-leg Cream pants',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan9.jpg',
+        nature: { color: ['Cream'], size: ['S', 'M', 'L'], type: 'Kaki' },
+        date: '2024-06-15'
+    },
+    {
+        id: 17,
+        name: 'Wide-leg Grey pants',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/quan10.jpg',
+        nature: { color: ['Grey'], size: ['S', 'M', 'L'], type: 'Kaki' },
+        date: '2024-06-15'
+    },
+    {
+        id: 18,
+        name: 'Green Shirt',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/somi1.jpg',
+        nature: { color: ['Green'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        date: '2024-06-15'
+    },
+    {
+        id: 19,
+        name: 'Blue Shirt',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/somi2.jpg',
+        nature: { color: ['Blue'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        date: '2024-06-15'
+    },
+    {
+        id: 20,
+        name: 'Light Blue Shirt',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aoxanh2.jpg',
+        nature: { color: ['Blue'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        date: '2024-06-15'
+    },
+    {
+        id: 21,
+        name: 'Purple Shirt',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aotim1.jpg',
+        nature: { color: ['Purple'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        date: '2024-06-15'
+    },
+    {
+        id: 22,
+        name: 'Blue Jacket',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aotim1.jpg',
+        nature: { color: ['Blue'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        date: '2024-06-15'
+    },
+    {
+        id: 23,
+        name: 'Yellow Jacket',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aovang1.jpg',
+        nature: { color: ['Yellow'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        date: '2024-06-15'
+    },
+    {
+        id: 24,
+        name: 'Yellow Blazer',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aovest2.png',
+        nature: { color: ['Yellow'], size: ['S', 'M', 'L'], type: 'Blazer' },
+        date: '2024-06-15'
+    },
+    {
+        id: 25,
+        name: 'Grey Blazer',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aovest1.png',
+        nature: { color: ['Grey'], size: ['S', 'M', 'L'], type: 'Blazer' },
+        date: '2024-06-15'
+    },
+    {
+        id: 26,
+        name: 'White Blazer',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aovest3.png',
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Blazer' },
+        date: '2024-06-15'
+    },
+    {
+        id: 27,
+        name: 'Pink Sweater',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aolen2.jpg',
+        nature: { color: ['Pink'], size: ['S', 'M', 'L'], type: 'Sweater' },
+        date: '2024-06-15'
+    },
+    {
+        id: 28,
+        name: 'Black Sweater',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aolen1.jpg',
+        nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'Sweater' },
+        date: '2024-06-15'
+    },
+    {
+        id: 29,
+        name: 'White Sweater',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aolen3.jpg',
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Sweater' },
+        date: '2024-06-15'
+    },
+    {
+        id: 30,
+        name: 'Cream Sweater',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aolen4.jpg',
+        nature: { color: ['Cream'], size: ['S', 'M', 'L'], type: 'Sweater' },
+        date: '2024-06-15'
+    },
+    {
+        id: 31,
+        name: 'Cream T-Shirt',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aothun3.jpg',
+        nature: { color: ['Cream'], size: ['S', 'M', 'L'], type: 'T-Shirt' },
+        date: '2024-06-15'
+    },
+    {
+        id: 32,
+        name: 'Black T-Shirt',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aothun1.jpg',
+        nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'T-Shirt' },
+        date: '2024-06-15'
+    },
+    {
+        id: 33,
+        name: 'White T-Shirt',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/aothun2.jpg',
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'T-Shirt' },
+        date: '2024-06-15'
+    },
+    {
+        id: 34,
+        name: 'White Collection',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/co1.png',
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Collection' },
+        date: '2024-06-15'
+    },
+    {
+        id: 36,
+        name: 'White Collection',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/co3.jpg',
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Collection' },
+        date: '2024-06-15'
+    },
+    {
+        id: 37,
+        name: 'White Collection',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/co4.jpg',
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Collection' },
+        date: '2024-06-15'
+    },
+    {
+        id: 35,
+        name: 'Black Collection',
+        price: 233000,
+        quantity: 50,
+        image: 'assets/img/product/co2.jpg',
+        nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'Collection' },
+        date: '2024-06-15'
+    }
 ];
 
 //lấy AllProducts trong LocalStorage để dùng
