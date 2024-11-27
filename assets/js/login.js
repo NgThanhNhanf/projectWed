@@ -159,14 +159,14 @@ function updateUI() {
             const loginBtn = userButton.querySelector('.login');
             const signupBtn = userButton.querySelector('.signup');
             
-            loginBtn?.addEventListener('click', () => {
+            loginBtn.addEventListener('click', () => {
                 modalLogin.classList.remove('hide');
                 signInContainer.classList.remove('hide');
                 signUpContainer.classList.remove('hide');
                 modalLogin.classList.remove("active"); 
             });
             
-            signupBtn?.addEventListener('click', () => {
+            signupBtn.addEventListener('click', () => {
                 modalLogin.classList.remove('hide');
                 signUpContainer.classList.remove('hide');
                 signInContainer.classList.remove('hide');
