@@ -458,7 +458,7 @@ button:hover {
 }
 
 /* Love icon */
-.fa-heart {
+/* .fa-heart {
     position: absolute;
     bottom: 6px;
     left: 10px;
@@ -475,26 +475,44 @@ button:hover {
     color: #fff;
     transform: scale(1.3);
    
-}
-/* CART */
-.cart .fa-cart-shopping{
+} */
+/* -----CART---------- */
+ .cart .fa-cart-shopping{
     position: fixed;
-    background: #fff;
+    background: #473434;
     z-index: 10001;
 }
+
+/*--------Phân trang----------- */
+
+/* nút phân trang */
+.pagination {
+    width: 40%;
+    margin-left: 500px;
+    display: flex;
+    gap: 10px;
+}
+
+.buttonPrevious,
+.buttonNext {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
 /* TO TOP */
 #toTop{
     position: fixed;
     bottom: 20px;
     right: 10px;
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 10%;
     background-image: url(/assets/img/product/totop.png);
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
     background-color: aquamarine;
-    border-radius: 10px;
+    border-radius: 20px;
     border: none;
     cursor: pointer;
     transition: transform 0.3s;

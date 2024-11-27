@@ -90,7 +90,16 @@ function storeCartInLocalStorage(cart) {
 // console.log(cart)
 function displayCart(cart) {
     const cartItemContent = document.querySelector('.cartItemContent');
-    // console.log(cartItemContent);
+    if(cart.length == '') {
+        cartItemContent.innerHTML = `
+        <div class="cartEmpty">
+            <i class="fa-brands fa-opencart iconCartEmpty"></i>
+            <div class="empty-cart">Chưa có sản phẩm trong giỏ hàng</div>
+        </div>
+    `;
+    return; // Kết thúc hàm khi giỏ hàng trống
+    }
+    // console.log(cartItemContent);    
     cartItemContent.innerHTML = ''; // Xóa nội dung cũ
 
     cart.forEach(item => {

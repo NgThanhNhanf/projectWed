@@ -204,6 +204,26 @@
     overflow-y: auto;
 }
 
+/* icon gio hang rong */
+.cartEmpty {
+    display: block;
+    width: 500px;
+    height: 300px;
+    margin-left: 250px;
+    margin-top: 50px;
+}
+
+.iconCartEmpty {
+    font-size: 200px;
+}
+
+.empty-cart {
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+
 /* CSS phần Right trong Cart */
 .cart-section .right {
     flex: 1;
