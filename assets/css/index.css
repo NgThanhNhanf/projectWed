@@ -208,7 +208,7 @@ body {
     font-size: 17px;
     position: fixed;
     cursor: pointer;
-    top: 15px;
+    top: 12px;
     right: 10px;
     z-index: 1;
 }
@@ -676,7 +676,7 @@ body {
     font-weight: 300;
     transition: 0.5s;
     letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(7, 3, 3, 0.5);
 }
 .inputBox input:valid~span,
 .inputBox input:focus~span{
@@ -743,4 +743,54 @@ body {
 }
 .hide {
     display: none;
+}
+
+/* menu con của user khi đăng nhập thành công */
+
+.user-button {
+    position: relative;
+    display: inline-block;
+}
+
+.user-button .username {
+    display: block;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.nav-menuUser {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 10;
+    list-style-type: none;
+    width: 200px;
+    height: auto;
+}
+
+.nav-menuUser li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.nav-menuUser li a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.nav-menuUser li:hover {
+    background-color: #f0f0ff;
+}
+
+.user-button:hover .nav-menuUser {
+    display: block;
+}
+
+.user-button .iconUser {
+    margin-left: 10px;
 }
