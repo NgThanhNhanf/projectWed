@@ -119,23 +119,30 @@ function filterProducts() {
     const maxPrice = parseInt(document.getElementById('max').value) || Infinity;
 
     const filteredProducts = allProducts.filter(product => {
-        // Check for tags
-        let matchesTags = true;
-        if (tags.length > 0) {
-            if (!tags.includes(product.nature.type) && !product.nature.color.some(color => tags.includes(color))) {
-                matchesTags = false;
-            }
+        if (tags.length === 0) {
+            return product.price >= minPrice && product.price <= maxPrice;
         }
-        // Check price range
+
+        const typeTag = tags.find(tag => tag === product.nature.type);
+        const colorTags = tags.filter(tag => !product.nature.type.includes(tag));
+        
+        const matchesType = typeTag ? product.nature.type === typeTag : true;
+        
+        const matchesColors = colorTags.length > 0 ? 
+            colorTags.every(tag => product.nature.color.includes(tag)) : true;
+
         const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
 
-        return matchesTags && matchesPrice;
+        return matchesType && matchesColors && matchesPrice;
     });
 
-    displayProducts(filteredProducts.length > 0 ? filteredProducts : allProducts);
+    displayProducts(filteredProducts);
     storeProductInLocalStorage();
 }
-
+function displayNoResult() {
+    const productContainer = document.querySelector('.product');
+    productContainer.innerHTML = ``;
+}
 // Cập nhật sự kiện cho `select` giá
 document.getElementById('min').addEventListener('change', filterProducts);
 document.getElementById('max').addEventListener('change', filterProducts);
