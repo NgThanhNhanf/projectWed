@@ -16,8 +16,8 @@
                 <div class="left">
                     <div class="header-left">
                         <div class="left-section">
-                            <i class="fa fa-less-than"></i>
-                            <a href="">Quay về cửa hàng</a>
+                            <!-- <i class="fa fa-less-than"></i> -->
+                            <!-- <a href="">Quay về cửa hàng</a> -->
                         </div>
                         <div class="left-title">
                             <span>Giỏ hàng của bạn</span>
@@ -184,28 +184,7 @@
 
                     </div>
                 </div>
-                <div class="option">
-                    <span>Tùy chọn giao dịch</span>
-                    <div class="option-payment">
-                        <div class="option-payment-left">
-                            <label for="cash">Tiền mặt</label>
-                            <input type="radio" name="paymentMethod" id="cash" value="cash" required>
-                        </div>
-                        <div class="option-payment-right">
-                            <span></span>
-                        </div>
-                    </div>
-                    <div class="option-payment">
-                        <div class="option-payment-left">
-                            <label for="card">Khác</label>
-                            <input type="radio" name="paymentMethod" id="card" value="card" required>
-                        </div>
-                        <div class="option-payment-right">
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="proceed-btn">Thanh toán</button>
+                <button type="submit" class="proceed-btn">Chọn phương thức thanh toán</button>
             </form>
 
             <!-- Payment-method -->
@@ -213,19 +192,19 @@
                     <div class="close-paymentMethod">
                         <i class="fab fa-node-js nodejs"></i>
                     </div>
-                <form action="" class="payment-form">
-                    <h2>Bạn muốn thanh toán như thế nào ?</h2>
+                <form action="" class="payment-form" id="payment-form">
+                    <h2>Tùy chọn thanh toán</h2>
                     <div class="payment-option">
                         <input type="radio" id="vnpay" name="payment" />
-                        <label for="vnpay">VN Pay</label>
+                        <label for="vnpay">Tiền Mặt</label>
                     </div>
                     <div class="payment-option">
                         <input type="radio" id="momo" name="payment" />
-                        <label for="momo">Ví điện tử Momo</label>
+                        <label for="momo">Chuyển khoản</label>
                     </div>
                     <div class="payment-option">
                         <input type="radio" id="card-swipe" name="payment" />
-                        <label for="card-swipe">Quẹt thẻ</label>
+                        <label for="card-swipe">Thẻ tín dụng</label>
                     </div>
                     
                     <div class="infor">

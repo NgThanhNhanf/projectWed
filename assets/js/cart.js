@@ -26,12 +26,14 @@ const preceedtoshipping = document.querySelector('.preceed-btn');
 const payment = document.querySelector('.infor-payment');
 const leftcheckout = document.querySelector('.checkout-section .left');
 preceedtoshipping.addEventListener('click', () => {
-    if (solvePreceed()) {
+       if(solvePreceed()) {
         leftcheckout.classList.remove('active');
         leftcheckout.classList.add('hidden');
         payment.classList.remove('hidden');
         payment.classList.add('active');
-    }
+       } else {
+            alert("kiem tra lai thong tin cua ban");
+       }
 });
 
 //lắng nghe sự kiện click vào back to checkout
@@ -50,17 +52,10 @@ const paymentMethod = document.querySelector('.paymentMethod');
 proceedToPayment.addEventListener('click', (event) => {
     event.preventDefault();
     if (isCheckPayment()) {
-        if (document.getElementById('cash').checked) {
-            alert("thanh toan thanh cong");
-        } else if (document.getElementById('card').checked) {
-            proceedToPayment.textContent = "chon phuong thuc thanh toan";
-            paymentMethod.classList.remove('hidden');
-            paymentMethod.classList.add('active');
-            payment.classList.remove('active');
-            payment.classList.add('hidden');
-        } else {
-            alert("vui long chon tuy chon thanh toan!");
-        }
+        paymentMethod.classList.remove('hidden');
+        paymentMethod.classList.add('active');
+        payment.classList.remove('active');
+        payment.classList.add('hidden');
     }
 });
 
@@ -204,9 +199,6 @@ function solveIconX(cart) {
 function solveQuantity(cart) {
     const minusIcon = document.querySelectorAll('.minus');
     const plusIcon = document.querySelectorAll('.plus');
-    // console.log(minusIcon);
-    // console.log(plusIcon)
-    // console.log(cart)
     minusIcon.forEach((button, index) => {
         button.addEventListener('click', () => {
             if (cart[index].quantity > 1) {
@@ -356,10 +348,8 @@ function displayCheckout(cart) {
     });
 }
 
-//---click vao thanh toan -> thong bao vui long chon tuy chon giao dich
-//-> nếu chọn tiền mặt thì -> thanh toán thành công 
-//-> nếu chọn thẻ ngân hàng -> nút thanh toán đổi thành chọn phương thức thanh toán
 
+//click vao di den phuong thuc thanh toan -> chuyen den trang tuy chon thanh toan
 function isCheckPayment() {
     const formPayment = document.formPy;
     const country = formPayment.country.value;
@@ -384,12 +374,6 @@ function isCheckPayment() {
         alert("so dien thoai khong duoc trong!");
         phone.focus();
         return false;
-    }
-
-    if (document.getElementById('cash').checked) {
-        var priceInCash = document.querySelector('.option-payment-right');
-        var totalRight = document.querySelector(".footer-total span");
-        priceInCash.textContent = totalRight.textContent;
     }
     return true;
 }
@@ -450,3 +434,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+//sau khi ấn submit thì sẽ lưu thông tin đơn hàng vào trong localStorage chờ xử lí
+
+function getOrderInLocal() {
+    const inforOrder = localStorage.getItem('informationOrder');
+    return inforOrder ? JSON.parse(inforOrder) : [];
+}
+
+function OrderInLocal(informationOrder) {
+    localStorage.setItem('informationOrder',JSON.stringify(informationOrder));
+}
+
+document.getElementById('payment-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+});
+
+const inforProduct = getCartFromLocalStorage();
+console.log(inforProduct)

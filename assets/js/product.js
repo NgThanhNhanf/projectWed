@@ -481,6 +481,8 @@ function filterProducts() {
     if(productType && productType !== 'Allproduct') {
         productTypeAlterFilter = allProduct.filter(product => product.nature.type === productType);
     }
+    console.log(productType)
+    console.log(productTypeAlterFilter)
     const minPrice = parseInt(document.getElementById('min').value) || 0;
     const maxPrice = parseInt(document.getElementById('max').value) || Infinity;
 
@@ -569,10 +571,10 @@ function updatePageNumber() {
     const numberOfPages = Math.ceil(filteredProducts.length / 8);
     const page = document.getElementById('pageNumber');
     page.textContent = `Page ${currentPage} to ${numberOfPages}`;
-    const previousButton = document.querySelector('.buttonPrevious');
-    const nextButton = document.querySelector('.nextButton');
-    previousButton.disabled = currentPage === 1;
-    nextButton.disabled = currentPage === numberOfPages;
+    // const previousButton = document.querySelector('.buttonPrevious');
+    // const nextButton = document.querySelector('.nextButton');
+    // previousButton.disabled = currentPage === 1;
+    // nextButton.disabled = currentPage === numberOfPages;
 }
 
 //click r chuyen trang
@@ -581,6 +583,7 @@ document.querySelector('.buttonNext').addEventListener('click', nextPage);
 
 document.addEventListener('DOMContentLoaded', () => {
     displayProducts(currentPage);
+    addClickEventToProducts();
 });
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -660,7 +663,8 @@ function addClickEventToProducts() {
         });
     });
 }
-addClickEventToProducts();
+
+
 
 const closeModalIcon = document.querySelector('.close');
 const quantityElement = document.getElementById('quantity');
