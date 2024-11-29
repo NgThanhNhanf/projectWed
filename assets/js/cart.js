@@ -26,14 +26,14 @@ const preceedtoshipping = document.querySelector('.preceed-btn');
 const payment = document.querySelector('.infor-payment');
 const leftcheckout = document.querySelector('.checkout-section .left');
 preceedtoshipping.addEventListener('click', () => {
-       if(solvePreceed()) {
+    if (solvePreceed()) {
         leftcheckout.classList.remove('active');
         leftcheckout.classList.add('hidden');
         payment.classList.remove('hidden');
         payment.classList.add('active');
-       } else {
-            alert("kiem tra lai thong tin cua ban");
-       }
+    } else {
+        alert("kiem tra lai thong tin cua ban");
+    }
 });
 
 //lắng nghe sự kiện click vào back to checkout
@@ -85,14 +85,14 @@ function storeCartInLocalStorage(cart) {
 // console.log(cart)
 function displayCart(cart) {
     const cartItemContent = document.querySelector('.cartItemContent');
-    if(cart.length == '') {
+    if (cart.length == '') {
         cartItemContent.innerHTML = `
         <div class="cartEmpty">
             <i class="fa-brands fa-opencart iconCartEmpty"></i>
             <div class="empty-cart">Chưa có sản phẩm trong giỏ hàng</div>
         </div>
     `;
-    return; // Kết thúc hàm khi giỏ hàng trống
+        return; // Kết thúc hàm khi giỏ hàng trống
     }
     // console.log(cartItemContent);    
     cartItemContent.innerHTML = ''; // Xóa nội dung cũ
@@ -350,31 +350,38 @@ function displayCheckout(cart) {
 
 
 //click vao di den phuong thuc thanh toan -> chuyen den trang tuy chon thanh toan
+
+function setAddressCusInLocal(addressCustomer) {
+    localStorage.setItem('addressCustomer', JSON.stringify(addressCustomer));
+}
+
+function getAddressCusInLocal() {
+    const addressCus = localStorage.getItem('addressCustomer');
+    return addressCus ? JSON.parse(addressCus) : [];
+}
+
 function isCheckPayment() {
     const formPayment = document.formPy;
     const country = formPayment.country.value;
     const address = formPayment.address.value;
     const city = formPayment.city.value;
     const phone = formPayment.phone.value;
-    if (country === '') {
-        alert("que quan khong duoc trong!");
-        country.focus();
+
+    if (!country || !address || !city || !phone) {
+        alert("Vui lòng điền đầy đủ thông tin địa chỉ!");
         return false;
     }
-    if (address === '') {
-        alert("dia chi khong duoc trong!");
-        address.focus();
-        return false;
+
+    const addressCus = { country, address, city, phone };
+
+    let addressCusInLocal = getAddressCusInLocal();
+    const addressExists = addressCusInLocal.some(cus => cus.phone === phone);
+
+    if (!addressExists) {
+        addressCusInLocal.push(addressCus);
     }
-    if (city === '') {
-        alert("thanh pho khong duoc trong!");
-        city.focus();
-    }
-    if (phone === '') {
-        alert("so dien thoai khong duoc trong!");
-        phone.focus();
-        return false;
-    }
+
+    setAddressCusInLocal(addressCusInLocal);
     return true;
 }
 
@@ -442,12 +449,42 @@ function getOrderInLocal() {
 }
 
 function OrderInLocal(informationOrder) {
-    localStorage.setItem('informationOrder',JSON.stringify(informationOrder));
+    localStorage.setItem('informationOrder', JSON.stringify(informationOrder));
+}
+
+function saveOrder(cart,customer,address) {
+    const orders = getOrderInLocal();
+   
+
+    const newOrder = {
+        id: new Date().getTime(),
+        customer:customer,
+        address:address,
+        cart:cart,
+        timeOrder: new Date().toISOString()
+    };
+    orders.push(newOrder);
+    OrderInLocal(orders);
+    alert('them don hang thanh cong!!!');
+}
+
+function clearCart() {
+    localStorage.removeItem('cart');
 }
 
 document.getElementById('payment-form').addEventListener('submit', (e) => {
     e.preventDefault();
-});
+    if(!isCheckPayment()) return;
 
-const inforProduct = getCartFromLocalStorage();
-console.log(inforProduct)
+    const inforCart = getCartFromLocalStorage();
+    const inforCustomer = getCusTomerFromLocalStorage();
+    const inforAddress = getAddressCusInLocal();
+
+    if(!inforCart.length || !inforCustomer.length || !inforAddress.length) {
+        alert("vui long kiem tra lai thong tin!");
+        return;
+    }
+    saveOrder(inforCart,inforCustomer,inforAddress);
+
+    clearCart();
+});
