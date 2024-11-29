@@ -918,3 +918,47 @@ form {
     transform: translateY(0);
     display: block;
 }
+
+
+/* phan lich su don hang */
+
+.order-history {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 800px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+    /* display: none; */
+}
+    
+    .order-history.hidden {
+        display: none;
+    }
+
+#orders-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+#close-order-history {
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#close-order-history:hover {
+    background: #0056b3;
+}
