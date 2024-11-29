@@ -575,6 +575,8 @@ document.querySelector('.buttonNext').addEventListener('click', nextPage);
 
 
 
+
+
 document.querySelectorAll('.list input[type="checkbox"]').forEach(checkbox => {
     checkbox.addEventListener('click', function () {
         handleCheckboxClick(this);
