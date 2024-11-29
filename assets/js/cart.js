@@ -256,13 +256,14 @@ window.addEventListener('storage', (event) => {
 });
 
 
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     var cus = getCusTomerFromLocalStorage();
     var cart = getCartFromLocalStorage();
     displayCart(cart);
     totalAll(cart)
     storeCartInLocalStorage(cart);
     displayCheckout(cart)
+    
 });
 
 
@@ -347,6 +348,7 @@ function displayCheckout(cart) {
         contentInCheckoutRight.appendChild(checkoutItem);
     });
 }
+
 
 
 //click vao di den phuong thuc thanh toan -> chuyen den trang tuy chon thanh toan
@@ -455,13 +457,13 @@ function OrderInLocal(informationOrder) {
 function saveOrder(cart,customer,address) {
     const orders = getOrderInLocal();
    
-
     const newOrder = {
         id: new Date().getTime(),
         customer:customer,
         address:address,
         cart:cart,
-        timeOrder: new Date().toISOString()
+        timeOrder: Date.now(),
+        status: "Đang xử lý",
     };
     orders.push(newOrder);
     OrderInLocal(orders);
@@ -474,6 +476,7 @@ function clearCart() {
 
 document.getElementById('payment-form').addEventListener('submit', (e) => {
     e.preventDefault();
+
     if(!isCheckPayment()) return;
 
     const inforCart = getCartFromLocalStorage();
@@ -485,6 +488,11 @@ document.getElementById('payment-form').addEventListener('submit', (e) => {
         return;
     }
     saveOrder(inforCart,inforCustomer,inforAddress);
-
     clearCart();
 });
+
+// window.addEventListener('beforeunload', () => {
+//     OrderInLocal(informationOrder);
+// });
+
+

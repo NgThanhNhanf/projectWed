@@ -481,8 +481,6 @@ function filterProducts() {
     if(productType && productType !== 'Allproduct') {
         productTypeAlterFilter = allProduct.filter(product => product.nature.type === productType);
     }
-    // console.log(productType)
-    // console.log(productTypeAlterFilter)
     const minPrice = parseInt(document.getElementById('min').value) || 0;
     const maxPrice = parseInt(document.getElementById('max').value) || Infinity;
 
@@ -584,7 +582,6 @@ document.querySelector('.buttonNext').addEventListener('click', nextPage);
 document.addEventListener('DOMContentLoaded', () => {
     displayProducts(currentPage);
     addClickEventToProducts();
-    filterProducts()
 });
 
 window.addEventListener('DOMContentLoaded', () => {

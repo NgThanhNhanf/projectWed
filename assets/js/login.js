@@ -38,7 +38,6 @@ backButtons.forEach(backButton => {
 
 
 //
-
 const signinBtn = document.querySelector(".SigninBtn");
 const signupBtn = document.querySelector(".SignupBtn");
 signupBtn.onclick = function() {
@@ -187,3 +186,6 @@ function updateUI() {
     }
 }
 document.addEventListener('DOMContentLoaded', updateUI);
+
+
+
