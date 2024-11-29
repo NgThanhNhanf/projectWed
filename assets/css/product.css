@@ -632,3 +632,20 @@ button:hover {
     cursor: pointer;
     color: #000;
 }
+
+/* responsive */
+
+@media(max-width:1240px) {
+    .cart-iframe {
+        right: -200%;
+        width: 80%;
+        height: 100%;
+    }
+}
+
+@media(max-width:768px) {
+    .center-panel .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);    
+    }
+}
