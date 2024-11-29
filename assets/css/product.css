@@ -126,7 +126,7 @@ body {
 .slide:nth-child(1) {
     background: 
         linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('/assets/img/product/img4.jpg');
+        url('/assets/img/product/mau5.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -135,7 +135,7 @@ body {
 .slide:nth-child(2) {
     background: 
         linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('/assets/img/product/img6.jpg');
+        url('/assets/img/product/mau6.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -268,6 +268,10 @@ button:hover {
 #Grey + label { background-color: grey; }
 #Black + label { background-color: black; }
 #Blue + label { background-color: #007bff; }
+#Pink + label { background-color: pink; }
+#Yellow + label { background-color: yellow; }
+#Cream + label { background-color: antiquewhite; }
+#Brown + label { background-color: burlywood; }
 
 
 .price-product {
