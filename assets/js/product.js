@@ -11,7 +11,7 @@ let allProducts = [
     },
     {
         id: 2,
-        name: 'Polo T-shirt',
+        name: 'Polo White',
         price: 300000,
         quantity: 30,
         image: 'assets/img/product/img2.jpg',
@@ -477,7 +477,6 @@ function filterProducts() {
     }
     const minPrice = parseInt(document.getElementById('min').value) || 0;
     const maxPrice = parseInt(document.getElementById('max').value) || Infinity;
-
     filteredProducts = productTypeAlterFilter.filter(product => {
         if (tags.length === 0) {
             return product.price >= minPrice && product.price <= maxPrice;
@@ -485,12 +484,12 @@ function filterProducts() {
 
         const typeTag = tags.find(tag => tag === product.nature.type);
         const colorTags = tags.filter(tag => !product.nature.type.includes(tag));
-
+       
         const matchesType = typeTag ? product.nature.type === typeTag : true;
 
         const matchesColors = colorTags.length > 0 ?
             colorTags.every(tag => product.nature.color.includes(tag)) : true;
-
+    
         const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
 
         return matchesType && matchesColors && matchesPrice;
