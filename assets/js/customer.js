@@ -17,7 +17,7 @@ function displayOrderHistory(email) {
     const orderContainer = document.getElementById('orders-container');
     const orderHistory = document.getElementById('order-history');
     const closeOrderHistory = document.getElementById('close-order-history');
-    
+
     // Lấy lịch sử đơn hàng từ localStorage
     const orders = getOrderInLocal();
 
@@ -35,12 +35,28 @@ function displayOrderHistory(email) {
         userOrders.forEach(order => {
             const orderElement = document.createElement('div');
             orderElement.classList.add('order-item');
+
+            // Lấy thông tin sản phẩm từ cart
+            const products = Array.isArray(order.cart) ? order.cart.map(item => `
+                <div class="product-item">
+                    <p><strong>Sản phẩm:</strong> ${item.name}</p>
+                    <img src="${item.image}" alt="${item.name}" style="width: 100px; height: auto;" />
+                </div>
+            `).join('') : "Không có sản phẩm.";
+
+            
             orderElement.innerHTML = `
                 <div class="order-details">
                     <p><strong>Mã đơn hàng:</strong> ${order.id}</p>
                     <p><strong>Ngày đặt:</strong> ${new Date(order.timeOrder).toLocaleString()}</p>
-                    <p><strong>Sản phẩm:</strong> ${order.cart.map(item => item.name).join(', ')}</p>
+                    <div>${products}</div>
                     <p><strong>Trạng thái:</strong> ${order.status}</p>
+                    <p><strong>Địa chỉ giao hàng:</strong> 
+                        ${order.address[0]?.address || "Không có thông tin"}
+                        , ${order.address[0]?.city || ""}
+                        , ${order.address[0]?.country || ""}
+                    </p>
+                    <p><strong>Số điện thoại:</strong> ${order.address[0]?.phone || "Không có thông tin"}</p>
                 </div>
             `;
             orderContainer.appendChild(orderElement);
