@@ -464,7 +464,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setDefaultPrice();
 
 });
-
+let index = 0;
 // FILLTER
 let filteredProducts = allProduct;
 function filterProducts() {
@@ -475,6 +475,7 @@ function filterProducts() {
     if(productType && productType !== 'Allproduct') {
         productTypeAlterFilter = allProduct.filter(product => product.nature.type === productType);
     }
+    index++;
     const minPrice = parseInt(document.getElementById('min').value) || 0;
     const maxPrice = parseInt(document.getElementById('max').value) || Infinity;
     filteredProducts = productTypeAlterFilter.filter(product => {
@@ -483,13 +484,14 @@ function filterProducts() {
         }
 
         const typeTag = tags.find(tag => tag === product.nature.type);
+        console.log(typeTag + " " + index)
         const colorTags = tags.filter(tag => !product.nature.type.includes(tag));
-       
+        console.log(colorTags);
         const matchesType = typeTag ? product.nature.type === typeTag : true;
-
+        console.log(matchesType);
         const matchesColors = colorTags.length > 0 ?
             colorTags.every(tag => product.nature.color.includes(tag)) : true;
-    
+        console.log(matchesColors);
         const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
 
         return matchesType && matchesColors && matchesPrice;
