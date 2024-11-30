@@ -2,43 +2,43 @@
 let allProducts = [
     {
         id: 1,
-        name: 'Name product white-black',
+        name: 'BinGo T-shirt',
         price: 205600,
         quantity: 0,
         image: 'assets/img/product/img1.jpg',
-        nature: { color: ['White', 'Black'], size: ['S', 'M', 'L'], type: 'T-Shirt' },
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'T-shirt' },
         date: '2024-01-15'
     },
     {
         id: 2,
-        name: 'Name product white-black-grey',
+        name: 'Polo T-shirt',
         price: 300000,
         quantity: 30,
         image: 'assets/img/product/img2.jpg',
-        nature: { color: ['white', 'Black', 'Grey'], size: ['S', 'M', 'L'], type: 'Polo' },
+        nature: { color: ['white'], size: ['S', 'M', 'L'], type: 'Polo' },
         date: '2024-02-10'
     },
     {
         id: 3,
-        name: 'Name product black',
+        name: 'AnuBis T-shirt',
         price: 200000,
         quantity: 30,
         image: 'assets/img/product/img3.jpg',
-        nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'T-Shirt' },
+        nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'T-shirt' },
         date: '2024-03-25'
     },
     {
         id: 4,
-        name: 'Name product blue-black',
+        name: 'Alesia T-shirt',
         price: 400000,
         quantity: 30,
         image: 'assets/img/product/img4.jpg',
-        nature: { color: ['Black', 'Blue'], size: ['S', 'M', 'L'], type: 'T-Shirt' },
+        nature: { color: ['Blue'], size: ['S', 'M', 'L'], type: 'T-shirt' },
         date: '2024-04-20'
     },
     {
         id: 5,
-        name: 'Name product brown',
+        name: 'Polo T-shirt',
         price: 320000,
         quantity: 5,
         image: 'assets/img/product/img5.jpg',
@@ -47,11 +47,11 @@ let allProducts = [
     },
     {
         id: 6,
-        name: 'Name product white-black',
+        name: 'White Shirt',
         price: 100000,
         quantity: 50,
         image: 'assets/img/product/img6.jpg',
-        nature: { color: ['White', 'Black'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Shirt' },
         date: '2024-06-15'
     },
     {
@@ -191,7 +191,7 @@ let allProducts = [
     },
     {
         id: 22,
-        name: 'Blue Jacket',
+        name: 'Blue Shirt',
         price: 233000,
         quantity: 50,
         image: 'assets/img/product/aotim1.jpg',
@@ -200,11 +200,11 @@ let allProducts = [
     },
     {
         id: 23,
-        name: 'Yellow Jacket',
+        name: 'Yellow Shirt',
         price: 233000,
         quantity: 50,
         image: 'assets/img/product/aovang1.jpg',
-        nature: { color: ['Yellow'], size: ['S', 'M', 'L'], type: 'Shirt' },
+        nature: { color: ['Yellow', 'Brown'], size: ['S', 'M', 'L'], type: 'Shirt' },
         date: '2024-06-15'
     },
     {
@@ -272,29 +272,29 @@ let allProducts = [
     },
     {
         id: 31,
-        name: 'Cream T-Shirt',
+        name: 'Cream T-shirt',
         price: 233000,
         quantity: 50,
         image: 'assets/img/product/aothun3.jpg',
-        nature: { color: ['Cream'], size: ['S', 'M', 'L'], type: 'T-Shirt' },
+        nature: { color: ['Cream'], size: ['S', 'M', 'L'], type: 'T-shirt' },
         date: '2024-06-15'
     },
     {
         id: 32,
-        name: 'Black T-Shirt',
+        name: 'Black T-shirt',
         price: 233000,
         quantity: 50,
         image: 'assets/img/product/aothun1.jpg',
-        nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'T-Shirt' },
+        nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'T-shirt' },
         date: '2024-06-15'
     },
     {
         id: 33,
-        name: 'White T-Shirt',
+        name: 'White T-shirt',
         price: 233000,
         quantity: 50,
         image: 'assets/img/product/aothun2.jpg',
-        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'T-Shirt' },
+        nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'T-shirt' },
         date: '2024-06-15'
     },
     {
@@ -399,20 +399,15 @@ function removeTag(index) {
 
 function handleCheckboxClick(checkbox) {
     const target = checkbox.value;
-    if (checkbox.checked) {
-        if (!tags.includes(target)) {
-            tags.push(target);
-            createTag();
-        }
-    } else {
-        const index = tags.indexOf(target);
-        if (index > -1) {
-            tags.splice(index, 1);
-            createTag();
-        }
+    if (checkbox.checked && !tags.includes(target)) {
+        tags.push(target);
+    } else if (!checkbox.checked) {
+        tags = tags.filter(tag => tag !== target);
     }
+    createTag();
     filterProducts();
 }
+
 // LOC THEO GIA TIEN
 
 function setDefaultPrice() {
@@ -467,8 +462,7 @@ document.getElementById('max').addEventListener('change', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
     setDefaultPrice();
-    updateMaxOptions();
-    updateMinOptions();
+
 });
 
 // FILLTER
@@ -579,14 +573,6 @@ function updatePageNumber() {
 document.querySelector('.buttonPrevious').addEventListener('click', previousPage);
 document.querySelector('.buttonNext').addEventListener('click', nextPage);
 
-document.addEventListener('DOMContentLoaded', () => {
-    displayProducts(currentPage);
-    addClickEventToProducts();
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-    filterProducts();
-});
 
 document.querySelectorAll('.list input[type="checkbox"]').forEach(checkbox => {
     checkbox.addEventListener('click', function () {
@@ -642,9 +628,6 @@ function openModal(product) {
 }
 
 
-closeModal.onclick = () => {
-    productModal.style.display = 'none';
-};
 
 
 window.onclick = (event) => {
@@ -662,27 +645,25 @@ function addClickEventToProducts() {
     });
 }
 
-
-
-const closeModalIcon = document.querySelector('.close');
-const quantityElement = document.getElementById('quantity');
-const sizeSelect = document.getElementById('sizeSelect');
-let quantity = 1;
+//------------QUANTITY----------------
+let quantityCount = 1;
 
 document.querySelector('.quantity-btn:nth-child(3)').onclick = () => {
-    quantity += 1;
-    quantityElement.textContent = quantity;
+    quantityCount += 1;
+    quantity.textContent = quantityCount;
 };
 
 
 document.querySelector('.quantity-btn:nth-child(1)').onclick = () => {
-    if (quantity > 1) {
-        quantity -= 1;
-        quantityElement.textContent = quantity;
+    if (quantityCount > 1) {
+        quantityCount -= 1;
+        quantity.textContent = quantityCount;
     }
 };
-closeModalIcon.onclick = () => {
-    document.getElementById('productModal').style.display = 'none';
+closeModal.onclick = () => {
+    quantityCount = 1;
+    quantity.textContent = quantityCount;
+    productModal.style.display = 'none';
 };
 
 
@@ -762,6 +743,9 @@ addToCartButtons.forEach(button => {
 //load lại trang và giữ những cập nhập như cũ
 window.addEventListener('DOMContentLoaded', () => {
     amountInIconCart();
+    displayProducts(currentPage);
+    addClickEventToProducts();
+    filterProducts();
 });
 
 //luu gio hang vao localStorage trc khi thay doi
