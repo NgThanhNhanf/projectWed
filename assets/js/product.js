@@ -471,7 +471,10 @@ function arrayContainsArray(mainArray, subArray) {
     return subArray.every(element => mainArray.includes(element));
 }
 
-
+document.querySelector('.search-btn').addEventListener('click', function () {
+	this.parentElement.classList.toggle('open')
+	this.previousElementSibling.focus()
+})
 function filterProducts() {
     //lay ra cac loai type cua product de loc ra cho cac trang trong index.html
     const urlProduct = new URLSearchParams(window.location.search);
@@ -482,12 +485,21 @@ function filterProducts() {
     }
     const minPrice = parseInt(document.getElementById('min').value) || 0;
     const maxPrice = parseInt(document.getElementById('max').value) || Infinity;
+    const searchInput = document.querySelector('.search-input').value.trim().toLowerCase();
     const allTypes = [...new Set(allProducts.map(product => product.nature.type))];
     console.log(allTypes);
     filteredProducts = productTypeAlterFilter.filter(product => {
-        if (tags.length === 0) {
-            return product.price >= minPrice && product.price <= maxPrice;
+        let isValid = true;
+
+        // Lọc theo tên sản phẩm
+        if (searchInput && !product.name.toLowerCase().includes(searchInput)) {
+            isValid = false;
         }
+        if (tags.length === 0) {
+            return product.price >= minPrice && product.price <= maxPrice && isValid;
+
+        }
+        
         const typeTag = tags.filter(tag => allTypes.includes(tag));
         const colorTags = tags.filter(tag => !typeTag.includes(tag));
         const matchesType = typeTag.length > 0 ? typeTag.includes(product.nature.type) : true;
@@ -495,7 +507,7 @@ function filterProducts() {
             colorTags.every(tag => product.nature.color.includes(tag)) : true;
         const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
 
-        return matchesPrice && matchesColors && matchesType;
+        return matchesPrice && matchesColors && matchesType && isValid;
     });
 
     if (filteredProducts.length === 0) {
@@ -505,6 +517,12 @@ function filterProducts() {
     displayProducts(currentPage);
     // storeProductInLocalStorage();   
 }
+// Sự kiện nhấn Enter trong ô tìm kiếm
+document.querySelector('.search-box').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        filterProducts();
+    }
+});
 function displayNoResult() {
     const productContainer = document.querySelector('.product');
     productContainer.innerHTML = `<p> Chưa có sản phẩm</p>`;
