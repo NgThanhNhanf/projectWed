@@ -3,14 +3,14 @@ let product_list = document.getElementById('product-list');
 let prev = document.getElementById('pre-btn');
 let nxt = document.getElementById('nxt-btn');
 let index = 0;
-nxt.onclick = () => {
+prev.onclick = () => {
     if (index > 0) {
         index--;
         nextSlide();
     }
 };
 
-prev.onclick = () => {
+nxt.onclick = () => {
     if (index < product.length - 3) {
         index++;
         nextSlide();

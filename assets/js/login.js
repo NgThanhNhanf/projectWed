@@ -33,12 +33,7 @@ backButtons.forEach(backButton => {
         }
     });
 });
-
-
-
-
 //
-
 const signinBtn = document.querySelector(".SigninBtn");
 const signupBtn = document.querySelector(".SignupBtn");
 signupBtn.onclick = function() {
@@ -156,7 +151,7 @@ function updateUI() {
             
             userButton.addEventListener('click', () => {
                 const menuUser = userButton.querySelector('.nav-menuUser');
-                menuUser.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                menuUser.style.display = menuUser.style.display === 'block' ? 'none' : 'block';
             });
         } else {
             userButton.innerHTML = `
@@ -187,3 +182,6 @@ function updateUI() {
     }
 }
 document.addEventListener('DOMContentLoaded', updateUI);
+
+
+
