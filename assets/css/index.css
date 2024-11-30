@@ -493,6 +493,7 @@ body {
 .our-product {
     padding: 70px 100px;
     border-bottom: 1px solid #000000;
+   
 }
 .our-product .product-header {
     width: 100%;
@@ -518,7 +519,7 @@ body {
     transition: border-bottom 0.3s ease-in-out;
 }
 .our-product .product-content {
-    display: inline-block;
+    /* display: flex; */
     width: 1015px;
     margin: auto;
 }

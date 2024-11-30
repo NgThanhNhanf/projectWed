@@ -464,9 +464,14 @@ window.addEventListener('DOMContentLoaded', () => {
     setDefaultPrice();
 
 });
-let index = 0;
+
 // FILLTER
 let filteredProducts = allProduct;
+function arrayContainsArray(mainArray, subArray) {
+    return subArray.every(element => mainArray.includes(element));
+}
+
+
 function filterProducts() {
     //lay ra cac loai type cua product de loc ra cho cac trang trong index.html
     const urlProduct = new URLSearchParams(window.location.search);
@@ -475,32 +480,28 @@ function filterProducts() {
     if(productType && productType !== 'Allproduct') {
         productTypeAlterFilter = allProduct.filter(product => product.nature.type === productType);
     }
-    index++;
     const minPrice = parseInt(document.getElementById('min').value) || 0;
     const maxPrice = parseInt(document.getElementById('max').value) || Infinity;
+    const allTypes = [...new Set(allProducts.map(product => product.nature.type))];
+    console.log(allTypes);
     filteredProducts = productTypeAlterFilter.filter(product => {
         if (tags.length === 0) {
             return product.price >= minPrice && product.price <= maxPrice;
         }
-
-        const typeTag = tags.find(tag => tag === product.nature.type);
-        console.log(typeTag + " " + index)
-        const colorTags = tags.filter(tag => !product.nature.type.includes(tag));
-        console.log(colorTags);
-        const matchesType = typeTag ? product.nature.type === typeTag : true;
-        console.log(matchesType);
+        const typeTag = tags.filter(tag => allTypes.includes(tag));
+        const colorTags = tags.filter(tag => !typeTag.includes(tag));
+        const matchesType = typeTag.length > 0 ? typeTag.includes(product.nature.type) : true;
         const matchesColors = colorTags.length > 0 ?
             colorTags.every(tag => product.nature.color.includes(tag)) : true;
-        console.log(matchesColors);
         const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
 
-        return matchesType && matchesColors && matchesPrice;
+        return matchesPrice && matchesColors && matchesType;
     });
 
     if (filteredProducts.length === 0) {
         displayNoResult();
     }
-    
+     
     displayProducts(currentPage);
     // storeProductInLocalStorage();   
 }
