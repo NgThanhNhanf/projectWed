@@ -22,7 +22,9 @@ function displayOrderHistory(email) {
     const orders = getOrderInLocal();
 
     // Lọc đơn hàng theo email
-    const userOrders = orders.filter(order => order.customer.email === email);
+    const userOrders = orders.filter(order => {
+        return order.customer && order.customer[0] && order.customer[0].emailCus === email;
+    });
 
     // Kiểm tra nếu có đơn hàng của khách hàng
     if (userOrders.length === 0) {
@@ -37,8 +39,8 @@ function displayOrderHistory(email) {
                 <div class="order-details">
                     <p><strong>Mã đơn hàng:</strong> ${order.id}</p>
                     <p><strong>Ngày đặt:</strong> ${new Date(order.timeOrder).toLocaleString()}</p>
-                    <p><strong>Trạng thái:</strong> ${order.status}</p>
                     <p><strong>Sản phẩm:</strong> ${order.cart.map(item => item.name).join(', ')}</p>
+                    <p><strong>Trạng thái:</strong> ${order.status}</p>
                 </div>
             `;
             orderContainer.appendChild(orderElement);
