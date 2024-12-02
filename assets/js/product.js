@@ -627,8 +627,6 @@ function openModal(product) {
 }
 
 
-
-
 window.onclick = (event) => {
     if (event.target === productModal) {
         productModal.style.display = 'none';
