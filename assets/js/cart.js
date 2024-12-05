@@ -250,6 +250,7 @@ function updateCart(cart) {
     document.getElementById('price-total').textContent = total.toLocaleString();
     //cap nhap cho total ben checkout
     document.querySelector('.checkout-section .footer-total span').textContent = total.toLocaleString();
+    displayCheckout(cart)
 
 }
 
@@ -396,14 +397,34 @@ function isCheckPayment() {
 }
 
 //----------xử lí thanh toán-----------
+
 document.addEventListener("DOMContentLoaded", function () {
     // Lấy các phần tử
     const form = document.querySelector(".payment-form");
-    const paymentOptions = document.querySelectorAll(".payment-option input");
+    const paymentOptions = document.querySelectorAll(".payment-option input[name ='payment']");
     const inputs = document.querySelectorAll(".input-group input");
     const checkboxes = document.querySelectorAll(".checkbox-group input");
-    const submitButton = document.querySelector(".pay");
+    // const submitButton = document.querySelector(".pay");
+    const radioCard = document.getElementById('card-swipe');
+    const inforCard = document.querySelector('.infor')
+    const codeCard = document.querySelector('.expiration-code')
+    console.log(inforCard)
+    console.log(codeCard)
 
+    function openMethodOfCard(show) {
+        inforCard.style.display = show ? "block" : "none"
+        codeCard.style.display = show ? "block" : "none"
+    }
+
+   paymentOptions.forEach(option => {
+    option.addEventListener('change',() => {
+        if(radioCard.checked){
+            openMethodOfCard(true)
+        }else {
+            openMethodOfCard(false)
+        }
+    });
+   })
     // Xử lý khi submit form
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Ngăn chặn hành động mặc định
@@ -415,9 +436,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Kiểm tra các trường input
-        let isValid = true;
-        inputs.forEach(input => {
+        if(radioCard.checked){
+            const cardFields = document.querySelectorAll('#card-name,#card-number,#expiry-date,#cvv');
+            let isValid = true;
+            // Kiểm tra các trường input
+        cardFields.forEach(input => {
             if (!input.value.trim()) {
                 isValid = false;
                 input.classList.add("error");
@@ -431,6 +454,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        }
+
         // Kiểm tra các checkbox
         const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
         if (!allChecked) {
@@ -441,14 +466,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Xử lý thanh toán thành công
         alert("Thanh toán thành công! Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.");
         form.reset(); // Reset form sau khi thanh toán thành công
+        openMethodOfCard(false)
     });
-
-    // Xử lý hiệu ứng khi focus input
-    inputs.forEach(input => {
-        input.addEventListener("focus", function () {
-            input.classList.remove("error");
-        });
-    });
+    openMethodOfCard(false)
 });
 
 //sau khi ấn submit thì sẽ lưu thông tin đơn hàng vào trong localStorage chờ xử lí
