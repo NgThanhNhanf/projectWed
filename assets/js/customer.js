@@ -17,7 +17,6 @@ function displayOrderInHistory() {
     const orderHistory = document.getElementById('order-history');
     const orderContainer = document.getElementById('orders-container');
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(isOrder)
     if (!currentUser) {
         alert('Đăng nhập để xem lịch sử đơn hàng');
         return;
