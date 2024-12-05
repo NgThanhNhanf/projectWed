@@ -651,8 +651,8 @@ body {
     right: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(190, 235, 179, 0.2);
-    animation: modalFadeIn ease .5s;
+    background-color: rgba(53, 53, 53, 0.212);
+    animation: modalFadeIn ease 0.2s;
     z-index: 100;
     display: flex;
     justify-content: center;
@@ -671,7 +671,7 @@ body {
     padding: 40px;
     border-radius: 20px;
     border: 8px solid #223243;
-    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.35), inset -5px -5px 15px rgba(255, 255, 255, 0.1), inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+
 }
 .displayForm .box{
     position: relative;
@@ -693,7 +693,7 @@ body {
 .displayForm .box button{
     cursor: pointer;
     padding: 10px 20px;
-    background: #00dfc4;
+    background: #fff;
     color: #333;
     font-size: 16px;
     border: none;
@@ -702,7 +702,7 @@ body {
     border-radius: 25px;
     &:hover{
         background: #223243;
-        color: #00dfc4;
+        color: #fff;
         font-size: 20px;
     }
 }
@@ -718,12 +718,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center ;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
     transition: 0.5s;
     transition-delay: 0.1s;
 }
 .active{
-    background: rgba(42, 223, 183, 0.125);
+    background-color: rgba(53, 53, 53, 0.212);
 }
 .active .form{
     left: 400px;
@@ -740,10 +739,7 @@ body {
     flex-direction: column;
     gap: 20px;
     transition: 0.5s;
-
-    
     border: 8px solid #223243;
-    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.35), inset -5px -5px 15px rgba(255, 255, 255, 0.1), inset 5px 5px 15px rgba(0, 0, 0, 0.35);
 }
 .form .slideForm.signup{
     top: 100%;
@@ -765,13 +761,13 @@ body {
     position: absolute;
     top: 40px;
     font-size: 40px;
-    color: #00dfc4;
+    color: #fff;
 }
 .signup h3{
     position: absolute;
     top: 25px;
     font-size: 35px;
-    color: #00dfc4;
+    color: #fff;
 }
 .inputBox{
     position: relative;
@@ -788,12 +784,11 @@ body {
     width: 100%;
     border: none;
     background: #223243;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid #fff;
     color: #fff;
     font-weight: 300;
     border-radius: 25px;
     font-size: 1em;
-    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.35);
     transition: 0.5s;
     outline: none;
 }
@@ -806,12 +801,12 @@ body {
     font-weight: 300;
     transition: 0.5s;
     letter-spacing: 0.05em;
-    color: rgba(7, 3, 3, 0.5);
+    color: rgba(92, 92, 92, 0.799);
 }
 .inputBox input:valid~span,
 .inputBox input:focus~span{
-    color: #00dfc4;
-    border: 1px solid #00dfc4;
+    color: #fff;
+    border: 1px solid #fff;
     background: #223243;
     transform: translateX(25px) translateY(-7px);
     font-size: 0.6em;
@@ -821,7 +816,7 @@ body {
 }
 .inputBox input:valid,
 .inputBox input:focus{
-    border: 1px solid #00dfc4;
+    border: 1px solid #fff;
 }
 .inputBox i{
     position: absolute;
@@ -830,8 +825,8 @@ body {
     width: 25px;
     padding: 2px 0;
     padding-right: 8px;
-    color: #00dfc4;
-    border-right: 1px solid #00dfc4;
+    color: #fff;
+    border-right: 1px solid #fff;
 }
 .inputBox .toggle-password {
     position: absolute;
@@ -839,16 +834,16 @@ body {
     right: 16px; 
     transform: translateX(230px) translateY(-9px);
     cursor: pointer;
-    color: #00dfc4;
+    color: #fff;
     transition: 0.3s;
     border: none;
 }
 .inputBox .toggle-password:hover {
-    color: aqua;
+    color: #000;
 }
 .back-button {
     position: absolute;
-    color: #00dfc4;
+    color: #fff;
     font-size: 20px;
     top: 15px;
     right: 10px; 
@@ -859,16 +854,15 @@ body {
     }
 }
 .inputBox input[type="submit"]{
-    background: #00dfc4;
+    background: #fff;
     color: #223243;
     padding: 10px 0;
     font-weight: 500;
     cursor: pointer;
     margin-top: 20px;
-    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.35), inset -5px -5px 15px rgba(255, 255, 255, 0.1), inset 5px 5px 15px rgba(0, 0, 0, 0.35);
     &:hover{
         background: #223243;
-        color: #00dfc4;
+        color: #fff;
     }
 }
 .hide {
