@@ -124,64 +124,78 @@ document.querySelector('.user-button').addEventListener('click', (e) => {
 });
 // Update UI
 function updateUI() {
-    try {
-        const userButton = document.querySelector('.user-button');
-        if (!userButton) return; // Guard clause for null element
+    const userButton = document.querySelector('.user-button');
+    if (!userButton) return;  // Guard clause for null element
+    
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    if (currentUser) {
+        userButton.innerHTML = `
+            <i class="fa-regular fa-user iconUser"></i>
+            <div class="username">${currentUser.username}</div>
+            <ul class="nav-menuUser">
+                <li><a href="#">Tài khoản của tôi</a></li>
+                <li><a href="#" class="view-orders-btn">Đơn hàng đã mua</a></li>
+                <li><a href="#" class="logout">Thoát tài khoản</a></li> 
+            </ul>
+        `;
         
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
-        if (currentUser) {
-            userButton.innerHTML = `
-                <i class="fa-regular fa-user iconUser"></i>
-                <div class="username">${currentUser.username}</div>
-               <ul class = "nav-menuUser">
-                    <li> <a href = "#"> Tài khoản của tôi</a> </li>
-                    <li> <a href = "#"> Đơn hàng đã mua </a> </li>
-                    <li> <a href = "#" class = "logout"> Thoát tài khoản </a> </li> 
-               </ul>
-               
-            `;
-            
-            // Reattach logout event listener
-            const logoutBtn = userButton.querySelector('.logout');
-            logoutBtn?.addEventListener('click', () => {
-                localStorage.removeItem('currentUser');
-                updateUI();
-            });
-            
-            userButton.addEventListener('click', () => {
-                const menuUser = userButton.querySelector('.nav-menuUser');
-                menuUser.style.display = menuUser.style.display === 'block' ? 'none' : 'block';
-            });
-        } else {
-            userButton.innerHTML = `
-                <div class="login nav_hover open-modal-btn-in">Login</div>
-                <div class="signup nav_hover open-modal-btn-up">Sign up</div>
-            `;
-            
-            // Reattach modal open event listeners
-            const loginBtn = userButton.querySelector('.login');
-            const signupBtn = userButton.querySelector('.signup');
-            
-            loginBtn.addEventListener('click', () => {
-                modalLogin.classList.remove('hide');
-                signInContainer.classList.remove('hide');
-                signUpContainer.classList.remove('hide');
-                modalLogin.classList.remove("active"); 
-            });
-            
-            signupBtn.addEventListener('click', () => {
-                modalLogin.classList.remove('hide');
-                signUpContainer.classList.remove('hide');
-                signInContainer.classList.remove('hide');
-                modalLogin.classList.add("active");
+        // Xử lý sự kiện cho nút "Đơn hàng đã mua"
+        const viewOrdersBtn = userButton.querySelector('.view-orders-btn');
+        if (viewOrdersBtn) {
+            viewOrdersBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                displayOrderInHistory();  // Gọi hàm hiển thị lịch sử đơn hàng
             });
         }
-    } catch (error) {
-        console.error('Error updating UI:', error);
+
+        // Xử lý sự kiện đăng xuất
+        const logoutBtn = userButton.querySelector('.logout');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                updateUI();  // Cập nhật giao diện sau khi đăng xuất
+            });
+        }
+
+        // Hiển thị menu người dùng khi click vào userButton
+        userButton.addEventListener('click', () => {
+            const menuUser = userButton.querySelector('.nav-menuUser');
+            menuUser.style.display = menuUser.style.display === 'block' ? 'none' : 'block';
+        });
+    } else {
+        userButton.innerHTML = `
+            <div class="login nav_hover open-modal-btn-in">Login</div>
+            <div class="signup nav_hover open-modal-btn-up">Sign up</div>
+        `;
+        
+        // Reattach modal open event listeners
+        const loginBtn = userButton.querySelector('.login');
+        const signupBtn = userButton.querySelector('.signup');
+        
+        loginBtn.addEventListener('click', () => {
+            modalLogin.classList.remove('hide');
+            signInContainer.classList.remove('hide');
+            signUpContainer.classList.remove('hide');
+            modalLogin.classList.remove("active"); 
+        });
+        
+        signupBtn.addEventListener('click', () => {
+            modalLogin.classList.remove('hide');
+            signUpContainer.classList.remove('hide');
+            signInContainer.classList.remove('hide');
+            modalLogin.classList.add("active");
+        });
     }
 }
+
 document.addEventListener('DOMContentLoaded', updateUI);
 
 
+
+const userButton = document.querySelector('.user-button');
+userButton.querySelector('.nav-menuUser a[href="#"]').addEventListener('click', (event) => {
+    event.preventDefault();
+    displayOrderInHistory();
+});
 

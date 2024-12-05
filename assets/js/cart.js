@@ -5,17 +5,23 @@ closeBtn.addEventListener('click', () => {
     window.parent.postMessage('closeCart', '*');
 });
 
-//lắng nghe sự kiện click vào nút checkout
+//lắng nghe sự kiện click vào nút thong tin thanh toan
 const buttonCheckout = document.getElementById('checkout-btn');
 const closeCheckout = document.getElementById('close-checkout');
 const cartsection = document.querySelector('.cart-section');
 const checkoutsection = document.querySelector('.checkout-section');
 
+
 buttonCheckout.addEventListener('click', () => {
+    const isCart = getCartFromLocalStorage()
+    if(isCart.length == 0 ) {
+        alert('ban phai mua hang thi moi duoc thanh toan')
+        return;
+    }
     cartsection.style.transform = 'translateX(-100%)';
     checkoutsection.style.transform = 'translateX(0)';
 });
-// lắng nghe sự kiện click vào back to checkout
+// lắng nghe sự kiện click vào quay lai
 closeCheckout.addEventListener('click', () => {
     checkoutsection.style.transform = 'translateX(-100%)';
     cartsection.style.transform = 'translateX(0)';
@@ -87,11 +93,11 @@ function displayCart(cart) {
     const cartItemContent = document.querySelector('.cartItemContent');
     if (cart.length == '') {
         cartItemContent.innerHTML = `
-        <div class="cartEmpty">
-            <i class="fa-brands fa-opencart iconCartEmpty"></i>
-            <div class="empty-cart">Chưa có sản phẩm trong giỏ hàng</div>
-        </div>
-    `;
+                <div class="cartEmpty">
+                    <i class="fa-brands fa-opencart iconCartEmpty"></i>
+                    <div class="empty-cart">Chưa có sản phẩm trong giỏ hàng</div>
+                </div>
+            `;
         return; // Kết thúc hàm khi giỏ hàng trống
     }
     // console.log(cartItemContent);    
@@ -101,33 +107,34 @@ function displayCart(cart) {
         const cartItem = document.createElement('div');
         cartItem.classList.add('cart-item');
         cartItem.innerHTML = `
-                <div class="item">
-                    <div class="product column">
-                        <div class="product-img">
-                            <img src="${item.image}" alt="${item.name}">
-                        </div>
-                        <div class="product-info">
-                            <a href="#">${item.name}</a>
-                        </div>
-                    </div>
-                    <div class="size column">${item.size}</div>
-                    <div class="quantity column">
-                        <i class="fas fa-minus minus"></i>
-                        <span class="quantity-cnt">${item.quantity}</span>
-                        <i class="fas fa-plus plus"></i>
-                    </div>
-                    <div class="price column">
-                        <span class="priceNumber">${(item.price * item.quantity).toLocaleString()}</span>
-                    </div>
-                    <div class = "iconX">
-                        <i class="fa-solid fa-xmark"></i>    
-                    </div>
-                </div>`;
+                        <div class="item">
+                            <div class="product column">
+                                <div class="product-img">
+                                    <img src="${item.image}" alt="${item.name}">
+                                </div>
+                                <div class="product-info">
+                                    <a href="#">${item.name}</a>
+                                </div>
+                            </div>
+                            <div class="size column">${item.size}</div>
+                            <div class="quantity column">
+                                <i class="fas fa-minus minus"></i>
+                                <span class="quantity-cnt">${item.quantity}</span>
+                                <i class="fas fa-plus plus"></i>
+                            </div>
+                            <div class="price column">
+                                <span class="priceNumber">${(item.price * item.quantity).toLocaleString()}</span>
+                            </div>
+                            <div class = "iconX">
+                                <i class="fa-solid fa-xmark"></i>    
+                            </div>
+                        </div>`;
         cartItemContent.appendChild(cartItem);
     });
     solveQuantity(cart);
     solveIconX(cart)
     updateCart(cart)
+    amountInIconCart()
 
 }
 // displayCart(cart);
@@ -193,6 +200,7 @@ function solveIconX(cart) {
             displayCart(cart)
             updateCart(cart)
             displayCheckout(cart)
+            amountInIconCart();
         });
     });
 }
@@ -242,6 +250,7 @@ function updateCart(cart) {
     document.getElementById('price-total').textContent = total.toLocaleString();
     //cap nhap cho total ben checkout
     document.querySelector('.checkout-section .footer-total span').textContent = total.toLocaleString();
+    displayCheckout(cart)
 
 }
 
@@ -257,13 +266,13 @@ window.addEventListener('storage', (event) => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    var cus = getCusTomerFromLocalStorage();
+    // var cus = getCusTomerFromLocalStorage();
     var cart = getCartFromLocalStorage();
     displayCart(cart);
     totalAll(cart)
     storeCartInLocalStorage(cart);
     displayCheckout(cart)
-    
+
 });
 
 
@@ -335,16 +344,16 @@ function displayCheckout(cart) {
         const checkoutItem = document.createElement('div');
         checkoutItem.classList.add('checkout-item');
         checkoutItem.innerHTML = `
-            <div class = "information">
-                <div class = "information-left">
-                    <p>${item.name}</p>
-                </div>
+                    <div class = "information">
+                        <div class = "information-left">
+                            <p>${item.name}</p>
+                        </div>
 
-                <div class = "information-right">
-                    <span class = "amount">${item.quantity}</span><i>x</i>
-                    <span class = "inforPrice"> <span>${item.price}</span> </span>
-                </div>
-            </div> `;
+                        <div class = "information-right">
+                            <span class = "amount">${item.quantity}</span><i>x</i>
+                            <span class = "inforPrice"> <span>${item.price}</span> </span>
+                        </div>
+                    </div> `;
         contentInCheckoutRight.appendChild(checkoutItem);
     });
 }
@@ -388,14 +397,34 @@ function isCheckPayment() {
 }
 
 //----------xử lí thanh toán-----------
+
 document.addEventListener("DOMContentLoaded", function () {
     // Lấy các phần tử
     const form = document.querySelector(".payment-form");
-    const paymentOptions = document.querySelectorAll(".payment-option input");
+    const paymentOptions = document.querySelectorAll(".payment-option input[name ='payment']");
     const inputs = document.querySelectorAll(".input-group input");
     const checkboxes = document.querySelectorAll(".checkbox-group input");
-    const submitButton = document.querySelector(".pay");
+    // const submitButton = document.querySelector(".pay");
+    const radioCard = document.getElementById('card-swipe');
+    const inforCard = document.querySelector('.infor')
+    const codeCard = document.querySelector('.expiration-code')
+    console.log(inforCard)
+    console.log(codeCard)
 
+    function openMethodOfCard(show) {
+        inforCard.style.display = show ? "block" : "none"
+        codeCard.style.display = show ? "block" : "none"
+    }
+
+   paymentOptions.forEach(option => {
+    option.addEventListener('change',() => {
+        if(radioCard.checked){
+            openMethodOfCard(true)
+        }else {
+            openMethodOfCard(false)
+        }
+    });
+   })
     // Xử lý khi submit form
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Ngăn chặn hành động mặc định
@@ -407,9 +436,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Kiểm tra các trường input
-        let isValid = true;
-        inputs.forEach(input => {
+        if(radioCard.checked){
+            const cardFields = document.querySelectorAll('#card-name,#card-number,#expiry-date,#cvv');
+            let isValid = true;
+            // Kiểm tra các trường input
+        cardFields.forEach(input => {
             if (!input.value.trim()) {
                 isValid = false;
                 input.classList.add("error");
@@ -423,6 +454,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        }
+
         // Kiểm tra các checkbox
         const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
         if (!allChecked) {
@@ -433,14 +466,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Xử lý thanh toán thành công
         alert("Thanh toán thành công! Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.");
         form.reset(); // Reset form sau khi thanh toán thành công
+        openMethodOfCard(false)
     });
-
-    // Xử lý hiệu ứng khi focus input
-    inputs.forEach(input => {
-        input.addEventListener("focus", function () {
-            input.classList.remove("error");
-        });
-    });
+    openMethodOfCard(false)
 });
 
 //sau khi ấn submit thì sẽ lưu thông tin đơn hàng vào trong localStorage chờ xử lí
@@ -454,20 +482,20 @@ function OrderInLocal(informationOrder) {
     localStorage.setItem('informationOrder', JSON.stringify(informationOrder));
 }
 
-function saveOrder(cart,customer,address) {
+function saveOrder(cart, customer, address) {
     const orders = getOrderInLocal();
-   
+
     const newOrder = {
         id: new Date().getTime(),
-        customer:customer,
-        address:address,
-        cart:cart,
+        customer: customer,
+        address: address,
+        cart: cart,
         timeOrder: Date.now(),
+        total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
         status: "Đang xử lý",
     };
     orders.push(newOrder);
     OrderInLocal(orders);
-    alert('them don hang thanh cong!!!');
 }
 
 function clearCart() {
@@ -477,22 +505,16 @@ function clearCart() {
 document.getElementById('payment-form').addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if(!isCheckPayment()) return;
+    if (!isCheckPayment()) return;
 
     const inforCart = getCartFromLocalStorage();
     const inforCustomer = getCusTomerFromLocalStorage();
     const inforAddress = getAddressCusInLocal();
 
-    if(!inforCart.length || !inforCustomer.length || !inforAddress.length) {
+    if (!inforCart.length || !inforCustomer.length || !inforAddress.length) {
         alert("vui long kiem tra lai thong tin!");
         return;
     }
-    saveOrder(inforCart,inforCustomer,inforAddress);
+    saveOrder(inforCart, inforCustomer, inforAddress);
     clearCart();
-});
-
-// window.addEventListener('beforeunload', () => {
-//     OrderInLocal(informationOrder);
-// });
-
-
+});    

@@ -20,7 +20,78 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                         <i class="fa-solid fa-cart-shopping cart-item"></i>
                         <i class="fa-regular fa-heart"></i>
-                    </div>`;
+                    </div>
+                    <div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/DarkGrey_LHZBXCOE275UX0202SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div><div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/DarkGrey_LHZBXCOE275UX0202SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div><div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/DarkGrey_LHZBXCOE275UX0202SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div><div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/DarkGrey_LHZBXCOE275UX0202SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div><div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/DarkGrey_LHZBXCOE275UX0202SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div><div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/DarkGrey_LHZBXCOE275UX0202SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div><div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/DarkGrey_LHZBXCOE275UX0202SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div>`;
                 break;
             case 1:
                 trending.classList.add('nav-item-active');
