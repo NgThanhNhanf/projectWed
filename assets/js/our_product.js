@@ -26,16 +26,82 @@ document.addEventListener("DOMContentLoaded", () => {
                 trending.classList.add('nav-item-active');
                 product_content.innerHTML = `
                     <div class="product">
-                        <div class="ima">
-                            <img src="/assets/img/product/DarkGrey_LHZBXCOE275UX0202SS24_1.jpg" alt="">
-                        </div>
-                        <div class="product-detail">
-                            <h4>Product 1</h4>
-                            <p>99$</p>
-                        </div>
-                        <i class="fa-solid fa-cart-shopping cart-item"></i>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>`;
+                    <div class="ima">
+                        <img src="/assets/img/product/Black_LSHOVCOB362UD0102SS24_1.jpg " alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/Black_LSHOVCOB362UD0102SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/Black_LSHOVCOB362UD0102SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/aolen2.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/DarkGrey_LHZBXCOE275UX0202SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/Black_LSHOVCOB362UD0102SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <div class="product">
+                    <div class="ima">
+                        <img src="/assets/img/product/Black_LSHOVCOB362UD0102SS24_1.jpg" alt="">
+                    </div>
+                    <div class="product-detail">
+                        <h4>Product 1</h4>
+                        <p>99$</p>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping cart-item"></i>
+                    <i class="fa-regular fa-heart"></i>
+                </div>`;
                 break;
             case 2:
                 newProduct.classList.add('nav-item-active');
@@ -57,7 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
     function checkProduct(id) {
         if (!nav_list || nav_list.length < 3) {
-            console.error("nav_list không tồn tại hoặc không đầy đủ.");
             return;
         }
   
@@ -73,6 +138,5 @@ document.addEventListener("DOMContentLoaded", () => {
     trending.onclick = () => checkProduct(1);
     newProduct.onclick = () => checkProduct(2);
   
-    checkProduct(0); // Khởi tạo sản phẩm đầu tiên
+    checkProduct(0);
   });
-  
