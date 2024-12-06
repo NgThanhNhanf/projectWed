@@ -137,6 +137,7 @@ function displayCart(cart) {
     amountInIconCart()
 
 }
+
 // displayCart(cart);
 
 //tinh tien all san pham trong cart => luu vao subtotal
@@ -382,19 +383,77 @@ function isCheckPayment() {
         alert("Vui lòng điền đầy đủ thông tin địa chỉ!");
         return false;
     }
-
-    const addressCus = { country, address, city, phone };
-
-    let addressCusInLocal = getAddressCusInLocal();
-    const addressExists = addressCusInLocal.some(cus => cus.phone === phone);
-
-    if (!addressExists) {
-        addressCusInLocal.push(addressCus);
-    }
-
-    setAddressCusInLocal(addressCusInLocal);
     return true;
 }
+
+//chon dia chi old or new => nhap du lieu moi
+function isOldAddress() {
+    const addressCustomer = JSON.parse(localStorage.getItem('addressCustomer')) || null;
+    if(addressCustomer){
+        let oldAddress = addressCustomer[0];
+        document.getElementById('country').value = oldAddress.country || ''
+        document.getElementById('address').value = oldAddress.address || ''
+        document.getElementById('city').value = oldAddress.city || ''
+        document.getElementById('phone').value = oldAddress.phone || ''
+    }
+}
+
+function isCheckboxOldAddress() {
+    const isCheckboxOldAddress = document.querySelector('.checkOldAddress input')
+
+    if(isCheckboxOldAddress.checked) {
+        isOldAddress()
+
+        document.getElementById('country').disabled = true;
+        document.getElementById('address').disabled = true;
+        document.getElementById('city').disabled = true;
+        document.getElementById('phone').disabled = true;
+    } else {
+        document.getElementById('country').disabled = false;
+        document.getElementById('address').disabled = false;
+        document.getElementById('city').disabled = false;
+        document.getElementById('phone').disabled = false;
+
+        document.getElementById('country').value = ''
+        document.getElementById('address').value = ''
+        document.getElementById('city').value = ''
+        document.getElementById('phone').value = ''
+    }
+}
+
+function saveAddressInLocal(event) {
+    event.preventDefault()
+
+    if(!isCheckPayment()){
+        alert('thong tin khong hop le')
+        return
+    }
+
+    const newCountry = document.getElementById('country').value
+    const newAddress = document.getElementById('address').value
+    const newCity = document.getElementById('city').value
+    const newPhone = document.getElementById('phone').value;
+
+
+    const updateAddress = {
+        country : newCountry,
+        address : newAddress,
+        city : newCity,
+        phone : newPhone
+    };
+
+    const customerInLocal = getAddressCusInLocal();
+    customerInLocal.push(updateAddress);
+    setAddressCusInLocal(customerInLocal)
+    alert('them dia chi moi thanh cong')
+}
+
+document.querySelector('.checkOldAddress input').addEventListener('change',isCheckboxOldAddress)
+
+document.querySelector('.proceed-btn').addEventListener('click',saveAddressInLocal);
+
+document.addEventListener('DOMContentLoaded',isOldAddress)
+
 
 //----------xử lí thanh toán-----------
 
@@ -408,8 +467,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const radioCard = document.getElementById('card-swipe');
     const inforCard = document.querySelector('.infor')
     const codeCard = document.querySelector('.expiration-code')
-    console.log(inforCard)
-    console.log(codeCard)
+    // console.log(inforCard)
+    // console.log(codeCard)
 
     function openMethodOfCard(show) {
         inforCard.style.display = show ? "block" : "none"
@@ -492,7 +551,7 @@ function saveOrder(cart, customer, address) {
         cart: cart,
         timeOrder: Date.now(),
         total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
-        status: "Đang xử lý",
+        status: "Chưa xử lý",
     };
     orders.push(newOrder);
     OrderInLocal(orders);

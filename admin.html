@@ -237,16 +237,93 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                    <div class="tool-box-product">
-                        <button class="reLoad"><i class="fa-solid fa-rotate-right"></i> Clear</button>
+                    <div class="function">
+                        <button class="reLoad"><i class="fa-solid fa-rotate-right"></i>  Clear</button>
                         <button class="remove-btn"><i class="fa-solid fa-trash"></i> Remove</button>
-                        <button class="add-product-btn">+ Add Product</button>
+                        <!-- Nút thêm sản phẩm và bảng thêm sản phẩm -->
+                        <button class="add-customer-btn">+ Add a Customer</button>
+                    </div>    
+                    <!-- Bảng thêm sản phẩm -->
+                    <div id="add-customer-modal" class="modal hidden">
+                        <form id="add-customer-form" class="modal-content">
+                            <h2>Add New Product</h2>
+                            <label for="product-name">Product Name:</label>
+                            <input type="text" id="product-name" placeholder="Enter product name">
+
+                            <label for="product-type">Product Type:</label>
+                            <select id="product-type">
+                                <option value="T-shirt">T-shirt</option>
+                                <option value="Shirt">Shirt</option>
+                                <option value="Polo">Polo</option>
+                                <option value="Sort">Sort</option>
+                                <option value="Blazer">Blazer</option>
+                                <option value="Kaki">Kaki</option>
+                            </select>
+
+                            <label for="input-img">Product Image:</label>
+                            <input type="file" id="input-img" accept="image/*">
+                            <div class="preview"></div> <!-- Thêm xem trước hình ảnh -->
+
+                            <label for="product-quantity">Quantity:</label>
+                            <input type="number" id="product-quantity" placeholder="Enter quantity">
+
+                            <label for="product-price">Price (VNĐ):</label>
+                            <input type="number" id="product-price" placeholder="Enter price">
+
+                            <button type="button" class="submit-product-btn">Add Product</button>
+                            <button type="button" class="close-modal">Close</button>
+                        </form>
+                    </div>
+
+                    <!-- Bảng xác nhận xóa -->
+                    <div id="delete-confirmation-modal" class="modal hidden">
+                        <div class="modal-content">
+                            <h2>Are you sure you want to delete?</h2>
+                            <button class="confirm-delete-btn">Yes</button>
+                            <button class="cancel-delete-btn">No</button>
+                        </div>
+                    </div>
+                    <!-- Bảng sửa sản phẩm -->
+                    <div id="edit-product-modal" class="modal hidden">
+                        <form id="edit-product-form" class="modal-content">
+                            <h2>Edit Product</h2>
+                            <input type="hidden" id="edit-product-id">
+                            
+                            <label for="edit-product-name">Product Name:</label>
+                            <input type="text" id="edit-product-name" placeholder="Enter product name">
+
+                            <label for="edit-product-type">Product Type:</label>
+                            <select id="edit-product-type">
+                                <option value="T-shirt">T-shirt</option>
+                                <option value="Shirt">Shirt</option>
+                                <option value="Polo">Polo</option>
+                                <option value="Sort">Sort</option>
+                                <option value="Blazer">Blazer</option>
+                                <option value="Kaki">Kaki</option>
+                            </select>
+
+                            <label for="edit-product-date">Date:</label>
+                            <input type="date" id="edit-product-date">
+
+                            <label for="edit-input-img">Product Image:</label>
+                            <input type="file" id="edit-input-img" accept="image/*">
+                            <div class="edit-preview"></div>
+
+                            <label for="edit-product-quantity">Quantity:</label>
+                            <input type="number" id="edit-product-quantity" placeholder="Enter quantity">
+
+                            <label for="edit-product-price">Price (VNĐ):</label>
+                            <input type="number" id="edit-product-price" placeholder="Enter price">
+
+                            <button type="button" class="update-product-btn">Update Product</button>
+                            <button type="button" class="close-edit-modal">Cancel</button>
+                        </form>
                     </div>
                 </div>
-                <div class="filter-section-product">
-                    <div class="name-product">
-                        <p>Name</p>
-                    </div>
+                
+                <!-- Thanh bộ lọc -->
+                <div class="filter-section">
+                    <div class="name"><p>Name</p></div>
                     <div class="filter-item">
                         <label for="Product">Product:</label>
                         <select id="Product">
@@ -254,7 +331,10 @@
                             <option value="T-shirt">T-shirt</option>
                             <option value="Shirt">Shirt</option>
                             <option value="Polo">Polo</option>
-                        </select>
+                            <option value="Sort">Sort</option>
+                            <option value="Blazer">Blazer</option>
+                            <option value="Kaki">Kaki</option>
+                    </select>
                     </div>
 
                     <div class="filter-item">
@@ -300,6 +380,81 @@
                         </select>
                     </div>
                     <p>Delete</p>
+                    
+                </div>
+                
+            
+                <!-- Danh sách sản phẩm -->
+                <div class="product-list">
+                    <!-- <div class="product-row">
+                        <div class="checkbox"><input type="checkbox"></div>
+                        <div class="product-info">
+                            <img src="assets\img\product\White_LTSOVCOA442UW0100SS24_1.jpg" alt="Product Image">
+                            <div class="product-name">ALESIA Clothing - Shippuden</div>
+                        </div>
+                        <div class="product-collection">Naruto Collaboration</div>
+                        <div class="product-date">Sep 25, 2024<br>11:50 AM</div>
+                        <div class="product-price">$210</div>
+                        <div class="product-actions"><i class="fa-solid fa-trash delete-product"></i></div>
+                    </div> -->
+            
+                    
+                </div>
+            </div>
+            <!-- Products content -->
+            <div id="content-products" class="content-page" style="display: none;">
+                <div class="tool-bar-product">
+                    <div class="search-box">
+                        <input type="text" class="search-input" />
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="tool-box-product">
+                        <button class="reLoad"><i class="fa-solid fa-rotate-right"></i> Clear</button>
+                        <button class="remove-btn"><i class="fa-solid fa-trash"></i> Remove</button>
+                        <button class="add-product-btn">+ Add Product</button>
+                    </div>
+                </div>
+                <div class="filter-section-product">
+                    <div class="name-product">
+                        <p>Name</p>
+                    </div>
+                    <div class="filter-item">
+                        <label for="Product">Product:</label>
+                        <select id="Product">
+                            <option value="---" disabled selected hidden>---</option>
+                            <option value="T-shirt">T-shirt</option>
+                            <option value="Shirt">Shirt</option>
+                            <option value="Polo">Polo</option>
+                        </select>
+                    </div>
+        
+                    <div class="filter-item">
+                        <label for="CreateAt">Create At (month/year):</label>
+                        <input type="month" id="CreateAt">
+                    </div>
+                    <div class="filter-item">
+                        <label for="Quality">Quality:</label>
+                        <select id="Quality">
+                            <option value="---" disabled selected hidden>---</option>
+                            <option value="0">Out of stock</option>
+                            <option value="1-50">Low stock</option>
+                            <option value=">=50">In stock</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label for="Price">Price:</label>
+                        <select id="Price">
+                            <option value="---">---</option>
+                            <option value="Less 100000">Less 100.000 VNĐ</option>
+                            <option value="More 100000">More 100.000 VNĐ</option>
+                            <option value="More 200000">More 200.000 VNĐ</option>
+                            <option value="More 300000">More 300.000 VNĐ</option>
+                            <option value="More 400000">More 400.000 VNĐ</option>
+                        </select>
+                    </div>
+                    <p>Delete</p>
                 </div>
                 <div class="product-list">
                     <div class="product-row">
@@ -322,7 +477,7 @@
             <div id="content-orders" class="content-page" style="display: none;">
                 <div class="tool-bar-order">
                     <div class="search-box">
-                        <input type="text" class="search-input" />
+                        <input type="text" class="search-input"/>
                         <button class="search-btn">
                             <i class="fas fa-search"></i>
                         </button>
@@ -333,51 +488,44 @@
                         <button class="add-order-btn">+ Add Order</button>
                     </div>
                 </div>
-                <div class="filter-section-order">
-                    <div class="name-order">
-                        <p>Name</p>
-                    </div>
-                    <div class="filter-item">
-                        <label for="Status">Status:</label>
-                        <select id="Status">
-                            <option value="---">---</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Processing">Processing</option>
-                            <option value="Completed">Completed</option>
-                            <option value="Cancelled">Cancelled</option>
-                        </select>
-                    </div>
-                    <div class="filter-item">
-                        <label for="TimeOrder">Time Order:</label>
-                        <input type="month" id="TimeOrder">
-                    </div>
-                    <div class="filter-item">
-                        <label for="Total">Total:</label>
-                        <select id="Total">
-                            <option value="---">---</option>
-                            <option value="Less 100000">Less 100.000 VNĐ</option>
-                            <option value="More 100000">More 100.000 VNĐ</option>
-                            <option value="More 200000">More 200.000 VNĐ</option>
-                            <option value="More 300000">More 300.000 VNĐ</option>
-                            <option value="More 400000">More 400.000 VNĐ</option>
-                        </select>
-                    </div>
-                    <p>Delete</p>
-                </div>
-                <div class="order-list">
-                    <div class="order-row">
-                        <div class="name-order-group">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="order-info">
-                                <div class="order-id">#ORDER123</div>
-                                <div class="customer-name">John Doe</div>
-                            </div>
+                    <div class="filter-section-order">
+                        <div class="id-order">
+                            <p>Mã đơn</p>
                         </div>
-                        <div class="order-status">Pending</div>
-                        <div class="time-order">Sep 25, 2024<br>11:50 AM</div>
-                        <div class="order-total">210,000 VND</div>
-                        <div class="order-actions"><i class="fa-solid fa-trash delete-order"></i></div>
+                        <div class="filter-item">
+                            <label for="Status">Trạng thái:</label>
+                            <select id="Status">
+                                <option value="....">....</option>
+                                <option value="Chưa xử lý">Chưa xử lý</option>
+                                <option value="Đã xác nhận">Đã xác nhận</option>
+                                <option value="Giao thành công">Giao thành công</option>
+                                <option value="Đã hủy">Đã hủy</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label for="TimeOrder">Time Order:</label>
+                            <input type="month" id="TimeOrder">
+                        </div>
+                        <div class="filter-item">
+                            <label for="Total">Total:</label>
+                            <select id="Total">
+                                <option value="---">---</option>
+                                <option value="Less 100000">Less 100.000 VNĐ</option>
+                                <option value="More 100000">More 100.000 VNĐ</option>
+                                <option value="More 200000">More 200.000 VNĐ</option>
+                                <option value="More 300000">More 300.000 VNĐ</option>
+                                <option value="More 400000">More 400.000 VNĐ</option>
+                            </select>
+                        </div>
+                        <button id="filter-orders">Lọc đơn hàng</button>
                     </div>
+                <!-- hien thi danh sach don hang -->
+                <div class="order-list"></div>
+                <!-- hien thi chi tiet don hang -->
+                <div id="modal-popup" class="modal-popup hidden"></div>
+
+                <div id="modal-content" class="modal-content hidden">
+                   <!-- chi tiet don hang -->
                 </div>
             </div>
             <!-- Analytics content -->
@@ -512,6 +660,8 @@
     </div>
     <script src="assets\chartjs\chart.umd.js"></script>
     <script src="assets\js\admin.js"></script>
+    <script src="assets\js\adminProduct.js"></script>
+    <script src="assets/js/adminOrder.js"></script>
     <script src="assets\js\adminAnalytics.js"></script>
     <script src="assets\js\adminProduct.js"></script>
     <script src="assets\js\adminCustomer.js"></script>
