@@ -94,7 +94,7 @@ document.querySelector('.signin-container .inputBox input[type="submit"]').addEv
     try {
         const email = signInContainer.querySelector('input[name="email"]').value.trim();
         const password = signInContainer.querySelector('input[name="password"]').value.trim();
-
+        
         if (!email || !password) {
             throw new Error('Vui lòng nhập email và mật khẩu!');
         }
