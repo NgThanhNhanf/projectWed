@@ -4,7 +4,7 @@ function getOrderInLocal() {
     return inforOrder ? JSON.parse(inforOrder) : [];
 }
 
-console.log(localStorage.getItem('informationOrder'));
+// console.log(localStorage.getItem('informationOrder'));
 
 
 
@@ -156,9 +156,6 @@ function saveInforUser() {
     localStorage.setItem('currentUser',JSON.stringify(updateCurrentUser));
     localStorage.setItem('addressCustomer',JSON.stringify([updateAddressCustomer]));
 
-    console.log("Updated currentUser:", updateCurrentUser);
-    console.log("Updated addressCustomer:", updateAddressCustomer)
-    
     inPlacholder();
     alert('sua thong tin thanh cong');
 }
@@ -166,3 +163,24 @@ function saveInforUser() {
 document.addEventListener('DOMContentLoaded',inPlacholder); 
 
 document.getElementById('editInformation').addEventListener('click',saveInforUser);
+
+
+//thao tac doi mat khau
+function changePassword() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    const oldpassword = document.getElementById('passwordUser').value;
+    const newpassword = document.getElementById('newPasswordUser').value;
+    const isnewpassword = document.getElementById('isnewpasswordUser').value;
+
+    if(oldpassword === currentUser.password && newpassword === isnewpassword) {
+        const updatepasswordCurrent = {
+            ...currentUser,
+            ...OrderInLocal(newpassword && {password: newpassword})
+        };
+        localStorage.setItem('currentUser',JSON.stringify(updatepasswordCurrent));
+        alert('doi mat khau thanh cong')
+    }
+}
+
+document.getElementById('editPassword').addEventListener('click',changePassword);

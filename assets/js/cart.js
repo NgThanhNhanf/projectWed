@@ -135,7 +135,6 @@ function displayCart(cart) {
     solveIconX(cart)
     updateCart(cart)
     amountInIconCart()
-
 }
 
 // displayCart(cart);

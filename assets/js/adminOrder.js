@@ -91,7 +91,13 @@ function displayOrderSummary(orderId) {
         <h4>Danh sách địa chỉ:</h4>
         <p>${listAddress}</p>
         <p> Trạng thái: </p>
-            <p> ${order.status} </p>
+            <select id="status-section">
+                <option value = "Chưa xử lý" ${order.status === "Chưa xử lý" ? "selected" : ""}>Chưa xử lý </option>
+                <option value = "Đã xác nhận" $order.status === "Đã xác nhận" ? "selected" : ""}>Đã xác nhận </option>
+                <option value = "Giao hàng thành công" ${order.status === "Giao hàng thành công" ? "selected" : ""}>Giao hàng thành công </option>
+                <option value = "Đã hủy" ${order.status === "Đã hủy" ? "selected" : ""}>Đã hủy</option>
+            </select>
+            <button id= "updateStatus"> Cập nhật trạng thái</button>
         <button id="close-modal">Đóng</button>
     </div>`;
 
@@ -106,6 +112,16 @@ function displayOrderSummary(orderId) {
         modalContent.classList.add('hidden');
     });
 
+
+    //cap nhap trang thai
+    document.getElementById('updateStatus').addEventListener('click', ()=> {
+        const newStatus = document.getElementById('status-section').value;
+        order.status = newStatus
+        localStorage.setItem('informationOrder',JSON.stringify(orders));
+        alert('cap nhap trang thai don hang thanh cong');
+        displayOrders(getOrders());
+    });
+    //click vao popup(nen den ben ngoan) => dong phan chi tiet
     document.getElementById('modal-popup').addEventListener('click', () => {
         document.getElementById('modal-popup').classList.add('hidden');
         modalContent.classList.add('hidden');

@@ -750,7 +750,7 @@ addToCartButtons.forEach(button => {
         const productImage = document.getElementById('modalImage').src;
         const productName = document.getElementById('modalName').textContent;
         const productSize = document.getElementById('sizeSelect').value;
-        const productPrice = parseFloat(document.getElementById('modalPrice').textContent);
+        const productPrice = parseFloat(document.getElementById('modalPrice').textContent.replace(/,/g, ''));
         const productQuantity = parseInt(document.getElementById('quantity').textContent, 10);
 
         var cart = getCartFromLocalStorage();
