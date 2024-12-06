@@ -792,41 +792,383 @@ canvas#top-demand-product-chart {
   transition: border-color 0.3s ease;
 }
 
-.modal-popup {
+/* CUSTOMER */
+#content-customers {
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+/* search */
+/* Customer Section Base Layout */
+#content-customers {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Search Bar and Functions */
+.content-search {
+  display: flex;
+  flex-direction:  row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.function {
+  display: flex;
+  gap: 20px;
+}
+
+.function button {
+  background-color: var(--clr-secondary);
+  color: var(--clr-primary);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.function button:hover {
+  background-color: var(--clr-primary);
+  color: var(--clr-secondary);
+}
+
+
+
+/* Customer List */
+.customer-list {
+  max-height: 600px;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.customer-header {
+  display: flex;
+  align-items: center;
+  padding: 20px 15px;
+  background-color: var(--clr-secondary);
+  border-bottom: 2px solid #e0e0e0;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--clr-primary);
+}
+.filter-actions{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 35px;
+}
+.customer-row {
+  display: flex;
+  padding: 18px 25px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+  justify-content: flex-end;
+}
+
+.customer-row:hover {
+  background-color: #fafafa;
+}
+
+/* Assigning specific flex values to each column */
+.customer-row .checkbox {
+  flex: 0 0 5%; /* 5% of the width */
+  text-align: center;
+}
+
+.customer-row .customer-info {
+  flex: 0 0 12%; /* 20% of the width */
+}
+.customer-row .customer-email,
+.customer-row .customer-phone,
+.customer-row .customer-join-date,
+.customer-row .customer-spending,
+.customer-row .customer-status {
+  flex: 0 0 15%; /* 15% each */
+  text-align: center;
+}
+
+.customer-row .customer-actions {
+  display: flex;
+  flex: 0 0 10%;
+  text-align: center;
+  justify-content: space-evenly;
+}
+
+/* Adjusting text styles */
+.customer-name {
+  font-weight: 600;
+  color: var(--clr-primary);
+  font-size: 1rem;
+}
+
+.customer-email,
+.customer-phone,
+.customer-join-date,
+.customer-spending {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Filter Section */
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-item {
+  flex: 0.9;
+  min-width: 175px;
+}
+.filter-itemp{
+  flex: 0.5;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+}
+.filter-item label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--clr-primary);
+  font-size: 14px;
+}
+
+.filter-item input,
+.filter-item select {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.filter-item input:focus,
+.filter-item select:focus {
+  border-color: var(--clr-primary);
+  outline: none;
+}
+
+/* Modals */
+.modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  /* display: none; */
-  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal-content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  max-width: 600px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /* display: none; */
-  z-index: 10000;
+  max-width: 500px;
+  position: relative;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
 }
-.hidden {
+
+.modal.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-content h2 {
+  color: var(--clr-primary);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--clr-primary);
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.modal-content .submit-customer-btn,
+.modal-content .update-customer-btn {
+  background-color: var(--clr-primary);
+  color: #fff;
+}
+
+.modal-content .close-modal {
+  background-color: #dc3545;
+  color: #fff;
+  margin-left: 10px;
+}
+
+
+/* Modal Login */
+.modal-login {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(53, 53, 53, 0.212);
+  animation: modalFadeIn ease 0.2s;
+  z-index: 100;
+  display: flex; /* Đảm bảo hiển thị */
+  justify-content: center;
+  align-items: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Login Form Container */
+.displayForm {
+  position: relative;
+  width: 400px;
+  background: #223243;
+  padding: 40px;
+  border-radius: 20px;
+  border: 8px solid #223243;
+  text-align: center;
+}
+
+.displayForm h2 {
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+/* Input Fields */
+.inputBox {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.inputBox input {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  background: #223243;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.inputBox input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.inputBox input:focus {
+  border-color: #fff;
+}
+
+/* Submit Button */
+.inputBox input[type="submit"] {
+  background: #fff;
+  color: #223243;
+  padding: 12px 0;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 25px;
+  border: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+.inputBox input[type="submit"]:hover {
+  background: #223243;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.inputBox .toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateX(-8px) translateY(-9px);
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s;
+  border: none;
+}
+
+/* Hide Class */
+.hide {
   display: none;
 }
 
-#close-modal {
-  background-color: red;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+
+/* Optional: Animation for modal fade-in */
+@keyframes modalFadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
 }
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content-search {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .function {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .customer-row {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .filter-section {
+    flex-direction: column;
+  }
+
+  .filter-item {
+    min-width: 100%;
+  }
+}
+/* << LEFT CONTENT ORDER>> */
