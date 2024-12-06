@@ -2,7 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: Futura, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 body {
@@ -107,10 +107,10 @@ body {
     font-size: 14px;
     top: 10px;
     background: red;
-    width: 15px;
-    height: 15px;
     text-align: center;
-    border-radius: 60%;
+    min-height: 14px;
+    min-width: 14px;
+    border-radius: 25%;
 }
 
 
@@ -654,11 +654,12 @@ button:hover {
 .quantity-btn {
     width: 30px;
     height: 30px;
-    background-color: #ddd;
+    background-color: #ffffff;
     border: none;
-    border-radius: 50%;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 100;
     cursor: pointer;
+    color: #000000;
 }
 
 #sizeSelect {
@@ -676,12 +677,13 @@ button:hover {
 .wishlist {
     flex: 1;
     padding: 12px;
-    background-color: #f1f1f1;
+    background-color: #000000;
     color: #000;
     border: 1px solid #ccc;
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
+    color: #ffffff;
 }
 
 .close {
@@ -691,6 +693,11 @@ button:hover {
     font-size: 24px;
     cursor: pointer;
     color: #000;
+}
+
+.product-modal-detail .detail-header{
+    font-size: 18px;
+    padding: 10px 10px 10px 0px;
 }
 
 /* responsive */
