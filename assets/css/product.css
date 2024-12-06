@@ -483,7 +483,7 @@ button:hover {
 .product:hover .product-detail {
     bottom: 0;
     padding: 20px 10px;
-    background-color: rgba(0, 0, 0, 1); 
+    /* background-color: rgba(0, 0, 0, 1);  */
 }
 
 .product-detail h4, .product-detail p {
@@ -495,7 +495,6 @@ button:hover {
 }
 .product:hover .product-detail h4, 
 .product:hover .product-detail p {
-    color: #fff; 
 }
 
 .fa-cart-shopping {
@@ -547,10 +546,11 @@ button:hover {
 
 /* nút phân trang */
 .pagination {
-    width: 40%;
-    margin-left: 500px;
+    margin-top: 50px;
+    width: 100%;
     display: flex;
     gap: 10px;
+    justify-content: center;
 }
 
 .buttonPrevious,

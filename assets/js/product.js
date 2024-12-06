@@ -767,19 +767,19 @@ function storeCartInLocalStorage(cart) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 //tang so luong tren icon cart
+const amountCart1 = document.getElementById('amount-cart');
 function amountInIconCart() {
     const cart = getCartFromLocalStorage();
     var amount = cart.reduce((total, cartElement) => {
         return total + cartElement.quantity;
     }, 0);
-    const amountCart = document.getElementById('amount-cart');
     if (amount) {
-        amountCart.style.display = 'block';
+        amountCart1.style.display = 'block';
         if(amount < 100)
-            amountCart.textContent = amount; 
-        else amountCart.textContent = '99+';
+            amountCart1.textContent = amount; 
+        else amountCart1.textContent = '99+';
     } else {
-        amountCart.style.display = 'none';
+        amountCart1.style.display = 'none';
     }
 }
 

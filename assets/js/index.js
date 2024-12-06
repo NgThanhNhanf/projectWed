@@ -199,12 +199,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }; 
 
     //---------------cart----------------//
-    function amountInIconCart() {
+    const amountCart = document.querySelector('.amount-cart');
+    function amountInIconCart1() {
         const productCart = getCartFromLocalStorage();
         var amount = productCart.reduce((total, cartElement) => {
             return total + cartElement.quantity;
         }, 0);
-        const amountCart = document.querySelector('.amount-cart');
         if (amount) {
             amountCart.style.display = 'block';
             if(amount < 100)
@@ -241,10 +241,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
             storeCartInLocalStorage(cart);
-            amountInIconCart();
+            amountInIconCart1();
             alert("Thêm sản phẩm vào giỏi hàng thành công");
         });
 
     });
-    amountInIconCart();
+    amountInIconCart1();
 });
