@@ -341,7 +341,7 @@ let allProducts = [
 function storeProductInLocalStorage() {
     localStorage.setItem('allProducts', JSON.stringify(allProducts));
 }
-// storeProductInLocalStorage();
+storeProductInLocalStorage();
 
 
 //lấy AllProducts trong LocalStorage để dùng
@@ -763,7 +763,7 @@ addToCartButtons.forEach(button => {
                 name: productName,
                 image: productImage,
                 size: productSize,
-                price: productPrice,
+                price: productPrice*1000,
                 quantity: productQuantity,
             });
         }

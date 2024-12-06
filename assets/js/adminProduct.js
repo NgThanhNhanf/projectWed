@@ -111,7 +111,7 @@ function applyAllFilters() {
       );
     } else if (filterState.quality === "1-50") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.quantity >= 1 && product.quantity <= 50
+        (product) => product.quantity >= 1 && product.quantity < 50
       );
     } else if (filterState.quality === ">=50") {
       filteredProducts = filteredProducts.filter(
@@ -173,7 +173,7 @@ function displayProductListProcessing(products = []) {
       product.quantity;
     productRow.querySelector(
       ".product-price"
-    ).textContent = `${product.price} ,000 VND`;
+    ).textContent = `${product.price} VND`;
 
     productContainer.appendChild(productRow);
   });

@@ -1,86 +1,7 @@
 // ### CẤU HÌNH DANH SÁCH DỮ LIỆU ###
 const config = {
-  productKey: "product",
-  products: [
-    {
-      id: 1,
-      name: "Name product white-black",
-      price: 200,
-      quantity: 10,
-      image: "assets/img/product/img1.jpg",
-      nature: {
-        color: ["white", "black"],
-        size: ["S", "M", "L"],
-        type: "T-shirt",
-      },
-      date: "2023-01-15T10:00:00",
-    },
-    {
-      id: 2,
-      name: "Name product white-black-grey",
-      price: 300,
-      quantity: 30,
-      image: "assets/img/product/img2.jpg",
-      nature: {
-        color: ["white", "black", "grey"],
-        size: ["S", "M", "L"],
-        type: "Polo",
-      },
-      date: "2022-01-15T10:00:00",
-    },
-    {
-      id: 3,
-      name: "Name product black",
-      price: 200,
-      quantity: 20,
-      image: "assets/img/product/img3.jpg",
-      nature: {
-        color: ["black"],
-        size: ["S", "M", "L"],
-        type: "T-shirt",
-      },
-      date: "2024-01-15T10:00:00",
-    },
-    {
-      id: 4,
-      name: "Name product blue-black",
-      price: 400,
-      quantity: 30,
-      image: "assets/img/product/img4.jpg",
-      nature: {
-        color: ["black", "blue"],
-        size: ["S", "M", "L"],
-        type: "T-shirt",
-      },
-      date: "2024-01-15T10:00:00",
-    },
-    {
-      id: 5,
-      name: "Name product brown",
-      price: 320,
-      quantity: 30,
-      image: "assets/img/product/img5.jpg",
-      nature: {
-        color: ["brown"],
-        size: ["S", "M", "L"],
-        type: "Polo",
-      },
-      date: "2024-02-15T10:00:00",
-    },
-    {
-      id: 6,
-      name: "Name product white-black",
-      price: 100,
-      quantity: 30,
-      image: "assets/img/product/img6.jpg",
-      nature: {
-        color: ["white", "black"],
-        size: ["S", "M", "L"],
-        type: "Shirt",
-      },
-      date: "2024-01-15T10:00:00",
-    },
-  ],
+  productKey: "allProducts",
+  products: [],
   orderKey: "informationOrder",
   orders: [
     {
@@ -785,7 +706,7 @@ const chartOptions = {
     scales: {
       y: {
         beginAtZero: true,
-        ticks: { stepSize: 10000 },
+        ticks: { stepSize: 1000000 },
         grid: {
           display: true,
           color: "#ccc",
@@ -1074,91 +995,6 @@ function createChart(chartElement, chartType, labels, datasets, dataSource) {
 }
 
 // ### TẠO BIỂU ĐỒ VÀ PHƯƠNG THỨC THAO TÁC ###
-
-// SỰ KIỆN SIDE BAR
-function sideBarProcessing() {
-  // Lấy trang hiện tại từ localStorage
-  const activePage = localStorage.getItem("activePage") || "dashboard";
-  const menuItems = document.querySelectorAll(".menuSideBar");
-  const contentPages = document.querySelectorAll(".content-page");
-  const contentTitle = document.querySelector(".left-content-title p");
-  const contentTitleContainer = document.querySelector(".left-content-title");
-  const leftContent = document.getElementById("left-content");
-  const rightContent = document.getElementById("right-content");
-
-  // Hàm để hiển thị trang được chọn
-  function showPage(target) {
-    // Xóa active để tắt các tùy chỉnh
-    menuItems.forEach(function (item) {
-      item.classList.remove("active");
-    });
-
-    // Ẩn các nội dung của trang
-    contentPages.forEach(function (page) {
-      page.style.display = "none";
-    });
-
-    // Hiện nội dung được chọn
-    const targetContent = document.getElementById("content-" + target);
-
-    if (targetContent) {
-      targetContent.style.display = "flex";
-      contentTitle.textContent = document.querySelector(
-        `.menuSideBar[data-target="${target}"] .text`
-      ).textContent;
-      document
-        .querySelector(`.menuSideBar[data-target="${target}"]`)
-        .classList.add("active");
-      switch (target) {
-        case "dashboard":
-          document.title = "ALESIA - Dashboard";
-          break;
-        case "customers":
-          document.title = "ALESIA - Customers";
-          break;
-        case "products":
-          document.title = "ALESIA - Products";
-          break;
-        case "orders":
-          document.title = "ALESIA - Orders";
-          break;
-        case "analytics":
-          document.title = "ALESIA - Analytics";
-          break;
-        default:
-          document.title = "ALESIA";
-      }
-      // Thêm animation cho title
-      setTimeout(() => contentTitleContainer.classList.add("show"), 50);
-
-      // Xử lý layout cho các trang
-      if (["customers", "products", "orders", "analytics"].includes(target)) {
-        leftContent.classList.add("analytics-view");
-        rightContent.classList.add("hidden");
-      } else {
-        leftContent.classList.remove("analytics-view");
-        rightContent.classList.remove("hidden");
-      }
-
-      // Gọi hàm xử lý nội dung tương ứng
-      leftContentProcessing(target);
-    }
-  }
-
-  // Sự kiện click vào từng phần tử của menuItem
-  menuItems.forEach(function (menuItem) {
-    menuItem.addEventListener("click", function () {
-      const target = this.getAttribute("data-target");
-      localStorage.setItem("activePage", target);
-      contentTitleContainer.classList.remove("show");
-      setTimeout(() => showPage(target), 200);
-    });
-  });
-
-  // Khởi tạo trang
-  showPage(activePage);
-}
-// SỰ KIỆN SIDE BAR
 
 
 
