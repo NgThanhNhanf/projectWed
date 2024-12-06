@@ -182,12 +182,18 @@ body {
     max-width: 200px;
     transition: 0.1s;
 }
+.header-bottom .subnav li a {
+    color: #000000;
+}
 .header-bottom .subnav li:hover {
     background-color: black;
     color: white;
     cursor: pointer;
     text-decoration: underline;
     transition: 0.1s;
+}
+.header-bottom .subnav li:hover a {
+    color: white;
 }
 .header-bottom .search-button {
     display: inline-block;
@@ -334,11 +340,12 @@ body {
     background-color: #ffffff;
     transition: 0.2s;
     border: none;
+}
+
+.best-seller .content-container .see-more-btn:hover a {
     color: #000000;
 }
-.best-seller .content-container .see-more-btn:hover > .see-more-btn a {
-    color: #000000;
-}
+
 .best-seller .content-container .see-more-btn a {
     text-decoration: none;
     color: #ffffff;
