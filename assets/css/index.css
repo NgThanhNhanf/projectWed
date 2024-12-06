@@ -942,7 +942,9 @@ body {
     display: flex;
     padding: 20px;
     z-index: 10001;
-    box-shadow: 0 4px 6px rgba(0, 0, 0,0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0,0.5);
+    background: white;
+    border-radius: 10px;
 }
 
 .contact-section {
@@ -1005,11 +1007,12 @@ form {
     height: 150px;
     border-radius: 5px;
     margin-top: 50px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
 }
 
 .contact-row2 p {
    margin-bottom: 5px;
+   font-weight: bold;
 }
 
 
@@ -1053,6 +1056,8 @@ form {
     overflow: hidden;   
     max-height: 70vh;
 }
+
+
     
 #order-history.hidden {
     display: none;
@@ -1116,19 +1121,40 @@ form {
 /* thong tin tai khoan */
 .wrapper-information {
     width: 800px;
-    height: 700px;
+    height: 400px;
     max-height: auto;
     /* background: red; */
     margin: auto;
-    padding: 5px;
+    padding: 10px;
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    background: rgba(255, 255, 255, 0.907);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transform: translateY(-10%);
+    z-index: 9999;
+    display: none;
+}
+.hidden {
+    display: none;
+}
+
+.wrapper-information span i {
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .container-inforUser {
-    border: 1px solid black;
     height: auto;
     padding: 10px;
     display: flex;
-    gap: 10px;
+    gap: 20px;
+}
+
+.container-inforUser input {
+    height: 35px;
 }
 
 .inforUser-left {
@@ -1147,6 +1173,12 @@ form {
 .alter-password-user {
     display: flex;
     flex-direction: column;
+}
+
+.container-inforUser form button {
+    margin-top: 20px;
+    width: 30%;
+    height: 30px;
 }
 
 
