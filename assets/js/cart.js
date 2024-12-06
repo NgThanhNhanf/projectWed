@@ -137,6 +137,7 @@ function displayCart(cart) {
     amountInIconCart()
 
 }
+
 // displayCart(cart);
 
 //tinh tien all san pham trong cart => luu vao subtotal
@@ -550,7 +551,7 @@ function saveOrder(cart, customer, address) {
         cart: cart,
         timeOrder: Date.now(),
         total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
-        status: "Đang xử lý",
+        status: "Chưa xử lý",
     };
     orders.push(newOrder);
     OrderInLocal(orders);

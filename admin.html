@@ -143,51 +143,44 @@
                         <button class="add-order-btn">+ Add Order</button>
                     </div>
                 </div>
-                <div class="filter-section-order">
-                    <div class="name-order">
-                        <p>Name</p>
-                    </div>
-                    <div class="filter-item">
-                        <label for="Status">Status:</label>
-                        <select id="Status">
-                            <option value="---">---</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Processing">Processing</option>
-                            <option value="Completed">Completed</option>
-                            <option value="Cancelled">Cancelled</option>
-                        </select>
-                    </div>
-                    <div class="filter-item">
-                        <label for="TimeOrder">Time Order:</label>
-                        <input type="month" id="TimeOrder">
-                    </div>
-                    <div class="filter-item">
-                        <label for="Total">Total:</label>
-                        <select id="Total">
-                            <option value="---">---</option>
-                            <option value="Less 100000">Less 100.000 VNĐ</option>
-                            <option value="More 100000">More 100.000 VNĐ</option>
-                            <option value="More 200000">More 200.000 VNĐ</option>
-                            <option value="More 300000">More 300.000 VNĐ</option>
-                            <option value="More 400000">More 400.000 VNĐ</option>
-                        </select>
-                    </div>
-                    <p>Delete</p>
-                </div>
-                <div class="order-list">
-                    <div class="order-row">
-                        <div class="name-order-group">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="order-info">
-                                <div class="order-id">#ORDER123</div>
-                                <div class="customer-name">John Doe</div>
-                            </div>
+                    <div class="filter-section-order">
+                        <div class="id-order">
+                            <p>Mã đơn</p>
                         </div>
-                        <div class="order-status">Pending</div>
-                        <div class="time-order">Sep 25, 2024<br>11:50 AM</div>
-                        <div class="order-total">210,000 VND</div>
-                        <div class="order-actions"><i class="fa-solid fa-trash delete-order"></i></div>
+                        <div class="filter-item">
+                            <label for="Status">Trạng thái:</label>
+                            <select id="Status">
+                                <option value="....">....</option>
+                                <option value="Chưa xử lý">Chưa xử lý</option>
+                                <option value="Đã xác nhận">Đã xác nhận</option>
+                                <option value="Giao thành công">Giao thành công</option>
+                                <option value="Đã hủy">Đã hủy</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label for="TimeOrder">Time Order:</label>
+                            <input type="month" id="TimeOrder">
+                        </div>
+                        <div class="filter-item">
+                            <label for="Total">Total:</label>
+                            <select id="Total">
+                                <option value="---">---</option>
+                                <option value="Less 100000">Less 100.000 VNĐ</option>
+                                <option value="More 100000">More 100.000 VNĐ</option>
+                                <option value="More 200000">More 200.000 VNĐ</option>
+                                <option value="More 300000">More 300.000 VNĐ</option>
+                                <option value="More 400000">More 400.000 VNĐ</option>
+                            </select>
+                        </div>
+                        <button id="filter-orders">Lọc đơn hàng</button>
                     </div>
+                <!-- hien thi danh sach don hang -->
+                <div class="order-list"></div>
+                <!-- hien thi chi tiet don hang -->
+                <div id="modal-popup" class="modal-popup hidden"></div>
+
+                <div id="modal-content" class="modal-content hidden">
+                   <!-- chi tiet don hang -->
                 </div>
             </div>
             <!-- Analytics content -->
@@ -322,8 +315,9 @@
     </div>
     <script src="assets\chartjs\chart.umd.js"></script>
     <script src="assets\js\admin.js"></script>
-    <script src="assets\js\adminAnalytics.js"></script>
     <script src="assets\js\adminProduct.js"></script>
+    <script src="assets/js/adminOrder.js"></script>
+    <script src="assets\js\adminAnalytics.js"></script>
 </body>
 
 </html>
