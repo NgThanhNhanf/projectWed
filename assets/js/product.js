@@ -337,6 +337,7 @@ let allProducts = [
 
 
 
+
 //lưu AllProducts trong LocalStorage
 function storeProductInLocalStorage() {
     localStorage.setItem('allProducts', JSON.stringify(allProducts));
@@ -352,6 +353,7 @@ function getProductFromLocalStorage() {
     } else return allProducts;
 }
 var allProduct = getProductFromLocalStorage();
+console.log(allProduct[0].price)
 
 let slideIndex = 0;
 const slides = document.querySelectorAll('.slide');

@@ -686,6 +686,10 @@ canvas#top-demand-product-chart {
 }
 /* << LEFT CONTENT ANALYTICS>> */
 
+
+
+
+
 /* << LEFT CONTENT ORDER>> */
 #content-orders {
   width: 100%;
@@ -789,9 +793,9 @@ canvas#top-demand-product-chart {
 }
 
 .order-info {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .order-id {
@@ -802,8 +806,8 @@ canvas#top-demand-product-chart {
 .time-order,
 .order-total,
 .order-actions {
-  flex: 0 0 11%;
-  text-align: center;
+    flex: 0 0 11%;
+    text-align: center;
 }
 
 #TimeOrder {

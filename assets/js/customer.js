@@ -4,6 +4,10 @@ function getOrderInLocal() {
     return inforOrder ? JSON.parse(inforOrder) : [];
 }
 
+console.log(localStorage.getItem('informationOrder'));
+
+
+
 function OrderInLocal(informationOrder) {
     localStorage.setItem('informationOrder', JSON.stringify(informationOrder));
 }
@@ -56,6 +60,14 @@ function displayOrderSummary(orderId) {
     const orders = getOrderInLocal();
     const order = orders.find(isOrder => isOrder.id === parseInt(orderId));
 
+    const listAddress = order.address.map(addr => 
+        `${addr.country || "Không có quốc gia"}, 
+        ${addr.city || "Không có thành phố"}, 
+        ${addr.address || "Không có địa chỉ"} - 
+        SĐT: ${addr.phone || "Không có số điện thoại"}
+    `).join(' <br> ');
+
+
     if (!order) {
         alert('Không tìm thấy đơn hàng');
         return;
@@ -73,9 +85,8 @@ function displayOrderSummary(orderId) {
                 <li><strong>${item.name}</strong> (x${item.quantity}) - ${(item.price * item.quantity).toLocaleString()} VND</li>
             `).join('')}
         </ul>
-        <h4>Thông tin giao hàng:</h4>
-        <p>${order.address.country}, ${order.address.city}, ${order.address.address}</p>
-        <p>SĐT: ${order.address.phone}</p>
+        <h4>Danh sách địa chỉ:</h4>
+        <p> ${listAddress} </p>
         <button id="close-summary">Đóng</button>
     </div>`;
 
