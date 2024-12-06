@@ -672,6 +672,10 @@ canvas#top-demand-product-chart {
 }
 /* << LEFT CONTENT ANALYTICS>> */
 
+
+
+
+
 /* << LEFT CONTENT ORDER>> */
 #content-orders {
     width: 100%;
@@ -762,7 +766,7 @@ canvas#top-demand-product-chart {
     gap: 20%;
 }
 
-.order-info {
+/* .order-info {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -778,7 +782,7 @@ canvas#top-demand-product-chart {
 .order-actions {
     flex: 0 0 11%;
     text-align: center;
-}
+} */
 
 #TimeOrder {
   padding: 10px;
@@ -787,4 +791,42 @@ canvas#top-demand-product-chart {
   font-size: 14px;
   transition: border-color 0.3s ease;
 }
-/* << LEFT CONTENT ORDER>> */
+
+.modal-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* display: none; */
+  z-index: 9999;
+}
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* display: none; */
+  z-index: 10000;
+}
+.hidden {
+  display: none;
+}
+
+#close-modal {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
