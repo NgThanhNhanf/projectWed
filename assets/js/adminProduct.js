@@ -1,4 +1,38 @@
+// adminProduct.js
 const allTypesList = [];  
+let productList = []; // Define productList
+
+// Load products from localStorage or initialize with sample data
+function loadProducts() {
+    const storedProducts = JSON.parse(localStorage.getItem('productList'));
+    if (storedProducts && Array.isArray(storedProducts)) {
+        productList = storedProducts;
+    } else {
+        productList = initializeSampleProducts(); // Function to initialize sample products
+        saveProductsToLocal(productList);
+    }
+}
+
+// Save products to localStorage
+function saveProductsToLocal(products) {
+    localStorage.setItem('productList', JSON.stringify(products));
+}
+
+// Initialize sample products
+function initializeSampleProducts() {
+    return [
+        {
+            id: 1,
+            name: "Sample Product 1",
+            nature: { type: "Type A" },
+            image: "path/to/image1.jpg",
+            date: "2023-10-01T10:00:00",
+            quantity: 100,
+            price: 150
+        },
+        // Add more sample products as needed
+    ];
+}
 // Hàm xử lí nhóm sự kiện ở thẻ tool-bar
 function toolBarProductProcessing() {}
 // Hàm xử lí nhóm sự kiện ở thẻ filter Section
@@ -17,10 +51,20 @@ const filterState = {
 // Format lại form product-list
 function initializeElements() {
   productContainer = document.querySelector(".product-list");
-  productTemplate = productContainer
-    .querySelector(".product-row")
-    .cloneNode(true);
-  productContainer.querySelector(".product-row").style.display = "none";
+  if (!productContainer) {
+    console.error("Error: .product-list element not found in the DOM.");
+    return false;
+  }
+
+  const productRow = productContainer.querySelector(".product-row");
+  if (!productRow) {
+    console.error("Error: .product-row element not found within .product-list.");
+    return false;
+  }
+
+  productTemplate = productRow.cloneNode(true);
+  productRow.style.display = "none";
+  return true;
 }
 
 // Khởi tạo các loại sản phẩm sau đó đưa vào allTypeList
@@ -111,7 +155,7 @@ function applyAllFilters() {
       );
     } else if (filterState.quality === "1-50") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.quantity >= 1 && product.quantity <= 50
+        (product) => product.quantity >= 1 && product.quantity < 50
       );
     } else if (filterState.quality === ">=50") {
       filteredProducts = filteredProducts.filter(
@@ -173,7 +217,7 @@ function displayProductListProcessing(products = []) {
       product.quantity;
     productRow.querySelector(
       ".product-price"
-    ).textContent = `${product.price} ,000 VND`;
+    ).textContent = `${product.price} VND`;
 
     productContainer.appendChild(productRow);
   });
@@ -188,10 +232,16 @@ function filterSectionProductProcessing() {
 
 // Hàm xử lí nhóm sự kiện ở thẻ filter Section
 
-// Hàm xử lí chính
 function productsProcessing() {
   toolBarProductProcessing();
-  initializeElements();
+  
+  loadProducts(); // Load products from localStorage or initialize sample data
+  
+  if (!initializeElements()) {
+    console.error("Initialization failed. Products will not be displayed.");
+    return;
+  }
+  
   countingTypeProduct();
   populateProductSelect();
   displayProductListProcessing(productList);
