@@ -337,11 +337,12 @@ let allProducts = [
 
 
 
+
 //lưu AllProducts trong LocalStorage
 function storeProductInLocalStorage() {
     localStorage.setItem('allProducts', JSON.stringify(allProducts));
 }
-// storeProductInLocalStorage();
+storeProductInLocalStorage();
 
 
 //lấy AllProducts trong LocalStorage để dùng
@@ -352,6 +353,7 @@ function getProductFromLocalStorage() {
     } else return allProducts;
 }
 var allProduct = getProductFromLocalStorage();
+console.log(allProduct[0].price)
 
 let slideIndex = 0;
 const slides = document.querySelectorAll('.slide');
@@ -763,7 +765,7 @@ addToCartButtons.forEach(button => {
                 name: productName,
                 image: productImage,
                 size: productSize,
-                price: productPrice,
+                price: productPrice*1000,
                 quantity: productQuantity,
             });
         }

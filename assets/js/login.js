@@ -134,7 +134,7 @@ function updateUI() {
             <i class="fa-regular fa-user iconUser"></i>
             <div class="username">${currentUser.username}</div>
             <ul class="nav-menuUser">
-                <li><a href="#">Tài khoản của tôi</a></li>
+                <li><a href="#" class= "editAccount">Tài khoản của tôi</a></li>
                 <li><a href="#" class="view-orders-btn">Đơn hàng đã mua</a></li>
                 <li><a href="#" class="logout">Thoát tài khoản</a></li> 
             </ul>
