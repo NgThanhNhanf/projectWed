@@ -45,6 +45,7 @@ function displayOrders(filOrder) {
             <div class="order-row">
                 <h3>#${order.id}</h3>
                 <p id= "isStatus">${order.status}</p>
+                <p id= "isStatus">${order.status}</p>
                 <p>${order.timeOrder}</p>
                 <p>${order.total}</p>
                 <button class="view" data-id="${order.id}">Chi tiết</button>

@@ -1,3 +1,5 @@
+// admin.js
+
 // SỰ KIỆN DASHBOARD
 function dashboardProcessing() {
   console.log("Dashboard loaded");
@@ -8,9 +10,9 @@ function customersProcessing() {
   console.log("Customers loaded");
 }
 
-// SỰ KIỆN PRODUCTS
+// SỰ KIỆN PRODUCTS (Handled in adminProduct.js)
 function productsProcessing() {
-  console.log("Products loaded");
+  console.log("Products page handler loaded");
 }
 
 // SỰ KIỆN ANALYTICS
@@ -36,6 +38,11 @@ function sideBarProcessing() {
 
   // Hàm để hiển thị trang được chọn
   function showPage(target) {
+    if (!target) {
+      console.error("Invalid target provided");
+      return;
+    }
+
     // Xóa active để tắt các tùy chỉnh
     menuItems.forEach(function (item) {
       item.classList.remove("active");
@@ -51,12 +58,20 @@ function sideBarProcessing() {
 
     if (targetContent) {
       targetContent.style.display = "flex";
-      contentTitle.textContent = document.querySelector(
+      const menuTextElement = document.querySelector(
         `.menuSideBar[data-target="${target}"] .text`
-      ).textContent;
-      document
-        .querySelector(`.menuSideBar[data-target="${target}"]`)
-        .classList.add("active");
+      );
+      if (menuTextElement && contentTitle) {
+        contentTitle.textContent = menuTextElement.textContent;
+      }
+      const menuSideBarItem = document.querySelector(
+        `.menuSideBar[data-target="${target}"]`
+      );
+      if (menuSideBarItem) {
+        menuSideBarItem.classList.add("active");
+      }
+
+      // Cập nhật tiêu đề trang
       switch (target) {
         case "dashboard":
           document.title = "ALESIA - Dashboard";
@@ -76,6 +91,7 @@ function sideBarProcessing() {
         default:
           document.title = "ALESIA";
       }
+
       // Thêm animation cho title
       setTimeout(() => contentTitleContainer.classList.add("show"), 50);
 
@@ -90,6 +106,8 @@ function sideBarProcessing() {
 
       // Gọi hàm xử lý nội dung tương ứng
       leftContentProcessing(target);
+    } else {
+      console.error(`Content page for target "${target}" not found.`);
     }
   }
 
@@ -97,7 +115,7 @@ function sideBarProcessing() {
   menuItems.forEach(function (menuItem) {
     menuItem.addEventListener("click", function () {
       const target = this.getAttribute("data-target");
-      localStorage.setItem("activePage", target);
+      localStorage.setItem("activePage", target); // Lưu trạng thái trang vào localStorage
       contentTitleContainer.classList.remove("show");
       setTimeout(() => showPage(target), 200);
     });
@@ -106,7 +124,6 @@ function sideBarProcessing() {
   // Khởi tạo trang
   showPage(activePage);
 }
-// SỰ KIỆN SIDE BAR
 
 // SỰ KIỆN LEFT CONTENT
 function leftContentProcessing(activePage) {
@@ -118,7 +135,7 @@ function leftContentProcessing(activePage) {
       customersProcessing();
       break;
     case "products":
-      productsProcessing();
+      productsProcessing(); // Calls adminProduct.js's productsProcessing
       break;
     case "orders":
       ordersProcessing();
@@ -130,11 +147,6 @@ function leftContentProcessing(activePage) {
       dashboardProcessing();
       break;
   }
-}
-
-// SỰ KIỆN SIDEBAR
-function sideBarProcessing() {
-  console.log("Sidebar loaded");
 }
 
 // Xử lý hiển thị/ẩn mật khẩu
@@ -158,6 +170,7 @@ function togglePasswordVisibility() {
     });
   });
 }
+
 // Cập nhật hàm handleLoginModal
 function handleLoginModal() {
   const loginModal = document.querySelector('.modal-login');
@@ -167,6 +180,10 @@ function handleLoginModal() {
 
   if (isLoggedIn === 'true') {
     loginModal.style.display = 'none'; // Ẩn modal nếu đã đăng nhập
+    // Khởi chạy các xử lý giao diện sau khi đã đăng nhập
+    const activePage = localStorage.getItem("activePage") || "dashboard";
+    sideBarProcessing();
+    leftContentProcessing(activePage);
     return;
   }
 
@@ -177,45 +194,52 @@ function handleLoginModal() {
   document.getElementById('login-form').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
+    const emailInput = document.querySelector('#email'); // Giả sử id của input email là 'email'
+    const passwordInput = document.querySelector('#password'); // Giả sử id của input password là 'password'
 
-    if (email === 'hai@gmail.com' && password === '000000') {
-      // Lưu trạng thái đăng nhập vào localStorage
-      localStorage.setItem('isLoggedIn', 'true');
-
-      // Ẩn modal sau khi đăng nhập thành công
-      loginModal.style.display = 'none';
-      console.log('Đăng nhập thành công!');
+    if (emailInput.value === 'hai@gmail.com' && passwordInput.value === '000000') {
+        localStorage.setItem('isLoggedIn', 'true'); // Lưu trạng thái đăng nhập
+        loginModal.style.display = 'none'; // Ẩn modal
+        console.log('Đăng nhập thành công!');
+        emailInput.value = ''; // Xóa dữ liệu email
+        passwordInput.value = ''; // Xóa dữ liệu password
+        // Sau khi đăng nhập, hiển thị lại trang đã lưu
+        const activePage = localStorage.getItem("activePage") || "dashboard";
+        sideBarProcessing();
+        leftContentProcessing(activePage);
     } else {
-      alert('Email hoặc mật khẩu không đúng!');
+        alert('Email hoặc mật khẩu không đúng!');
     }
+
   });
 
   // Xử lý sự kiện đăng xuất
-  document.querySelector('#Logout').addEventListener('click', function () {
-    localStorage.setItem('isLoggedIn', 'false'); // Xóa trạng thái đăng nhập
-    loginModal.style.display = 'flex'; // Hiển thị lại modal
-  });
+  const logoutButton = document.querySelector('#Logout');
+  if (logoutButton) {
+    logoutButton.addEventListener('click', function () {
+      localStorage.setItem('isLoggedIn', 'false'); // Xóa trạng thái đăng nhập
+      loginModal.style.display = 'flex'; // Hiển thị lại modal
+      // Có thể thêm logic để ẩn các nội dung đã hiển thị
+      const contentPages = document.querySelectorAll(".content-page");
+      contentPages.forEach(page => {
+        page.style.display = "none";
+      });
+      const menuItems = document.querySelectorAll(".menuSideBar");
+      menuItems.forEach(item => {
+        item.classList.remove("active");
+      });
+      const contentTitle = document.querySelector(".left-content-title p");
+      if (contentTitle) {
+        contentTitle.textContent = "";
+      }
+    });
+  }
 }
 
 // Hàm chính
 function mainAction() {
-  const loginModal = document.querySelector('.modal-login');
-
-  // **Đặt lại trạng thái đăng nhập về false mỗi khi tải lại trang**
-  localStorage.setItem('isLoggedIn', 'false');
-
-  // Hiển thị modal đăng nhập
-  loginModal.style.display = 'flex';
-
-  // Gọi các hàm xử lý khác
-  sideBarProcessing();
-  handleLoginModal();
   togglePasswordVisibility();
-
-  const activePage = "dashboard";
-  leftContentProcessing(activePage);
+  handleLoginModal();
 }
 
 // Khởi tạo sự kiện
