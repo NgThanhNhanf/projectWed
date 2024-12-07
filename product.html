@@ -11,6 +11,9 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+
     <link rel="icon" href="./assets/img/Thiết kế chưa có tên.png" type="image/x-icon">
     <!-- <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="assets/css/product.css">
@@ -129,25 +132,16 @@
                     <label for="Pink"></label>
                     <br>
                 </div>
-                <div class="price-product">
-                    <h4>Price</h4>
-                    <label for="min">From</label>
-                    <select id="min">
-                        <option value="100000">100,000</option>
-                        <option value="200000">200,000</option>
-                        <option value="300000">300,000</option>
-                        <option value="400000">400,000</option>
-                    </select>
-                    
-                    <label for="max">To</label>
-                    <select id="max">
-                        <option value="100000">100,000</option>
-                        <option value="200000">200,000</option>
-                        <option value="300000">300,000</option>
-                        <option value="400000">400,000</option>
-                    </select>
-                    
+                <div class="price-range">
+                    <h4>Price Range</h4>
+                    <div id="price-slider"></div>
+                    <div>
+                        <span id="min-value">100,000</span> - 
+                        <span id="max-value">400,000</span>
+                    </div>
                 </div>
+                
+                
             </div>
         </div>
 

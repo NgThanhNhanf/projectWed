@@ -4,6 +4,7 @@ const closeBtn = document.getElementById('closeBtn');
 closeBtn.addEventListener('click', () => {
     window.parent.postMessage('closeCart', '*');
 });
+const cur = JSON.parse(localStorage.getItem('currentUser'));
 
 //lắng nghe sự kiện click vào nút thong tin thanh toan
 const buttonCheckout = document.getElementById('checkout-btn');
@@ -188,6 +189,11 @@ function solvePromocode() {
 solvePromocode();
 
 //click vao x se xoa san pham va cap nhap lai cac gia tri
+const users = JSON.parse(localStorage.getItem('users')) || [];
+const currentU = JSON.parse(localStorage.getItem('currentUser'));
+const logedInUser = currentU === null ? null : users.find(user => user.email === currentU.email);
+if (logedInUser != null)
+    localStorage.setItem('cart', JSON.stringify(logedInUser.cartItem));
 function solveIconX(cart) {
     var cartItem = document.querySelectorAll('.item');
     // console.log(cartItem)
@@ -196,7 +202,11 @@ function solveIconX(cart) {
         icon.addEventListener('click', () => {
             cartItem[index].remove();
             cart.splice(index, 1);
-            storeCartInLocalStorage(cart)
+            logedInUser.cartItem = cart;
+            console.log(logedInUser);
+            // if (logedInUser != null)
+            localStorage.setItem('users', JSON.stringify(users));
+            storeCartInLocalStorage(cart);
             displayCart(cart)
             updateCart(cart)
             displayCheckout(cart)
@@ -522,6 +532,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Xử lý thanh toán thành công
+        location.reload();
         alert("Thanh toán thành công! Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.");
         form.reset(); // Reset form sau khi thanh toán thành công
         openMethodOfCard(false)

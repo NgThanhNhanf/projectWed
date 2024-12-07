@@ -363,7 +363,7 @@ let allProducts = [
     {
         id: 35,
         name: 'Black Collection',
-        price: 233000,
+        price: 559999,
         quantity: 50,
         image: 'assets/img/product/co2.jpg',
         nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'Collection' },
@@ -445,64 +445,44 @@ function handleCheckboxClick(checkbox) {
     createTag();
     filterProducts();
 }
-
-// LOC THEO GIA TIEN
-
-function setDefaultPrice() {
-    const minSelect = document.getElementById('min');
-    const maxSelect = document.getElementById('max');
-
-    minSelect.value = minSelect.options[0].value;
-    maxSelect.value = maxSelect.options[maxSelect.options.length - 1].value;
+function getProductPriceRange() {
+    const prices = allProduct.map(product => product.price);
+    const minPrice = Math.min(...prices);
+    const maxPrice = Math.max(...prices);
+    return { minPrice, maxPrice };
 }
 
-function updateMaxOptions() {
-    const minSelect = document.getElementById('min');
-    const maxSelect = document.getElementById('max');
-    const minValue = parseInt(minSelect.value);
-    const currentMaxValue = parseInt(maxSelect.value);
 
-    Array.from(maxSelect.options).forEach(option => {
-        const value = parseInt(option.value);
-        option.disabled = value < minValue;
+document.addEventListener('DOMContentLoaded', () => {
+    const priceSlider = document.getElementById('price-slider');
+    const minValueDisplay = document.getElementById('min-value');
+    const maxValueDisplay = document.getElementById('max-value');
+
+    const { minPrice, maxPrice } = getProductPriceRange();
+
+    noUiSlider.create(priceSlider, {
+        start: [minPrice, maxPrice],
+        connect: true,
+        range: {
+            'min': minPrice,
+            'max': maxPrice
+        },
+        step: 10000,
+        format: {
+            to: value => new Intl.NumberFormat('vi-VN').format(parseInt(value)),
+            from: value => parseInt(value.replace(/[^\d]/g, ''))
+        }
     });
 
-    if (currentMaxValue < minValue) {
-        maxSelect.value = maxSelect.options[maxSelect.options.length - 1].value;
-    }
-}
-
-function updateMinOptions() {
-    const minSelect = document.getElementById('min');
-    const maxSelect = document.getElementById('max');
-    const maxValue = parseInt(maxSelect.value);
-    const currentMinValue = parseInt(minSelect.value);
-
-    Array.from(minSelect.options).forEach(option => {
-        const value = parseInt(option.value);
-        option.disabled = value > maxValue;
+    priceSlider.noUiSlider.on('update', (values) => {
+        minValueDisplay.textContent = values[0];
+        maxValueDisplay.textContent = values[1];
     });
 
-    if (currentMinValue > maxValue) {
-        minSelect.value = minSelect.options[0].value;
-    }
-}
-
-document.getElementById('min').addEventListener('change', () => {
-    updateMaxOptions();
-    filterProducts();
+    priceSlider.noUiSlider.on('change', () => {
+        filterProducts();
+    });
 });
-
-document.getElementById('max').addEventListener('change', () => {
-    updateMinOptions();
-    filterProducts();
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-    setDefaultPrice();
-
-});
-
 // FILLTER
 let filteredProducts = allProduct;
 function arrayContainsArray(mainArray, subArray) {
@@ -532,44 +512,38 @@ document.querySelector('.search-btn').addEventListener('click', function () {
 	this.previousElementSibling.focus()
 })
 function filterProducts() {
-    const minPrice = parseInt(document.getElementById('min').value) || 0;
-    const maxPrice = parseInt(document.getElementById('max').value) || Infinity;
+    const sliderValues = document.getElementById('price-slider').noUiSlider.get();
+    const minPrice = parseInt(sliderValues[0].replace(/[^\d]/g, '')) || 0;
+    const maxPrice = parseInt(sliderValues[1].replace(/[^\d]/g, '')) || Infinity;
     const searchInput = document.querySelector('.search-input').value.trim().toLowerCase();
     const allTypes = [...new Set(allProduct.map(product => product.nature.type))];
 
+    // Lọc sản phẩm
     filteredProducts = allProduct.filter(product => {
-        let isValid = true;
-
-        // Filter by search term
-        if (searchInput && !product.name.toLowerCase().includes(searchInput)) {
-            isValid = false;
-        }
-
+        const matchesSearch = !searchInput || product.name.toLowerCase().includes(searchInput);
         const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
 
         if (tags.length === 0) {
-            return matchesPrice && isValid;
+            return matchesSearch && matchesPrice;
         }
 
         const typeTags = tags.filter(tag => allTypes.includes(tag));
         const colorTags = tags.filter(tag => !typeTags.includes(tag));
 
+        const matchesType = typeTags.length === 0 || typeTags.includes(product.nature.type);
+        const matchesColors = colorTags.length === 0 || colorTags.some(tag => product.nature.color.includes(tag));
 
-        const matchesType = typeTags.length === 0 ||
-            typeTags.includes(product.nature.type);
-
-        const matchesColors = colorTags.length === 0 ||
-            colorTags.some(tag => product.nature.color.includes(tag));
-
-        return matchesPrice && matchesType && matchesColors && isValid;
+        return matchesSearch && matchesPrice && matchesType && matchesColors;
     });
 
+    // Hiển thị kết quả
     if (filteredProducts.length === 0) {
         displayNoResult();
     } else {
         displayProducts(currentPage);
     }
 }
+
 // Sự kiện nhấn Enter trong ô tìm kiếm
 document.querySelector('.search-box').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
@@ -580,9 +554,7 @@ function displayNoResult() {
     const productContainer = document.querySelector('.product-grid');
     productContainer.innerHTML = `<p> Chưa có sản phẩm</p>`;
 }
-// Cập nhật sự kiện cho `select` giá
-document.getElementById('min').addEventListener('change', filterProducts);
-document.getElementById('max').addEventListener('change', filterProducts);
+
 
 
 // HIEN THI SAN PHAM + PHAN TRANG
@@ -745,6 +717,11 @@ const cartIframe = document.getElementById('cartIframe');
 
 // Khi click vào icon giỏ hàng, mở iframe
 cartIcon.addEventListener('click', () => {
+    const cur = JSON.parse(localStorage.getItem('currentUser'));
+    if (cur === null) {
+        alert('Bạn cần đăng nhập để có thể thêm sản phẩm vào giỏ hàng');
+        return;
+    } 
     cartIframe.classList.toggle('open'); // Toggle mở/đóng iframe
 });
 
@@ -791,6 +768,11 @@ const addToCartButtons = document.querySelectorAll('.wishlist');
 addToCartButtons.forEach(button => {
     button.addEventListener('click', () => {
         //Lấy thông tin sản phẩm từ modal
+        const cur = JSON.parse(localStorage.getItem('currentUser'));
+        if (cur === null) {
+            alert('Bạn cần đăng nhập để có thể thêm sản phẩm vào giỏ hàng');
+            return;
+        } 
         const productImage = document.getElementById('modalImage').src;
         const productName = document.getElementById('modalName').textContent;
         const productSize = document.getElementById('sizeSelect').value;
