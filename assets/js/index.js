@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const contact = document.getElementById('contact-section');
 
         contactLink.addEventListener('click', () => {
+        console.log('click');
         contact.classList.toggle('active');
         });
     });

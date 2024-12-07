@@ -89,40 +89,24 @@ function displayCustomers(customers) {
 
 // Validation Functions
 
-/**
- * Validates the email format.
- * @param {string} email 
- * @returns {boolean}
- */
+
 function isValidEmailFormat(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-/**
- * Checks if the email is unique among all customers.
- * @param {string} email 
- * @param {number} [customerId=null] - ID of the customer being edited.
- * @returns {boolean}
- */
+
 function isEmailUnique(email, customerId = null) {
     const customers = getCustomersFromLocal();
     return !customers.some(c => c.email.toLowerCase() === email.toLowerCase() && c.id !== customerId);
 }
 
-/**
- * Validates the phone number format.
- * @param {string} phone 
- * @returns {boolean}
- */
 function isValidPhoneFormat(phone) {
     const phoneRegex = /^\d{10,15}$/; // Adjust the range as needed
     return phoneRegex.test(phone);
 }
 
-/**
- * @returns {boolean}
- */
+
 function isPhoneUnique(phone, customerId = null) {
     const customers = getCustomersFromLocal();
     return !customers.some(c => c.phone === phone && c.id !== customerId);
