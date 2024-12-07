@@ -75,7 +75,7 @@ document.querySelector('.signup-container .inputBox input[type="submit"]').addEv
             throw new Error('Email đã tồn tại!');
         }
 
-        users.push({ username, email, password: hashPassword(password) });
+        users.push({ username, email, password: hashPassword(password), cartItem: []});
         saveUsers(users);
 
         alert('Đăng ký thành công!');
@@ -101,7 +101,7 @@ document.querySelector('.signin-container .inputBox input[type="submit"]').addEv
 
         const users = getUsers();
         const user = users.find(u => u.email === email && u.password === hashPassword(password));
-
+        location.reload();
         if (!user) {
             throw new Error('Email hoặc mật khẩu không đúng!');
         }
@@ -114,11 +114,12 @@ document.querySelector('.signin-container .inputBox input[type="submit"]').addEv
         alert(error.message);
     }
 });
-
 // Logout
 document.querySelector('.user-button').addEventListener('click', (e) => {
     if (e.target.classList.contains('logout')) {
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('cart');
+        location.reload();
         updateUI();
     }
 });
@@ -198,4 +199,3 @@ userButton.querySelector('.nav-menuUser a[href="#"]').addEventListener('click', 
     event.preventDefault();
     displayOrderInHistory();
 });
-

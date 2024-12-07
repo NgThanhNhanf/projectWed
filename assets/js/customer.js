@@ -4,7 +4,7 @@ function getOrderInLocal() {
     return inforOrder ? JSON.parse(inforOrder) : [];
 }
 
-console.log(localStorage.getItem('informationOrder'));
+// console.log(localStorage.getItem('informationOrder'));
 
 
 

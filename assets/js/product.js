@@ -745,6 +745,11 @@ const cartIframe = document.getElementById('cartIframe');
 
 // Khi click vào icon giỏ hàng, mở iframe
 cartIcon.addEventListener('click', () => {
+    const cur = JSON.parse(localStorage.getItem('currentUser'));
+    if (cur === null) {
+        alert('Bạn cần đăng nhập để có thể thêm sản phẩm vào giỏ hàng');
+        return;
+    } 
     cartIframe.classList.toggle('open'); // Toggle mở/đóng iframe
 });
 
@@ -791,6 +796,11 @@ const addToCartButtons = document.querySelectorAll('.wishlist');
 addToCartButtons.forEach(button => {
     button.addEventListener('click', () => {
         //Lấy thông tin sản phẩm từ modal
+        const cur = JSON.parse(localStorage.getItem('currentUser'));
+        if (cur === null) {
+            alert('Bạn cần đăng nhập để có thể thêm sản phẩm vào giỏ hàng');
+            return;
+        } 
         const productImage = document.getElementById('modalImage').src;
         const productName = document.getElementById('modalName').textContent;
         const productSize = document.getElementById('sizeSelect').value;
