@@ -200,7 +200,7 @@ function solveIconX(cart) {
             displayCart(cart)
             updateCart(cart)
             displayCheckout(cart)
-            amountInIconCart();
+            amountInIconCart1();
         });
     });
 }
