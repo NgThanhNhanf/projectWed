@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartIframe = document.getElementById('cartIframe');
 
     cartIcon.addEventListener('click', () => {
+        if (cur === null) {
+            alert('Bạn cần đăng nhập để xem giỏ hàng');
+            return;
+        } 
         cartIframe.classList.toggle('open');
     });
 
@@ -204,9 +208,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const amountCart = document.querySelector('.amount-cart');
     function amountInIconCart1() {
         const productCart = getCartFromLocalStorage();
-        var amount = productCart.reduce((total, cartElement) => {
-            return total + cartElement.quantity;
-        }, 0);
+        var amount;
+        if (productCart.length) {
+            amount = productCart.reduce((total, cartElement) => {
+                return total + cartElement.quantity;
+            }, 0);
+        } else {
+            amount = 0;
+        }
         if (amount) {
             amountCart.style.display = 'block';
             if(amount < 100)
@@ -217,9 +226,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     const addToCartButtons = document.querySelectorAll('.wishlist');
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const cur = JSON.parse(localStorage.getItem('currentUser'));
+    const logedInUser = cur === null ? null : users.find(user => user.email === cur.email);
+    if (logedInUser != null)
+        localStorage.setItem('cart', JSON.stringify(logedInUser.cartItem));
+    amountInIconCart1();
+    console.log(cur);
     addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
             //Lấy thông tin sản phẩm từ modal
+            if (cur === null) {
+                alert('Bạn cần đăng nhập để có thể thêm sản phẩm vào giỏ hàng');
+                return;
+            } 
             const productImage = document.getElementById('modalImage').src;
             const productName = document.getElementById('modalName').textContent;
             const productSize = document.getElementById('sizeSelect').value;
@@ -227,14 +247,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const productQuantity = parseInt(document.getElementById('quantity').textContent, 10);
 
             var cart = getCartFromLocalStorage();
-            var checkProductInCart = cart.find(item => {
+            var checkProductInCart = logedInUser.cartItem.find(item => {
                 return item.name === productName && item.size === productSize;
             });
 
             if (checkProductInCart) {
                 checkProductInCart.quantity += productQuantity;
             } else {
-                cart.push({
+                logedInUser.cartItem.push({
                     name: productName,
                     image: productImage,
                     size: productSize,
@@ -242,7 +262,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     quantity: productQuantity,
                 });
             }
+            localStorage.setItem('users', JSON.stringify(users));
             storeCartInLocalStorage(cart);
+            localStorage.setItem('cart', JSON.stringify(logedInUser.cartItem));
             amountInIconCart1();
             alert("Thêm sản phẩm vào giỏi hàng thành công");
         });
