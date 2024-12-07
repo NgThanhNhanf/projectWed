@@ -280,7 +280,6 @@ body {
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   padding: 10px;
-  padding: 10px;
   gap: 20px;
 }
 
@@ -305,28 +304,7 @@ body {
 }
 
 .tool-bar-product .search-box:hover input {
-  display: flex;
-  cursor: pointer;
-  background: var(--clr-primary);
-  border-radius: 30px;
-  align-items: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.tool-bar-product .search-box input {
-  width: 0;
-  border: none;
-  color: var(--clr-background);
-  outline: none;
-  font-weight: 500;
-  transition: 0.8s;
-  background: transparent;
-  font-size: 20px;
-}
-
-.tool-bar-product .search-box:hover input {
   padding: 10px;
-  width: 300px;
   width: 300px;
 }
 
@@ -335,9 +313,6 @@ body {
 }
 
 .tool-bar-product .search-box .search-btn {
-  padding: 20px;
-  border: none;
-  background: transparent;
   padding: 20px;
   border: none;
   background: transparent;
@@ -435,7 +410,6 @@ select:focus {
 .product-info img {
   width: 50px;
   height: 50px;
-  border-radius: 10px;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -721,9 +695,6 @@ canvas#top-demand-product-chart {
   width: 100%;
   flex-direction: column;
   gap: 10px;
-  width: 100%;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .tool-bar-order {
@@ -740,7 +711,6 @@ canvas#top-demand-product-chart {
 .tool-bar-order .tool-box-order {
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  padding: 10px;
   padding: 10px;
   gap: 20px;
 }
@@ -766,28 +736,7 @@ canvas#top-demand-product-chart {
 }
 
 .tool-bar-order .search-box:hover input {
-  display: flex;
-  cursor: pointer;
-  background: var(--clr-primary);
-  color: var(--clr-background);
-  border-radius: 30px;
-  align-items: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.tool-bar-order .search-box input {
-  width: 0;
-  border: none;
-  outline: none;
-  font-weight: 500;
-  transition: 0.8s;
-  background: transparent;
-  font-size: 20px;
-}
-
-.tool-bar-order .search-box:hover input {
   padding: 10px;
-  width: 300px;
   width: 300px;
 }
 
@@ -796,9 +745,6 @@ canvas#top-demand-product-chart {
 }
 
 .tool-bar-order .search-box .search-btn {
-  padding: 20px;
-  border: none;
-  background: transparent;
   padding: 20px;
   border: none;
   background: transparent;
@@ -827,17 +773,6 @@ canvas#top-demand-product-chart {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   margin: 30px auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  gap: 20px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  margin: 30px auto;
 }
 
 .order-row {
@@ -847,20 +782,9 @@ canvas#top-demand-product-chart {
   padding: 15px;
   border-bottom: 1px solid #ddd;
   transition: background-color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
-  transition: background-color 0.2s;
 }
 
 .name-order-group {
-  flex: 0 0 22%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20%;
   flex: 0 0 22%;
   display: flex;
   flex-direction: row;
@@ -876,7 +800,6 @@ canvas#top-demand-product-chart {
 
 .order-id {
   font-weight: bold;
-  font-weight: bold;
 }
 
 .order-status,
@@ -886,7 +809,6 @@ canvas#top-demand-product-chart {
     flex: 0 0 11%;
     text-align: center;
 }
-
 
 #TimeOrder {
   padding: 10px;
@@ -1255,7 +1177,7 @@ canvas#top-demand-product-chart {
     flex-direction: column;
     gap: 15px;
   }
-}
+
   .function {
     width: 100%;
     justify-content: space-between;
@@ -1274,10 +1196,7 @@ canvas#top-demand-product-chart {
   .filter-item {
     min-width: 100%;
   }
-
-/* an/hien chi tiet hoa don */
-/* lop popup mau den */
-
+}
 /* << LEFT CONTENT ORDER>> */
 .modal-popup {
   position: fixed;
