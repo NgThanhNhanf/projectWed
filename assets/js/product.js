@@ -807,7 +807,7 @@ addToCartButtons.forEach(button => {
                 name: productName,
                 image: productImage,
                 size: productSize,
-                price: productPrice*1000,
+                price: productPrice,
                 quantity: productQuantity,
             });
         }
@@ -830,3 +830,4 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('beforeunload', () => {
     storeCartInLocalStorage(cart);
 });
+
