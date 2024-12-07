@@ -60,7 +60,7 @@ function displayOrderSummary(orderId) {
     const orders = getOrderInLocal();
     const order = orders.find(isOrder => isOrder.id === parseInt(orderId));
 
-    const listAddress = order.address.map(addr => 
+    const listAddress = order.address.map(addr =>
         `${addr.country || "Không có quốc gia"}, 
         ${addr.city || "Không có thành phố"}, 
         ${addr.address || "Không có địa chỉ"} - 
@@ -103,7 +103,7 @@ function displayOrderSummary(orderId) {
 document.addEventListener('DOMContentLoaded', () => {
     const yourAccount = document.querySelector('.editAccount');
     const wrapperInformation = document.querySelector('.wrapper-information');
-    if(yourAccount && wrapperInformation){
+    if (yourAccount && wrapperInformation) {
         yourAccount.addEventListener('click', (event) => {
             event.preventDefault();
             wrapperInformation.classList.toggle('hidden');
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const exitAccount = document.getElementById('exit')
     // console.log(exitAccount)
-    if(exitAccount) {
+    if (exitAccount) {
         exitAccount.addEventListener('click', () => {
             wrapperInformation.style.display = 'none'
         });
@@ -143,26 +143,26 @@ function saveInforUser() {
     //toan tu ... de sao chep du lieu
     const updateCurrentUser = {
         ...currentUser,
-        ...(newhoten && {username: newhoten}),
-        ...(newemail && {email: newemail})
+        ...(newhoten && { username: newhoten }),
+        ...(newemail && { email: newemail })
     };
 
     const updateAddressCustomer = {
         ...addressData,
-        ...(newphone && {phone: newphone}),
-        ...(newaddress && {address: newaddress})
+        ...(newphone && { phone: newphone }),
+        ...(newaddress && { address: newaddress })
     };
 
-    localStorage.setItem('currentUser',JSON.stringify(updateCurrentUser));
-    localStorage.setItem('addressCustomer',JSON.stringify([updateAddressCustomer]));
+    localStorage.setItem('currentUser', JSON.stringify(updateCurrentUser));
+    localStorage.setItem('addressCustomer', JSON.stringify([updateAddressCustomer]));
 
     inPlacholder();
     alert('sua thong tin thanh cong');
 }
 
-document.addEventListener('DOMContentLoaded',inPlacholder); 
+document.addEventListener('DOMContentLoaded', inPlacholder);
 
-document.getElementById('editInformation').addEventListener('click',saveInforUser);
+document.getElementById('editInformation').addEventListener('click', saveInforUser);
 
 
 //thao tac doi mat khau
@@ -170,17 +170,18 @@ function changePassword() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     const oldpassword = document.getElementById('passwordUser').value;
-    const newpassword = document.getElementById('newPasswordUser').value;
+    const newpassword = document.getElementById('newpasswordUser').value;
     const isnewpassword = document.getElementById('isnewpasswordUser').value;
 
-    if(oldpassword === currentUser.password && newpassword === isnewpassword) {
+    if (oldpassword == currentUser.password && newpassword == isnewpassword) {
         const updatepasswordCurrent = {
             ...currentUser,
-            ...OrderInLocal(newpassword && {password: newpassword})
+            ...(newpassword && { password: hashPassword(newpassword) })
         };
-        localStorage.setItem('currentUser',JSON.stringify(updatepasswordCurrent));
+        localStorage.setItem('currentUser', JSON.stringify(updatepasswordCurrent));
+        localStorage.setItem('user',JSON.stringify([updatepasswordCurrent]));
         alert('doi mat khau thanh cong')
     }
 }
 
-document.getElementById('editPassword').addEventListener('click',changePassword);
+document.getElementById('editPassword').addEventListener('click', changePassword);

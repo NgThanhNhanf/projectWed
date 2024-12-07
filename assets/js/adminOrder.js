@@ -45,7 +45,7 @@ function displayOrders(filOrder) {
             <div class="order-row">
                 <h3>#${order.id}</h3>
                 <p id= "isStatus">${order.status}</p>
-                <p>${order.timeOrder}</p>
+                <p>${new Date(order.timeOrder).toLocaleString()}</p>
                 <p>${order.total}</p>
                 <button class="view" data-id="${order.id}">Chi tiết</button>
             </div>
@@ -101,21 +101,21 @@ function displayOrderSummary(orderId) {
         <button id="close-modal">Đóng</button>
     </div>`;
 
-    const modalContent = document.getElementById('modal-content');
-    modalContent.innerHTML = orderSummary;
+    const modalContainer = document.getElementById('modal-container');
+    modalContainer.innerHTML = orderSummary;
 
     document.getElementById('modal-popup').classList.remove('hidden');
-    modalContent.classList.remove('hidden');
+    modalContainer.classList.remove('hidden');
 
     document.getElementById('close-modal').addEventListener('click', () => {
         document.getElementById('modal-popup').classList.add('hidden');
-        modalContent.classList.add('hidden');
+        modalContainer.classList.add('hidden');
     });
 
       //click vao popup(nen den ben ngoan) => dong phan chi tiet
       document.getElementById('modal-popup').addEventListener('click', () => {
         document.getElementById('modal-popup').classList.add('hidden');
-        modalContent.classList.add('hidden');
+        modalContainer.classList.add('hidden');
     });
 
     //cap nhap trang thai

@@ -18,12 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('DOMContentLoaded', () => {
         const contactLink = document.getElementById('contact-link');
         const contact = document.getElementById('contact-section');
-
-        contactLink.addEventListener('click', () => {
-        contact.classList.toggle('active');
+        contactLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            contact.classList.toggle('active');
         });
     });
-
     const productModal = document.getElementById('productModal');
     const modalImage = document.getElementById('modalImage');
     const modalName = document.getElementById('modalName');
