@@ -5,6 +5,7 @@ function getOrders() {
 function filerOrder() {
     let orderStatus = document.getElementById('Status').value;
     let orderTotal = document.getElementById('Total').value;
+    let orderTime = document.getElementById('TimeOrder').value;
 
     let filOrder = getOrders();
 
@@ -31,6 +32,8 @@ function filerOrder() {
             }
         });
     }
+
+    
 
     displayOrders(filOrder);
 }
@@ -60,7 +63,7 @@ document.querySelector('.order-list').addEventListener('click', (event) => {
         displayOrderSummary(orderId);
     }
 });
-
+//hien thi chi tiet don hang
 function displayOrderSummary(orderId) {
     const orders = getOrders();
     const order = orders.find(isOrder => isOrder.id === parseInt(orderId));
@@ -127,8 +130,8 @@ function displayOrderSummary(orderId) {
         displayOrders(getOrders());
     });
 
-  
 }
+
 
 document.getElementById('filter-orders').addEventListener('click', filerOrder);
 

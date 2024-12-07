@@ -469,17 +469,12 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                    <!-- <div class="tool-box-order">
-                        <button class="reLoad"><i class="fa-solid fa-rotate-right"></i> Clear</button>
-                        <button class="remove-btn"><i class="fa-solid fa-trash"></i> Remove</button>
-                        <button class="add-order-btn">+ Add Order</button>
-                    </div> -->
                 </div>
                     <div class="filter-section-order">
                         <div class="id-order">
                             <p>Mã đơn</p>
                         </div>
-                        <div class="filter-item">
+                        <div class="filter-item" id="itemStatus">
                             <label for="Status">Trạng thái:</label>
                             <select id="Status">
                                 <option value="....">....</option>
@@ -492,6 +487,18 @@
                         <div class="filter-item">
                             <label for="TimeOrder">Time Order:</label>
                             <input type="month" id="TimeOrder">
+                        </div>
+                        <div class="filter-item">
+                            <label for="Address">Địa chỉ</label>
+                            <select  id="address">
+                                <option value="Chọn">Chọn</option>
+                                <option value="Quận 1">Quận 1</option>
+                                <option value="Quận 2">Quận 2</option>
+                                <option value="Quận 5">Quận 5</option>
+                                <option value="Quận Tân Phú">Quận Tân Phú</option>
+                                <option value="Quận Bình Tân">Quận Bình Tân</option>
+                                <option value="Khác">Khác</option>
+                            </select>
                         </div>
                         <div class="filter-item">
                             <label for="Total">Total:</label>
