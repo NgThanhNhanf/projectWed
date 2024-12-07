@@ -307,50 +307,31 @@
                 </div>
                 
                 <!-- Thanh bộ lọc -->
-                <div class="filter-section">
-                    <div class="name"><p>Name</p></div>
+                <div class="filter-section-product">
+                    <div class="name-product">
+                        <p>Name</p>
+                    </div>
                     <div class="filter-item">
                         <label for="Product">Product:</label>
                         <select id="Product">
-                            <option value="---">---</option>
+                            <option value="---" disabled selected hidden>---</option>
                             <option value="T-shirt">T-shirt</option>
                             <option value="Shirt">Shirt</option>
                             <option value="Polo">Polo</option>
-                            <option value="Sort">Sort</option>
-                            <option value="Blazer">Blazer</option>
-                            <option value="Kaki">Kaki</option>
-                    </select>
-                    </div>
-
-                    <div class="filter-item">
-                        <label for="CreateAt">Create At(month):</label>
-                        <select id="CreateAt">
-                            <option value="---">---</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-
                         </select>
+                    </div>
+        
+                    <div class="filter-item">
+                        <label for="CreateAt">Create At (month/year):</label>
+                        <input type="month" id="CreateAt">
                     </div>
                     <div class="filter-item">
                         <label for="Quality">Quality:</label>
                         <select id="Quality">
-                            <option value="---">---</option>
-                            <option value="Less 10">Less 10</option>
-                            <option value="More 10">More 10</option>
-                            <option value="More 20">More 20</option>
-                            <option value="More 30">More 30</option>
-                            <option value="More 40">More 40</option>
-                            <option value="More 50">More 50</option>
+                            <option value="---" disabled selected hidden>---</option>
+                            <option value="0">Out of stock</option>
+                            <option value="1-50">Low stock</option>
+                            <option value=">=50">In stock</option>
                         </select>
                     </div>
                     <div class="filter-item">
@@ -364,24 +345,21 @@
                             <option value="More 400000">More 400.000 VNĐ</option>
                         </select>
                     </div>
-                    <p>Delete</p>
-                    
+                    <div class="remove-product-btn"><i class="fa-regular fa-trash-can"></i></div>
                 </div>
                 
             
                 <!-- Danh sách sản phẩm -->
                 <div class="product-list">
-                    <!-- <div class="product-row">
+                    <div class="product-row">
                         <div class="checkbox"><input type="checkbox"></div>
-                        <div class="product-info">
-                            <img src="assets\img\product\White_LTSOVCOA442UW0100SS24_1.jpg" alt="Product Image">
-                            <div class="product-name">ALESIA Clothing - Shippuden</div>
-                        </div>
-                        <div class="product-collection">Naruto Collaboration</div>
+                        <img src="assets\img\product\White_LTSOVCOA442UW0100SS24_1.jpg" alt="Product Image">
+                        <div class="product-name">ALESIA Clothing - Shippuden</div>
+                        <div class="product-type">Naruto Collaboration</div>
                         <div class="product-date">Sep 25, 2024<br>11:50 AM</div>
                         <div class="product-price">$210</div>
-                        <div class="product-actions"><i class="fa-solid fa-trash delete-product"></i></div>
-                    </div> -->
+                        <div class="product-actions"><i class="fa-regular fa-address-card"></i></i></div>
+                    </div>
             
                     
                 </div>
