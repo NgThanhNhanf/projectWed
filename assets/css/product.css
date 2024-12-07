@@ -330,48 +330,27 @@ button:hover {
 #Brown + label { background-color: burlywood; }
 
 
-.price-product {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-}
-
-.price-product:hover {
-    transform: translateY(-5px);
-}
-
-.price-product h4 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: #333;
-}
-
-.price-product label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 15px;
-    color: #555;
-}
-
-.price-product select {
+.price-range {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f8f9fa;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
+    margin: 20px 0;
 }
 
-.price-product select:focus {
-    border-color: #000;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+#price-slider {
+    margin: 10px 0;
 }
+
+.noUi-connect {
+    background: #000; /* Màu vùng giữa hai nút */
+}
+
+.noUi-handle {
+    background: #000; /* Màu nút kéo */
+    border: 1px solid #ffffff;
+    width: 5px;
+    height: 5px;
+    cursor: pointer;
+}
+
 
 .list-fill {
     margin-top: 20px;
