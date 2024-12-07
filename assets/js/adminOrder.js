@@ -44,7 +44,7 @@ function displayOrders(filOrder) {
             `
             <div class="order-row">
                 <h3>#${order.id}</h3>
-                <p>${order.status}</p>
+                <p id= "isStatus">${order.status}</p>
                 <p>${order.timeOrder}</p>
                 <p>${order.total}</p>
                 <button class="view" data-id="${order.id}">Chi tiết</button>
@@ -82,7 +82,6 @@ function displayOrderSummary(orderId) {
         <h3>Chi tiết đơn hàng #${order.id}</h3>
         <p>Ngày đặt: ${new Date(order.timeOrder).toLocaleDateString()}</p>
         <p>Tổng tiền: ${order.total.toLocaleString()} VND</p>
-        <p>Trạng thái: ${order.status}</p>
         <h4>Thông tin sản phẩm:</h4>
         <ul>
             ${order.cart.map(item => `
@@ -91,6 +90,8 @@ function displayOrderSummary(orderId) {
         </ul>
         <h4>Danh sách địa chỉ:</h4>
         <p>${listAddress}</p>
+        <p> Trạng thái: </p>
+            <p> ${order.status} </p>
         <button id="close-modal">Đóng</button>
     </div>`;
 

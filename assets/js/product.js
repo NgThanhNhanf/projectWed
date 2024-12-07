@@ -7,16 +7,18 @@ let allProducts = [
         quantity: 0,
         image: 'assets/img/product/img1.jpg',
         nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'T-shirt' },
-        date: '2024-01-15'
+        date: '2024-01-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
-    {
+    { 
         id: 2,
         name: 'Polo White',
         price: 300000,
         quantity: 30,
         image: 'assets/img/product/img2.jpg',
         nature: { color: ['white'], size: ['S', 'M', 'L'], type: 'Polo' },
-        date: '2024-02-10'
+        date: '2024-02-10',
+        detail: 'Thiết kế cổ bẻ lịch sự, phù hợp cho cả công sở và thường ngày. Chất liệu thấm hút tốt, thoải mái cả ngày. Dáng áo vừa vặn, mang lại sự tự tin khi mặc. Đa dạng màu sắc để lựa chọn.'
     },
     {
         id: 3,
@@ -25,7 +27,8 @@ let allProducts = [
         quantity: 30,
         image: 'assets/img/product/img3.jpg',
         nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'T-shirt' },
-        date: '2024-03-25'
+        date: '2024-03-25',
+        detail: 'Họa tiết vintage, mang đậm phong cách retro. Chất liệu vải bền đẹp, không xù lông sau nhiều lần giặt. Kiểu dáng đơn giản, dễ phối với quần short hoặc jeans. Là điểm nhấn độc đáo trong tủ đồ của bạn.'
     },
     {
         id: 4,
@@ -34,7 +37,8 @@ let allProducts = [
         quantity: 30,
         image: 'assets/img/product/img4.jpg',
         nature: { color: ['Blue'], size: ['S', 'M', 'L'], type: 'T-shirt' },
-        date: '2024-04-20'
+        date: '2024-04-20',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 5,
@@ -43,7 +47,8 @@ let allProducts = [
         quantity: 5,
         image: 'assets/img/product/img5.jpg',
         nature: { color: ['Brown'], size: ['S', 'M', 'L'], type: 'Polo' },
-        date: '2024-05-05'
+        date: '2024-05-05',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 6,
@@ -52,7 +57,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/img6.jpg',
         nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Shirt' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 7,
@@ -61,7 +67,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan12.png',
         nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'Short' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 8,
@@ -70,7 +77,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan11.png',
         nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Short' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 9,
@@ -79,7 +87,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan13.png',
         nature: { color: ['Yellow'], size: ['S', 'M', 'L'], type: 'Short' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 10,
@@ -88,7 +97,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan14.png',
         nature: { color: ['Pink'], size: ['S', 'M', 'L'], type: 'Short' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 11,
@@ -97,7 +107,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan15.png',
         nature: { color: ['Blue'], size: ['S', 'M', 'L'], type: 'Short' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 12,
@@ -106,7 +117,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan1.jpg',
         nature: { color: ['Brown'], size: ['S', 'M', 'L'], type: 'Kaki' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 13,
@@ -115,7 +127,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan7.jpg',
         nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Kaki' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 14,
@@ -124,7 +137,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan3.jpg',
         nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'Kaki' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 15,
@@ -133,7 +147,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan2.jpg',
         nature: { color: ['Cream'], size: ['S', 'M', 'L'], type: 'Kaki' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 16,
@@ -142,7 +157,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan9.jpg',
         nature: { color: ['Cream'], size: ['S', 'M', 'L'], type: 'Kaki' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 17,
@@ -151,7 +167,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/quan10.jpg',
         nature: { color: ['Grey'], size: ['S', 'M', 'L'], type: 'Kaki' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 18,
@@ -160,7 +177,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/somi1.jpg',
         nature: { color: ['Green'], size: ['S', 'M', 'L'], type: 'Shirt' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 19,
@@ -169,7 +187,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/somi2.jpg',
         nature: { color: ['Blue', 'Black'], size: ['S', 'M', 'L'], type: 'Shirt' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 20,
@@ -178,7 +197,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aoxanh2.jpg',
         nature: { color: ['Blue'], size: ['S', 'M', 'L'], type: 'Shirt' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 21,
@@ -187,7 +207,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aotim1.jpg',
         nature: { color: ['Purple'], size: ['S', 'M', 'L'], type: 'Shirt' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 22,
@@ -196,7 +217,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aotim1.jpg',
         nature: { color: ['Blue'], size: ['S', 'M', 'L'], type: 'Shirt' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 23,
@@ -205,7 +227,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aovang1.jpg',
         nature: { color: ['Yellow', 'Brown'], size: ['S', 'M', 'L'], type: 'Shirt' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 24,
@@ -214,7 +237,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aovest2.png',
         nature: { color: ['Yellow'], size: ['S', 'M', 'L'], type: 'Blazer' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 25,
@@ -223,7 +247,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aovest1.png',
         nature: { color: ['Grey'], size: ['S', 'M', 'L'], type: 'Blazer' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 26,
@@ -232,7 +257,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aovest3.png',
         nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Blazer' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 27,
@@ -241,7 +267,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aolen2.jpg',
         nature: { color: ['Pink'], size: ['S', 'M', 'L'], type: 'Sweater' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 28,
@@ -250,7 +277,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aolen1.jpg',
         nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'Sweater' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 29,
@@ -259,7 +287,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aolen3.jpg',
         nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Sweater' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 30,
@@ -268,7 +297,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aolen4.jpg',
         nature: { color: ['Cream'], size: ['S', 'M', 'L'], type: 'Sweater' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 31,
@@ -277,7 +307,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aothun3.jpg',
         nature: { color: ['Cream'], size: ['S', 'M', 'L'], type: 'T-shirt' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 32,
@@ -286,7 +317,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aothun1.jpg',
         nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'T-shirt' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 33,
@@ -295,7 +327,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/aothun2.jpg',
         nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'T-shirt' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 34,
@@ -304,7 +337,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/co1.png',
         nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Collection' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 36,
@@ -313,7 +347,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/co3.jpg',
         nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Collection' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 37,
@@ -322,7 +357,8 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/co4.jpg',
         nature: { color: ['White'], size: ['S', 'M', 'L'], type: 'Collection' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     },
     {
         id: 35,
@@ -331,17 +367,16 @@ let allProducts = [
         quantity: 50,
         image: 'assets/img/product/co2.jpg',
         nature: { color: ['Black'], size: ['S', 'M', 'L'], type: 'Collection' },
-        date: '2024-06-15'
+        date: '2024-06-15',
+        detail: 'Chất liệu cotton 100% mềm mại, thoáng mát. Thiết kế cổ tròn đơn giản, dễ dàng phối đồ. Đường may tỉ mỉ, độ bền cao qua nhiều lần giặt. Phù hợp cho cả nam và nữ trong mọi dịp'
     }
 ];
-
-
-
 
 //lưu AllProducts trong LocalStorage
 function storeProductInLocalStorage() {
     localStorage.setItem('allProducts', JSON.stringify(allProducts));
 }
+storeProductInLocalStorage();
 storeProductInLocalStorage();
 
 
@@ -647,6 +682,7 @@ const productModal = document.getElementById('productModal');
 const modalImage = document.getElementById('modalImage');
 const modalName = document.getElementById('modalName');
 const modalPrice = document.getElementById('modalPrice');
+const modalDetail = document.querySelector('.detail-content');
 const closeModal = document.querySelector('.close');
 const quantily = document.getElementById('quantity');
 const product = document.querySelectorAll('.product');
@@ -656,11 +692,12 @@ function openModal(product) {
     const productImage = product.querySelector('img').src;
     const productName = product.querySelector('h4').textContent;
     const productPrice = product.querySelector('p').textContent;
-
+    // const allProduct = getProductFromLocalStorage();
     modalImage.src = productImage;
     modalName.textContent = productName;
     modalPrice.textContent = productPrice;
-
+    const curProduct = allProduct.find(product => product.name === productName);
+    modalDetail.textContent = curProduct.detail;
     productModal.style.display = 'block';
 }
 
@@ -701,8 +738,6 @@ closeModal.onclick = () => {
     productModal.style.display = 'none';
 };
 
-
-
 //------------ICON CART--------------
 const cartIcon = document.getElementById('cartIcon');
 const cartIframe = document.getElementById('cartIframe');
@@ -732,13 +767,20 @@ function storeCartInLocalStorage(cart) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 //tang so luong tren icon cart
+const amountCart1 = document.getElementById('amount-cart');
 function amountInIconCart() {
     const cart = getCartFromLocalStorage();
     var amount = cart.reduce((total, cartElement) => {
         return total + cartElement.quantity;
     }, 0);
-    const amountCart = document.getElementById('amount-cart');
-    if (amount) amountCart.textContent = amount;
+    if (amount) {
+        amountCart1.style.display = 'block';
+        if(amount < 100)
+            amountCart1.textContent = amount; 
+        else amountCart1.textContent = '99+';
+    } else {
+        amountCart1.style.display = 'none';
+    }
 }
 
 
@@ -788,6 +830,3 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('beforeunload', () => {
     storeCartInLocalStorage(cart);
 });
-
-
-
