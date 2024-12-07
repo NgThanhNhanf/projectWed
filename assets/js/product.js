@@ -409,6 +409,7 @@ let count = document.getElementById('count');
 let tags = [];
 const ul = document.querySelector('.ct');
 
+//
 function createTag() {
     ul.innerHTML = '';
     tags.forEach((tag, index) => {
@@ -587,7 +588,7 @@ document.getElementById('max').addEventListener('change', filterProducts);
 // HIEN THI SAN PHAM + PHAN TRANG
 let currentPage = 1;
 function displayProducts(page) {
-    const itemInOnePage = 8;
+    const itemInOnePage = 12;
     const start = (page - 1) * itemInOnePage;
     const end = start + itemInOnePage;
     const itemInPage = filteredProducts.slice(start, end);
@@ -623,7 +624,7 @@ function previousPage() {
 
 //nut tien toi trang truoc
 function nextPage() {
-    const numberOfPages = Math.ceil(filteredProducts.length / 8);
+    const numberOfPages = Math.ceil(filteredProducts.length / 12);
     if (currentPage < numberOfPages) {
         currentPage++;
         displayProducts(currentPage);
@@ -632,7 +633,7 @@ function nextPage() {
 
 //update so trang 
 function updatePageNumber() {
-    const numberOfPages = Math.ceil(filteredProducts.length / 8);
+    const numberOfPages = Math.ceil(filteredProducts.length / 12);
     const page = document.getElementById('pageNumber');
     page.textContent = `Page ${currentPage} to ${numberOfPages}`;
     // const previousButton = document.querySelector('.buttonPrevious');
@@ -751,6 +752,7 @@ cartIcon.addEventListener('click', () => {
 window.addEventListener('message', (event) => {
     if (event.data === 'closeCart') {
         cartIframe.classList.remove('open');
+        amountInIconCart();
     }
 });
 
