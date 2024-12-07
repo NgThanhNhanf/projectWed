@@ -45,7 +45,6 @@ function displayOrders(filOrder) {
             <div class="order-row">
                 <h3>#${order.id}</h3>
                 <p id= "isStatus">${order.status}</p>
-                <p id= "isStatus">${order.status}</p>
                 <p>${order.timeOrder}</p>
                 <p>${order.total}</p>
                 <button class="view" data-id="${order.id}">Chi tiết</button>
@@ -94,7 +93,7 @@ function displayOrderSummary(orderId) {
         <p> Trạng thái: </p>
             <select id="status-section">
                 <option value = "Chưa xử lý" ${order.status === "Chưa xử lý" ? "selected" : ""}>Chưa xử lý </option>
-                <option value = "Đã xác nhận" $order.status === "Đã xác nhận" ? "selected" : ""}>Đã xác nhận </option>
+                <option value = "Đã xác nhận" ${order.status === "Đã xác nhận" ? "selected" : ""}>Đã xác nhận </option>
                 <option value = "Giao hàng thành công" ${order.status === "Giao hàng thành công" ? "selected" : ""}>Giao hàng thành công </option>
                 <option value = "Đã hủy" ${order.status === "Đã hủy" ? "selected" : ""}>Đã hủy</option>
             </select>
@@ -113,6 +112,11 @@ function displayOrderSummary(orderId) {
         modalContent.classList.add('hidden');
     });
 
+      //click vao popup(nen den ben ngoan) => dong phan chi tiet
+      document.getElementById('modal-popup').addEventListener('click', () => {
+        document.getElementById('modal-popup').classList.add('hidden');
+        modalContent.classList.add('hidden');
+    });
 
     //cap nhap trang thai
     document.getElementById('updateStatus').addEventListener('click', ()=> {
@@ -122,11 +126,8 @@ function displayOrderSummary(orderId) {
         alert('cap nhap trang thai don hang thanh cong');
         displayOrders(getOrders());
     });
-    //click vao popup(nen den ben ngoan) => dong phan chi tiet
-    document.getElementById('modal-popup').addEventListener('click', () => {
-        document.getElementById('modal-popup').classList.add('hidden');
-        modalContent.classList.add('hidden');
-    });
+
+  
 }
 
 document.getElementById('filter-orders').addEventListener('click', filerOrder);
