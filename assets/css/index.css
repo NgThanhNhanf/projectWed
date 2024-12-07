@@ -941,7 +941,7 @@ body {
 
 
 /* contact-liên hệ */
-
+/* 
 .contact-section {
     position: fixed;
     top: 50%;
@@ -951,19 +951,17 @@ body {
     height: auto;
     display: flex;
     padding: 20px;
-    z-index: 10001;
+    z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0,0.5);
     background: white;
     border-radius: 10px;
-}
-
-.contact-section {
     display: none;
-
+    opacity: 0;
 }
 
 .contact-section.active {
     display: block;
+    opacity: 1;
 }
 
 .contact-section .contact-row1 {
@@ -1038,6 +1036,7 @@ form {
     opacity: 0;
     transform: translateY(100%);
     transition: all 0.3s ease-in-out;
+    display: none;
 }
 
 .displayContact.active {
@@ -1045,7 +1044,7 @@ form {
     transform: translateY(0);
     display: block;
 }
-
+ */
 
 /* phan lich su don hang */
 
@@ -1168,7 +1167,7 @@ form {
 }
 
 .inforUser-left {
-   
+   width: 50%;
 }
 
 .alter-infor-user {
@@ -1177,7 +1176,7 @@ form {
 }
 
 .inforUser-right {
-    
+    width: 50%;
 }
 
 .alter-password-user {

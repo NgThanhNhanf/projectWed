@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
         contact.classList.toggle('active');
         });
     });
-
     const productModal = document.getElementById('productModal');
     const modalImage = document.getElementById('modalImage');
     const modalName = document.getElementById('modalName');

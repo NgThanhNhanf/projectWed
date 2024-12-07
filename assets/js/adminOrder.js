@@ -45,7 +45,7 @@ function displayOrders(filOrder) {
             <div class="order-row">
                 <h3>#${order.id}</h3>
                 <p id= "isStatus">${order.status}</p>
-                <p>${order.timeOrder}</p>
+                <p>${new Date(order.timeOrder).toLocaleString()}</p>
                 <p>${order.total}</p>
                 <button class="view" data-id="${order.id}">Chi tiết</button>
             </div>
@@ -91,25 +91,43 @@ function displayOrderSummary(orderId) {
         <h4>Danh sách địa chỉ:</h4>
         <p>${listAddress}</p>
         <p> Trạng thái: </p>
-            <p> ${order.status} </p>
+            <select id="status-section">
+                <option value = "Chưa xử lý" ${order.status === "Chưa xử lý" ? "selected" : ""}>Chưa xử lý </option>
+                <option value = "Đã xác nhận" ${order.status === "Đã xác nhận" ? "selected" : ""}>Đã xác nhận </option>
+                <option value = "Giao hàng thành công" ${order.status === "Giao hàng thành công" ? "selected" : ""}>Giao hàng thành công </option>
+                <option value = "Đã hủy" ${order.status === "Đã hủy" ? "selected" : ""}>Đã hủy</option>
+            </select>
+            <button id= "updateStatus"> Cập nhật trạng thái</button>
         <button id="close-modal">Đóng</button>
     </div>`;
 
-    const modalContent = document.getElementById('modal-content');
-    modalContent.innerHTML = orderSummary;
+    const modalContainer = document.getElementById('modal-container');
+    modalContainer.innerHTML = orderSummary;
 
     document.getElementById('modal-popup').classList.remove('hidden');
-    modalContent.classList.remove('hidden');
+    modalContainer.classList.remove('hidden');
 
     document.getElementById('close-modal').addEventListener('click', () => {
         document.getElementById('modal-popup').classList.add('hidden');
-        modalContent.classList.add('hidden');
+        modalContainer.classList.add('hidden');
     });
 
-    document.getElementById('modal-popup').addEventListener('click', () => {
+      //click vao popup(nen den ben ngoan) => dong phan chi tiet
+      document.getElementById('modal-popup').addEventListener('click', () => {
         document.getElementById('modal-popup').classList.add('hidden');
-        modalContent.classList.add('hidden');
+        modalContainer.classList.add('hidden');
     });
+
+    //cap nhap trang thai
+    document.getElementById('updateStatus').addEventListener('click', ()=> {
+        const newStatus = document.getElementById('status-section').value;
+        order.status = newStatus
+        localStorage.setItem('informationOrder',JSON.stringify(orders));
+        alert('cap nhap trang thai don hang thanh cong');
+        displayOrders(getOrders());
+    });
+
+  
 }
 
 document.getElementById('filter-orders').addEventListener('click', filerOrder);
