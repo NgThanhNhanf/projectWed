@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('message',(event)=> {
         if(event.data === 'closeCart'){
             cartIframe.classList.remove('open');
+            amountInIconCart1();
         }
     });
 
