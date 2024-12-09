@@ -313,6 +313,7 @@
     font-size: 17px;
 }
 
+
 .cart-section .footer-right #checkout-btn {
     width: 100%;
     height: 50px;
@@ -602,10 +603,6 @@
     font-weight: inherit;
 }
 
-/* .checkout-section .information-right i.fa-donate {
-    color: #444;
-    vertical-align: middle;
-} */
 
 /* Footer Right */
 
@@ -616,13 +613,6 @@
     margin-top: auto;
 }
 
-.checkout-section .footer-promocode {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px 14px;
-
-}
 
 .checkout-section .footer-total {
     padding: 10px 16px;
@@ -634,8 +624,7 @@
 }
 
 .checkout-section .footer-total span {
-    margin-left: 200px;
-    margin-right: 5px;
+    margin-left: 50px;
 }
 
 /* Payment */
@@ -771,46 +760,20 @@
     flex: 1;
 }
 
-/* .infor-payment .option {
+.checkOldAddress {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
 }
 
-.infor-payment .option span {
-    font-size: 14px;
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 10px;
-    margin-left: 100px;
-}
-
-.infor-payment .option-payment {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-    margin-left: 100px;
-    width: 500px;
-}
-
-.infor-payment .option-payment-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.checkOldAddress label {
     white-space: nowrap;
 }
 
-.infor-payment .option-payment-left input {
-    margin: 0;
-}
+.checkOldAddress input {
+    width: 20%;
+    padding: 0;
 
-.infor-payment .option-payment-right span {
-    font-weight: bold;
-    color: #444;
-    font-size: 14px;
-} */
+}
 
 .infor-payment .proceed-btn {
     color: #fff;
