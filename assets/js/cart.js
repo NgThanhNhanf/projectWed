@@ -412,7 +412,6 @@ function isCheckboxOldAddress() {
 
     if(isCheckboxOldAddress.checked) {
         isOldAddress()
-
         document.getElementById('country').disabled = true;
         document.getElementById('address').disabled = true;
         document.getElementById('city').disabled = true;
@@ -442,19 +441,19 @@ function saveAddressInLocal(event) {
     const newAddress = document.getElementById('address').value
     const newCity = document.getElementById('city').value
     const newPhone = document.getElementById('phone').value;
-
-
-    const updateAddress = {
-        country : newCountry,
-        address : newAddress,
-        city : newCity,
-        phone : newPhone
-    };
-
     const customerInLocal = getAddressCusInLocal();
-    customerInLocal.push(updateAddress);
-    setAddressCusInLocal(customerInLocal)
-    alert('them dia chi moi thanh cong')
+
+        const updateAddress = {
+            country : newCountry,
+            address : newAddress,
+            city : newCity,
+            phone : newPhone
+        };
+    
+        customerInLocal.push(updateAddress);
+        setAddressCusInLocal(customerInLocal)
+        alert('them dia chi moi thanh cong')
+    
 }
 
 document.querySelector('.checkOldAddress input').addEventListener('change',isCheckboxOldAddress)

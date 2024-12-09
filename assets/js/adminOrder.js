@@ -2,10 +2,15 @@ function getOrders() {
     return JSON.parse(localStorage.getItem('informationOrder')) || [];
 }
 
+const x = getOrders()
+console.log(new Date(x[0].timeOrder).toISOString())
+
 function filerOrder() {
     let orderStatus = document.getElementById('Status').value;
     let orderTotal = document.getElementById('Total').value;
-
+    let beginOrder = document.getElementById('beginTimeOrder').value;
+    let endOrder = document.getElementById('endTimeOrder').value;
+    let orderAddress = document.getElementById('address').value;
     let filOrder = getOrders();
 
     if (orderStatus != "....") {
@@ -32,6 +37,20 @@ function filerOrder() {
         });
     }
 
+    if(beginOrder && endOrder) {
+        filOrder = filOrder.filter(order => {
+            const itOrders = new Date(order.timeOrder).toISOString().split("T")[0];
+            return itOrders >= beginOrder && itOrders <= endOrder;
+        });
+    }
+
+    if(orderAddress != "...") {
+        filOrder = filOrder.filter((order) => {
+            return Array.isArray(order.address) && order.address.some(district => district.country === orderAddress)
+        });
+    }
+
+    
     displayOrders(filOrder);
 }
 
@@ -46,7 +65,7 @@ function displayOrders(filOrder) {
                 <h3>#${order.id}</h3>
                 <p id= "isStatus">${order.status}</p>
                 <p>${new Date(order.timeOrder).toLocaleString()}</p>
-                <p>${order.total}</p>
+                <p>${order.total} VND</p>
                 <button class="view" data-id="${order.id}">Chi tiết</button>
             </div>
         `
@@ -60,7 +79,7 @@ document.querySelector('.order-list').addEventListener('click', (event) => {
         displayOrderSummary(orderId);
     }
 });
-
+//hien thi chi tiet don hang
 function displayOrderSummary(orderId) {
     const orders = getOrders();
     const order = orders.find(isOrder => isOrder.id === parseInt(orderId));
@@ -71,9 +90,9 @@ function displayOrderSummary(orderId) {
     }
 
     const listAddress = order.address.map(addr =>
-        `${addr.country || "Không có quốc gia"}, 
-        ${addr.city || "Không có thành phố"}, 
-        ${addr.address || "Không có địa chỉ"} - 
+        `Đường:${addr.address || "Không có địa chỉ"},
+        Quận:${addr.country || "Không có quận"}, 
+        Thành Phố:${addr.city || "Không có thành phố"}, 
         SĐT: ${addr.phone || "Không có số điện thoại"}`
     ).join('<br>');
 
@@ -127,8 +146,8 @@ function displayOrderSummary(orderId) {
         displayOrders(getOrders());
     });
 
-  
 }
+
 
 document.getElementById('filter-orders').addEventListener('click', filerOrder);
 

@@ -447,29 +447,37 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                    <!-- <div class="tool-box-order">
-                        <button class="reLoad"><i class="fa-solid fa-rotate-right"></i> Clear</button>
-                        <button class="remove-btn"><i class="fa-solid fa-trash"></i> Remove</button>
-                        <button class="add-order-btn">+ Add Order</button>
-                    </div> -->
                 </div>
                     <div class="filter-section-order">
                         <div class="id-order">
                             <p>Mã đơn</p>
                         </div>
-                        <div class="filter-item">
+                        <div class="filter-item" id="itemStatus">
                             <label for="Status">Trạng thái:</label>
                             <select id="Status">
                                 <option value="....">....</option>
                                 <option value="Chưa xử lý">Chưa xử lý</option>
                                 <option value="Đã xác nhận">Đã xác nhận</option>
-                                <option value="Giao thành công">Giao thành công</option>
+                                <option value="Giao hàng thành công">Giao hàng thành công</option>
                                 <option value="Đã hủy">Đã hủy</option>
                             </select>
                         </div>
                         <div class="filter-item">
                             <label for="TimeOrder">Time Order:</label>
-                            <input type="month" id="TimeOrder">
+                            <input type="date" id="beginTimeOrder">
+                            <input type="date" id="endTimeOrder">
+                        </div>
+                        <div class="filter-item">
+                            <label for="Address">Quận</label>
+                            <select  id="address">
+                                <option value="...">...</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="5">5</option>
+                                <option value="Tân Phú">Tân Phú</option>
+                                <option value="Bình Tân">Bình Tân</option>
+                                <option value="Khác">Khác</option>
+                            </select>
                         </div>
                         <div class="filter-item">
                             <label for="Total">Total:</label>
