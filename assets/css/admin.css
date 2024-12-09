@@ -375,10 +375,9 @@ body {
 
 .filter-section-product {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  gap: 20px;
+  justify-content: space-between;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -387,16 +386,25 @@ body {
   margin: 30px auto;
 }
 .filter-section-product .name-product {
-  flex: 0 0 16%;
+  flex: 0 0 20%;
+  margin-right: 50px;
   display: flex;
   justify-content: center;
 }
 .filter-section-product p {
   margin-right: 20px;
 }
-.filter-item {
+.filter-section-product .filter-item {
   display: flex;
+  flex: 0 0 16%;
   flex-direction: column;
+}
+
+.filter-section-product .remove-product-btn {
+  flex: 0 0 11%;
+  justify-content: center;
+  display: flex;
+  font-size: 25px;
 }
 
 label {
@@ -419,53 +427,61 @@ select:focus {
 }
 
 .product-list {
-  flex-grow: 1;
+  max-height: 600px;
   overflow-y: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);;
 }
 
 .product-row {
   display: flex;
-  align-items: center;
+  padding: 18px 25px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
   justify-content: space-between;
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
-  transition: background-color 0.2s;
+  align-items: center;
 }
 
 .product-row:hover {
   background-color: #f0f0f0;
 }
 
-.name-product-group {
-  flex: 0 0 22%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20%;
+.product-row .checkbox {
+  flex: 0 0 5%; 
+  text-align: center;
 }
 
-.product-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.product-row .product-name {
+  flex: 0 0 15%;
 }
 
-.product-info img {
+.product-row img {
   width: 50px;
   height: 50px;
   border-radius: 10px;
   object-fit: cover;
 }
 
-.product-collection,
+.product-type,
 .product-date,
-.product-stock,
-.product-price,
-.product-actions {
-  flex: 0 0 11%;
+.product-quantity,
+.product-price {
+  flex: 0 0 16%;
   text-align: center;
 }
+.product-actions {
+  flex: 0 0 11%;
+  display: flex;
+  justify-content: center;
+}
 
+.product-actions i {
+  border: 1px solid black;
+  border-radius: 50px;
+  height: max-content;
+  padding: 5px;
+}
 .low-stock {
   color: red;
   font-weight: bold;
@@ -989,6 +1005,7 @@ canvas#top-demand-product-chart {
   align-items: center;
   padding: 20px 35px;
 }
+
 .customer-row {
   display: flex;
   padding: 18px 25px;

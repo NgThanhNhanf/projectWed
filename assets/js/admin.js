@@ -11,14 +11,14 @@ function customersProcessing() {
 }
 
 // SỰ KIỆN PRODUCTS (Handled in adminProduct.js)
-function productsProcessing() {
-  console.log("Products page handler loaded");
-}
+// function productsProcessing() {
+//   console.log("Products page handler loaded");
+// }
 
 // SỰ KIỆN ANALYTICS
-function analyticsProcessing() {
-  console.log("Analytics loaded");
-}
+// function analyticsProcessing() {
+//   console.log("Analytics loaded");
+// }
 
 // SỰ KIỆN ORDERS
 function ordersProcessing() {

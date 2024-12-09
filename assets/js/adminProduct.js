@@ -1,22 +1,5 @@
 // adminProduct.js
-const allTypesList = [];  
-let productList = []; // Define productList
-
-// Load products from localStorage or initialize with sample data
-function loadProducts() {
-    const storedProducts = JSON.parse(localStorage.getItem('productList'));
-    if (storedProducts && Array.isArray(storedProducts)) {
-        productList = storedProducts;
-    } else {
-        productList = initializeSampleProducts(); // Function to initialize sample products
-        saveProductsToLocal(productList);
-    }
-}
-
-// Save products to localStorage
-function saveProductsToLocal(products) {
-    localStorage.setItem('productList', JSON.stringify(products));
-}
+const allTypesList = [];
 
 // Initialize sample products
 function initializeSampleProducts() {
@@ -33,6 +16,7 @@ function initializeSampleProducts() {
         // Add more sample products as needed
     ];
 }
+
 // Hàm xử lí nhóm sự kiện ở thẻ tool-bar
 function toolBarProductProcessing() {}
 // Hàm xử lí nhóm sự kiện ở thẻ filter Section
@@ -167,23 +151,23 @@ function applyAllFilters() {
   if (filterState.price) {
     if (filterState.price === "Less 100000") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.price < 100
+        (product) => product.price < 100000
       );
     } else if (filterState.price === "More 100000") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.price >= 100 && product.price < 200
+        (product) => product.price >= 100000 && product.price < 200000
       );
     } else if (filterState.price === "More 200000") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.price >= 200 && product.price < 300
+        (product) => product.price >= 200000 && product.price < 300000
       );
     } else if (filterState.price === "More 300000") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.price >= 300 && product.price < 400
+        (product) => product.price >= 300000 && product.price < 400000
       );
     } else if (filterState.price === "More 400000") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.price >= 400
+        (product) => product.price >= 400000
       );
     }
   }
@@ -193,34 +177,27 @@ function applyAllFilters() {
 
 // Hàm hiển thị sản phẩm
 function displayProductListProcessing(products = []) {
-  // Clear existing products
-  while (productContainer.children.length > 1) {
-    productContainer.lastChild.remove();
+  const productContainer = document.querySelector('.product-list');
+
+  if (products.length === 0) {
+    productContainer.innerHTML = `<p>Không có sản phẩm</p>`;
+  } else {
+    productContainer.innerHTML = products.map(product => `
+      <div class="product-row">
+        <div class="checkbox">
+          <input type="checkbox">
+        </div>
+          <img src="${product.image}" alt="Product Image">
+          <p class="product-name">${product.name}</p>
+        <p class="product-type">${product.nature.type}</p>
+        <p class="product-date">${new Date(product.date).toLocaleDateString()}<br>${new Date(product.date).toLocaleTimeString()}</p>
+        <p class="product-quantity">${product.quantity}</p>
+        <p class="product-price">${product.price} VND</p>
+        <div class="product-actions"><i class="fa-regular fa-address-card"></i></i></div>
+        <!-- Thêm các phần tử khác nếu cần -->
+      </div>
+    `).join('');
   }
-
-  products.forEach((product) => {
-    const productRow = productTemplate.cloneNode(true);
-    productRow.style.display = "";
-
-    productRow.querySelector(".checkbox input").checked = false;
-    productRow.querySelector(".product-info img").src = product.image;
-    productRow.querySelector(".product-info img").alt = "Product Image";
-    productRow.querySelector(".product-name").textContent = product.name;
-    productRow.querySelector(".product-type").textContent = product.nature.type;
-
-    const dateObj = new Date(product.date);
-    productRow.querySelector(
-      ".product-date"
-    ).innerHTML = `${dateObj.toLocaleDateString()}<br>${dateObj.toLocaleTimeString()}`;
-
-    productRow.querySelector(".product-quantity").textContent =
-      product.quantity;
-    productRow.querySelector(
-      ".product-price"
-    ).textContent = `${product.price} VND`;
-
-    productContainer.appendChild(productRow);
-  });
 }
 
 function filterSectionProductProcessing() {
@@ -235,8 +212,6 @@ function filterSectionProductProcessing() {
 function productsProcessing() {
   toolBarProductProcessing();
   
-  loadProducts(); // Load products from localStorage or initialize sample data
-  
   if (!initializeElements()) {
     console.error("Initialization failed. Products will not be displayed.");
     return;
@@ -245,5 +220,7 @@ function productsProcessing() {
   countingTypeProduct();
   populateProductSelect();
   displayProductListProcessing(productList);
+  console.log("Products page handler loaded");
   filterSectionProductProcessing(); 
+
 }
