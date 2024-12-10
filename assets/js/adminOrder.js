@@ -148,8 +148,23 @@ function displayOrderSummary(orderId) {
 
 }
 
+function resetOrder() {
+    let orderStatus = document.getElementById('Status').value = "....";
+    let orderTotal = document.getElementById('Total').value = "---";
+    let beginOrder = document.getElementById('beginTimeOrder').value = "";
+    let endOrder = document.getElementById('endTimeOrder').value = "";
+    let orderAddress = document.getElementById('address').value = "...";
+    displayOrders(getOrders());
+}
 
-document.getElementById('filter-orders').addEventListener('click', filerOrder);
+document.getElementById('Status').addEventListener('change',filerOrder);
+document.getElementById('Total').addEventListener('change',filerOrder);
+document.getElementById('beginTimeOrder').addEventListener('change',filerOrder)
+document.getElementById('endTimeOrder').addEventListener('change',filerOrder)
+document.getElementById('address').addEventListener('change',filerOrder)
+
+
+document.getElementById('filter-orders').addEventListener('click', resetOrder);
 
 document.addEventListener('DOMContentLoaded', () => {
     displayOrders(getOrders());
