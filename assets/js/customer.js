@@ -164,24 +164,25 @@ document.addEventListener('DOMContentLoaded', inPlacholder);
 
 document.getElementById('editInformation').addEventListener('click', saveInforUser);
 
-
+const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+console.log(currentUser.password)
 //thao tac doi mat khau
-function changePassword() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+// function changePassword() {
+//     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    const oldpassword = document.getElementById('passwordUser').value;
-    const newpassword = document.getElementById('newpasswordUser').value;
-    const isnewpassword = document.getElementById('isnewpasswordUser').value;
+//     const oldpassword = document.getElementById('passwordUser').value;
+//     const newpassword = document.getElementById('newpasswordUser').value;
+//     const isnewpassword = document.getElementById('isnewpasswordUser').value;
 
-    if (oldpassword == currentUser.password && newpassword == isnewpassword) {
-        const updatepasswordCurrent = {
-            ...currentUser,
-            ...(newpassword && { password: hashPassword(newpassword) })
-        };
-        localStorage.setItem('currentUser', JSON.stringify(updatepasswordCurrent));
-        localStorage.setItem('user',JSON.stringify([updatepasswordCurrent]));
-        alert('doi mat khau thanh cong')
-    }
-}
+//     if (oldpassword == currentUser.password && newpassword == isnewpassword) {
+//         const updatepasswordCurrent = {
+//             ...currentUser,
+//             ...(newpassword && { password: hashPassword(newpassword) })
+//         };
+//         localStorage.setItem('currentUser', JSON.stringify(updatepasswordCurrent));
+//         localStorage.setItem('user',JSON.stringify([updatepasswordCurrent]));
+//         alert('doi mat khau thanh cong')
+//     }
+// }
 
-document.getElementById('editPassword').addEventListener('click', changePassword);
+// document.getElementById('editPassword').addEventListener('click', changePassword);
