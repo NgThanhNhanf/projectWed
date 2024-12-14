@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    
-    
+
+
     <div id="main-wrap">
         <!-- <<SIDEBAR>> -->
         <div id="sidebar">
@@ -59,30 +59,30 @@
             <div id="content-customers" class="content-page" style="display: none;">
                 <!-- Search bar and function buttons -->
                 <div class="content-search">
-                    
+
                     <div class="function">
                         <button class="reLoad"><i class="fa-solid fa-rotate-right"></i> Clear</button>
                         <button class="remove-btn"><i class="fa-solid fa-trash"></i> Remove</button>
                         <button class="add-customer-btn">+ Add Customer</button>
-                    </div>    
+                    </div>
                 </div>
-            
+
                 <!-- Add Customer Modal -->
                 <div id="add-customer-modal" class="modal hidden">
                     <form id="add-customer-form" class="modal-content">
                         <h2>Add New Customer</h2>
                         <label for="customer-name">Full Name:</label>
                         <input type="text" id="customer-name" placeholder="Enter customer name" required>
-            
+
                         <label for="customer-email">Email:</label>
                         <input type="email" id="customer-email" placeholder="Enter email address" required>
-             
+
                         <label for="customer-phone">Phone Number:</label>
                         <input type="tel" id="customer-phone" placeholder="Enter phone number" required>
-            
+
                         <label for="customer-address">Address:</label>
                         <textarea id="customer-address" placeholder="Enter address"></textarea>
-            
+
                         <label for="customer-join-date">Join Date:</label>
                         <input type="date" id="customer-join-date" required>
 
@@ -92,15 +92,16 @@
                             <option value="Block">Block</option>
                             <option value="Premium">Premium</option>
                         </select>
-                        
+
                         <label for="customer-spending">Total Spending:</label>
-                        <input type="number" id="customer-spending" placeholder="Total spending amount" min="0" placeholder="Enter price" required>
+                        <input type="number" id="customer-spending" placeholder="Total spending amount" min="0"
+                            placeholder="Enter price" required>
 
                         <button type="button" class="submit-customer-btn">Add Customer</button>
                         <button type="button" class="close-modal">Cancel</button>
                     </form>
                 </div>
-            
+
                 <!-- Delete Confirmation Modal -->
                 <!-- <div id="delete-confirmation-modal" class="modal hidden">
                     <div class="modal-content">
@@ -110,25 +111,25 @@
                         <button class="cancel-delete-btn">Cancel</button>
                     </div>
                 </div> -->
-            
+
                 <!-- Edit Customer Modal -->
                 <div id="edit-customer-modal" class="modal hidden">
                     <form id="edit-customer-form" class="modal-content">
                         <h2>Edit Customer</h2>
                         <input type="hidden" id="edit-customer-id">
-            
+
                         <label for="edit-customer-name">Full Name:</label>
                         <input type="text" id="edit-customer-name" placeholder="Enter customer name" required>
-            
+
                         <label for="edit-customer-email">Email:</label>
                         <input type="email" id="edit-customer-email" placeholder="Enter email address" required>
-            
+
                         <label for="edit-customer-phone">Phone:</label>
                         <input type="tel" id="edit-customer-phone" placeholder="Enter phone number" required>
-            
+
                         <label for="edit-customer-address">Address:</label>
                         <textarea id="edit-customer-address" placeholder="Enter address"></textarea>
-            
+
                         <label for="edit-customer-join-date">Join Date:</label>
                         <input type="date" id="edit-customer-join-date">
 
@@ -139,32 +140,33 @@
                             <option value="Premium">Premium</option>
                         </select>
 
-            
+
                         <label for="edit-customer-spending">Total Spending:</label>
-                        <input type="number" id="edit-customer-spending" placeholder="Total spending amount" min="0" placeholder="Enter price" required>
-            
+                        <input type="number" id="edit-customer-spending" placeholder="Total spending amount" min="0"
+                            placeholder="Enter price" required>
+
                         <button type="button" class="update-customer-btn">Update</button>
                         <button type="button" class="close-edit-modal">Cancel</button>
                     </form>
                 </div>
-            
+
                 <!-- Filter Section -->
                 <div class="filter-section">
                     <div class="filter-item">
                         <label for="filter-name">Customer Name:</label>
                         <input type="text" id="filter-name" placeholder="Filter by name">
                     </div>
-            
+
                     <div class="filter-item">
                         <label for="filter-email">Email:</label>
                         <input type="email" id="filter-email" placeholder="Filter by email">
                     </div>
-            
+
                     <div class="filter-item">
                         <label for="filter-phone">Phone:</label>
                         <input type="text" id="filter-phone" placeholder="Filter by phone">
                     </div>
-            
+
                     <div class="filter-item">
                         <label for="filter-join-date">Join Date:</label>
                         <select id="filter-join-date">
@@ -175,7 +177,7 @@
                             <option value="last-year">Last Year</option>
                         </select>
                     </div>
-                    
+
                     <div class="filter-item">
                         <label for="filter-spending">Spending Range:</label>
                         <select id="filter-spending">
@@ -199,7 +201,7 @@
                         <p>Feature</p>
                     </div>
                 </div>
-            
+
                 <!-- Customer List -->
                 <div class="customer-list">
                     <div class="customer-header">
@@ -224,11 +226,14 @@
                         </button>
                     </div>
                     <div class="function">
-                        <button class="reLoad"><i class="fa-solid fa-rotate-right"></i>  Clear</button>
-                        <button class="remove-btn"><i class="fa-solid fa-trash"></i> Remove</button>
+                        <button class="reLoad" onclick="resetFilter()"><i class="fa-solid fa-rotate-right"></i>
+                            Clear</button>
+                        <button class="remove-btn" onclick=" deleteForm()"><i class="fa-solid fa-trash"></i>
+                            Remove</button>
                         <!-- Nút thêm sản phẩm và bảng thêm sản phẩm -->
-                        <button class="add-customer-btn">+ Add a Customer</button>
-                    </div>    
+                        <button class="add-customer-btn" onclick="addProductForm()">+ Add a
+                            product</button>
+                    </div>
                     <!-- Bảng thêm sản phẩm -->
                     <div id="add-product-modal" class="modal hidden">
                         <form id="add-product-form" class="modal-content">
@@ -246,18 +251,64 @@
                                 <option value="Kaki">Kaki</option>
                             </select>
 
-                            <label for="input-img">Product Image:</label>
-                            <input type="file" id="input-img" accept="image/*">
-                            <div class="preview"></div> <!-- Thêm xem trước hình ảnh -->
+                            <div class="image-preview-container">
+                                <div class="image-input">
+                                    <label for="input-img">Product Image:</label>
+                                    <input type="file" id="input-img" accept="image/*" required>
+                                </div>
+                                <div class="preview">
+                                    <!-- Ảnh xem trước sẽ xuất hiện ở đây -->
+                                </div>
+                            </div>
 
                             <label for="product-quantity">Quantity:</label>
-                            <input type="number" id="product-quantity" placeholder="Enter quantity">
+                            <input type="number" id="product-quantity" min="0" placeholder="Enter quantity">
+
+                            <label>Size:</label>
+                            <div class="size-selector">
+                                <button type="button" class="size-btn" data-size="S"
+                                    onclick="toggleSize(this)">S</button>
+                                <button type="button" class="size-btn" data-size="M"
+                                    onclick="toggleSize(this)">M</button>
+                                <button type="button" class="size-btn" data-size="L"
+                                    onclick="toggleSize(this)">L</button>
+                                <button type="button" class="size-btn" data-size="XL"
+                                    onclick="toggleSize(this)">XL</button>
+                                <button type="button" class="size-btn" data-size="2XL"
+                                    onclick="toggleSize(this)">2XL</button>
+                            </div>
+
+                            <label>Color:</label>
+                            <div class="color-selector">
+                                <div class="color-row">
+                                    <span class="color-btn" data-color="White" data-colorcode="#fff"
+                                        onclick="toggleColor(this)" style="background-color: #fff"></span>
+                                    <span class="color-btn" data-color="Grey" data-colorcode="grey"
+                                        onclick="toggleColor(this)" style="background-color: grey"></span>
+                                    <span class="color-btn" data-color="Black" data-colorcode="black"
+                                        onclick="toggleColor(this)" style="background-color: black"></span>
+                                    <span class="color-btn" data-color="Blue" data-colorcode="#007bff"
+                                        onclick="toggleColor(this)" style="background-color: #007bff"></span>
+                                </div>
+                                <div class="color-row">
+                                    <span class="color-btn" data-color="Pink" data-colorcode="pink"
+                                        onclick="toggleColor(this)" style="background-color: pink"></span>
+                                    <span class="color-btn" data-color="Yellow" data-colorcode="yellow"
+                                        onclick="toggleColor(this)" style="background-color: yellow"></span>
+                                    <span class="color-btn" data-color="Cream" data-colorcode="antiquewhite"
+                                        onclick="toggleColor(this)" style="background-color: antiquewhite"></span>
+                                    <span class="color-btn" data-color="Brown" data-colorcode="burlywood"
+                                        onclick="toggleColor(this)" style="background-color: burlywood"></span>
+                                </div>
+                            </div>
 
                             <label for="product-price">Price (VNĐ):</label>
-                            <input type="number" id="product-price" placeholder="Enter price">
+                            <input type="number" id="product-price" min="0" placeholder="Enter price">
 
-                            <button type="button" class="submit-product-btn">Add Product</button>
-                            <button type="button" class="close-modal">Close</button>
+                            <button type="button" class="submit-product-btn" onclick="addNewProduct()">Add
+                                Product</button>
+                            <button type="button" class="close-modal"
+                                onclick="closeModal('add-product-modal')">Close</button>
                         </form>
                     </div>
 
@@ -265,8 +316,39 @@
                     <div id="delete-confirmation-modal" class="modal hidden">
                         <div class="modal-content">
                             <h2>Are you sure you want to delete?</h2>
+                            <div class="remove-product-container">
+                                <div class="remove-header-box">
+                                    <p>Product Name</p>
+                                    <p>Total Income</p>
+                                </div>
+                                <div class="remove-product-list">
+                                    <div class="remove-product-item">
+                                        <input type="checkbox">
+                                        <div class="product-row-box">
+                                            <p>Castorice</p>
+                                            <p>23945000</p>
+                                        </div>
+                                    </div>
+                                    <div class="remove-product-item">
+                                        <input type="checkbox">
+                                        <div class="product-row-box">
+                                            <p>Castorice</p>
+                                            <p>23945000</p>
+                                        </div>
+                                    </div>
+                                    <div class="remove-product-item">
+                                        <input type="checkbox">
+                                        <div class="product-row-box">
+                                            <p>Castorice</p>
+                                            <p>23945000</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                             <button class="confirm-delete-btn">Yes</button>
-                            <button class="cancel-delete-btn">No</button>
+                            <button class="cancel-delete-btn"
+                                onclick="closeModal('delete-confirmation-modal')">No</button>
                         </div>
                     </div>
                     <!-- Bảng sửa sản phẩm -->
@@ -274,7 +356,7 @@
                         <form id="edit-product-form" class="modal-content">
                             <h2>Edit Product</h2>
                             <input type="hidden" id="edit-product-id">
-                            
+
                             <label for="edit-product-name">Product Name:</label>
                             <input type="text" id="edit-product-name" placeholder="Enter product name">
 
@@ -291,22 +373,69 @@
                             <label for="edit-product-date">Date:</label>
                             <input type="date" id="edit-product-date">
 
-                            <label for="edit-input-img">Product Image:</label>
-                            <input type="file" id="edit-input-img" accept="image/*">
-                            <div class="edit-preview"></div>
+                            <div class="image-preview-container">
+                                <div class="image-input">
+                                    <label for="edit-input-img">Product Image:</label>
+                                    <input type="file" id="edit-input-img" accept="image/*">
+                                </div>
+                                <div class="edit-preview">
+                                    <!-- Ảnh xem trước sẽ xuất hiện ở đây -->
+                                </div>
+                            </div>
+
 
                             <label for="edit-product-quantity">Quantity:</label>
-                            <input type="number" id="edit-product-quantity" placeholder="Enter quantity">
+                            <input type="number" id="edit-product-quantity" min="0" placeholder="Enter quantity">
+
+                            <label>Size:</label>
+                            <div class="size-selector">
+                                <button type="button" class="size-btn" data-size="S"
+                                    onclick="toggleSize(this)">S</button>
+                                <button type="button" class="size-btn" data-size="M"
+                                    onclick="toggleSize(this)">M</button>
+                                <button type="button" class="size-btn" data-size="L"
+                                    onclick="toggleSize(this)">L</button>
+                                <button type="button" class="size-btn" data-size="XL"
+                                    onclick="toggleSize(this)">XL</button>
+                                <button type="button" class="size-btn" data-size="2XL"
+                                    onclick="toggleSize(this)">2XL</button>
+                            </div>
+
+                            <label>Color:</label>
+                            <div class="color-selector">
+                                <div class="color-row">
+                                    <span class="color-btn" data-color="White" data-colorcode="#fff"
+                                        onclick="toggleColor(this)" style="background-color: #fff"></span>
+                                    <span class="color-btn" data-color="Grey" data-colorcode="grey"
+                                        onclick="toggleColor(this)" style="background-color: grey"></span>
+                                    <span class="color-btn" data-color="Black" data-colorcode="black"
+                                        onclick="toggleColor(this)" style="background-color: black"></span>
+                                    <span class="color-btn" data-color="Blue" data-colorcode="#007bff"
+                                        onclick="toggleColor(this)" style="background-color: #007bff"></span>
+                                </div>
+                                <div class="color-row">
+                                    <span class="color-btn" data-color="Pink" data-colorcode="pink"
+                                        onclick="toggleColor(this)" style="background-color: pink"></span>
+                                    <span class="color-btn" data-color="Yellow" data-colorcode="yellow"
+                                        onclick="toggleColor(this)" style="background-color: yellow"></span>
+                                    <span class="color-btn" data-color="Cream" data-colorcode="antiquewhite"
+                                        onclick="toggleColor(this)" style="background-color: antiquewhite"></span>
+                                    <span class="color-btn" data-color="Brown" data-colorcode="burlywood"
+                                        onclick="toggleColor(this)" style="background-color: burlywood"></span>
+                                </div>
+                            </div>
 
                             <label for="edit-product-price">Price (VNĐ):</label>
-                            <input type="number" id="edit-product-price" placeholder="Enter price">
+                            <input type="number" id="edit-product-price" min="0" placeholder="Enter price">
 
-                            <button type="button" class="update-product-btn">Update Product</button>
-                            <button type="button" class="close-edit-modal">Cancel</button>
+                            <button type="button" class="update-product-btn" onclick="updateProduct()">Update
+                                Product</button>
+                            <button type="button" class="close-edit-modal"
+                                onclick="closeModal('edit-product-modal')">Cancel</button>
                         </form>
                     </div>
                 </div>
-                
+
                 <!-- Thanh bộ lọc -->
                 <div class="filter-section-product">
                     <div class="name-product">
@@ -321,7 +450,7 @@
                             <option value="Polo">Polo</option>
                         </select>
                     </div>
-        
+
                     <div class="filter-item">
                         <label for="CreateAt">Create At (month/year):</label>
                         <input type="month" id="CreateAt">
@@ -346,10 +475,10 @@
                             <option value="More 400000">More 400.000 VNĐ</option>
                         </select>
                     </div>
-                    <div class="remove-product-btn"><i class="fa-regular fa-trash-can"></i></div>
+                    <div class="remove-product-btn">Feature</div>
                 </div>
-                
-            
+
+
                 <!-- Danh sách sản phẩm -->
                 <div class="product-list">
                     <div class="product-row">
@@ -359,57 +488,57 @@
                         <div class="product-type">Naruto Collaboration</div>
                         <div class="product-date">Sep 25, 2024<br>11:50 AM</div>
                         <div class="product-price">$210</div>
-                        <div class="product-actions"><i class="fa-regular fa-address-card"></i></i></div>
+                        <div class="product-actions" onclick=""><i class="fa-regular fa-address-card"></i></i></div>
                     </div>
-            
-                    
+
+
                 </div>
             </div>
-            <!-- Products content -->
-            <div id="content-products" class="content-page" style="display: none;">
-                <div class="tool-bar-product">
+            <!-- Orders content -->
+            <div id="content-orders" class="content-page" style="display: none;">
+                <div class="tool-bar-order">
                     <div class="search-box">
+                        <input type="text" class="search-input" />
                         <input type="text" class="search-input" />
                         <button class="search-btn">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                    <div class="tool-box-product">
-                        <button class="reLoad"><i class="fa-solid fa-rotate-right"></i> Clear</button>
-                        <button class="remove-btn"><i class="fa-solid fa-trash"></i> Remove</button>
-                        <button class="add-product-btn">+ Add Product</button>
-                    </div>
                 </div>
-                <div class="filter-section-product">
-                    <div class="name-product">
-                        <p>Name</p>
+                <div class="filter-section-order">
+                    <div class="id-order">
+                        <p>Mã đơn</p>
                     </div>
-                    <div class="filter-item">
-                        <label for="Product">Product:</label>
-                        <select id="Product">
-                            <option value="---" disabled selected hidden>---</option>
-                            <option value="T-shirt">T-shirt</option>
-                            <option value="Shirt">Shirt</option>
-                            <option value="Polo">Polo</option>
-                        </select>
-                    </div>
-        
-                    <div class="filter-item">
-                        <label for="CreateAt">Create At (month/year):</label>
-                        <input type="month" id="CreateAt">
-                    </div>
-                    <div class="filter-item">
-                        <label for="Quality">Quality:</label>
-                        <select id="Quality">
-                            <option value="---" disabled selected hidden>---</option>
-                            <option value="0">Out of stock</option>
-                            <option value="1-50">Low stock</option>
-                            <option value=">=50">In stock</option>
+                    <div class="filter-item" id="itemStatus">
+                        <label for="Status">Trạng thái:</label>
+                        <select id="Status">
+                            <option value="....">....</option>
+                            <option value="Chưa xử lý">Chưa xử lý</option>
+                            <option value="Đã xác nhận">Đã xác nhận</option>
+                            <option value="Giao hàng thành công">Giao hàng thành công</option>
+                            <option value="Đã hủy">Đã hủy</option>
                         </select>
                     </div>
                     <div class="filter-item">
-                        <label for="Price">Price:</label>
-                        <select id="Price">
+                        <label for="TimeOrder">Time Order:</label>
+                        <input type="date" id="beginTimeOrder">
+                        <input type="date" id="endTimeOrder">
+                    </div>
+                    <div class="filter-item">
+                        <label for="Address">Quận</label>
+                        <select id="address">
+                            <option value="...">...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="5">5</option>
+                            <option value="Tân Phú">Tân Phú</option>
+                            <option value="Bình Tân">Bình Tân</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label for="Total">Total:</label>
+                        <select id="Total">
                             <option value="---">---</option>
                             <option value="Less 100000">Less 100.000 VNĐ</option>
                             <option value="More 100000">More 100.000 VNĐ</option>
@@ -418,87 +547,15 @@
                             <option value="More 400000">More 400.000 VNĐ</option>
                         </select>
                     </div>
-                    <p>Delete</p>
+                    <button id="filter-orders">Reset Order</button>
                 </div>
-                <div class="product-list">
-                    <div class="product-row">
-                        <div class="name-product-group">
-                            <div class="checkbox"><input type="checkbox"></div>
-                            <div class="product-info">
-                                <img src="assets\img\product\White_LTSOVCOA442UW0100SS24_1.jpg" alt="Product Image">
-                                <div class="product-name">ALESIA Clothing - Shippuden</div>
-                            </div>
-                        </div>
-                        <div class="product-type">T-shirt</div>
-                        <div class="product-date">Sep 25, 2024<br>11:50 AM</div>
-                        <div class="product-quantity">45</div>
-                        <div class="product-price">210,000 VND</div>
-                        <div class="product-actions"><i class="fa-solid fa-trash delete-product"></i></div>
-                    </div>
-                </div>
-            </div>
-            <!-- Orders content -->
-            <div id="content-orders" class="content-page" style="display: none;">
-                <div class="tool-bar-order">
-                    <div class="search-box">
-                        <input type="text" class="search-input"/>
-                        <input type="text" class="search-input"/>
-                        <button class="search-btn">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-                    <div class="filter-section-order">
-                        <div class="id-order">
-                            <p>Mã đơn</p>
-                        </div>
-                        <div class="filter-item" id="itemStatus">
-                            <label for="Status">Trạng thái:</label>
-                            <select id="Status">
-                                <option value="....">....</option>
-                                <option value="Chưa xử lý">Chưa xử lý</option>
-                                <option value="Đã xác nhận">Đã xác nhận</option>
-                                <option value="Giao hàng thành công">Giao hàng thành công</option>
-                                <option value="Đã hủy">Đã hủy</option>
-                            </select>
-                        </div>
-                        <div class="filter-item">
-                            <label for="TimeOrder">Time Order:</label>
-                            <input type="date" id="beginTimeOrder">
-                            <input type="date" id="endTimeOrder">
-                        </div>
-                        <div class="filter-item">
-                            <label for="Address">Quận</label>
-                            <select  id="address">
-                                <option value="...">...</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="5">5</option>
-                                <option value="Tân Phú">Tân Phú</option>
-                                <option value="Bình Tân">Bình Tân</option>
-                                <option value="Khác">Khác</option>
-                            </select>
-                        </div>
-                        <div class="filter-item">
-                            <label for="Total">Total:</label>
-                            <select id="Total">
-                                <option value="---">---</option>
-                                <option value="Less 100000">Less 100.000 VNĐ</option>
-                                <option value="More 100000">More 100.000 VNĐ</option>
-                                <option value="More 200000">More 200.000 VNĐ</option>
-                                <option value="More 300000">More 300.000 VNĐ</option>
-                                <option value="More 400000">More 400.000 VNĐ</option>
-                            </select>
-                        </div>
-                        <button id="filter-orders">Reset Order</button>
-                    </div>
                 <!-- hien thi danh sach don hang -->
                 <div class="order-list"></div>
                 <!-- hien thi chi tiet don hang -->
                 <div id="modal-popup" class="modal-popup hidden"></div>
 
                 <div id="modal-container" class="modal-content hidden">
-                   <!-- chi tiet don hang -->
+                    <!-- chi tiet don hang -->
                 </div>
             </div>
             <!-- Analytics content -->
@@ -538,11 +595,11 @@
                             <option value="low">Low demand</option>
                         </select>
                         <div class="date-product-navigation">
-                            <button class="previous-pie-btn" onclick="setTopTime('top-selling-product-chart', -1)">
-                                 </button>
-                                    <div class="time-text">26/11/2024</div>
-                                    <button class="next-pie-btn" onclick="setTopTime('top-selling-product-chart', 1)"> >
-                                    </button>
+                            <button class="previous-pie-btn" onclick="setTopTime('top-selling-product-chart', -1)"> <
+                            </button>
+                            <div class="time-text">26/11/2024</div>
+                            <button class="next-pie-btn" onclick="setTopTime('top-selling-product-chart', 1)"> >
+                            </button>
                         </div>
                         <div class="date-filter">
                             <button onclick="setTopProduct('top-selling-product-chart', 'day')">Day</button>
@@ -631,26 +688,26 @@
         </div>
         <!-- <<RIGHT CONTENT>> -->
     </div>
-     <!-- Login Modal -->
+    <!-- Login Modal -->
 
-     <div class="modal-login">
+    <div class="modal-login">
         <div class="displayForm">
-          <h2>Đăng Nhập</h2>
-          <form id="login-form">
-            <div class="inputBox">
-              <input type="email" id="email" name="email" placeholder="Email" required>
-            </div>
-            <div class="inputBox">
-              <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
-              <i class="fa-solid fa-eye-slash toggle-password" data-toggle="#password"></i>
-            </div>
-            <div class="inputBox">
-              <input type="submit" value="Đăng Nhập">
-            </div>
-          </form>
+            <h2>Đăng Nhập</h2>
+            <form id="login-form">
+                <div class="inputBox">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+                    <i class="fa-solid fa-eye-slash toggle-password" data-toggle="#password"></i>
+                </div>
+                <div class="inputBox">
+                    <input type="submit" value="Đăng Nhập">
+                </div>
+            </form>
         </div>
-      </div>
-      
+    </div>
+
     <script src="assets\chartjs\chart.umd.js"></script>
     <script src="assets\js\admin.js"></script>
     <script src="assets\js\adminProduct.js"></script>

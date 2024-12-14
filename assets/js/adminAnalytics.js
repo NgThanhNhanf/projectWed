@@ -262,8 +262,15 @@ const config = {
       total: 3666,
     },
   ],
-  accountKey: "account",
-  accounts: [],
+  accountKey: "currentUser",
+  accounts: [
+    {
+      username: "hien278",
+      email: "thanhvinhnguyen4594@gmail.com",
+      password: "aGllbjEyMw==",
+      cartItem: []
+    }
+  ],
 };
 // ### CẤU HÌNH DANH SÁCH DỮ LIỆU ###
 

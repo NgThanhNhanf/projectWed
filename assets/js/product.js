@@ -374,9 +374,15 @@ let allProducts = [
 
 //lưu AllProducts trong LocalStorage
 function storeProductInLocalStorage() {
-    localStorage.setItem('allProducts', JSON.stringify(allProducts));
+    // Kiểm tra xem đã có sản phẩm trong localStorage chưa
+    const existingProducts = localStorage.getItem('allProducts');
+    
+    if (!existingProducts) {
+        // Chỉ lưu mẫu khi localStorage chưa có dữ liệu
+        localStorage.setItem('allProducts', JSON.stringify(allProducts));
+    }
 }
-storeProductInLocalStorage();
+
 storeProductInLocalStorage();
 
 

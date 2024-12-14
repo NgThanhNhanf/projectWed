@@ -10,6 +10,7 @@
   --clr-primary: #645146;
   --clr-secondary: #feece2;
   --clr-third: #fbfbfb;
+  --clr-fourth: rgba(204, 202, 202, 0.5);
   --clr-redflag: red;
   --clr-greenflag: green;
   --clr-redflagbg: rgb(255, 104, 104);
@@ -261,7 +262,7 @@ body {
   flex: 0.9;
   min-width: 175px;
 }
-.filter-itemp{
+.filter-itemp {
   flex: 0.5;
   min-width: 100px;
   display: flex;
@@ -404,7 +405,7 @@ body {
   flex: 0 0 11%;
   justify-content: center;
   display: flex;
-  font-size: 25px;
+  font-size: 18px;
 }
 
 label {
@@ -431,7 +432,7 @@ select:focus {
   overflow-y: auto;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product-row {
@@ -448,7 +449,7 @@ select:focus {
 }
 
 .product-row .checkbox {
-  flex: 0 0 5%; 
+  flex: 0 0 5%;
   text-align: center;
 }
 
@@ -471,7 +472,7 @@ select:focus {
   text-align: center;
 }
 .product-actions {
-  flex: 0 0 11%;
+  flex: 0 0 10%;
   display: flex;
   justify-content: center;
 }
@@ -745,10 +746,6 @@ canvas#top-demand-product-chart {
 }
 /* << LEFT CONTENT ANALYTICS>> */
 
-
-
-
-
 /* << LEFT CONTENT ORDER>> */
 #content-orders {
   width: 100%;
@@ -834,6 +831,26 @@ canvas#top-demand-product-chart {
   margin: 30px auto;
 }
 
+.filter-section-order .id-order {
+  flex: 0 0 15%;
+}
+
+.filter-section-order .filter-item:first-of-type{
+  flex: 0 0 20%;
+}
+
+.filter-section-order .filter-item:nth-of-type(2) {
+  flex: 0 0 20%;
+}
+
+.filter-section-order .filter-item:nth-of-type(3) {
+  flex: 0 0 20%;
+}
+
+.filter-section-order .filter-item:last-of-type {
+  flex: 0 0 20%;
+}
+
 .order-row {
   display: flex;
   align-items: center;
@@ -841,6 +858,26 @@ canvas#top-demand-product-chart {
   padding: 15px;
   border-bottom: 1px solid #ddd;
   transition: background-color 0.2s;
+}
+
+.order-row h3 {
+  flex: 0 0 15%;
+}
+
+.order-row p:first-of-type {
+  display: flex;
+  flex: 0 0 20%;
+  justify-content: center;
+}
+
+.order-row p:nth-of-type(2) {
+  flex: 0 0 20%;
+}
+
+.order-row p:last-of-type {
+  flex: 0 0 20%;
+  display: flex;
+  justify-content: center;
 }
 
 .name-order-group {
@@ -852,23 +889,22 @@ canvas#top-demand-product-chart {
 }
 
 .order-info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .id-order {
   width: 100px;
   align-items: center;
-
 }
 
 .order-status,
 .time-order,
 .order-total,
 .order-actions {
-    flex: 0 0 11%;
-    text-align: center;
+  flex: 0 0 11%;
+  text-align: center;
 }
 
 #TimeOrder {
@@ -903,6 +939,7 @@ canvas#top-demand-product-chart {
   /* display: none; */
   z-index: 10000;
 }
+
 .hidden {
   display: none;
 }
@@ -930,8 +967,6 @@ canvas#top-demand-product-chart {
   transition: all 0.3s ease-in-out;
 }
 
-
-
 /* ------------CUSTOMER---------------- */
 #content-customers {
   justify-content: space-between;
@@ -951,7 +986,7 @@ canvas#top-demand-product-chart {
 /* Search Bar and Functions */
 .content-search {
   display: flex;
-  flex-direction:  row-reverse;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -978,8 +1013,6 @@ canvas#top-demand-product-chart {
   color: var(--clr-secondary);
 }
 
-
-
 /* Customer List */
 .customer-list {
   max-height: 600px;
@@ -999,7 +1032,7 @@ canvas#top-demand-product-chart {
   font-size: 1rem;
   color: var(--clr-primary);
 }
-.filter-actions{
+.filter-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1083,12 +1116,14 @@ canvas#top-demand-product-chart {
   border-radius: 12px;
   width: 100%;
   max-width: 500px;
+  max-height: 660px;
   position: relative;
-  transform: translateY(-20px);
   transition: transform 0.3s ease;
 }
 
 .modal.show .modal-content {
+  overflow: scroll;
+  scrollbar-width: none;
   transform: translateY(0);
 }
 
@@ -1136,7 +1171,6 @@ canvas#top-demand-product-chart {
   margin-left: 10px;
 }
 
-
 /* Modal Login */
 .modal-login {
   position: fixed;
@@ -1150,7 +1184,7 @@ canvas#top-demand-product-chart {
   display: flex; /* Đảm bảo hiển thị */
   justify-content: center;
   align-items: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 /* Login Form Container */
@@ -1233,14 +1267,13 @@ canvas#top-demand-product-chart {
   display: none;
 }
 
-
 /* Optional: Animation for modal fade-in */
 @keyframes modalFadeIn {
   from {
-      opacity: 0;
+    opacity: 0;
   }
   to {
-      opacity: 1;
+    opacity: 1;
   }
 }
 /* Responsive Design */
@@ -1269,4 +1302,187 @@ canvas#top-demand-product-chart {
     min-width: 100%;
   }
 }
+
+.size-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.size-btn {
+  padding: 8px 15px;
+  border: 2px solid var(--clr-primary);
+  background: none;
+  color: var(--clr-primary);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.size-btn.selected {
+  background: var(--clr-primary);
+  color: white;
+}
+
+.size-btn:hover {
+  background: var(--clr-secondary);
+  border-color: var(--clr-secondary);
+}
+
+.size-btn.selected:hover {
+  background: var(--clr-primary);
+}
+
+.color-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.color-row {
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+}
+
+.color-btn {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--clr-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.color-btn.selected {
+  opacity: 1;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Thêm border đậm cho màu trắng để dễ nhìn */
+.color-btn[data-color="White"] {
+  border: 2px solid #ccc;
+}
+
+.color-btn[data-color="White"].selected {
+  border: 2px solid var(--clr-primary);
+}
+
+.preview {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+.preview img,
+.edit-preview img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+/* Container cho hình ảnh và preview */
+.image-preview-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Phần nhập hình ảnh chiếm 50% */
+.image-input {
+    flex: 0 0 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Phần preview chiếm 50% */
+.preview, .edit-preview {
+    flex: 0 0 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+/* Ảnh trong preview */
+.preview img, .edit-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Modal remove product */
+.remove-product-container {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  margin: 10px 0;
+}
+
+.remove-header-box {
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Phân bố đều khoảng cách giữa các phần tử */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd; /* Thêm đường viền dưới để tách biệt */
+}
+
+.remove-product-list {
+  overflow-y: auto;
+  height: 200px;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+/* Sắp xếp các phần tử trong mỗi remove-product-item ngang hàng */
+.remove-product-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding: 10px 0; /* Thêm khoảng đệm nếu cần */
+    border-bottom: 1px solid #f0f0f0; /* Thêm đường viền dưới để tách biệt */
+}
+
+.remove-product-item:hover {
+  background: var(--clr-secondary);
+}
+.remove-product-item:hover p{
+  font-size: 18px;
+}
+
+.remove-header-box p,
+.remove-product-item p {
+  margin: 0;
+  padding: 0 10px;
+}
+
+.remove-product-item input {
+  width: auto;
+  flex: 0 0 10%;
+  display: flex;
+}
+
+.remove-product-item .product-row-box {
+  display: flex;
+  flex: 0 0 90%;
+  justify-content: space-between;
+}
+
 
