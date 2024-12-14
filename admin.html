@@ -93,13 +93,20 @@
                             <option value="Premium">Premium</option>
                         </select>
 
-                        <label for="customer-spending">Total Spending:</label>
+                        <!-- <label for="customer-spending">Total Spending:</label>
                         <input type="number" id="customer-spending" placeholder="Total spending amount" min="0"
-                            placeholder="Enter price" required>
-
+                            placeholder="Enter price" required> -->
                         <button type="button" class="submit-customer-btn">Add Customer</button>
                         <button type="button" class="close-modal">Cancel</button>
                     </form>
+                    <!-- hien thi don hang cua 1 khach hang -->
+                    <div id="customer-orders-modal" class="customer-orders-modal">
+                        <div class="customer-orders-modal-content">
+                            <span class="customer-orders-modal-close">&times;</span>
+                            <h2>Thông tin đơn hàng</h2>
+                            <div id="customer-orders-modal-body"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Delete Confirmation Modal -->
@@ -141,9 +148,9 @@
                         </select>
 
 
-                        <label for="edit-customer-spending">Total Spending:</label>
+                        <!-- <label for="edit-customer-spending">Total Spending:</label>
                         <input type="number" id="edit-customer-spending" placeholder="Total spending amount" min="0"
-                            placeholder="Enter price" required>
+                            placeholder="Enter price" required> -->
 
                         <button type="button" class="update-customer-btn">Update</button>
                         <button type="button" class="close-edit-modal">Cancel</button>
@@ -204,15 +211,6 @@
 
                 <!-- Customer List -->
                 <div class="customer-list">
-                    <div class="customer-header">
-                        <div class="checkbox"><input type="checkbox" id="select-all"></div>
-                        <div class="header-item">Customer Info</div>
-                        <div class="header-item">Email</div>
-                        <div class="header-item">Phone</div>
-                        <div class="header-item">Join Date</div>
-                        <div class="header-item">Total Spending</div>
-                        <div class="header-item">Actions</div>
-                    </div>
                     <!-- Customer rows will be dynamically added here -->
                 </div>
             </div>
@@ -360,18 +358,19 @@
                             <label for="edit-product-name">Product Name:</label>
                             <input type="text" id="edit-product-name" placeholder="Enter product name">
 
-                            <label for="edit-product-type">Product Type:</label>
-                            <select id="edit-product-type">
-                                <option value="T-shirt">T-shirt</option>
-                                <option value="Shirt">Shirt</option>
-                                <option value="Polo">Polo</option>
-                                <option value="Sort">Sort</option>
-                                <option value="Blazer">Blazer</option>
-                                <option value="Kaki">Kaki</option>
-                            </select>
+                                <label for="product-type">Product Type:</label>
+                                <select id="product-type">
+                                    <option value="T-shirt">T-shirt</option>
+                                    <option value="Shirt">Shirt</option>
+                                    <option value="Polo">Polo</option>
+                                    <option value="Sort">Sort</option>
+                                    <option value="Blazer">Blazer</option>
+                                    <option value="Kaki">Kaki</option>
+                                </select>
 
-                            <label for="edit-product-date">Date:</label>
-                            <input type="date" id="edit-product-date">
+                                <label for="input-img">Product Image:</label>
+                                <input type="file" id="input-img" accept="image/*">
+                                <div class="preview"></div> <!-- Thêm xem trước hình ảnh -->
 
                             <div class="image-preview-container">
                                 <div class="image-input">
@@ -602,89 +601,125 @@
                             </button>
                         </div>
                         <div class="date-filter">
-                            <button onclick="setTopProduct('top-selling-product-chart', 'day')">Day</button>
-                            <button onclick="setTopProduct('top-selling-product-chart', 'month')">Month</button>
-                            <button onclick="setTopProduct('top-selling-product-chart', 'year')">Year</button>
+                            <button class="day-type" data-source="day"
+                                onclick="setDataScr('profit-with-product-chart', 'day')">Day</button>
+                            <button class="month-type" data-source="month"
+                                onclick="setDataScr('profit-with-product-chart', 'month')">Month</button>
+                            <button class="year-type" data-source="year"
+                                onclick="setDataScr('profit-with-product-chart', 'year')">Year</button>
                         </div>
-                    </div>
-                    <div class="product-content">
+                        <div class="data-resource">
+                            <div class="date-navigation">
+                                <i class="fa-solid fa-circle-chevron-left"
+                                    onclick="setCurrentTime('profit-with-product-chart', -1)"></i>
+                                <div class="time-text">26/11/2024</div>
+                                <i class="fa-solid fa-circle-chevron-right"
+                                    onclick="setCurrentTime('profit-with-product-chart', 1)"></i>
+                            </div>
+                        </div>
                         <div class="main-chart-container">
-                            <div class="top-demand-title">Top Demand Product</div>
-                            <canvas id="top-demand-product-chart"></canvas>
-                            <div class="total-purchasing-power">
-                                <div>Total Purchasing Power</div>
-                                <div>+ 25.46%</div>
+                            <canvas id="profit-with-product-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="best-worst-seller">
+                        <div class="tool-bar">
+                            <select class="data-source-product" id="low-high-demand-selection">
+                                <option value="high">High demand</option>
+                                <option value="low">Low demand</option>
+                            </select>
+                            <div class="date-product-navigation">
+                                <button class="previous-pie-btn" onclick="setTopTime('top-selling-product-chart', -1)">
+                                </button>
+                                <div class="time-text">26/11/2024</div>
+                                <button class="next-pie-btn" onclick="setTopTime('top-selling-product-chart', 1)"> >
+                                </button>
+                            </div>
+                            <div class="date-filter">
+                                <button onclick="setTopProduct('top-selling-product-chart', 'day')">Day</button>
+                                <button onclick="setTopProduct('top-selling-product-chart', 'month')">Month</button>
+                                <button onclick="setTopProduct('top-selling-product-chart', 'year')">Year</button>
                             </div>
                         </div>
-                        <div class="tool-box">
-                            <div class="top-product-btn">
-                                <div class="name-product-label">Product 1</div>
-                                <div class="market-share">
-                                    <div class="market-share-main">51.5%</div>
-                                    <div class="market-share-divider">|</div>
-                                    <div class="market-share-sub">+ 4.23%</div>
+                        <div class="product-content">
+                            <div class="main-chart-container">
+                                <div class="top-demand-title">Top Demand Product</div>
+                                <canvas id="top-demand-product-chart"></canvas>
+                                <div class="total-purchasing-power">
+                                    <div>Total Purchasing Power</div>
+                                    <div>+ 25.46%</div>
                                 </div>
                             </div>
-                            <div class="top-product-btn">
-                                <div class="name-product-label">Product 2</div>
-                                <div class="market-share">
-                                    <div class="market-share-main">22.36%</div>
-                                    <div class="market-share-divider">|</div>
-                                    <div class="market-share-sub">+ 8.47%</div>
+                            <div class="tool-box">
+                                <div class="top-product-btn">
+                                    <div class="name-product-label">Product 1</div>
+                                    <div class="market-share">
+                                        <div class="market-share-main">51.5%</div>
+                                        <div class="market-share-divider">|</div>
+                                        <div class="market-share-sub">+ 4.23%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="top-product-btn">
-                                <div class="name-product-label">Product 3</div>
-                                <div class="market-share">
-                                    <div class="market-share-main">11.26%</div>
-                                    <div class="market-share-divider">|</div>
-                                    <div class="market-share-sub">- 2.11%</div>
+                                <div class="top-product-btn">
+                                    <div class="name-product-label">Product 2</div>
+                                    <div class="market-share">
+                                        <div class="market-share-main">22.36%</div>
+                                        <div class="market-share-divider">|</div>
+                                        <div class="market-share-sub">+ 8.47%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="top-product-btn">
-                                <div class="name-product-label">Product 4</div>
-                                <div class="market-share">
-                                    <div class="market-share-main">4.74%</div>
-                                    <div class="market-share-divider">|</div>
-                                    <div class="market-share-sub">+ 0.67%</div>
+                                <div class="top-product-btn">
+                                    <div class="name-product-label">Product 3</div>
+                                    <div class="market-share">
+                                        <div class="market-share-main">11.26%</div>
+                                        <div class="market-share-divider">|</div>
+                                        <div class="market-share-sub">- 2.11%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="top-product-btn">
-                                <div class="name-product-label">Product 5</div>
-                                <div class="market-share">
-                                    <div class="market-share-main">2.90%</div>
-                                    <div class="market-share-divider">|</div>
-                                    <div class="market-share-sub">+ 18.2%</div>
+                                <div class="top-product-btn">
+                                    <div class="name-product-label">Product 4</div>
+                                    <div class="market-share">
+                                        <div class="market-share-main">4.74%</div>
+                                        <div class="market-share-divider">|</div>
+                                        <div class="market-share-sub">+ 0.67%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="top-product-btn">
-                                <div class="name-product-label">Orthers</div>
-                                <div class="market-share">
-                                    <div class="market-share-main">6.87%</div>
+                                <div class="top-product-btn">
+                                    <div class="name-product-label">Product 5</div>
+                                    <div class="market-share">
+                                        <div class="market-share-main">2.90%</div>
+                                        <div class="market-share-divider">|</div>
+                                        <div class="market-share-sub">+ 18.2%</div>
+                                    </div>
+                                </div>
+                                <div class="top-product-btn">
+                                    <div class="name-product-label">Orthers</div>
+                                    <div class="market-share">
+                                        <div class="market-share-main">6.87%</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="collection-distribution"></div>
                 </div>
-                <div class="collection-distribution"></div>
             </div>
-        </div>
-        <!-- <<LEFT CONTENT>> -->
+            <!-- <<LEFT CONTENT>> -->
 
-        <!-- <<RIGHT CONTENT>> -->
-        <div id="right-content">
-            <!-- Dashboard content (empty) -->
-            <div id="content-dashboard" class="content-page">
+            <!-- <<RIGHT CONTENT>> -->
+            <div id="right-content">
+                <!-- Dashboard content (empty) -->
+                <div id="content-dashboard" class="content-page">
+                </div>
+                <!-- Customers content -->
+                <div id="content-customers" class="content-page" style="display: none;">
+                </div>
+                <!-- Products content -->
+                <div id="content-products" class="content-page" style="display: none;">
+                </div>
+                <!-- Orders content -->
+                <div id="content-orders" class="content-page" style="display: none;">
+                </div>
             </div>
-            <!-- Customers content -->
-            <div id="content-customers" class="content-page" style="display: none;">
-            </div>
-            <!-- Products content -->
-            <div id="content-products" class="content-page" style="display: none;">
-            </div>
-            <!-- Orders content -->
-            <div id="content-orders" class="content-page" style="display: none;">
-            </div>
+            <!-- <<RIGHT CONTENT>> -->
         </div>
         <!-- <<RIGHT CONTENT>> -->
     </div>

@@ -262,7 +262,7 @@ const config = {
       total: 3666,
     },
   ],
-  accountKey: "currentUser",
+  accountKey: "users",
   accounts: [
     {
       username: "hien278",
