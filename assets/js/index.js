@@ -18,16 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    //an hien contact 
-    document.addEventListener('DOMContentLoaded', () => {
-        const contactLink = document.getElementById('contact-link');
-        const contact = document.getElementById('contact-section');
+    // //an hien contact 
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     const contactLink = document.getElementById('contact-link');
+    //     const contact = document.getElementById('contact-section');
 
-        contactLink.addEventListener('click', () => {
-        console.log('click');
-        contact.classList.toggle('active');
-        });
-    });
+    //     contactLink.addEventListener('click', () => {
+    //     console.log('click');
+    //     contact.classList.toggle('active');
+    //     });
+    // });
     const productModal = document.getElementById('productModal');
     const modalImage = document.getElementById('modalImage');
     const modalName = document.getElementById('modalName');
@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (logedInUser != null)
         localStorage.setItem('cart', JSON.stringify(logedInUser.cartItem));
     amountInIconCart1();
-    console.log(cur);
+    // console.log(cur);
     addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
             //Lấy thông tin sản phẩm từ modal

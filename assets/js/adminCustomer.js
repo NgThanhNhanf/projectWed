@@ -5,44 +5,50 @@ document.querySelector('.search-btn').addEventListener('click', function () {
     this.previousElementSibling.focus();
 });
 
+
 function getCustomersFromLocal() {
-    return JSON.parse(localStorage.getItem('customerList')) || [];
+    const inforCustomer = localStorage.getItem('customerList');
+    return inforCustomer ? JSON.parse(inforCustomer) : [];
 }
 
-function saveCustomersToLocal(customers) {
-    localStorage.setItem('customerList', JSON.stringify(customers));
+function saveCustomersToLocal(customerList) {
+    localStorage.setItem('customerList', JSON.stringify(customerList));
+
 }
 
-// Initialize with two sample customers if none exist
-function initializeSampleCustomers() {
-    const customersInLocal = getCustomersFromLocal();
-    if (customersInLocal.length === 0) {
-        const sampleCustomers = [
-            {
-                id: 1,
-                name: 'John Doe',
-                email: 'john.doe@example.com',
-                phone: '1234567890',
-                address: '123 Main Street',
-                joinDate: '2023-10-15',
-                totalSpending: 5000000,
-                status: 'Customer'
-            },
-            {
-                id: 2,
-                name: 'Jane Smith',
-                email: 'jane.smith@example.com',
-                phone: '0987654321',
-                address: '456 Elm Street',
-                joinDate: '2023-11-20',
-                totalSpending: 7500000,
-                status: 'Premium'
-            }
-        ];
-        saveCustomersToLocal(sampleCustomers);
+//tạo id cho khách hàng
+function generateUniqueId(){
+    return Date.now();
+}
+
+function addCustomerFromOrder() {
+    // Lấy thông tin khách hàng từ order
+    const informationOrder = JSON.parse(localStorage.getItem('informationOrder')) || [];
+    if(informationOrder.length == 0) {
+        alert('khong co don hang nao');
+        return;
     }
-}
+    const customers = getCustomersFromLocal();
+    informationOrder.forEach(order => {
+        const customerData = {
+            id:generateUniqueId(),
+            name: order.customer[0].nameCus, 
+            email: order.customer[0].emailCus, 
+            phone: order.address[0].phone,     
+            totalSpending: order.total,
+            status: 'Customer',
+            joinDate: new Date().toISOString()
+        };
 
+         // Kiểm tra nếu khách hàng chưa có trong danh sách, thì thêm mới
+        const existingCustomer = customers.find(c => c.email === customerData.email || c.phone === customerData.phone)  ;
+        if (!existingCustomer) {
+            customers.push(customerData); // Thêm khách hàng mới vào danh sách
+        }
+    });
+    // Lưu danh sách khách hàng đã cập nhật vào localStorage
+    saveCustomersToLocal(customers);
+}
 // Display customers
 function displayCustomers(customers) {
     const customerList = document.querySelector('.customer-list');
@@ -54,6 +60,8 @@ function displayCustomers(customers) {
     }
 
     customers.forEach(customer => {
+        const orders = getOrdersForCustomer(customer.id);
+
         const customerRow = document.createElement('div');
         customerRow.classList.add('customer-row');
         customerRow.dataset.id = customer.id;
@@ -78,6 +86,7 @@ function displayCustomers(customers) {
             <div class="customer-join-date">${formattedDate}</div>
             <div class="customer-spending">${customer.totalSpending.toLocaleString()} VNĐ</div>
             <div class="customer-status">${customer.status}</div>
+            <button class="viewOrders">Orders</button> 
             <div class="customer-actions">
                 <i class="fa-solid fa-pen-to-square edit-customer" title="Edit"></i>
                 <i class="fa-solid fa-trash delete-customer" title="Delete"></i>
@@ -87,6 +96,13 @@ function displayCustomers(customers) {
     });
 }
 
+//lay don hang cua 1 khach
+function getOrdersForCustomer(customerEmail) {
+    const orders = JSON.parse(localStorage.getItem('informationOrder')) || [];
+    return orders.filter(order => order.customer && order.customer[0].emailCus  === customerEmail);
+}
+addCustomerFromOrder();
+displayCustomers(getCustomersFromLocal());
 // Validation Functions
 
 
@@ -423,6 +439,7 @@ document.querySelector('.customer-list').addEventListener('click', function (e) 
     if (e.target.classList.contains('edit-customer')) {
         const customerRow = e.target.closest('.customer-row');
         const customerId = parseInt(customerRow.dataset.id);
+        console.log(customerId)
         openEditCustomerModal(customerId);
     }
     if (e.target.classList.contains('delete-customer')) {
@@ -432,7 +449,45 @@ document.querySelector('.customer-list').addEventListener('click', function (e) 
             deleteCustomer(customerId);
         }
     }
+
+    if(e.target.classList.contains('viewOrders')) {
+        const customerRow = e.target.closest('.customer-row');
+        const customerEmail = customerRow.querySelector('.customer-email').innerText.trim();
+        console.log(customerEmail)
+        const orders = getOrdersForCustomer(customerEmail);
+        showCustomerOrderModal(orders);
+    }
 });
+
+//ham hien thi don hang khach mua
+function showCustomerOrderModal(orders) { 
+    const modalBodyOrder = document.getElementById('customer-orders-modal-body');
+    modalBodyOrder.innerHTML = ''
+
+    if(orders.length == 0) {
+        modalBodyOrder.innerHTML = '<p> khong co don hang nao</p>';
+    } else {
+        orders.forEach(order => {
+            const orderRow = document.createElement('div');
+            orderRow.classList.add('customer-orders-row');
+            orderRow.innerHTML = `
+                <div class="order-id">Order ID: ${order.id}</div>
+                <div class="order-status">Status: ${order.status}</div>
+            `;
+            modalBodyOrder.appendChild(orderRow)
+        });
+    }
+    console.log("Modal content updated!");
+    document.getElementById('customer-orders-modal').style.display = 'block';
+    
+    // document.getElementById('customer-orders-modal').classList.add('show');
+}
+//tat hien thi don hang khach mua
+document.querySelector('.customer-orders-modal-close').addEventListener('click', () => {
+    // document.getElementById('orders-modal').classList.remove('show');
+    document.getElementById('customer-orders-modal').style.display = 'none'
+});
+
 
 document.querySelector('.update-customer-btn').addEventListener('click', updateCustomer);
 
@@ -455,6 +510,6 @@ document.querySelector('.reLoad').addEventListener('click', () => {
 
 // Initialize page
 window.addEventListener('DOMContentLoaded', () => {
-    initializeSampleCustomers();
+    // initializeSampleCustomers();
     filterAndSearchCustomers();
 });

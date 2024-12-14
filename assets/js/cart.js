@@ -289,26 +289,34 @@ document.addEventListener('DOMContentLoaded', () => {
 //------------CHECKOUT RIGHT--------------
 
 //form order
+const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+console.log(currentUser)
+if(currentUser) {
+    var formdk = document.formdk;
+    formdk.email.value = currentUser.email;
+    formdk.name.value = currentUser.username;
+    formdk.email.readOnly = true;
+    formdk.name.readOnly = true;
+}else {
+    alert("kiem tra lai thong tin cua ban!");
+}
+
 var formdk = document.formdk;
 function solvePreceed() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
     var email = formdk.email.value;
-    var firstname = formdk.firstName.value;
-    var lastname = formdk.lastName.value;
+    var name = formdk.name.value;
+    email = currentUser.email;
+    name = currentUser.username;
     if (email === '') {
         alert('email khong duoc rong');
         formdk.email.focus();
         return false;
     }
 
-    if (firstname === '') {
-        alert('firstname khong duoc rong');
-        formdk.firstname.focus();
-        return false;
-    }
-
-    if (lastname === '') {
-        alert('lastname khong duoc rong');
-        formdk.lastname.focus();
+    if (name === '') {
+        alert('name khong duoc rong');
+        formdk.name.focus();
         return false;
     }
     addCustomerToLocalStorage();
@@ -317,8 +325,7 @@ function solvePreceed() {
 
 function addCustomerToLocalStorage() {
     const emailCus = formdk.email.value;
-    const firstNameCus = formdk.firstName.value;
-    const lastNameCus = formdk.lastName.value;
+    const nameCus = formdk.name.value;
     var customerFormLocalStorage = getCusTomerFromLocalStorage();
 
     const customerExist = customerFormLocalStorage.findIndex((customer) => {
@@ -330,8 +337,7 @@ function addCustomerToLocalStorage() {
     } else {
         var customerData =
         {
-            firstNameCus,
-            lastNameCus,
+            nameCus,
             emailCus,
             indexLogin: 1,
         };
@@ -434,7 +440,7 @@ function saveAddressInLocal(event) {
 
     if(!isCheckPayment()){
         alert('thong tin khong hop le')
-        return
+        return;
     }
 
     const newCountry = document.getElementById('country').value

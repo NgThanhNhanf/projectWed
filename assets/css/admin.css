@@ -1153,6 +1153,69 @@ canvas#top-demand-product-chart {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+/* don hang cua khach */
+.viewOrders {
+  background-color: #007bff;
+  color: white;
+  /* padding: 5px 10px; */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.viewOrders:hover {
+  background-color: #0056b3;
+}
+
+#customer-orders-modal {
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#customer-orders-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 70vh;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.customer-orders-modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.customer-orders-modal-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.customer-orders-modal-close:hover {
+  color: red;
+}
+
+/* Định dạng các dòng đơn hàng */
+.customer-orders-row {
+  border-bottom: 1px solid #ddd;
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+
 /* Login Form Container */
 .displayForm {
   position: relative;
