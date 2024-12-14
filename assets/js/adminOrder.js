@@ -1,9 +1,7 @@
+
 function getOrders() {
     return JSON.parse(localStorage.getItem('informationOrder')) || [];
 }
-
-const x = getOrders()
-console.log(new Date(x[0].timeOrder).toISOString())
 
 function filerOrder() {
     let orderStatus = document.getElementById('Status').value;
@@ -37,20 +35,19 @@ function filerOrder() {
         });
     }
 
-    if(beginOrder && endOrder) {
+    if (beginOrder && endOrder) {
         filOrder = filOrder.filter(order => {
             const itOrders = new Date(order.timeOrder).toISOString().split("T")[0];
             return itOrders >= beginOrder && itOrders <= endOrder;
         });
     }
 
-    if(orderAddress != "...") {
+    if (orderAddress != "...") {
         filOrder = filOrder.filter((order) => {
             return Array.isArray(order.address) && order.address.some(district => district.country === orderAddress)
         });
     }
 
-    
     displayOrders(filOrder);
 }
 
@@ -61,14 +58,14 @@ function displayOrders(filOrder) {
     } else {
         orderList.innerHTML = filOrder.map(order =>
             `
-            <div class="order-row">
-                <h3>#${order.id}</h3>
-                <p id= "isStatus">${order.status}</p>
-                <p>${new Date(order.timeOrder).toLocaleString()}</p>
-                <p>${order.total} VND</p>
-                <button class="view" data-id="${order.id}">Chi tiết</button>
-            </div>
-        `
+                <div class="order-row">
+                    <h3>#${order.id}</h3>
+                    <p id= "isStatus">${order.status}</p>
+                    <p>${new Date(order.timeOrder).toLocaleString()}</p>
+                    <p>${order.total} VND</p>
+                    <button class="view" data-id="${order.id}">Chi tiết</button>
+                </div>
+            `
         ).join('');
     }
 }
@@ -91,34 +88,34 @@ function displayOrderSummary(orderId) {
 
     const listAddress = order.address.map(addr =>
         `Đường:${addr.address || "Không có địa chỉ"},
-        Quận:${addr.country || "Không có quận"}, 
-        Thành Phố:${addr.city || "Không có thành phố"}, 
-        SĐT: ${addr.phone || "Không có số điện thoại"}`
+            Quận:${addr.country || "Không có quận"}, 
+            Thành Phố:${addr.city || "Không có thành phố"}, 
+            SĐT: ${addr.phone || "Không có số điện thoại"}`
     ).join('<br>');
 
     const orderSummary = `
-    <div class="order-summary">
-        <h3>Chi tiết đơn hàng #${order.id}</h3>
-        <p>Ngày đặt: ${new Date(order.timeOrder).toLocaleDateString()}</p>
-        <p>Tổng tiền: ${order.total.toLocaleString()} VND</p>
-        <h4>Thông tin sản phẩm:</h4>
-        <ul>
-            ${order.cart.map(item => `
-                <li><strong>${item.name}</strong> (x${item.quantity}) - ${(item.price * item.quantity).toLocaleString()} VND</li>
-            `).join('')}
-        </ul>
-        <h4>Danh sách địa chỉ:</h4>
-        <p>${listAddress}</p>
-        <p> Trạng thái: </p>
-            <select id="status-section">
-                <option value = "Chưa xử lý" ${order.status === "Chưa xử lý" ? "selected" : ""}>Chưa xử lý </option>
-                <option value = "Đã xác nhận" ${order.status === "Đã xác nhận" ? "selected" : ""}>Đã xác nhận </option>
-                <option value = "Giao hàng thành công" ${order.status === "Giao hàng thành công" ? "selected" : ""}>Giao hàng thành công </option>
-                <option value = "Đã hủy" ${order.status === "Đã hủy" ? "selected" : ""}>Đã hủy</option>
-            </select>
-            <button id= "updateStatus"> Cập nhật trạng thái</button>
-        <button id="close-modal">Đóng</button>
-    </div>`;
+        <div class="order-summary">
+            <h3>Chi tiết đơn hàng #${order.id}</h3>
+            <p>Ngày đặt: ${new Date(order.timeOrder).toLocaleDateString()}</p>
+            <p>Tổng tiền: ${order.total.toLocaleString()} VND</p>
+            <h4>Thông tin sản phẩm:</h4>
+            <ul>
+                ${order.cart.map(item => `
+                    <li><strong>${item.name}</strong> (x${item.quantity}) - ${(item.price * item.quantity).toLocaleString()} VND</li>
+                `).join('')}
+            </ul>
+            <h4>Danh sách địa chỉ:</h4>
+            <p>${listAddress}</p>
+            <p> Trạng thái: </p>
+                <select id="status-section">
+                    <option value = "Chưa xử lý" ${order.status === "Chưa xử lý" ? "selected" : ""}>Chưa xử lý </option>
+                    <option value = "Đã xác nhận" ${order.status === "Đã xác nhận" ? "selected" : ""}>Đã xác nhận </option>
+                    <option value = "Giao hàng thành công" ${order.status === "Giao hàng thành công" ? "selected" : ""}>Giao hàng thành công </option>
+                    <option value = "Đã hủy" ${order.status === "Đã hủy" ? "selected" : ""}>Đã hủy</option>
+                </select>
+                <button id= "updateStatus"> Cập nhật trạng thái</button>
+            <button id="close-modal">Đóng</button>
+        </div>`;
 
     const modalContainer = document.getElementById('modal-container');
     modalContainer.innerHTML = orderSummary;
@@ -131,17 +128,17 @@ function displayOrderSummary(orderId) {
         modalContainer.classList.add('hidden');
     });
 
-      //click vao popup(nen den ben ngoan) => dong phan chi tiet
-      document.getElementById('modal-popup').addEventListener('click', () => {
+    //click vao popup(nen den ben ngoan) => dong phan chi tiet
+    document.getElementById('modal-popup').addEventListener('click', () => {
         document.getElementById('modal-popup').classList.add('hidden');
         modalContainer.classList.add('hidden');
     });
 
     //cap nhap trang thai
-    document.getElementById('updateStatus').addEventListener('click', ()=> {
+    document.getElementById('updateStatus').addEventListener('click', () => {
         const newStatus = document.getElementById('status-section').value;
         order.status = newStatus
-        localStorage.setItem('informationOrder',JSON.stringify(orders));
+        localStorage.setItem('informationOrder', JSON.stringify(orders));
         alert('cap nhap trang thai don hang thanh cong');
         displayOrders(getOrders());
     });
@@ -157,15 +154,18 @@ function resetOrder() {
     displayOrders(getOrders());
 }
 
-document.getElementById('Status').addEventListener('change',filerOrder);
-document.getElementById('Total').addEventListener('change',filerOrder);
-document.getElementById('beginTimeOrder').addEventListener('change',filerOrder)
-document.getElementById('endTimeOrder').addEventListener('change',filerOrder)
-document.getElementById('address').addEventListener('change',filerOrder)
+document.getElementById('Status').addEventListener('change', filerOrder);
+document.getElementById('Total').addEventListener('change', filerOrder);
+document.getElementById('beginTimeOrder').addEventListener('change', filerOrder)
+document.getElementById('endTimeOrder').addEventListener('change', filerOrder)
+document.getElementById('address').addEventListener('change', filerOrder)
 
 
 document.getElementById('filter-orders').addEventListener('click', resetOrder);
 
 document.addEventListener('DOMContentLoaded', () => {
-    displayOrders(getOrders());
+    console.log('DOMContentLoaded: Running');
+    const orders = getOrders();
+    console.log('Orders:', orders);  // Kiểm tra dữ liệu đơn hàng
+    displayOrders(orders);
 });

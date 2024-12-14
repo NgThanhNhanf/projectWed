@@ -1157,7 +1157,6 @@ canvas#top-demand-product-chart {
 .viewOrders {
   background-color: #007bff;
   color: white;
-  /* padding: 5px 10px; */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -1168,9 +1167,9 @@ canvas#top-demand-product-chart {
 }
 
 #customer-orders-modal {
-  display: block;
+  display: none;
   position: fixed;
-  z-index: 9999;
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
@@ -1200,7 +1199,7 @@ canvas#top-demand-product-chart {
   color: #aaa;
   float: right;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: bold;  
   cursor: pointer;
 }
 
@@ -1208,7 +1207,7 @@ canvas#top-demand-product-chart {
   color: red;
 }
 
-/* Định dạng các dòng đơn hàng */
+
 .customer-orders-row {
   border-bottom: 1px solid #ddd;
   margin: 10px 0;
