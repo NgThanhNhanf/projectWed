@@ -760,20 +760,98 @@
     flex: 1;
 }
 
-.checkOldAddress {
+/* Căn chỉnh chung cho các thành phần */
+.address-section {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Style cho nút chọn địa chỉ */
+#showOldAddresses, #newAddressButton {
+    display: block;
+    margin: 10px 0;
+    color: black;
+}
+
+#oldAddresses {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #e7e1e1;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.address-card {
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.checkOldAddress label {
-    white-space: nowrap;
+
+.address-row {
+    display: flex;
+    gap: 20px; 
+    flex-wrap: wrap;
+    width: 100%;
 }
 
-.checkOldAddress input {
-    width: 20%;
-    padding: 0;
-
+.address-row span {
+    font-size: 14px;
+    color: #333;
+    flex: 1;
 }
+
+.select-btn {
+    padding: 5px 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.select-btn:hover {
+    background-color: #d2cfcf;
+}
+
+
+/* Căn chỉnh form nhập địa chỉ */
+
+.address-form .form-group {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.address-form input {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.address-form label {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    /* background: white; */
+    padding: 0 5px;
+    font-size: 12px;
+    color: #666;
+}
+
 
 .infor-payment .proceed-btn {
     color: #fff;
