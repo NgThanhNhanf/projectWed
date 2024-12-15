@@ -16,7 +16,7 @@ const checkoutsection = document.querySelector('.checkout-section');
 buttonCheckout.addEventListener('click', () => {
     const isCart = getCartFromLocalStorage()
     if (isCart.length == 0) {
-        alert('ban phai mua hang thi moi duoc thanh toan')
+        alert('Bạn phải mua hàng thì mới được thanh toán')
         return;
     }
     cartsection.style.transform = 'translateX(-100%)';
@@ -39,7 +39,7 @@ preceedtoshipping.addEventListener('click', () => {
         payment.classList.remove('hidden');
         payment.classList.add('active');
     } else {
-        alert("kiem tra lai thong tin cua ban");
+        alert("kiểm tra lại thông tin của bạn");
     }
 });
 
@@ -172,21 +172,7 @@ function totalAll(cart) {
     var istax = tax(shipCost)
     return subtal + shipCost + istax;
 }
-//nhap ma giam gia se giam 20%
-function solvePromocode() {
-    var promocode = document.querySelector('.value input');
-    //ma giam gia se la giamgia123
-    promocode.addEventListener('change', () => {
-        var cart = getCartFromLocalStorage();
-        var sum = totalAll(cart);
-        if (promocode.value === 'gg123') {
-            sum = (sum * 0.8);
-            var totalAlterPromocode = document.getElementById('price-total');
-            totalAlterPromocode.textContent = sum;
-        }
-    });
-}
-solvePromocode();
+
 
 //click vao x se xoa san pham va cap nhap lai cac gia tri
 const users = JSON.parse(localStorage.getItem('users')) || [];
@@ -296,8 +282,6 @@ if (currentUser) {
     formdk.name.value = currentUser.username;
     formdk.email.readOnly = true;
     formdk.name.readOnly = true;
-} else {
-    alert("kiem tra lai thong tin cua ban!");
 }
 
 var formdk = document.formdk;
@@ -659,7 +643,13 @@ function saveOrder(cart, customer, address) {
 
 function clearCart() {
     localStorage.removeItem('cart');
+    const cartUser = JSON.parse(localStorage.getItem('users'))
+    if(cartUser && Array.isArray(cartUser[0].cartItem)) {
+        cartUser[0].cartItem = [];
+    }
+    localStorage.setItem('users',JSON.stringify(cartUser))
 }
+
 
 document.getElementById('payment-form').addEventListener('submit', (e) => {
     e.preventDefault();
@@ -675,5 +665,5 @@ document.getElementById('payment-form').addEventListener('submit', (e) => {
         return;
     }
     saveOrder(inforCart, inforCustomer, inforAddress);
-    // clearCart();
+    clearCart();
 });    
