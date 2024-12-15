@@ -82,6 +82,7 @@ function displayCustomers(customers) {
                 <div class="customer-email">${customer.email}</div>
                 <div class="customer-phone">${customer.phone}</div>
                 <div class="customer-join-date">${formattedDate}</div>
+                <div class="customer-totalSpending"> ${customer.total}</div>
                 <div class="customer-status">${customer.status}</div>
                 <button class="viewOrders">Orders</button> 
                 <div class="customer-actions">
@@ -129,7 +130,7 @@ function addNewCustomer() {
     const phoneInput = document.getElementById('customer-phone');
     const addressInput = document.getElementById('customer-address');
     const joinDateInput = document.getElementById('customer-join-date');
-    // const totalSpendingInput = document.getElementById('customer-spending');
+    const totalSpendingInput = document.getElementById('customer-spending');
     const statusInput = document.getElementById('customer-status');
 
     const name = nameInput.value.trim();
@@ -138,7 +139,7 @@ function addNewCustomer() {
     const address = addressInput.value.trim();
     const joinDate = joinDateInput.value;
     const status = statusInput.value.trim();
-    // const totalSpending = parseFloat(totalSpendingInput.value) || 0;
+    const totalSpending = parseFloat(totalSpendingInput.value) || 0;
 
     const customers = getCustomersFromLocal();
 
@@ -218,6 +219,7 @@ function openEditCustomerModal(customerId) {
     document.getElementById('edit-customer-spending').value = customer.totalSpending;
     document.getElementById('edit-customer-status').value = customer.status;
 
+    
     document.getElementById('edit-customer-modal').classList.add('show');
 }
 
