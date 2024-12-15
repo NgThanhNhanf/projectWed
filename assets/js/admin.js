@@ -164,8 +164,6 @@ function togglePasswordVisibility() {
     });
   });
 }
-
-// Cập nhật hàm handleLoginModal
 function handleLoginModal() {
   const loginModal = document.querySelector('.modal-login');
 
@@ -178,57 +176,64 @@ function handleLoginModal() {
     const activePage = localStorage.getItem("activePage") || "dashboard";
     sideBarProcessing();
     leftContentProcessing(activePage);
-    return;
+  } else {
+    // Hiển thị modal nếu chưa đăng nhập
+    loginModal.style.display = 'flex';
   }
 
-  // Hiển thị modal nếu chưa đăng nhập
-  loginModal.style.display = 'flex';
-
   // Xử lý sự kiện đăng nhập
-  document.getElementById('login-form').addEventListener('submit', function (e) {
-    e.preventDefault();
+  const loginForm = document.getElementById('login-form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    const emailInput = document.querySelector('#email'); // Giả sử id của input email là 'email'
-    const passwordInput = document.querySelector('#password'); // Giả sử id của input password là 'password'
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
 
-    if (emailInput.value === 'hai@gmail.com' && passwordInput.value === '000000') {
+      // Kiểm tra thông tin đăng nhập
+      if (email === 'hai@gmail.com' && password === '000000') {
         localStorage.setItem('isLoggedIn', 'true'); // Lưu trạng thái đăng nhập
         loginModal.style.display = 'none'; // Ẩn modal
         console.log('Đăng nhập thành công!');
-        emailInput.value = ''; // Xóa dữ liệu email
-        passwordInput.value = ''; // Xóa dữ liệu password
+
         // Sau khi đăng nhập, hiển thị lại trang đã lưu
         const activePage = localStorage.getItem("activePage") || "dashboard";
         sideBarProcessing();
         leftContentProcessing(activePage);
-    } else {
+      } else {
         alert('Email hoặc mật khẩu không đúng!');
-    }
+      }
+    });
+  }
 
-  });
-
-  // Xử lý sự kiện đăng xuất
-  const logoutButton = document.querySelector('#Logout');
-  if (logoutButton) {
-    logoutButton.addEventListener('click', function () {
-      localStorage.setItem('isLoggedIn', 'false'); // Xóa trạng thái đăng nhập
+  // Xử lý sự kiện đăng xuất (Event Delegation để tránh mất sự kiện)
+  document.body.addEventListener('click', function (e) {
+    const target = e.target;
+    if (target && target.id === 'Logout') {
+      // Xóa trạng thái đăng nhập
+      localStorage.setItem('isLoggedIn', 'false'); 
       loginModal.style.display = 'flex'; // Hiển thị lại modal
-      // Có thể thêm logic để ẩn các nội dung đã hiển thị
+      console.log('Đã đăng xuất!');
+
+      // Ẩn nội dung hiển thị sau khi đăng nhập
       const contentPages = document.querySelectorAll(".content-page");
       contentPages.forEach(page => {
         page.style.display = "none";
       });
+
       const menuItems = document.querySelectorAll(".menuSideBar");
       menuItems.forEach(item => {
         item.classList.remove("active");
       });
+
       const contentTitle = document.querySelector(".left-content-title p");
       if (contentTitle) {
         contentTitle.textContent = "";
       }
-    });
-  }
+    }
+  });
 }
+
 
 // Hàm chính
 function mainAction() {
