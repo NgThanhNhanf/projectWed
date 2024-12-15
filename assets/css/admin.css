@@ -1211,7 +1211,7 @@ canvas#top-demand-product-chart {
 #customer-orders-modal {
   display: none;
   position: fixed;
-  z-index: 1000;
+  z-index: 99999;
   left: 0;
   top: 0;
   width: 100%;
@@ -1219,6 +1219,7 @@ canvas#top-demand-product-chart {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 #customer-orders-modal-body {
   padding: 20px;
   overflow-y: auto;

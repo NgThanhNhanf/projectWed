@@ -437,13 +437,12 @@ function showCustomerOrderModal(orders) {
         });
     }
     console.log("Modal content updated!");
-    document.getElementById('customer-orders-modal').style.display = 'block';
-    // document.getElementById('customer-orders-modal').classList.add('show');
+     document.querySelector('.customer-orders-modal').style.display = 'block'
+   
 }
 //tat hien thi don hang khach mua
 document.querySelector('.customer-orders-modal-close').addEventListener('click', () => {
-    document.getElementById('customer-orders-modal').style.display = 'none'
-    // document.getElementById('customer-orders-modal').classList.remove('show');
+   document.querySelector('.customer-orders-modal').style.display = 'none'  
 });
 
 
