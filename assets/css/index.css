@@ -1074,13 +1074,13 @@ form {
 
 #orders-container {
     max-height: 200px;
-    overflow-y: auto;
     margin: 20px 0;
     padding-right: 10px;
     border-top:1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #171212;
     white-space: nowrap;
     gap: 10px;
+    overflow-y: auto;
 }
 
 

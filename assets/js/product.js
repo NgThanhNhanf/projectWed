@@ -663,7 +663,7 @@ const modalName = document.getElementById('modalName');
 const modalPrice = document.getElementById('modalPrice');
 const modalDetail = document.querySelector('.detail-content');
 const closeModal = document.querySelector('.close');
-const quantily = document.getElementById('quantity');
+const quantity = document.getElementById('quantity');
 const product = document.querySelectorAll('.product');
 let qualityProduct = 1;
 // Hàm mở modal và hiển thị thông tin sản phẩm
