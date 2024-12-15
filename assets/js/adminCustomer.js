@@ -81,7 +81,6 @@ function displayCustomers(customers) {
                 <div class="customer-email">${customer.email}</div>
                 <div class="customer-phone">${customer.phone}</div>
                 <div class="customer-join-date">${formattedDate}</div>
-                <div class="customer-totalSpending"> ${customer.total}</div>
                 <div class="customer-status">${customer.status}</div>
                 <button class="viewOrders">Orders</button> 
                 <div class="customer-actions">
@@ -317,7 +316,7 @@ function filterAndSearchCustomers() {
     const filterEmail = document.getElementById('filter-email').value.trim().toLowerCase();
     const filterPhone = document.getElementById('filter-phone').value.trim();
     const filterJoinDate = document.getElementById('filter-join-date').value;
-    const filterSpending = document.getElementById('filter-spending').value;
+    // const filterSpending = document.getElementById('filter-spending').value;
     const filterStatus = document.getElementById('filter-status').value; // Updated
 
     const filteredCustomers = customers.filter(customer => {
@@ -383,7 +382,7 @@ document.getElementById('filter-name').addEventListener('input', filterAndSearch
 document.getElementById('filter-email').addEventListener('input', filterAndSearchCustomers);
 document.getElementById('filter-phone').addEventListener('input', filterAndSearchCustomers);
 document.getElementById('filter-join-date').addEventListener('change', filterAndSearchCustomers);
-document.getElementById('filter-spending').addEventListener('change', filterAndSearchCustomers);
+// document.getElementById('filter-spending').addEventListener('change', filterAndSearchCustomers);
 document.getElementById('filter-status').addEventListener('change', filterAndSearchCustomers);
 
 document.querySelector('.add-customer-btn').addEventListener('click', () => {
@@ -432,7 +431,7 @@ function showCustomerOrderModal(orders) {
             const orderRow = document.createElement('div');
             orderRow.classList.add('customer-orders-row');
             orderRow.innerHTML = `
-                    <div class="order-id">Order ID: ${order.id}</div>
+                    <div class="order-id">Order ID: #${order.id}</div>
                     <div class="order-status">Status: ${order.status}</div>
                 `;
             modalBodyOrder.appendChild(orderRow)

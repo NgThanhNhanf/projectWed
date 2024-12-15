@@ -635,8 +635,8 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
-    width: 90%;
-    max-width: 900px;
+    width: 70%;
+    /* max-width: 900px; */
     position: fixed;
     top: 0;
     left: 0;

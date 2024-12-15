@@ -663,9 +663,9 @@ const modalName = document.getElementById('modalName');
 const modalPrice = document.getElementById('modalPrice');
 const modalDetail = document.querySelector('.detail-content');
 const closeModal = document.querySelector('.close');
-const quantily = document.getElementById('quantity');
+const quantity = document.getElementById('quantity');
 const product = document.querySelectorAll('.product');
-
+let qualityProduct = 1;
 // Hàm mở modal và hiển thị thông tin sản phẩm
 function openModal(product) {
     const productImage = product.querySelector('img').src;
@@ -678,6 +678,7 @@ function openModal(product) {
     const curProduct = allProduct.find(product => product.name === productName);
     modalDetail.textContent = curProduct.detail;
     productModal.style.display = 'block';
+    qualityProduct = curProduct.quantity;
 }
 
 
@@ -700,8 +701,11 @@ function addClickEventToProducts() {
 let quantityCount = 1;
 
 document.querySelector('.quantity-btn:nth-child(3)').onclick = () => {
-    quantityCount += 1;
-    quantity.textContent = quantityCount;
+    if(quantityCount < qualityProduct){
+        quantityCount += 1;
+        quantity.textContent = quantityCount;
+    }
+    
 };
 
 
@@ -752,29 +756,40 @@ function storeCartInLocalStorage(cart) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 //tang so luong tren icon cart
-const amountCart1 = document.getElementById('amount-cart');
+const amountCart = document.getElementById('amount-cart');
 function amountInIconCart() {
-    const cart = getCartFromLocalStorage();
-    var amount = cart.reduce((total, cartElement) => {
-        return total + cartElement.quantity;
-    }, 0);
-    if (amount) {
-        amountCart1.style.display = 'block';
-        if(amount < 100)
-            amountCart1.textContent = amount; 
-        else amountCart1.textContent = '99+';
+    const productCart = getCartFromLocalStorage();
+    var amount;
+    if (productCart.length) {
+        amount = productCart.reduce((total, cartElement) => {
+            return total + cartElement.quantity;
+        }, 0);
     } else {
-        amountCart1.style.display = 'none';
+        amount = 0;
+    }
+    if (amount) {
+        amountCart.style.display = 'block';
+        if(amount < 100)
+            amountCart.textContent = amount; 
+        else amountCart.textContent = '99+';
+    } else {
+        amountCart.style.display = 'none';
     }
 }
 
 
 // Lắng nghe sự kiện khi nhấn "Add to Cart"
 const addToCartButtons = document.querySelectorAll('.wishlist');
+// const users = JSON.parse(localStorage.getItem('users')) || [];
+amountInIconCart();
 addToCartButtons.forEach(button => {
     button.addEventListener('click', () => {
         //Lấy thông tin sản phẩm từ modal
         const cur = JSON.parse(localStorage.getItem('currentUser'));
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const logedInUser = cur === null ? null : users.find(user => user.email === cur.email);
+        if (logedInUser != null)
+            localStorage.setItem('cart', JSON.stringify(logedInUser.cartItem));
         if (cur === null) {
             alert('Bạn cần đăng nhập để có thể thêm sản phẩm vào giỏ hàng');
             return;
@@ -786,14 +801,14 @@ addToCartButtons.forEach(button => {
         const productQuantity = parseInt(document.getElementById('quantity').textContent, 10);
 
         var cart = getCartFromLocalStorage();
-        var checkProductInCart = cart.find(item => {
+        var checkProductInCart = logedInUser.cartItem.find(item => {
             return item.name === productName && item.size === productSize;
         });
 
         if (checkProductInCart) {
             checkProductInCart.quantity += productQuantity;
         } else {
-            cart.push({
+            logedInUser.cartItem.push({
                 name: productName,
                 image: productImage,
                 size: productSize,
@@ -801,8 +816,11 @@ addToCartButtons.forEach(button => {
                 quantity: productQuantity,
             });
         }
+        localStorage.setItem('users', JSON.stringify(users));
         storeCartInLocalStorage(cart);
+        localStorage.setItem('cart', JSON.stringify(logedInUser.cartItem));
         amountInIconCart();
+        alert("Thêm sản phẩm vào giỏi hàng thành công");
     });
 
 });
