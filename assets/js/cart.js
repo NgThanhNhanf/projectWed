@@ -590,5 +590,5 @@ document.getElementById('payment-form').addEventListener('submit', (e) => {
         return;
     }
     saveOrder(inforCart, inforCustomer, inforAddress);
-    clearCart();
+    // clearCart();
 });    
