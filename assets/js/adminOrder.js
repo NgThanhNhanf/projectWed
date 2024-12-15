@@ -165,7 +165,6 @@ document.getElementById('filter-orders').addEventListener('click', resetOrder);
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded: Running');
-    const orders = getOrders();
-    console.log('Orders:', orders);  // Kiểm tra dữ liệu đơn hàng
+    const orders = getOrders();  // Kiểm tra dữ liệu đơn hàng
     displayOrders(orders);
 });
