@@ -81,6 +81,7 @@ function displayCustomers(customers) {
                 <div class="customer-email">${customer.email}</div>
                 <div class="customer-phone">${customer.phone}</div>
                 <div class="customer-join-date">${formattedDate}</div>
+                <div class="customer-totalSpending"> ${customer.total}</div>
                 <div class="customer-status">${customer.status}</div>
                 <button class="viewOrders">Orders</button> 
                 <div class="customer-actions">
@@ -207,6 +208,7 @@ function openEditCustomerModal(customerId) {
     document.getElementById('edit-customer-join-date').value = customer.joinDate;
     document.getElementById('edit-customer-status').value = customer.status;
 
+    
     document.getElementById('edit-customer-modal').classList.add('show');
 }
 

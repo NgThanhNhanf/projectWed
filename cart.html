@@ -135,31 +135,35 @@
                     </p>
                  </div>
                 <h1>Bạn muốn gửi đơn hàng tới đâu ? </h1>
+                 
+                 <!-- Cho phep chon dia chi cu -->
+                <div class="address-section">
+                    <button id="showOldAddresses" type="button">Xem địa chỉ cũ</button>
+                    <!-- hien thi danh sach dia chi cu -->
+                    <div id="oldAddresses" style="display: none;" class="old-addresses-list"></div>
 
-                 <div class="checkOldAddress">
-                    <label for="">
-                        <input type="checkbox" name="" id="">Sử dụng địa chỉ cũ
-                    </label>
-                 </div>
-
-                <div class="form-group">
-                    <input type="text" id="address" name="address" placeholder="" required>
-                    <label for="address">Số Đường</label>
+                    <button id="newAddressButton" type="button" style="display: none;">Nhập địa chỉ mới</button>
                 </div>
-                <div class="form-group">
-                    <input type="text" id="country" name="country" placeholder="" required>
-                    <label for="country">Quận</label>
-                </div>
-                <div class="form-group city-phone">
-                    <div>
-                        <input type="text" id="city" name="city" placeholder="" required>
-                        <label for="city">Thành Phố</label>
 
+                <div class="address-form" id="addressForm">
+                    <div class="form-group">
+                        <input type="text" id="address" name="address" placeholder="" required>
+                        <label for="address">Số Đường</label>
                     </div>
-                    <div>
-                        <input type="tel" id="phone" name="phone" placeholder="" required>
-                        <label for="phone">Số điện thoại</label>
-
+                    <div class="form-group">
+                        <input type="text" id="country" name="country" placeholder="" required>
+                        <label for="country">Quận</label>
+                    </div>
+                    <div class="form-group city-phone">
+                        <div>
+                            <input type="text" id="city" name="city" placeholder="" required>
+                            <label for="city">Thành Phố</label>
+    
+                        </div>
+                        <div>
+                            <input type="tel" id="phone" name="phone" placeholder="" required>
+                            <label for="phone">Số điện thoại</label>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="proceed-btn">Chọn phương thức thanh toán</button>

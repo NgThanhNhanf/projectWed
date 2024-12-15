@@ -942,6 +942,7 @@ function setTopProduct(chartId, dataType) {
       this.classList.add('active');
     });
   });
+
 } 
 
 function createChart(chartElement, chartType, labels, datasets, dataSource) {

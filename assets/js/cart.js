@@ -15,7 +15,7 @@ const checkoutsection = document.querySelector('.checkout-section');
 
 buttonCheckout.addEventListener('click', () => {
     const isCart = getCartFromLocalStorage()
-    if(isCart.length == 0 ) {
+    if (isCart.length == 0) {
         alert('ban phai mua hang thi moi duoc thanh toan')
         return;
     }
@@ -290,14 +290,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //form order
 const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-console.log(currentUser)
-if(currentUser) {
+if (currentUser) {
     var formdk = document.formdk;
     formdk.email.value = currentUser.email;
     formdk.name.value = currentUser.username;
     formdk.email.readOnly = true;
     formdk.name.readOnly = true;
-}else {
+} else {
     alert("kiem tra lai thong tin cua ban!");
 }
 
@@ -376,53 +375,88 @@ function displayCheckout(cart) {
 
 
 
-//click vao di den phuong thuc thanh toan -> chuyen den trang tuy chon thanh toan
+    //click vao di den phuong thuc thanh toan -> chuyen den trang tuy chon thanh toan
 
-function setAddressCusInLocal(addressCustomer) {
-    localStorage.setItem('addressCustomer', JSON.stringify(addressCustomer));
-}
-
-function getAddressCusInLocal() {
-    const addressCus = localStorage.getItem('addressCustomer');
-    return addressCus ? JSON.parse(addressCus) : [];
-}
-
-function isCheckPayment() {
-    const formPayment = document.formPy;
-    const country = formPayment.country.value;
-    const address = formPayment.address.value;
-    const city = formPayment.city.value;
-    const phone = formPayment.phone.value;
-
-    if (!country || !address || !city || !phone) {
-        alert("Vui lòng điền đầy đủ thông tin địa chỉ!");
-        return false;
+    function setAddressCusInLocal(addressCustomer) {
+        localStorage.setItem('addressCustomer', JSON.stringify(addressCustomer));
     }
-    return true;
-}
 
-//chon dia chi old or new => nhap du lieu moi
-function isOldAddress() {
-    const addressCustomer = JSON.parse(localStorage.getItem('addressCustomer')) || null;
-    if(addressCustomer){
-        let oldAddress = addressCustomer[0];
-        document.getElementById('country').value = oldAddress.country || ''
-        document.getElementById('address').value = oldAddress.address || ''
-        document.getElementById('city').value = oldAddress.city || ''
-        document.getElementById('phone').value = oldAddress.phone || ''
+    function getAddressCusInLocal() {
+        const addressCus = localStorage.getItem('addressCustomer');
+        return addressCus ? JSON.parse(addressCus) : [];
     }
-}
 
-function isCheckboxOldAddress() {
-    const isCheckboxOldAddress = document.querySelector('.checkOldAddress input')
+    function isCheckPayment() {
+        const formPayment = document.formPy;
+        const country = formPayment.country.value;
+        const address = formPayment.address.value;
+        const city = formPayment.city.value;
+        const phone = formPayment.phone.value;
 
-    if(isCheckboxOldAddress.checked) {
-        isOldAddress()
+        if (!country || !address || !city || !phone) {
+            alert("Vui lòng điền đầy đủ thông tin địa chỉ!");
+            return false;
+        }
+        return true;
+    }
+
+    //chon dia chi old or new => nhap du lieu moi
+    function showOldAddresses() {
+        const addressCustomer = getAddressCusInLocal()
+        const oldAddresssesContainer = document.getElementById('oldAddresses');
+
+        oldAddresssesContainer.innerHTML = ''
+
+        if (addressCustomer.length == 0) {
+            oldAddresssesContainer.innerHTML = '<p> không có địa chỉ cũ</p>'
+        } else {
+            addressCustomer.forEach((address, index) => {
+                const addressCard = document.createElement('div');
+                addressCard.classList.add("address-card");
+
+                addressCard.innerHTML = `
+                    <div class="address-row">
+                        <span><strong>Địa chỉ:</strong> ${address.address}</span>
+                        <span><strong>Quận:</strong> ${address.country}</span>
+                        <span><strong>Thành phố:</strong> ${address.city}</span>
+                        <span><strong>Số điện thoại:</strong> ${address.phone}</span>
+                        <button class="select-btn" data-index="${index}">Chọn</button>
+                    </div>
+                `;
+                oldAddresssesContainer.appendChild(addressCard)
+            });
+            document.querySelectorAll('.select-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const index = button.getAttribute('data-index');
+                    selectOldAddress(index);
+                });
+            });
+            document.getElementById('newAddressButton').style.display = 'block';
+        }
+        oldAddresssesContainer.style.display = 'block'
+    }
+    function selectOldAddress(index) {
+        const addressCustomer = getAddressCusInLocal();
+        const selectedAddress = addressCustomer[index];
+     
+        document.getElementById("address").value = selectedAddress.address;
+        document.getElementById("country").value = selectedAddress.country;
+        document.getElementById("city").value = selectedAddress.city;
+        document.getElementById("phone").value = selectedAddress.phone;
+
+
         document.getElementById('country').disabled = true;
         document.getElementById('address').disabled = true;
         document.getElementById('city').disabled = true;
         document.getElementById('phone').disabled = true;
-    } else {
+
+        document.getElementById('oldAddresses').style.display = 'none';
+
+        alert('đã chọn địa chỉ cũ');
+    }
+
+    function selectNewAddress() {
         document.getElementById('country').disabled = false;
         document.getElementById('address').disabled = false;
         document.getElementById('city').disabled = false;
@@ -432,42 +466,67 @@ function isCheckboxOldAddress() {
         document.getElementById('address').value = ''
         document.getElementById('city').value = ''
         document.getElementById('phone').value = ''
-    }
-}
 
-function saveAddressInLocal(event) {
-    event.preventDefault()
-
-    if(!isCheckPayment()){
-        alert('thong tin khong hop le')
-        return;
+        document.getElementById('oldAddresses').style.display = 'none';
+        alert('nhap dia chi moi')
     }
 
-    const newCountry = document.getElementById('country').value
-    const newAddress = document.getElementById('address').value
-    const newCity = document.getElementById('city').value
-    const newPhone = document.getElementById('phone').value;
-    const customerInLocal = getAddressCusInLocal();
+    document.getElementById("showOldAddresses").addEventListener("click", showOldAddresses);
+    document.getElementById("newAddressButton").addEventListener("click", selectNewAddress);
+
+    document.querySelector(".proceed-btn").addEventListener("click", saveAddressInLocal)
+
+    //Nếu có địa chỉ cũ, hiển thị nút chọn
+    document.addEventListener("DOMContentLoaded", () => {
+        const oldAddresses = getAddressCusInLocal();
+        if (oldAddresses.length > 0) {
+            document.getElementById("showOldAddresses").style.display = "block";
+        } else {
+            document.getElementById("showOldAddresses").style.display = "none";
+        }
+    });
+
+
+    function saveAddressInLocal(event) {
+        event.preventDefault()
+
+        if (!isCheckPayment()) {
+            alert('thong tin khong hop le')
+            return;
+        }
+
+        const newCountry = document.getElementById('country').value
+        const newAddress = document.getElementById('address').value
+        const newCity = document.getElementById('city').value
+        const newPhone = document.getElementById('phone').value;
+        const customerInLocal = getAddressCusInLocal();
+
+
 
         const updateAddress = {
-            country : newCountry,
-            address : newAddress,
-            city : newCity,
-            phone : newPhone
+            country: newCountry,
+            address: newAddress,
+            city: newCity,
+            phone: newPhone
         };
-    
+
+        const checknewAddressIsOld = customerInLocal.some(addressOld => {
+            return addressOld.country === updateAddress.country &&
+                    addressOld.address === updateAddress.address &&
+                    addressOld.city === updateAddress.city &&
+                    addressOld.phone === updateAddress.phone
+        });
+
+        if(checknewAddressIsOld) {
+            alert('địa chỉ này đã tồn tại')
+            return;
+        }
+
         customerInLocal.push(updateAddress);
         setAddressCusInLocal(customerInLocal)
         alert('them dia chi moi thanh cong')
-    
-}
 
-document.querySelector('.checkOldAddress input').addEventListener('change',isCheckboxOldAddress)
-
-document.querySelector('.proceed-btn').addEventListener('click',saveAddressInLocal);
-
-document.addEventListener('DOMContentLoaded',isOldAddress)
-
+    }
 
 //----------xử lí thanh toán-----------
 
@@ -489,15 +548,15 @@ document.addEventListener("DOMContentLoaded", function () {
         codeCard.style.display = show ? "block" : "none"
     }
 
-   paymentOptions.forEach(option => {
-    option.addEventListener('change',() => {
-        if(radioCard.checked){
-            openMethodOfCard(true)
-        }else {
-            openMethodOfCard(false)
-        }
-    });
-   })
+    paymentOptions.forEach(option => {
+        option.addEventListener('change', () => {
+            if (radioCard.checked) {
+                openMethodOfCard(true)
+            } else {
+                openMethodOfCard(false)
+            }
+        });
+    })
     // Xử lý khi submit form
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Ngăn chặn hành động mặc định
@@ -509,23 +568,23 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        if(radioCard.checked){
+        if (radioCard.checked) {
             const cardFields = document.querySelectorAll('#card-name,#card-number,#expiry-date,#cvv');
             let isValid = true;
             // Kiểm tra các trường input
-        cardFields.forEach(input => {
-            if (!input.value.trim()) {
-                isValid = false;
-                input.classList.add("error");
-            } else {
-                input.classList.remove("error");
-            }
-        });
+            cardFields.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.classList.add("error");
+                } else {
+                    input.classList.remove("error");
+                }
+            });
 
-        if (!isValid) {
-            alert("Vui lòng điền đầy đủ thông tin!");
-            return;
-        }
+            if (!isValid) {
+                alert("Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
 
         }
 
