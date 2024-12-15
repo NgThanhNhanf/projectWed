@@ -1073,7 +1073,7 @@ form {
 }
 
 #orders-container {
-    max-height: 200px;
+    max-height: 500px;
     overflow-y: auto;
     margin: 20px 0;
     padding-right: 10px;

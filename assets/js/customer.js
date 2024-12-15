@@ -61,7 +61,7 @@ function displayOrderSummary(orderId) {
     const order = orders.find(isOrder => isOrder.id === parseInt(orderId));
 
     const listAddress = order.address.map(addr =>
-        `${addr.country || "Không có quốc gia"}, 
+        `${addr.country || "Không có quận"}, 
         ${addr.city || "Không có thành phố"}, 
         ${addr.address || "Không có địa chỉ"} - 
         SĐT: ${addr.phone || "Không có số điện thoại"}
