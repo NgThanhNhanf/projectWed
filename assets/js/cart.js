@@ -217,30 +217,43 @@ function solveIconX(cart) {
 function solveQuantity(cart) {
     const minusIcon = document.querySelectorAll('.minus');
     const plusIcon = document.querySelectorAll('.plus');
+
+    // Lấy thông tin sản phẩm gốc dựa trên ID
+    function getOriginalQuantity(productName) {
+        const product = allProducts.find(p => p.name === productName);
+        return product ? product.quantity : 0;
+    }
+
     minusIcon.forEach((button, index) => {
         button.addEventListener('click', () => {
             if (cart[index].quantity > 1) {
-                cart[index].quantity--;
+                cart[index].quantity--; // Giảm số lượng trong giỏ hàng
                 displayQuantilyAlterUpdate(index, cart[index].quantity);
                 storeCartInLocalStorage(cart);
-                updateCart(cart)
-                displayCart(cart)
-                displayCheckout(cart)
+                updateCart(cart);
+                displayCart(cart);
+                displayCheckout(cart);
             }
         });
     });
 
     plusIcon.forEach((button, index) => {
         button.addEventListener('click', () => {
-            cart[index].quantity++;
-            displayQuantilyAlterUpdate(index, cart[index].quantity);
-            storeCartInLocalStorage(cart)
-            updateCart(cart)
-            displayCart(cart)
-            displayCheckout(cart)
+            const originalQuantity = getOriginalQuantity(cart[index].name);
+            if (cart[index].quantity < originalQuantity) { // Kiểm tra giới hạn
+                cart[index].quantity++; // Tăng số lượng
+                displayQuantilyAlterUpdate(index, cart[index].quantity);
+                storeCartInLocalStorage(cart);
+                updateCart(cart);
+                displayCart(cart);
+                displayCheckout(cart);
+            } else {
+                alert('Số lượng vượt quá tồn kho!');
+            }
         });
     });
 }
+
 
 function displayQuantilyAlterUpdate(index, quantity) {
     const quantityElement = document.querySelectorAll('.quantity-cnt');
