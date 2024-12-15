@@ -2,18 +2,49 @@
 
 // SỰ KIỆN DASHBOARD
 function dashboardProcessing() {
-  console.log("Dashboard loaded");
+  // Khởi tạo thời gian
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+
+  // Cập nhật dữ liệu thu nhập và chi tiêu
+  calculateTotalIncomeDay(currentDate);
+  calculateTotalSpendingDay(currentDate);
+  calculateTotalIncomeMonth(currentYear);
+  calculateTotalSpendingMonth(currentYear);
+  calculateTotalIncomeYear();
+  calculateTotalSpendingYear();
+
+  // Thiết lập dữ liệu cho biểu đồ dashboard
+  const chartId = "dashboard-chart";
+  const dataSource = "day"; // Hoặc "month", "year" tùy theo yêu cầu
+  const chartType = "bar"; // Hoặc "line", "pie", tùy theo yêu cầu
+  const labels = LabelsfullTime; // Hoặc labelsMonth, labelsYear tùy vào dataSource
+
+  const data = {
+      incomeLabel: "Income",
+      spendingLabel: "Spending",
+      profitLabel: "Profit",
+      incomeData: dataIncomeDay,
+      spendingData: dataSpendingDay,
+      profitData: dataIncomeDay.map((income, index) => income - dataSpendingDay[index])
+  };
+
+  const datasets = incomeSpendingDatasets(data);
+
+  // Lưu trạng thái biểu đồ
+  chartState[chartId] = {
+      chartType: chartType,
+      dataSource: dataSource,
+      labels: labels,
+      datasets: datasets
+  };
+
+  // Tạo biểu đồ
+  const chartElement = document.getElementById(chartId);
+  if (chartElement) {
+      createChart(chartElement, chartType, labels, datasets, dataSource);
+  }
 }
-// SỰ KIỆN PRODUCTS (Handled in adminProduct.js)
-// function productsProcessing() {
-//   console.log("Products page handler loaded");
-// }
-
-// SỰ KIỆN ANALYTICS
-// function analyticsProcessing() {
-//   console.log("Analytics loaded");
-// }
-
 // SỰ KIỆN ORDERS
 function ordersProcessing() {
   console.log("Orders loaded");
@@ -95,7 +126,7 @@ function sideBarProcessing() {
         rightContent.classList.add("hidden");
       } else {
         leftContent.classList.remove("analytics-view");
-        rightContent.classList.remove("hidden");
+        rightContent.classList.remove("hidden"); 
       }
 
       // Gọi hàm xử lý nội dung tương ứng
@@ -114,6 +145,19 @@ function sideBarProcessing() {
       setTimeout(() => showPage(target), 200);
     });
   });
+
+  // Thêm sự kiện cho "View more" để dẫn đến Analytics
+  const viewMoreButton = document.querySelector(".view-more");
+  if (viewMoreButton) {
+    viewMoreButton.addEventListener("click", function () {
+      const analyticsMenuItem = document.querySelector('.menuSideBar[data-target="analytics"]');
+      if (analyticsMenuItem) {
+        analyticsMenuItem.click();
+      } else {
+        console.error('Analytics menu item not found.');
+      }
+    });
+  }
 
   // Khởi tạo trang
   showPage(activePage);

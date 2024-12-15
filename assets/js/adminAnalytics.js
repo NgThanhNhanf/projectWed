@@ -491,16 +491,13 @@ function calculateHighDemandDay(date) {
 
 function calculateLowDemandMonth(currentDate) {
   const year = currentDate.getFullYear();
-  const month = currentDate.getMonth(); 
+  const month = currentDate.getMonth();
   const productSales = new Map();
   lowDemandMonth.fill(0);
 
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    if (
-      orderDate.getFullYear() === year &&
-      orderDate.getMonth() === month
-    ) {
+    if (orderDate.getFullYear() === year && orderDate.getMonth() === month) {
       order.cart.forEach((item) => {
         const currentSales = productSales.get(item.name) || 0;
         productSales.set(item.name, currentSales + item.quantity);
@@ -519,10 +516,7 @@ function calculateHighDemandMonth(currentDate) {
 
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    if (
-      orderDate.getFullYear() === year &&
-      orderDate.getMonth() === month
-    ) {
+    if (orderDate.getFullYear() === year && orderDate.getMonth() === month) {
       order.cart.forEach((item) => {
         const currentSales = productSales.get(item.name) || 0;
         productSales.set(item.name, currentSales + item.quantity);
@@ -567,8 +561,7 @@ function calculateHighDemandYear(currentYear) {
   processDemandData(productSales, highDemandYear, false);
 }
 
-function equalsMarketShare() {
-}
+function equalsMarketShare() {}
 
 // Hàm hỗ trợ xử lý dữ liệu nhu cầu
 function processDemandData(productSales, targetArray, isAscending) {
@@ -828,6 +821,7 @@ function setCurrentTime(chartId, offset) {
   let labels, data;
 
   if (dataSource === "day") {
+    console.log(selectedDate);
     selectedDate.setDate(selectedDate.getDate() + offset);
     timeText.textContent = selectedDate.toLocaleDateString();
 
@@ -933,24 +927,35 @@ function lowHighDemandDatasets(data) {
   ];
 }
 
-function setTopProduct(chartId, dataType) {
-  const divBox = document.querySelector('.tool-bar .date-filter');
-  const buttons = divBox.querySelectorAll('button');
-  buttons.forEach(button => {
-    button.addEventListener('click', function() {
-      buttons.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
+let currentTopTime = new Date();
 
-} 
+
+function setLowHigh(chartId, demandType) {
+  const chartElement = document.getElementById(chartId);
+  
+}
+
+function setTopTime(chartId, stepValue) {
+  const chartElement = document.getElementById(chartId);
+  if (!chartState[chartId]) {
+    console.error(`Trạng thái biểu đồ ${chartId} không được tìm thấy.`);
+    return;
+  }
+
+}
+
+function setTopProduct(chartId, dataType) {
+}
+
+function updateChartState(chartId, ) {
+
+}
 
 function createChart(chartElement, chartType, labels, datasets, dataSource) {
   // Xóa biểu đồ cũ nếu có
   if (chartElement.chartInstance) {
     chartElement.chartInstance.destroy();
   }
-
   chartElement.chartInstance = new Chart(chartElement, {
     type: chartType,
     data: {
@@ -1060,34 +1065,44 @@ function incomeSpendingOverviewProcessing(currentDate, currentYear) {
 }
 
 function displayTopProduct(demandData = []) {
-    const toolBox = document.querySelector('.tool-box');
-    if (!toolBox) return;
+  const toolBox = document.querySelector(".tool-box");
+  if (!toolBox) return;
 
-    // Xóa nội dung cũ
-    toolBox.innerHTML = '';
-    const validData = demandData.filter(item => item && typeof item === 'object');
+  // Xóa nội dung cũ
+  toolBox.innerHTML = "";
+  const validData = demandData.filter(
+    (item) => item && typeof item === "object"
+  );
 
-    if (validData.length === 0) {
-        toolBox.innerHTML = `<div class="no-data">Không có dữ liệu sản phẩm</div>`;
-        return;
-    }
+  if (validData.length === 0) {
+    toolBox.innerHTML = `<div class="no-data">Không có dữ liệu sản phẩm</div>`;
+    return;
+  }
 
-    // Tạo HTML cho từng sản phẩm có dữ liệu
-    const productHTML = validData.map(item => `
+  // Tạo HTML cho từng sản phẩm có dữ liệu
+  const productHTML = validData
+    .map(
+      (item) => `
         <div class="top-product-btn">
             <div class="name-product-label">${item.name}</div>
             <div class="market-share">
                 <div class="market-share-main">${item.percentage}%</div>
-                ${item.name !== 'Others' ? `
+                ${
+                  item.name !== "Others"
+                    ? `
                     <div class="market-share-divider">|</div>
                     <div class="market-share-sub">+ 0.00%</div>
-                ` : ''}
+                `
+                    : ""
+                }
             </div>
         </div>
-    `).join('');
+    `
+    )
+    .join("");
 
-    // Cập nhật nội dung
-    toolBox.innerHTML = productHTML;
+  // Cập nhật nội dung
+  toolBox.innerHTML = productHTML;
 }
 
 function bestWorstSellerProcessing(currentDate, currentYear) {
@@ -1113,11 +1128,11 @@ function bestWorstSellerProcessing(currentDate, currentYear) {
   const initialData = highDemandDay;
   displayTopProduct(initialData);
   const labels = highDemandDay
-  .filter((item) => item && item.percentage) // Loại bỏ các phần tử undefined hoặc không có percentage
-  .map((item) => item.percentage);
+    .filter((item) => item && item.percentage) // Loại bỏ các phần tử undefined hoặc không có percentage
+    .map((item) => item.percentage);
   const labeltitle = highDemandDay
-  .filter((item) => item && item.name) // Loại bỏ các phần tử undefined hoặc không có name
-  .map((item) => item.name);
+    .filter((item) => item && item.name) // Loại bỏ các phần tử undefined hoặc không có name
+    .map((item) => item.name);
   console.log(labeltitle);
   const data = {
     label: labeltitle,
@@ -1131,6 +1146,7 @@ function bestWorstSellerProcessing(currentDate, currentYear) {
   chartState[chartId] = {
     chartType: chartType,
     dataSource: dataSource,
+    dataType: 'high',
     labels: labeltitle,
     datasets: datasets,
   };
@@ -1139,6 +1155,30 @@ function bestWorstSellerProcessing(currentDate, currentYear) {
   if (chartElement) {
     createChart(chartElement, chartType, labeltitle, datasets, dataSource);
   }
+
+  const demandButton = document.getElementById("low-high-demand-selection");
+  const toolBar = document.querySelector(".tool-bar");
+
+  // Sự kiện lọc theo hàng bán ế hoặc bán chạy
+  demandButton.addEventListener("change", (event) => {
+    const demandType = event.target.value;
+    chartState[chartId].dataType = demandType;
+    console.log(chartState[chartId].dataType);
+    setLowHigh(chartId, demandType);
+  });
+
+  // Sự kiện lọc ngày tháng năm
+  toolBar.addEventListener("click", (event) => {
+    if (event.target.matches(".date-filter button")) {
+      const buttons = toolBar.querySelectorAll(".date-filter button");
+      buttons.forEach((btn) => btn.classList.remove("active"));
+      event.target.classList.add("active");
+
+      const newdataSource = event.target.getAttribute("data-source");
+      chartState[chartId].dataSource = newdataSource;
+      setTopProduct(chartId, newdataSource);
+    }
+  });
 }
 
 function collectionDistributionProcessing(currentDate, currentYear) {}

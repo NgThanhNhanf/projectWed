@@ -1555,3 +1555,100 @@ canvas#top-demand-product-chart {
   justify-content: space-between;
   color: greenyellow;
 }
+
+/* ##DashBoard */
+#content-dashboard {
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.summary-metrics {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 20px;
+}
+
+.summary-metrics-item {
+  background: var(--clr-background);
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 10px;
+  flex: 1 1 calc(33.333% - 30px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.summary-metrics-item:hover i {
+  opacity: 1.0;
+  scale: 1.2;
+}
+
+.summary-metrics-item:hover {
+  font-weight: bold;
+  background: var(--clr-secondary);
+}
+
+.summary-metrics-top,
+.summary-metrics-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.summary-metrics-top i,
+.summary-metrics-bottom i {
+  opacity: 0.5;
+}
+
+.analytics-table {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.analytics-table-taskbar {
+  width: 100%;
+  display: flex;
+  gap: 40%;
+  justify-content: space-between;
+}
+
+
+.analytics-table-chart {
+  width: 100%;
+  height: 200%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+#dashboard-chart {
+  width: 80%;
+  height: 60%;
+}
+
+.menu-bar-to-analytics {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
+}
+
+.menu-bar-to-analytics .over-view {
+  display: flex;
+  flex-direction: column;
+}
+.menu-bar-to-analytics .over-view p:first-of-type {
+  font-weight: bold;
+}
+
+.menu-bar-to-analytics .over-view p:last-of-type {
+  font-weight: bold;
+}
+/* ##DashBoard */
