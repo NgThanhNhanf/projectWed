@@ -1250,17 +1250,10 @@ canvas#top-demand-product-chart {
 }
 
 .customer-orders-row {
-  display: flex;
-  flex-direction: row;
   border-bottom: 1px solid #ddd;
-  width: 100%;
-  gap: 20px;
-  height: 30px;
+  margin: 10px 0;
+  padding: 10px 0;
 }
-.customer-orders-row .order-status {
-  white-space: nowrap;
-}
-
 
 /* Login Form Container */
 .displayForm {
