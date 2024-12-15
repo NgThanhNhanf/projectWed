@@ -57,7 +57,7 @@ function displayCustomers(customers) {
     }
 
     customers.forEach(customer => {
-        const orders = getOrdersForCustomer(customer.id);
+        const orders = getOrdersForCustomer(customer.email);
 
         const customerRow = document.createElement('div');
         customerRow.classList.add('customer-row');
@@ -413,7 +413,6 @@ document.querySelector('.customer-list').addEventListener('click', function (e) 
     if (e.target.classList.contains('viewOrders')) {
         const customerRow = e.target.closest('.customer-row');
         const customerEmail = customerRow.querySelector('.customer-email').innerText.trim();
-        console.log(customerEmail)
         const orders = getOrdersForCustomer(customerEmail);
         showCustomerOrderModal(orders);
     }
@@ -439,10 +438,12 @@ function showCustomerOrderModal(orders) {
     }
     console.log("Modal content updated!");
     document.getElementById('customer-orders-modal').style.display = 'block';
+    // document.getElementById('customer-orders-modal').classList.add('show');
 }
 //tat hien thi don hang khach mua
 document.querySelector('.customer-orders-modal-close').addEventListener('click', () => {
     document.getElementById('customer-orders-modal').style.display = 'none'
+    // document.getElementById('customer-orders-modal').classList.remove('show');
 });
 
 

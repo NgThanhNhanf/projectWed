@@ -929,10 +929,10 @@ function lowHighDemandDatasets(data) {
 
 let currentTopTime = new Date();
 
-
 function setLowHigh(chartId, demandType) {
-  const chartElement = document.getElementById(chartId);
-  
+  if (chartState[chartId].dataSource === "day" && demandType === "high") {
+    
+  }
 }
 
 function setTopTime(chartId, stepValue) {
@@ -941,15 +941,11 @@ function setTopTime(chartId, stepValue) {
     console.error(`Trạng thái biểu đồ ${chartId} không được tìm thấy.`);
     return;
   }
-
 }
 
-function setTopProduct(chartId, dataType) {
-}
+function setTopProduct(chartId, dataType) {}
 
-function updateChartState(chartId, ) {
-
-}
+function updateChartState(chartId) {}
 
 function createChart(chartElement, chartType, labels, datasets, dataSource) {
   // Xóa biểu đồ cũ nếu có
@@ -1105,32 +1101,41 @@ function displayTopProduct(demandData = []) {
   toolBox.innerHTML = productHTML;
 }
 
+function initializeDemandData (currentDate, currentYear) {
+    // Tính thị phần sức mua 5 sản phẩm bán chạy/ế nhất trong ngày
+    calculateLowDemandDay(currentDate);
+    calculateHighDemandDay(currentDate);
+  
+    // Tính thị phần sức mua 5 sản phẩm bán chạy/ế nhất trong tháng
+    calculateLowDemandMonth(currentDate);
+    calculateHighDemandMonth(currentDate);
+  
+    // Tính thị phần sức mua 5 sản phẩm bán chạy/ế trong năm
+    calculateLowDemandYear(currentYear);
+    calculateHighDemandYear(currentYear);
+}
+
+function setupChart() {
+
+}
+
 function bestWorstSellerProcessing(currentDate, currentYear) {
   const timeText = document.querySelector(".time-text-circle");
   if (timeText) {
     timeText.textContent = currentDate.toLocaleDateString();
   }
-  // Tính thị phần sức mua 5 sản phẩm bán chạy/ế nhất trong ngày
-  calculateLowDemandDay(currentDate);
-  calculateHighDemandDay(currentDate);
+  initializeDemandData(currentDate, currentYear);
 
-  // Tính thị phần sức mua 5 sản phẩm bán chạy/ế nhất trong tháng
-  calculateLowDemandMonth(currentDate);
-  calculateHighDemandMonth(currentDate);
-
-  // Tính thị phần sức mua 5 sản phẩm bán chạy/ế trong năm
-  calculateLowDemandYear(currentYear);
-  calculateHighDemandYear(currentYear);
-
-  // Thiết lập dữ liệu để khởi tạo
-  const dataSource = "day";
+  const demandTypes = document.getElementById('low-high-demand-selection').value.trim();
+  console.log(demandTypes);
+  
   const chartType = "pie";
   const initialData = highDemandDay;
   displayTopProduct(initialData);
-  const labels = highDemandDay
+  const labels = highDemandYear
     .filter((item) => item && item.percentage) // Loại bỏ các phần tử undefined hoặc không có percentage
     .map((item) => item.percentage);
-  const labeltitle = highDemandDay
+  const labeltitle = highDemandYear
     .filter((item) => item && item.name) // Loại bỏ các phần tử undefined hoặc không có name
     .map((item) => item.name);
   console.log(labeltitle);
@@ -1146,7 +1151,7 @@ function bestWorstSellerProcessing(currentDate, currentYear) {
   chartState[chartId] = {
     chartType: chartType,
     dataSource: dataSource,
-    dataType: 'high',
+    dataType: "high",
     labels: labeltitle,
     datasets: datasets,
   };
