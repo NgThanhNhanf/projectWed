@@ -582,6 +582,16 @@ canvas#profit-with-product-chart {
   gap: 20px;
 }
 
+.best-worst-seller .tool-bar .title-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.best-worst-seller .top-demand-title {
+  padding: 10px;
+  font-size: 30px;
+}
+
 .best-worst-seller .data-source-product {
   border: var(--border-format);
   padding: 15px 5px;
@@ -610,34 +620,39 @@ canvas#profit-with-product-chart {
   transition: background-color 0.5s ease;
 }
 
+.best-worst-seller .date-filter button.active {
+  background: var(--clr-primary);
+  color: var(--clr-background);
+  font-weight: bold;
+}
+
 .best-worst-seller .product-content {
   width: 100%;
   display: flex;
   flex-direction: row;
-}
-
-.product-content .tool-box,
-.product-content .main-chart-container {
-  border: var(--border-format);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .product-content .main-chart-container {
+  display: flex;
+  justify-content: center;
   width: 40%;
   padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
-.product-content .main-chart-container > * {
-  border: var(--border-format);
-}
 
-.product-content .main-chart-container .top-demand-title {
+.product-content .main-chart-content {
   width: 100%;
-  padding: 10px;
-  font-size: 30px;
+  padding: 20px;
 }
 
 canvas#top-demand-product-chart {
-  width: 100%;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .product-content .main-chart-container .total-purchasing-power {
@@ -657,47 +672,40 @@ canvas#top-demand-product-chart {
   gap: 10px;
   width: 60%;
   padding: 10px;
+  justify-content: space-between;
 }
 
 .top-product-btn {
-  padding: 10px;
   border: var(--border-format);
-  display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   gap: 20px;
   border-radius: 10px;
 }
 
-.product-content .tool-box .name-product-label,
-.product-content .tool-box .market-share {
-  padding: 10px;
+.product-content .tool-box > * {
+  padding: 30px;
+  font-size: 20px;
   display: flex;
-  gap: 10px;
-  border-radius: 10px;
   width: 100%;
 }
 
+.product-content .tool-box .name-product-label {
+  flex: 60%;
+}
+
 .product-content .tool-box .market-share {
+  flex: 35%;
+  display: flex;
+  flex-direction: row;
   justify-content: flex-end;
 }
 
-.market-share-main {
-  width: max-content;
-  text-align: left;
-}
-
-.market-share-divider {
-  width: 10px;
-  text-align: center;
-  color: var(--clr-text);
-}
-
+.market-share-main,
 .market-share-sub {
-  display: inline;
-  width: 60px;
-  text-align: right;
+  flex: 0 0 40%;
+  display: flex;
+  justify-content: center;
 }
 
 .income-spending-overview .date-filter button:hover,
@@ -739,8 +747,8 @@ canvas#top-demand-product-chart {
   background-color: #ddd; /* Màu nền khi hover */
 }
 
-.date-product-navigation .time-text {
-  font-size: 16px; /* Kích thước chữ của text */
+.date-product-navigation .time-text-circle {
+  font-size: 18px; /* Kích thước chữ của text */
   font-weight: bold;
   color: #333; /* Màu chữ */
 }
@@ -835,7 +843,7 @@ canvas#top-demand-product-chart {
   flex: 0 0 15%;
 }
 
-.filter-section-order .filter-item:first-of-type{
+.filter-section-order .filter-item:first-of-type {
   flex: 0 0 20%;
 }
 
@@ -1233,7 +1241,7 @@ canvas#top-demand-product-chart {
   color: #aaa;
   float: right;
   font-size: 28px;
-  font-weight: bold;  
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -1241,13 +1249,11 @@ canvas#top-demand-product-chart {
   color: red;
 }
 
-
 .customer-orders-row {
   border-bottom: 1px solid #ddd;
   margin: 10px 0;
   padding: 10px 0;
 }
-
 
 /* Login Form Container */
 .displayForm {
@@ -1452,38 +1458,40 @@ canvas#top-demand-product-chart {
 
 /* Container cho hình ảnh và preview */
 .image-preview-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Phần nhập hình ảnh chiếm 50% */
 .image-input {
-    flex: 0 0 60%;
-    display: flex;
-    flex-direction: column;
+  flex: 0 0 60%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Phần preview chiếm 50% */
-.preview, .edit-preview {
-    flex: 0 0 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 10px;
-    background-color: #f9f9f9;
+.preview,
+.edit-preview {
+  flex: 0 0 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: #f9f9f9;
 }
 
 /* Ảnh trong preview */
-.preview img, .edit-preview img {
-    max-width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 4px;
+.preview img,
+.edit-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 /* Modal remove product */
@@ -1496,14 +1504,14 @@ canvas#top-demand-product-chart {
 }
 
 .remove-header-box {
-    font-size: 18px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; /* Phân bố đều khoảng cách giữa các phần tử */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    padding: 10px 0;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ddd; /* Thêm đường viền dưới để tách biệt */
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Phân bố đều khoảng cách giữa các phần tử */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd; /* Thêm đường viền dưới để tách biệt */
 }
 
 .remove-product-list {
@@ -1515,17 +1523,17 @@ canvas#top-demand-product-chart {
 
 /* Sắp xếp các phần tử trong mỗi remove-product-item ngang hàng */
 .remove-product-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center; /* Căn giữa theo chiều dọc */
-    padding: 10px 0; /* Thêm khoảng đệm nếu cần */
-    border-bottom: 1px solid #f0f0f0; /* Thêm đường viền dưới để tách biệt */
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Căn giữa theo chiều dọc */
+  padding: 10px 0; /* Thêm khoảng đệm nếu cần */
+  border-bottom: 1px solid #f0f0f0; /* Thêm đường viền dưới để tách biệt */
 }
 
 .remove-product-item:hover {
   background: var(--clr-secondary);
 }
-.remove-product-item:hover p{
+.remove-product-item:hover p {
   font-size: 18px;
 }
 
@@ -1545,6 +1553,5 @@ canvas#top-demand-product-chart {
   display: flex;
   flex: 0 0 90%;
   justify-content: space-between;
+  color: greenyellow;
 }
-
-

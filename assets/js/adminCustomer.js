@@ -36,7 +36,6 @@ function addCustomerFromOrder() {
             name: order.customer[0].nameCus,
             email: order.customer[0].emailCus,
             phone: order.address[0].phone,
-            totalSpending: order.total,
             status: 'Customer',
             joinDate: new Date().toISOString()
         };
@@ -129,7 +128,6 @@ function addNewCustomer() {
     const phoneInput = document.getElementById('customer-phone');
     const addressInput = document.getElementById('customer-address');
     const joinDateInput = document.getElementById('customer-join-date');
-    // const totalSpendingInput = document.getElementById('customer-spending');
     const statusInput = document.getElementById('customer-status');
 
     const name = nameInput.value.trim();
@@ -138,7 +136,6 @@ function addNewCustomer() {
     const address = addressInput.value.trim();
     const joinDate = joinDateInput.value;
     const status = statusInput.value.trim();
-    // const totalSpending = parseFloat(totalSpendingInput.value) || 0;
 
     const customers = getCustomersFromLocal();
 
@@ -146,12 +143,6 @@ function addNewCustomer() {
         alert('Please fill in all required fields.');
         return;
     }
-
-    // Validate Total Spending
-    // if (totalSpending < 0) {
-    //     alert('Giá tiền không được âm.');
-    //     return;
-    // }
 
     // Validate Email Format
     if (!isValidEmailFormat(email)) {
@@ -197,7 +188,6 @@ function addNewCustomer() {
     phoneInput.value = '';
     addressInput.value = '';
     joinDateInput.value = '';
-    // totalSpendingInput.value = '';
     statusInput.value = '';
 
     document.getElementById('add-customer-form').reset();
@@ -215,7 +205,6 @@ function openEditCustomerModal(customerId) {
     document.getElementById('edit-customer-phone').value = customer.phone;
     document.getElementById('edit-customer-address').value = customer.address;
     document.getElementById('edit-customer-join-date').value = customer.joinDate;
-    document.getElementById('edit-customer-spending').value = customer.totalSpending;
     document.getElementById('edit-customer-status').value = customer.status;
 
     document.getElementById('edit-customer-modal').classList.add('show');
@@ -229,15 +218,10 @@ function updateCustomer() {
     const phone = document.getElementById('edit-customer-phone').value.trim();
     const address = document.getElementById('edit-customer-address').value.trim();
     const joinDate = document.getElementById('edit-customer-join-date').value;
-    const totalSpending = parseFloat(document.getElementById('edit-customer-spending').value) || 0;
     const status = document.getElementById('edit-customer-status').value.trim();
 
     if (!name || !email || !phone || !joinDate || !status) {
         alert('Please fill in all required fields.');
-        return;
-    }
-    if (totalSpending < 0) {
-        alert('Giá tiền không được âm.');
         return;
     }
 
@@ -278,7 +262,6 @@ function updateCustomer() {
         phone,
         address,
         joinDate,
-        totalSpending,
         status
     };
     saveCustomersToLocal(customers);
@@ -382,23 +365,6 @@ function filterAndSearchCustomers() {
                 isValid = false;
             }
             if (filterJoinDate === 'last-year' && (customerDate < firstDayLastYear || customerDate >= firstDayThisYear)) {
-                isValid = false;
-            }
-        }
-
-        // Filter by spending
-        if (filterSpending) {
-            const spending = customer.totalSpending;
-            if (filterSpending === '0-1000000' && (spending < 0 || spending > 1000000)) {
-                isValid = false;
-            }
-            if (filterSpending === '1000000-5000000' && (spending < 1000000 || spending > 5000000)) {
-                isValid = false;
-            }
-            if (filterSpending === '5000000-10000000' && (spending < 5000000 || spending > 10000000)) {
-                isValid = false;
-            }
-            if (filterSpending === '10000000+' && spending < 10000000) {
                 isValid = false;
             }
         }

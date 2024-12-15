@@ -5,7 +5,7 @@ const config = {
   orderKey: "informationOrder",
   orders: [
     {
-      id: 1733403055339,
+      id: 1733479747069,
       address: [
         {
           country: "Vietnam",
@@ -16,56 +16,17 @@ const config = {
       ],
       cart: [
         {
-          id: "4",
-          name: "Alesia T-shirt",
-          image: "http://127.0.0.1:5501/assets/img/product/img4.jpg",
-          price: 400,
-          quantity: 1,
+          name: "BinGo T-shirt",
+          image: "http://127.0.0.1:5500/assets/img/product/img1.jpg",
           size: "S",
-        },
-        {
-          name: "Polo White",
-          image: "http://127.0.0.1:5501/assets/img/product/img2.jpg",
-          size: "S",
-          price: 300,
-          quantity: 2,
-        },
-      ],
-      customer: [
-        {
-          firstNameCus: "Thanh Hiền",
-          lastNameCus: "Nguyễn",
-          emailCus: "thanhhien00000005@gmail.com",
-          indexLogin: 4,
-        },
-      ],
-      status: "Đang xử lý",
-      timeOrder: 1733403055339,
-      total: 1000,
-    },
-    {
-      id: 1733405936178,
-      address: [
-        {
-          country: "Vietnam",
-          address: "Chợ Mới",
-          city: "An Giang",
-          phone: "0866065213",
-        },
-      ],
-      cart: [
-        {
-          name: "Cream Sweater",
-          image: "http://127.0.0.1:5501/assets/img/product/aolen4.jpg",
-          size: "S",
-          price: 233,
+          price: 205600,
           quantity: 1,
         },
         {
-          name: "Black T-shirt",
-          image: "http://127.0.0.1:5501/assets/img/product/aothun1.jpg",
+          name: "Anh hải",
+          image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAA",
           size: "S",
-          price: 233,
+          price: 120000,
           quantity: 1,
         },
       ],
@@ -75,14 +36,14 @@ const config = {
           lastNameCus: "Nguyễn",
           emailCus: "thanhhien00000005@gmail.com",
           indexLogin: 5,
+          status: "Đã xác nhận",
+          timeOrder: 1734166858927,
+          total: 325600,
         },
       ],
-      status: "Đang xử lý",
-      timeOrder: 1733405936178,
-      total: 466,
     },
     {
-      id: 1733412353076,
+      id: 1733481635091,
       address: [
         {
           country: "Vietnam",
@@ -93,173 +54,131 @@ const config = {
       ],
       cart: [
         {
-          name: "White Collection",
-          image: "http://127.0.0.1:5501/assets/img/product/co1.png",
-          price: 233,
+          name: "Anh hải",
+          image: "data:image/png;base64,UklGRoiBAQBXRUJQVlA4IHyBAQB",
+          size: "S",
+          price: 120000,
           quantity: 1,
+        },
+        {
+          name: "Black Collection",
+          image: "http://127.0.0.1:5500/assets/img/product/co2.jpg",
           size: "S",
-        },
-        {
-          name: "White T-shirt",
-          image: "http://127.0.0.1:5501/assets/img/product/aothun2.jpg",
-          price: 233,
-          quantity: 2,
-          size: "S",
-        },
-      ],
-      customer: [
-        {
-          firstNameCus: "Thanh Hiền",
-          lastNameCus: "Nguyễn",
-          emailCus: "thanhhien00000005@gmail.com",
-          indexLogin: 6,
-        },
-      ],
-      status: "Đang xử lý",
-      timeOrder: 1733412353076,
-      total: 699,
-    },
-    {
-      id: 1733412393162,
-      address: [
-        {
-          country: "Vietnam",
-          address: "Chợ Mới",
-          city: "An Giang",
-          phone: "0866065213",
-        },
-      ],
-      cart: [
-        {
-          name: "White Shirt",
-          image: "http://127.0.0.1:5501/assets/img/product/img6.jpg",
-          price: 100,
+          price: 559999,
           quantity: 1,
+        },
+        {
+          name: "White Blazer",
+          image: "http://127.0.0.1:5500/assets/img/product/aovest3.png",
           size: "S",
-        },
-        {
-          name: "AnuBis T-shirt",
-          image: "http://127.0.0.1:5501/assets/img/product/img3.jpg",
-          price: 200,
-          quantity: 1,
-          size: "S",
-        },
-        {
-          name: "Wide-leg Black pants",
-          image: "http://127.0.0.1:5501/assets/img/product/quan3.jpg",
-          price: 233,
-          quantity: 2,
-          size: "S",
-        },
-      ],
-      customer: [
-        {
-          firstNameCus: "Thanh Hiền",
-          lastNameCus: "Nguyễn",
-          emailCus: "thanhhien00000005@gmail.com",
-          indexLogin: 7,
-        },
-      ],
-      status: "Đang xử lý",
-      timeOrder: 1733412393162,
-      total: 766,
-    },
-    {
-      id: 1733412430489,
-      address: [
-        {
-          country: "Vietnam",
-          address: "Chợ Mới",
-          city: "An Giang",
-          phone: "0866065213",
-        },
-      ],
-      cart: [
-        {
-          name: "Black Shorts",
-          image: "http://127.0.0.1:5501/assets/img/product/quan12.png",
-          price: 233,
-          quantity: 2,
-          size: "S",
-        },
-        {
-          name: "Wide-leg Cream pants",
-          image: "http://127.0.0.1:5501/assets/img/product/quan9.jpg",
-          price: 233,
-          quantity: 1,
-          size: "S",
-        },
-        {
-          name: "Wide-leg Black pants",
-          image: "http://127.0.0.1:5501/assets/img/product/quan3.jpg",
-          price: 233,
-          quantity: 1,
-          size: "S",
-        },
-      ],
-      customer: [
-        {
-          firstNameCus: "Thanh Hiền",
-          lastNameCus: "Nguyễn",
-          emailCus: "thanhhien00000005@gmail.com",
-          indexLogin: 8,
-        },
-      ],
-      status: "Đang xử lý",
-      timeOrder: 1733412430489,
-      total: 932,
-    },
-    {
-      id: 1733421238568,
-      address: [
-        {
-          country: "Vietnam",
-          address: "Chợ Mới",
-          city: "An Giang",
-          phone: "0866065213",
-        },
-      ],
-      cart: [
-        {
-          name: "Polo White",
-          image: "http://127.0.0.1:5500/assets/img/product/img2.jpg",
-          size: "S",
-          price: 300,
-          quantity: 5,
-        },
-        {
-          name: "White Shorts",
-          image: "http://127.0.0.1:5500/assets/img/product/quan11.png",
-          size: "S",
-          price: 233,
-          quantity: 2,
-        },
-        {
-          name: "Alesia T-shirt",
-          image: "http://127.0.0.1:5500/assets/img/product/img4.jpg",
-          size: "S",
-          price: 400,
-          quantity: 4,
-        },
-        {
-          name: "White Shirt",
-          image: "http://127.0.0.1:5500/assets/img/product/img6.jpg",
-          size: "S",
-          price: 100,
+          price: 233000,
           quantity: 1,
         },
       ],
       customer: [
         {
-          firstNameCus: "Thanh Hiền",
+          firstNameCus: "Nhật Hoàng",
           lastNameCus: "Nguyễn",
-          emailCus: "thanhhien00000005@gmail.com",
+          emailCus: "thanhhiennguyen123@gmail.com",
           indexLogin: 1,
+          status: "Giao hàng thành công",
+          timeOrder: 1734181809556,
+          total: 912999,
         },
       ],
-      status: "Đang xử lý",
-      timeOrder: 1733491238568,
-      total: 3666,
+    },
+    {
+      id: 1733481701752,
+      address: [
+        {
+          country: "Vietnam",
+          address: "Chợ Mới",
+          city: "An Giang",
+          phone: "0866065213",
+        },
+      ],
+      cart: [
+        {
+          name: "BinGo T-shirt",
+          image: "http://127.0.0.1:5500/assets/img/product/img1.jpg",
+          size: "S",
+          price: 205600,
+          quantity: 1,
+        },
+      ],
+      customer: [
+        {
+          firstNameCus: "Thanh Hiền",
+          lastNameCus: "Nguyễn",
+          emailCus: "thanhhien00000005@gmail.com",
+          indexLogin: 5,
+          status: "Đã xác nhận",
+          timeOrder: 1734166858927,
+          total: 325600,
+        },
+      ],
+    },
+    {
+      id: 1734107185967,
+      address: [
+        {
+          country: "Vietnam",
+          address: "Chợ Mới",
+          city: "An Giang",
+          phone: "0866065213",
+        },
+      ],
+      cart: [
+        {
+          name: "Anh hải",
+          image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAA",
+          size: "S",
+          price: 120000,
+          quantity: 1,
+        },
+      ],
+      customer: [
+        {
+          firstNameCus: "Thanh Hiền",
+          lastNameCus: "Nguyễn",
+          emailCus: "thanhhien00000005@gmail.com",
+          indexLogin: 5,
+          status: "Đã xác nhận",
+          timeOrder: 1734166858927,
+          total: 325600,
+        },
+      ],
+    },
+    {
+      id: 1734166858927,
+      address: [
+        {
+          country: "Vietnam",
+          address: "Chợ Mới",
+          city: "An Giang",
+          phone: "0866065213",
+        },
+      ],
+      cart: [
+        {
+          name: "BinGo T-shirt",
+          image: "http://127.0.0.1:5500/assets/img/product/img1.jpg",
+          size: "S",
+          price: 205600,
+          quantity: 1,
+        },
+      ],
+      customer: [
+        {
+          firstNameCus: "Thanh Hiền",
+          lastNameCus: "Nguyễn",
+          emailCus: "thanhhien00000005@gmail.com",
+          indexLogin: 5,
+          status: "Đã xác nhận",
+          timeOrder: 1734166858927,
+          total: 325600,
+        },
+      ],
     },
   ],
   accountKey: "users",
@@ -268,8 +187,8 @@ const config = {
       username: "hien278",
       email: "thanhvinhnguyen4594@gmail.com",
       password: "aGllbjEyMw==",
-      cartItem: []
-    }
+      cartItem: [],
+    },
   ],
 };
 // ### CẤU HÌNH DANH SÁCH DỮ LIỆU ###
@@ -295,6 +214,7 @@ const clrPrimaryRGBA = "rgba(100, 81, 70, 0.8)";
 const clrSecondaryRGBA = "rgba(254, 236, 226, 0.5)";
 const clrRedFlagRGBA = "rgba(255, 0, 0, 0.5)";
 const clrGreenFlagRGBA = "rgba(0, 255, 0, 0.8)";
+
 // ### ĐỊNH NGHĨA MÀU ###
 
 // ### BIỂU ĐỒ DỮ LIỆU ###
@@ -569,16 +489,18 @@ function calculateHighDemandDay(date) {
   }
 }
 
-function calculateLowDemandMonth(year) {
+function calculateLowDemandMonth(currentDate) {
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth(); 
   const productSales = new Map();
-
-  // Đặt lại mảng
   lowDemandMonth.fill(0);
 
-  // Tính doanh số cho từng sản phẩm trong tháng được chọn
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    if (orderDate.getFullYear() === year) {
+    if (
+      orderDate.getFullYear() === year &&
+      orderDate.getMonth() === month
+    ) {
       order.cart.forEach((item) => {
         const currentSales = productSales.get(item.name) || 0;
         productSales.set(item.name, currentSales + item.quantity);
@@ -589,16 +511,18 @@ function calculateLowDemandMonth(year) {
   processDemandData(productSales, lowDemandMonth, true); // true cho sắp xếp tăng dần (nhu cầu thấp)
 }
 
-function calculateHighDemandMonth(year) {
+function calculateHighDemandMonth(currentDate) {
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
   const productSales = new Map();
-
-  // Đặt lại mảng
   highDemandMonth.fill(0);
 
-  // Tính doanh số cho từng sản phẩm trong tháng được chọn
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    if (orderDate.getFullYear() === year) {
+    if (
+      orderDate.getFullYear() === year &&
+      orderDate.getMonth() === month
+    ) {
       order.cart.forEach((item) => {
         const currentSales = productSales.get(item.name) || 0;
         productSales.set(item.name, currentSales + item.quantity);
@@ -609,46 +533,41 @@ function calculateHighDemandMonth(year) {
   processDemandData(productSales, highDemandMonth, false); // false cho sắp xếp giảm dần (nhu cầu cao)
 }
 
-function calculateLowDemandYear() {
+function calculateLowDemandYear(currentYear) {
   const productSales = new Map();
-
-  // Đặt lại mảng
   lowDemandYear.fill(0);
 
-  // Tính doanh số cho từng sản phẩm qua các năm
   orderList.forEach((order) => {
-    order.cart.forEach((item) => {
-      const currentSales = productSales.get(item.name) || 0;
-      productSales.set(item.name, currentSales + item.quantity);
-    });
+    const orderDate = new Date(order.timeOrder);
+    if (orderDate.getFullYear() === currentYear) {
+      order.cart.forEach((item) => {
+        const currentSales = productSales.get(item.name) || 0;
+        productSales.set(item.name, currentSales + item.quantity);
+      });
+    }
   });
 
   processDemandData(productSales, lowDemandYear, true);
 }
 
-function calculateHighDemandYear() {
+function calculateHighDemandYear(currentYear) {
   const productSales = new Map();
-
-  // Đặt lại mảng
   highDemandYear.fill(0);
 
-  // Tính doanh số cho từng sản phẩm qua các năm
   orderList.forEach((order) => {
-    order.cart.forEach((item) => {
-      const currentSales = productSales.get(item.name) || 0;
-      productSales.set(item.name, currentSales + item.quantity);
-    });
+    const orderDate = new Date(order.timeOrder);
+    if (orderDate.getFullYear() === currentYear) {
+      order.cart.forEach((item) => {
+        const currentSales = productSales.get(item.name) || 0;
+        productSales.set(item.name, currentSales + item.quantity);
+      });
+    }
   });
 
   processDemandData(productSales, highDemandYear, false);
 }
 
 function equalsMarketShare() {
-  /*
-  Với calculateMarketShare sẽ truyền vào định dạng bộ lọc hiện tại là đang lọc theo ngày, hay tháng hay năm và đang lọc theo sản phẩm bán chạy hay bán ế
-  Công việc của nó là tạo một mảng tạm thời của bộ lọc hiện tại là bán chạy/ế và ngày/tháng/năm nhưng nó là bảng trạng thái của một loại thời gian được truyền vào trước đó trừ đi 1.
-  Ví dụ: Nếu tôi đang truy vấn theo ngày và 
-  */
 }
 
 // Hàm hỗ trợ xử lý dữ liệu nhu cầu
@@ -985,6 +904,46 @@ function incomeSpendingDatasets(data) {
   ];
 }
 
+function lowHighDemandDatasets(data) {
+  const colorList = [
+    "red",
+    "purple",
+    "cyan",
+    "greenyellow",
+    "yellow",
+    "orange",
+  ];
+  const colorListRGB = [
+    "rgba(255, 0, 0, 0.6)", // white
+    "rgba(128, 0, 128, 0.6)", // purple
+    "rgba(0, 255, 255, 0.6)", // cyan
+    "rgba(173, 255, 47, 0.6)", // greenyellow
+    "rgba(255, 255, 0, 0.6)", // yellow
+    "rgba(255, 165, 0, 0.6)", // orange
+  ];
+
+  return [
+    {
+      label: data.labels,
+      data: data.labelData,
+      backgroundColor: colorListRGB,
+      borderColor: colorList,
+      borderWidth: 2,
+    },
+  ];
+}
+
+function setTopProduct(chartId, dataType) {
+  const divBox = document.querySelector('.tool-bar .date-filter');
+  const buttons = divBox.querySelectorAll('button');
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      buttons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+} 
+
 function createChart(chartElement, chartType, labels, datasets, dataSource) {
   // Xóa biểu đồ cũ nếu có
   if (chartElement.chartInstance) {
@@ -1002,8 +961,6 @@ function createChart(chartElement, chartType, labels, datasets, dataSource) {
 }
 
 // ### TẠO BIỂU ĐỒ VÀ PHƯƠNG THỨC THAO TÁC ###
-
-
 
 // SỰ KIỆN ANALYSTICS
 function incomeSpendingOverviewProcessing(currentDate, currentYear) {
@@ -1101,35 +1058,86 @@ function incomeSpendingOverviewProcessing(currentDate, currentYear) {
   }
 }
 
+function displayTopProduct(demandData = []) {
+    const toolBox = document.querySelector('.tool-box');
+    if (!toolBox) return;
+
+    // Xóa nội dung cũ
+    toolBox.innerHTML = '';
+    const validData = demandData.filter(item => item && typeof item === 'object');
+
+    if (validData.length === 0) {
+        toolBox.innerHTML = `<div class="no-data">Không có dữ liệu sản phẩm</div>`;
+        return;
+    }
+
+    // Tạo HTML cho từng sản phẩm có dữ liệu
+    const productHTML = validData.map(item => `
+        <div class="top-product-btn">
+            <div class="name-product-label">${item.name}</div>
+            <div class="market-share">
+                <div class="market-share-main">${item.percentage}%</div>
+                ${item.name !== 'Others' ? `
+                    <div class="market-share-divider">|</div>
+                    <div class="market-share-sub">+ 0.00%</div>
+                ` : ''}
+            </div>
+        </div>
+    `).join('');
+
+    // Cập nhật nội dung
+    toolBox.innerHTML = productHTML;
+}
+
 function bestWorstSellerProcessing(currentDate, currentYear) {
+  const timeText = document.querySelector(".time-text-circle");
+  if (timeText) {
+    timeText.textContent = currentDate.toLocaleDateString();
+  }
   // Tính thị phần sức mua 5 sản phẩm bán chạy/ế nhất trong ngày
   calculateLowDemandDay(currentDate);
   calculateHighDemandDay(currentDate);
 
   // Tính thị phần sức mua 5 sản phẩm bán chạy/ế nhất trong tháng
-  calculateLowDemandMonth(currentYear);
-  calculateHighDemandMonth(currentYear);
+  calculateLowDemandMonth(currentDate);
+  calculateHighDemandMonth(currentDate);
 
   // Tính thị phần sức mua 5 sản phẩm bán chạy/ế trong năm
-  calculateLowDemandYear();
-  calculateHighDemandYear();
+  calculateLowDemandYear(currentYear);
+  calculateHighDemandYear(currentYear);
 
   // Thiết lập dữ liệu để khởi tạo
+  const dataSource = "day";
+  const chartType = "pie";
+  const initialData = highDemandDay;
+  displayTopProduct(initialData);
+  const labels = highDemandDay
+  .filter((item) => item && item.percentage) // Loại bỏ các phần tử undefined hoặc không có percentage
+  .map((item) => item.percentage);
+  const labeltitle = highDemandDay
+  .filter((item) => item && item.name) // Loại bỏ các phần tử undefined hoặc không có name
+  .map((item) => item.name);
+  console.log(labeltitle);
+  const data = {
+    label: labeltitle,
+    labelData: labels,
+  };
 
-  const categorySelect = document.getElementById("low-high-demand-selection");
+  const datasets = lowHighDemandDatasets(data);
+  console.log(datasets);
 
-  // Lắng nghe sự kiện change
-  categorySelect.addEventListener("change", function () {
-    // Lấy giá trị của option đang được chọn
-    const selectedValue = categorySelect.value;
+  const chartId = "top-demand-product-chart";
+  chartState[chartId] = {
+    chartType: chartType,
+    dataSource: dataSource,
+    labels: labeltitle,
+    datasets: datasets,
+  };
 
-    // Kiểm tra giá trị
-    if (selectedValue === "income") {
-      console.log("You selected Income");
-    } else if (selectedValue === "spending") {
-      console.log("You selected Spending");
-    }
-  });
+  const chartElement = document.getElementById(chartId);
+  if (chartElement) {
+    createChart(chartElement, chartType, labeltitle, datasets, dataSource);
+  }
 }
 
 function collectionDistributionProcessing(currentDate, currentYear) {}
