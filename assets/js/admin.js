@@ -4,12 +4,6 @@
 function dashboardProcessing() {
   console.log("Dashboard loaded");
 }
-
-// SỰ KIỆN CUSTOMERS
-function customersProcessing() {
-  console.log("Customers loaded");
-}
-
 // SỰ KIỆN PRODUCTS (Handled in adminProduct.js)
 // function productsProcessing() {
 //   console.log("Products page handler loaded");
