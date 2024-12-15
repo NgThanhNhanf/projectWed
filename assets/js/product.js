@@ -665,7 +665,7 @@ const modalDetail = document.querySelector('.detail-content');
 const closeModal = document.querySelector('.close');
 const quantity = document.getElementById('quantity');
 const product = document.querySelectorAll('.product');
-
+let qualityProduct = 1;
 // Hàm mở modal và hiển thị thông tin sản phẩm
 function openModal(product) {
     const productImage = product.querySelector('img').src;
@@ -678,6 +678,7 @@ function openModal(product) {
     const curProduct = allProduct.find(product => product.name === productName);
     modalDetail.textContent = curProduct.detail;
     productModal.style.display = 'block';
+    qualityProduct = curProduct.quantity;
 }
 
 
@@ -700,8 +701,11 @@ function addClickEventToProducts() {
 let quantityCount = 1;
 
 document.querySelector('.quantity-btn:nth-child(3)').onclick = () => {
-    quantityCount += 1;
-    quantity.textContent = quantityCount;
+    if(quantityCount < qualityProduct){
+        quantityCount += 1;
+        quantity.textContent = quantityCount;
+    }
+    
 };
 
 
