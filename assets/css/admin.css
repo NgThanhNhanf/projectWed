@@ -1116,6 +1116,8 @@ canvas#top-demand-product-chart {
 
 .customer-status {
   border-radius: 10px;
+  padding: 2px;
+  display: block;
 }
 
 .customer-row div:nth-of-type(6) {
@@ -1127,7 +1129,7 @@ canvas#top-demand-product-chart {
 }
 
 .status-customer {
-  background: #4CAF50;
+  background: #115aeb;
 }
 
 .status-premium {
