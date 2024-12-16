@@ -170,7 +170,7 @@ function leftContentProcessing(activePage) {
       dashboardProcessing();
       break;
     case "customers":
-      customersProcessing();
+      customerProcessing();
       break;
     case "products":
       productsProcessing(); // Calls adminProduct.js's productsProcessing

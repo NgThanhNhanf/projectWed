@@ -390,7 +390,7 @@ function displayCheckout(cart) {
         const city = formPayment.city.value;
         const phone = formPayment.phone.value;
 
-        if (!country || !address || !city || !phone) {
+        if (!country || !address || !city || !phone || !email) {
             alert("Vui lòng điền đầy đủ thông tin địa chỉ!");
             return false;
         }

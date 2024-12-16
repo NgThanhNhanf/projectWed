@@ -19,10 +19,6 @@
         <div id="sidebar">
             <div class="logo text">ALESIA</div>
             <div class="side-menu top">
-                <div class="menuSideBar active" data-target="dashboard">
-                    <i class="fa-brands fa-windows"></i>
-                    <span class="text">Dashboard</span>
-                </div>
                 <div class="menuSideBar" data-target="customers">
                     <i class="fa-solid fa-users"></i>
                     <span class="text">Customers</span>
@@ -51,61 +47,6 @@
             <!-- <<LEFT CONTENT TITLE>> -->
             <div class="left-content-title">
                 <p>Dashboard</p>
-            </div>
-            <!-- Dashboard content (empty) -->
-            <div id="content-dashboard" class="content-page">
-                <!-- <<SUMMARY METRICS>> -->
-                <div class="summary-metrics">
-                    <div class="summary-metrics-item">
-                        <div class="summary-metrics-top">
-                            <p>Total Income</p>
-                            <i class="fa-solid fa-circle-chevron-right"></i>
-                        </div>
-                        <div class="summary-metrics-bottom">
-                            <p>$12.429,12</p>
-                            <p style="color: chartreuse;">+5,16%</p>
-                        </div>
-                    </div>
-
-                    <div class="summary-metrics-item">
-                        <div class="summary-metrics-top">
-                            <p>Total Spending</p>
-                            <i class="fa-solid fa-circle-chevron-right"></i>
-                        </div>
-                        <div class="summary-metrics-bottom">
-                            <p>$6.278,04</p>
-                            <p style="color: #00b9b9;">+7.46%</p>
-                        </div>
-                    </div>
-
-                    <div class="summary-metrics-item">
-                        <div class="summary-metrics-top">
-                            <p>Total Customers</p>
-                            <i class="fa-solid fa-circle-chevron-right"></i>
-                        </div>
-                        <div class="summary-metrics-bottom">
-                            <p>15,389</p>
-                            <p style="color: #00b9b9;">+1,16%</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- <<ANALYTICS TABLE>> -->
-                <div class="menu-bar-to-analytics">
-                    <div class="over-view">
-                        <p>Overview</p>
-                        <p>of 2024</p>
-                    </div>
-                    <div class="view-more">
-                        View more >>
-                    </div>
-                </div>
-                <div class="analytics-table">
-                    <div class="analytics-table-chart">
-                        <canvas id="dashboard-chart"></canvas>
-                    </div>
-                </div>
-
-                <!--  -->
             </div>
             <!-- Customers content -->
             <div id="content-customers" class="content-page" style="display: none;">
@@ -147,13 +88,13 @@
                         <button type="button" class="submit-customer-btn">Add Customer</button>
                         <button type="button" class="close-modal">Cancel</button>
                     </form>
+                </div>
                     <!-- hien thi don hang cua 1 khach hang -->
-                    <div id="customer-orders-modal" class="customer-orders-modal">
-                        <div class="customer-orders-modal-content">
-                            <span class="customer-orders-modal-close">&times;</span>
-                            <h2>Thông tin đơn hàng</h2>
-                            <div id="customer-orders-modal-body"></div>
-                        </div>
+                <div id="customer-orders-modal" class="customer-orders-modal">
+                    <div class="customer-orders-modal-content">
+                        <span class="customer-orders-modal-close">&times;</span>
+                        <h2>Thông tin đơn hàng</h2>
+                        <div id="customer-orders-modal-body"></div>
                     </div>
                 </div>
 
