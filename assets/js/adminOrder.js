@@ -93,6 +93,9 @@ function displayOrderSummary(orderId) {
             SĐT: ${addr.phone || "Không có số điện thoại"}`
     ).join('<br>');
 
+    // Check if order is already completed
+    const isCompleted = order.status === "Giao hàng thành công";
+
     const orderSummary = `
         <div class="order-summary">
             <h3>Chi tiết đơn hàng #${order.id}</h3>
@@ -106,14 +109,14 @@ function displayOrderSummary(orderId) {
             </ul>
             <h4>Danh sách địa chỉ:</h4>
             <p>${listAddress}</p>
-            <p> Trạng thái: </p>
-                <select id="status-section">
-                    <option value = "Chưa xử lý" ${order.status === "Chưa xử lý" ? "selected" : ""}>Chưa xử lý </option>
-                    <option value = "Đã xác nhận" ${order.status === "Đã xác nhận" ? "selected" : ""}>Đã xác nhận </option>
-                    <option value = "Giao hàng thành công" ${order.status === "Giao hàng thành công" ? "selected" : ""}>Giao hàng thành công </option>
-                    <option value = "Đã hủy" ${order.status === "Đã hủy" ? "selected" : ""}>Đã hủy</option>
+            <p>Trạng thái:</p>
+                <select id="status-section" ${isCompleted ? 'disabled' : ''}>
+                    <option value="Chưa xử lý" ${order.status === "Chưa xử lý" ? "selected" : ""}>Chưa xử lý</option>
+                    <option value="Đã xác nhận" ${order.status === "Đã xác nhận" ? "selected" : ""}>Đã xác nhận</option>
+                    <option value="Giao hàng thành công" ${order.status === "Giao hàng thành công" ? "selected" : ""}>Giao hàng thành công</option>
+                    <option value="Đã hủy" ${order.status === "Đã hủy" ? "selected" : ""}>Đã hủy</option>
                 </select>
-                <button id= "updateStatus"> Cập nhật trạng thái</button>
+                <button id="updateStatus" ${isCompleted ? 'disabled' : ''}>Cập nhật trạng thái</button>
             <button id="close-modal">Đóng</button>
         </div>`;
 
@@ -122,6 +125,19 @@ function displayOrderSummary(orderId) {
 
     document.getElementById('modal-popup').classList.remove('hidden');
     modalContainer.classList.remove('hidden');
+
+    // Lắng nghe sự kiện thay đổi trạng thái
+    document.getElementById('status-section').addEventListener('change', function() {
+        if (this.value === "Giao hàng thành công") {
+            this.disabled = true;
+            const updateBtn = document.getElementById('updateStatus');
+            updateBtn.disabled = true;
+            order.status = this.value;
+            localStorage.setItem('informationOrder', JSON.stringify(orders));
+            displayOrders(getOrders());
+            alert('Đơn hàng đã được cập nhật thành công và không thể thay đổi trạng thái');
+        }
+    });
 
     document.getElementById('close-modal').addEventListener('click', () => {
         document.getElementById('modal-popup').classList.add('hidden');

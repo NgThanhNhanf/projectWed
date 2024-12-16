@@ -99,17 +99,25 @@ document.querySelector('.signin-container .inputBox input[type="submit"]').addEv
             throw new Error('Vui lòng nhập email và mật khẩu!');
         }
 
+        const customerList = JSON.parse(localStorage.getItem('customerList')) || [];
+        const customerData = customerList.find(customer => customer.email === email);
+        
+        if (customerData && customerData.status === "Block") {
+            throw new Error('Tài khoản của bạn đã bị khóa!');
+        }
+
         const users = getUsers();
         const user = users.find(u => u.email === email && u.password === hashPassword(password));
-        location.reload();
+        
         if (!user) {
             throw new Error('Email hoặc mật khẩu không đúng!');
         }
 
         localStorage.setItem('currentUser', JSON.stringify(user));
         updateUI();
-
+        location.reload();
         modalLogin.classList.add('hide');
+        
     } catch (error) {
         alert(error.message);
     }

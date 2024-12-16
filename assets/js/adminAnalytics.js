@@ -274,13 +274,16 @@ function calculateTotalIncomeDay(date) {
     const hour = 7 + index;
     const ordersInHour = orderList.filter((order) => {
       const orderDate = new Date(order.timeOrder);
+      const isStatusSuccess = order.status === "Giao hàng thành công"; 
       return (
+        isStatusSuccess &&
         orderDate.getFullYear() === selectedDate.getFullYear() &&
         orderDate.getMonth() === selectedDate.getMonth() &&
         orderDate.getDate() === selectedDate.getDate() &&
         orderDate.getHours() === hour
       );
     });
+
     const hourTotal = ordersInHour.reduce((sum, order) => {
       const cartTotal = order.cart.reduce(
         (cartSum, item) => cartSum + item.price * item.quantity,
@@ -288,16 +291,24 @@ function calculateTotalIncomeDay(date) {
       );
       return sum + cartTotal;
     }, 0);
+
     dataIncomeDay[index] = hourTotal;
   });
 }
 
 // Tổng thu nhập theo tháng
 function calculateTotalIncomeMonth(year) {
+  dataIncomeMonth.fill(0);
   for (let i = 0; i < dataIncomeMonth.length; i++) {
     const ordersInMonth = orderList.filter((order) => {
       const orderDate = new Date(order.timeOrder);
-      return orderDate.getFullYear() === year && orderDate.getMonth() === i;
+      // Check status in order.status
+      const isStatusSuccess = order.status === "Giao hàng thành công";
+      return (
+        isStatusSuccess &&
+        orderDate.getFullYear() === year &&
+        orderDate.getMonth() === i
+      );
     });
     const totalIncome = ordersInMonth.reduce(
       (sum, order) => sum + order.total,
@@ -307,6 +318,8 @@ function calculateTotalIncomeMonth(year) {
   }
 }
 
+
+
 // Tổng thu nhập theo từng năm
 function calculateTotalIncomeYear() {
   initializeLabelsYear();
@@ -314,7 +327,11 @@ function calculateTotalIncomeYear() {
     const year = labelsYear[i];
     const ordersInYear = orderList.filter((order) => {
       const orderDate = new Date(order.timeOrder);
-      return orderDate.getFullYear() === year;
+      const isStatusSuccess = order.status === "Giao hàng thành công";
+      return (
+        isStatusSuccess &&
+        orderDate.getFullYear() === year
+      );
     });
     const totalIncome = ordersInYear.reduce(
       (sum, order) => sum + order.total,
@@ -491,16 +508,13 @@ function calculateHighDemandDay(date) {
 
 function calculateLowDemandMonth(currentDate) {
   const year = currentDate.getFullYear();
-  const month = currentDate.getMonth(); 
+  const month = currentDate.getMonth();
   const productSales = new Map();
   lowDemandMonth.fill(0);
 
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    if (
-      orderDate.getFullYear() === year &&
-      orderDate.getMonth() === month
-    ) {
+    if (orderDate.getFullYear() === year && orderDate.getMonth() === month) {
       order.cart.forEach((item) => {
         const currentSales = productSales.get(item.name) || 0;
         productSales.set(item.name, currentSales + item.quantity);
@@ -519,10 +533,7 @@ function calculateHighDemandMonth(currentDate) {
 
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    if (
-      orderDate.getFullYear() === year &&
-      orderDate.getMonth() === month
-    ) {
+    if (orderDate.getFullYear() === year && orderDate.getMonth() === month) {
       order.cart.forEach((item) => {
         const currentSales = productSales.get(item.name) || 0;
         productSales.set(item.name, currentSales + item.quantity);
@@ -567,8 +578,7 @@ function calculateHighDemandYear(currentYear) {
   processDemandData(productSales, highDemandYear, false);
 }
 
-function equalsMarketShare() {
-}
+
 
 // Hàm hỗ trợ xử lý dữ liệu nhu cầu
 function processDemandData(productSales, targetArray, isAscending) {
@@ -604,6 +614,180 @@ function processDemandData(productSales, targetArray, isAscending) {
     };
   }
 }
+
+function calculateMarketShare(dataType, timeSource) {
+    // Reset marketshare array
+    marketshareProduct.fill(0);
+
+    let currentProducts = [];
+    let previousProducts = [];
+    const currentDate = new Date(topCurrentDate);
+    const previousDate = new Date(topCurrentDate);
+
+    // Get current and previous period data
+    if (timeSource === 'day') {
+        previousDate.setDate(previousDate.getDate() - 1);
+        
+        if (dataType === 'high') {
+            calculateHighDemandDay(currentDate);
+            currentProducts = [...highDemandDay];
+            calculateHighDemandDay(previousDate);
+            previousProducts = [...highDemandDay];
+        } else {
+            calculateLowDemandDay(currentDate);
+            currentProducts = [...lowDemandDay];
+            calculateLowDemandDay(previousDate);
+            previousProducts = [...lowDemandDay];
+        }
+    } else if (timeSource === 'month') {
+        previousDate.setMonth(previousDate.getMonth() - 1);
+        
+        if (dataType === 'high') {
+            calculateHighDemandMonth(currentDate);
+            currentProducts = [...highDemandMonth];
+            calculateHighDemandMonth(previousDate);
+            previousProducts = [...highDemandMonth];
+        } else {
+            calculateLowDemandMonth(currentDate);
+            currentProducts = [...lowDemandMonth];
+            calculateLowDemandMonth(previousDate);
+            previousProducts = [...lowDemandMonth];
+        }
+    } else if (timeSource === 'year') {
+        previousDate.setFullYear(previousDate.getFullYear() - 1);
+        
+        if (dataType === 'high') {
+            calculateHighDemandYear(currentDate.getFullYear());
+            currentProducts = [...highDemandYear];
+            calculateHighDemandYear(previousDate.getFullYear());
+            previousProducts = [...highDemandYear];
+        } else {
+            calculateLowDemandYear(currentDate.getFullYear());
+            currentProducts = [...lowDemandYear];
+            calculateLowDemandYear(previousDate.getFullYear());
+            previousProducts = [...lowDemandYear];
+        }
+    }
+
+    // Create maps for easier lookup
+    const previousProductMap = new Map();
+    let previousOthers = null;
+
+    // Process previous period data
+    previousProducts.forEach((product, index) => {
+        if (product) {
+            if (product.name === "Orthers") {
+                previousOthers = {
+                    percentage: parseFloat(product.percentage),
+                    products: getOthersProducts(previousDate, timeSource, dataType)
+                };
+            } else {
+                previousProductMap.set(product.name, {
+                    percentage: parseFloat(product.percentage),
+                    index: index
+                });
+            }
+        }
+    });
+
+    // Calculate market share differences
+    currentProducts.forEach((product, index) => {
+        if (!product) return;
+        
+        const currentPercentage = parseFloat(product.percentage);
+        let previousPercentage = 0;
+
+        if (product.name === "Orthers") {
+            previousPercentage = previousOthers ? previousOthers.percentage : 0;
+        } else {
+            const previousData = previousProductMap.get(product.name);
+            if (previousData) {
+                // Product was in top 5 in previous period
+                previousPercentage = previousData.percentage;
+            } else if (previousOthers && previousOthers.products) {
+                // Check if product was in "Others" in previous period
+                const previousProductData = previousOthers.products.find(p => p.name === product.name);
+                if (previousProductData) {
+                    previousPercentage = previousProductData.percentage;
+                }
+            }
+        }
+
+        marketshareProduct[index] = +(currentPercentage - previousPercentage).toFixed(2);
+    });
+
+    updateMarketShareUI();
+}
+
+// Helper function to get detailed "Others" products
+function getOthersProducts(date, timeSource, dataType) {
+    const allProducts = new Map();
+    const topProducts = new Set();
+    let orders = [];
+
+    // Get orders for the period
+    if (timeSource === 'day') {
+        orders = orderList.filter(order => {
+            const orderDate = new Date(order.timeOrder);
+            return orderDate.getFullYear() === date.getFullYear() &&
+                   orderDate.getMonth() === date.getMonth() &&
+                   orderDate.getDate() === date.getDate();
+        });
+    } else if (timeSource === 'month') {
+        orders = orderList.filter(order => {
+            const orderDate = new Date(order.timeOrder);
+            return orderDate.getFullYear() === date.getFullYear() &&
+                   orderDate.getMonth() === date.getMonth();
+        });
+    } else if (timeSource === 'year') {
+        orders = orderList.filter(order => {
+            const orderDate = new Date(order.timeOrder);
+            return orderDate.getFullYear() === date.getFullYear();
+        });
+    }
+
+    // Calculate total sales for each product
+    orders.forEach(order => {
+        order.cart.forEach(item => {
+            const currentSales = allProducts.get(item.name) || 0;
+            allProducts.set(item.name, currentSales + item.quantity);
+        });
+    });
+
+    // Calculate total sales
+    const totalSales = Array.from(allProducts.values()).reduce((sum, sales) => sum + sales, 0);
+
+    // Convert to array and sort
+    const sortedProducts = Array.from(allProducts.entries())
+        .map(([name, sales]) => ({
+            name,
+            percentage: ((sales / totalSales) * 100).toFixed(2)
+        }))
+        .sort((a, b) => dataType === 'high' ? 
+            parseFloat(b.percentage) - parseFloat(a.percentage) : 
+            parseFloat(a.percentage) - parseFloat(b.percentage));
+
+    // Return products not in top 5
+    return sortedProducts.slice(5);
+}
+
+// Update UI with market share changes
+function updateMarketShareUI() {
+    const marketShareSubs = document.querySelectorAll('.market-share-sub');
+    marketShareSubs.forEach((element, index) => {
+        if (marketshareProduct[index] === 0) {
+            element.textContent = '0.00%';
+            element.style.color = 'gray';
+        } else if (marketshareProduct[index] > 0) {
+            element.textContent = `+${marketshareProduct[index]}%`;
+            element.style.color = 'green';
+        } else {
+            element.textContent = `${marketshareProduct[index]}%`;
+            element.style.color = 'red';
+        }
+    });
+}
+
 // ### KHỞI TẠO DỮ LIỆU ĐƯA VÀO MẢNG ###
 
 // ### KHỞI TẠO CÁC BIẾN TOÀN CỤC CHO NGÀY VÀ NĂM ###
@@ -828,6 +1012,7 @@ function setCurrentTime(chartId, offset) {
   let labels, data;
 
   if (dataSource === "day") {
+    console.log(selectedDate);
     selectedDate.setDate(selectedDate.getDate() + offset);
     timeText.textContent = selectedDate.toLocaleDateString();
 
@@ -904,7 +1089,10 @@ function incomeSpendingDatasets(data) {
   ];
 }
 
-function lowHighDemandDatasets(data) {
+let topCurrentDate = new Date();
+let topCurrentYear = topCurrentDate.getFullYear();
+
+function circleDatasets (labels) {
   const colorList = [
     "red",
     "purple",
@@ -924,8 +1112,7 @@ function lowHighDemandDatasets(data) {
 
   return [
     {
-      label: data.labels,
-      data: data.labelData,
+      data: labels,
       backgroundColor: colorListRGB,
       borderColor: colorList,
       borderWidth: 2,
@@ -933,24 +1120,21 @@ function lowHighDemandDatasets(data) {
   ];
 }
 
-function setTopProduct(chartId, dataType) {
-  const divBox = document.querySelector('.tool-bar .date-filter');
-  const buttons = divBox.querySelectorAll('button');
-  buttons.forEach(button => {
-    button.addEventListener('click', function() {
-      buttons.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
+function setLowHigh (chartId, demandType) {
+  chartState[chartId].dataType = demandType;
+  updatecircleChart(chartId, demandType, chartState[chartId].dataSource);
+}
 
-} 
+function setProductDate (chartId, timeset) {
+  chartState[chartId].datasSource = timeset;
+  updatecircleChart(chartId, chartState[chartId].dataType, timeset);
+}
 
 function createChart(chartElement, chartType, labels, datasets, dataSource) {
   // Xóa biểu đồ cũ nếu có
   if (chartElement.chartInstance) {
     chartElement.chartInstance.destroy();
   }
-
   chartElement.chartInstance = new Chart(chartElement, {
     type: chartType,
     data: {
@@ -1060,34 +1244,115 @@ function incomeSpendingOverviewProcessing(currentDate, currentYear) {
 }
 
 function displayTopProduct(demandData = []) {
-    const toolBox = document.querySelector('.tool-box');
-    if (!toolBox) return;
+  const toolBox = document.querySelector(".tool-box");
+  if (!toolBox) return;
 
-    // Xóa nội dung cũ
-    toolBox.innerHTML = '';
-    const validData = demandData.filter(item => item && typeof item === 'object');
+  // Xóa nội dung cũ
+  toolBox.innerHTML = "";
+  const validData = demandData.filter(
+    (item) => item && typeof item === "object"
+  );
 
-    if (validData.length === 0) {
-        toolBox.innerHTML = `<div class="no-data">Không có dữ liệu sản phẩm</div>`;
-        return;
-    }
+  if (validData.length === 0) {
+    toolBox.innerHTML = `<div class="no-data">Không có dữ liệu sản phẩm</div>`;
+    return;
+  }
 
-    // Tạo HTML cho từng sản phẩm có dữ liệu
-    const productHTML = validData.map(item => `
+  // Tạo HTML cho từng sản phẩm có dữ liệu
+  const productHTML = validData
+    .map(
+      (item) => `
         <div class="top-product-btn">
             <div class="name-product-label">${item.name}</div>
             <div class="market-share">
                 <div class="market-share-main">${item.percentage}%</div>
-                ${item.name !== 'Others' ? `
+                ${
+                  item.name !== "Others"
+                    ? `
                     <div class="market-share-divider">|</div>
                     <div class="market-share-sub">+ 0.00%</div>
-                ` : ''}
+                `
+                    : ""
+                }
             </div>
         </div>
-    `).join('');
+    `
+    )
+    .join("");
 
-    // Cập nhật nội dung
-    toolBox.innerHTML = productHTML;
+  // Cập nhật nội dung
+  toolBox.innerHTML = productHTML;
+}
+
+function initializeDemandData (currentDate, currentYear) {
+    // Tính thị phần sức mua 5 sản phẩm bán chạy/ế nhất trong ngày
+    calculateLowDemandDay(currentDate);
+    calculateHighDemandDay(currentDate);
+  
+    // Tính thị phần sức mua 5 sản phẩm bán chạy/ế nhất trong tháng
+    calculateLowDemandMonth(currentDate);
+    calculateHighDemandMonth(currentDate);
+  
+    // Tính thị phần sức mua 5 sản phẩm bán chạy/ế trong năm
+    calculateLowDemandYear(currentYear);
+    calculateHighDemandYear(currentYear);
+}
+
+function updatecircleChart(chartId, dataType, dataSource) {
+  let datasets;
+  let labels;
+  if (dataType === 'high') {
+    if (dataSource === 'day') {
+      calculateHighDemandDay(topCurrentDate);
+      const data = highDemandDay.filter((item) => item && item.percentage).map((item) => item.percentage);
+      labels = highDemandDay.filter((item) => item && item.name).map((item) => item.name);
+      datasets = circleDatasets(data);
+      displayTopProduct(highDemandDay);
+      calculateMarketShare(dataType, dataSource);
+    } else if (dataSource === 'month') {
+      calculateHighDemandMonth(topCurrentDate);
+      const data = highDemandMonth.filter((item) => item && item.percentage).map((item) => item.percentage);
+      labels = highDemandMonth.filter((item) => item && item.name).map((item) => item.name);
+      datasets = circleDatasets(data);
+      displayTopProduct(highDemandMonth);
+      calculateMarketShare(dataType, dataSource);
+    } else if (dataSource === 'year') {
+      calculateHighDemandYear(topCurrentYear);
+      const data = highDemandYear.filter((item) => item && item.percentage).map((item) => item.percentage);
+      labels = highDemandYear.filter((item) => item && item.name).map((item) => item.name);
+      datasets = circleDatasets(data);
+      displayTopProduct(highDemandYear);
+      calculateMarketShare(dataType, dataSource);
+    }
+  } else if (dataType === 'low') {
+    if (dataSource === 'day') {
+      calculateLowDemandDay(topCurrentDate);
+      const data = lowDemandDay.filter((item) => item && item.percentage).map((item) => item.percentage);
+      labels = lowDemandDay.filter((item) => item && item.name).map((item) => item.name);
+      datasets = circleDatasets(data);
+      displayTopProduct(lowDemandDay);
+      calculateMarketShare(dataType, dataSource);
+    } else if (dataSource === 'month') {
+      calculateLowDemandMonth(topCurrentDate);
+      const data = lowDemandMonth.filter((item) => item && item.percentage).map((item) => item.percentage);
+      labels = lowDemandMonth.filter((item) => item && item.name).map((item) => item.name);
+      datasets = circleDatasets(data);
+      displayTopProduct(lowDemandMonth);
+      calculateMarketShare(dataType, dataSource);
+    } else if (dataSource === 'year') {
+      calculateLowDemandYear(topCurrentYear);
+      const data = lowDemandYear.filter((item) => item && item.percentage).map((item) => item.percentage);
+      labels = lowDemandYear.filter((item) => item && item.name).map((item) => item.name);
+      datasets = circleDatasets(data);
+      displayTopProduct(lowDemandYear);
+      calculateMarketShare(dataType, dataSource);
+    }
+  }
+
+  const chartElement = document.getElementById(chartId);
+  if (chartElement) {
+    createChart(chartElement, chartState[chartId].chartType, labels, datasets, dataSource);
+  }
 }
 
 function bestWorstSellerProcessing(currentDate, currentYear) {
@@ -1095,50 +1360,44 @@ function bestWorstSellerProcessing(currentDate, currentYear) {
   if (timeText) {
     timeText.textContent = currentDate.toLocaleDateString();
   }
-  // Tính thị phần sức mua 5 sản phẩm bán chạy/ế nhất trong ngày
-  calculateLowDemandDay(currentDate);
-  calculateHighDemandDay(currentDate);
+  initializeDemandData(currentDate, currentYear);
 
-  // Tính thị phần sức mua 5 sản phẩm bán chạy/ế nhất trong tháng
-  calculateLowDemandMonth(currentDate);
-  calculateHighDemandMonth(currentDate);
-
-  // Tính thị phần sức mua 5 sản phẩm bán chạy/ế trong năm
-  calculateLowDemandYear(currentYear);
-  calculateHighDemandYear(currentYear);
-
-  // Thiết lập dữ liệu để khởi tạo
-  const dataSource = "day";
   const chartType = "pie";
-  const initialData = highDemandDay;
-  displayTopProduct(initialData);
-  const labels = highDemandDay
-  .filter((item) => item && item.percentage) // Loại bỏ các phần tử undefined hoặc không có percentage
-  .map((item) => item.percentage);
-  const labeltitle = highDemandDay
-  .filter((item) => item && item.name) // Loại bỏ các phần tử undefined hoặc không có name
-  .map((item) => item.name);
-  console.log(labeltitle);
-  const data = {
-    label: labeltitle,
-    labelData: labels,
-  };
-
-  const datasets = lowHighDemandDatasets(data);
-  console.log(datasets);
+  const dataSource = 'day';
+  const dataType = "high";
 
   const chartId = "top-demand-product-chart";
   chartState[chartId] = {
     chartType: chartType,
     dataSource: dataSource,
-    labels: labeltitle,
-    datasets: datasets,
+    dataType: dataType,
   };
 
-  const chartElement = document.getElementById(chartId);
-  if (chartElement) {
-    createChart(chartElement, chartType, labeltitle, datasets, dataSource);
-  }
+  updatecircleChart (chartId, dataType, dataSource);
+
+  const demandButton = document.getElementById("low-high-demand-selection");
+  const toolBar = document.querySelector(".tool-bar");
+
+  // Sự kiện lọc theo hàng bán ế hoặc bán chạy
+  demandButton.addEventListener("change", (event) => {
+    const demandType = event.target.value;
+    chartState[chartId].dataType = demandType;
+    console.log(chartState[chartId].dataType);
+    setLowHigh(chartId, demandType);
+  });
+
+  // Sự kiện lọc ngày tháng năm
+  toolBar.addEventListener("click", (event) => {
+    if (event.target.matches(".date-filter button")) {
+      const buttons = toolBar.querySelectorAll(".date-filter button");
+      buttons.forEach((btn) => btn.classList.remove("active"));
+      event.target.classList.add("active");
+
+      const newdataSource = event.target.getAttribute("data-source");
+      chartState[chartId].dataSource = newdataSource;
+      setProductDate(chartId, newdataSource);
+    }
+  });
 }
 
 function collectionDistributionProcessing(currentDate, currentYear) {}

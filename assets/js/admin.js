@@ -2,18 +2,49 @@
 
 // SỰ KIỆN DASHBOARD
 function dashboardProcessing() {
-  console.log("Dashboard loaded");
+  // Khởi tạo thời gian
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+
+  // Cập nhật dữ liệu thu nhập và chi tiêu
+  calculateTotalIncomeDay(currentDate);
+  calculateTotalSpendingDay(currentDate);
+  calculateTotalIncomeMonth(currentYear);
+  calculateTotalSpendingMonth(currentYear);
+  calculateTotalIncomeYear();
+  calculateTotalSpendingYear();
+
+  // Thiết lập dữ liệu cho biểu đồ dashboard
+  const chartId = "dashboard-chart";
+  const dataSource = "day"; // Hoặc "month", "year" tùy theo yêu cầu
+  const chartType = "bar"; // Hoặc "line", "pie", tùy theo yêu cầu
+  const labels = LabelsfullTime; // Hoặc labelsMonth, labelsYear tùy vào dataSource
+
+  const data = {
+      incomeLabel: "Income",
+      spendingLabel: "Spending",
+      profitLabel: "Profit",
+      incomeData: dataIncomeDay,
+      spendingData: dataSpendingDay,
+      profitData: dataIncomeDay.map((income, index) => income - dataSpendingDay[index])
+  };
+
+  const datasets = incomeSpendingDatasets(data);
+
+  // Lưu trạng thái biểu đồ
+  chartState[chartId] = {
+      chartType: chartType,
+      dataSource: dataSource,
+      labels: labels,
+      datasets: datasets
+  };
+
+  // Tạo biểu đồ
+  const chartElement = document.getElementById(chartId);
+  if (chartElement) {
+      createChart(chartElement, chartType, labels, datasets, dataSource);
+  }
 }
-// SỰ KIỆN PRODUCTS (Handled in adminProduct.js)
-// function productsProcessing() {
-//   console.log("Products page handler loaded");
-// }
-
-// SỰ KIỆN ANALYTICS
-// function analyticsProcessing() {
-//   console.log("Analytics loaded");
-// }
-
 // SỰ KIỆN ORDERS
 function ordersProcessing() {
   console.log("Orders loaded");
@@ -22,7 +53,7 @@ function ordersProcessing() {
 // SỰ KIỆN SIDE BAR
 function sideBarProcessing() {
   // Lấy trang hiện tại từ localStorage
-  const activePage = localStorage.getItem("activePage") || "dashboard";
+  const activePage = localStorage.getItem("activePage") || "customers";
   const menuItems = document.querySelectorAll(".menuSideBar");
   const contentPages = document.querySelectorAll(".content-page");
   const contentTitle = document.querySelector(".left-content-title p");
@@ -67,9 +98,6 @@ function sideBarProcessing() {
 
       // Cập nhật tiêu đề trang
       switch (target) {
-        case "dashboard":
-          document.title = "ALESIA - Dashboard";
-          break;
         case "customers":
           document.title = "ALESIA - Customers";
           break;
@@ -95,7 +123,7 @@ function sideBarProcessing() {
         rightContent.classList.add("hidden");
       } else {
         leftContent.classList.remove("analytics-view");
-        rightContent.classList.remove("hidden");
+        rightContent.classList.remove("hidden"); 
       }
 
       // Gọi hàm xử lý nội dung tương ứng
@@ -115,6 +143,19 @@ function sideBarProcessing() {
     });
   });
 
+  // Thêm sự kiện cho "View more" để dẫn đến Analytics
+  const viewMoreButton = document.querySelector(".view-more");
+  if (viewMoreButton) {
+    viewMoreButton.addEventListener("click", function () {
+      const analyticsMenuItem = document.querySelector('.menuSideBar[data-target="analytics"]');
+      if (analyticsMenuItem) {
+        analyticsMenuItem.click();
+      } else {
+        console.error('Analytics menu item not found.');
+      }
+    });
+  }
+
   // Khởi tạo trang
   showPage(activePage);
 }
@@ -122,11 +163,8 @@ function sideBarProcessing() {
 // SỰ KIỆN LEFT CONTENT
 function leftContentProcessing(activePage) {
   switch (activePage) {
-    case "dashboard":
-      dashboardProcessing();
-      break;
     case "customers":
-      customersProcessing();
+      customerProcessing();
       break;
     case "products":
       productsProcessing(); // Calls adminProduct.js's productsProcessing
@@ -138,7 +176,7 @@ function leftContentProcessing(activePage) {
       analyticsProcessing();
       break;
     default:
-      dashboardProcessing();
+      customerProcessing();
       break;
   }
 }
@@ -173,7 +211,7 @@ function handleLoginModal() {
   if (isLoggedIn === 'true') {
     loginModal.style.display = 'none'; // Ẩn modal nếu đã đăng nhập
     // Khởi chạy các xử lý giao diện sau khi đã đăng nhập
-    const activePage = localStorage.getItem("activePage") || "dashboard";
+    const activePage = localStorage.getItem("activePage") || "customer";
     sideBarProcessing();
     leftContentProcessing(activePage);
   } else {
@@ -197,7 +235,7 @@ function handleLoginModal() {
         console.log('Đăng nhập thành công!');
 
         // Sau khi đăng nhập, hiển thị lại trang đã lưu
-        const activePage = localStorage.getItem("activePage") || "dashboard";
+        const activePage = localStorage.getItem("activePage") || "customer";
         sideBarProcessing();
         leftContentProcessing(activePage);
       } else {
