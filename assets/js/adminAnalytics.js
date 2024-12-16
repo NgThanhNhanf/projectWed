@@ -1363,7 +1363,7 @@ function bestWorstSellerProcessing(currentDate, currentYear) {
   initializeDemandData(currentDate, currentYear);
 
   const chartType = "pie";
-  const dataSource = 'month';
+  const dataSource = 'day';
   const dataType = "high";
 
   const chartId = "top-demand-product-chart";

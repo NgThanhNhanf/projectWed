@@ -429,6 +429,7 @@ function addNewProduct() {
 
   // Kiểm tra các trường khác
   const image = imgInput.dataset.base64 || "";
+  console.log(image);
   if (!nameProduct || !typeProduct || !image) {
     alert("Please filled image value");
     return;
@@ -566,7 +567,8 @@ function updateProduct() {
   const newQuantity = parseInt(document.getElementById("edit-product-quantity").value);
   const newPrice = parseFloat(document.getElementById("edit-product-price").value);
   const newDate = document.getElementById("edit-product-date").value;
-  
+  const editImgInput = document.getElementById("edit-input-img");
+
   // Kiểm tra dữ liệu đầu vào
   if (!newName || isNaN(newQuantity) || isNaN(newPrice)) {
     alert("Vui lòng nhập đầy đủ thông tin!");
@@ -584,10 +586,27 @@ function updateProduct() {
     return;
   }
 
-  // Lấy ảnh mới nếu có
-  const editImgInput = document.getElementById("edit-input-img");
-  const newImage = editImgInput.dataset.base64;
+  // Xử lý ảnh
+  let newImage = null;
+  
+  // Kiểm tra xem có file ảnh mới được chọn không
+  if (editImgInput.files && editImgInput.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      newImage = e.target.result;
+      
+      // Tiếp tục cập nhật sản phẩm sau khi đã có ảnh
+      updateProductWithImage(product, newName, newType, newQuantity, newPrice, newDate, newImage);
+    };
+    reader.readAsDataURL(editImgInput.files[0]);
+  } else {
+    // Nếu không có ảnh mới, giữ nguyên ảnh cũ
+    newImage = product.image;
+    updateProductWithImage(product, newName, newType, newQuantity, newPrice, newDate, newImage);
+  }
+}
 
+function updateProductWithImage(product, newName, newType, newQuantity, newPrice, newDate, newImage) {
   // Lấy ngày từ form và giờ hiện tại
   const formDate = new Date(newDate);
   const currentTime = new Date();
@@ -608,18 +627,9 @@ function updateProduct() {
   product.quantity = newQuantity;
   product.price = newPrice;
   product.date = combinedDate.toISOString();
-  product.nature.size = selectedSizes;
-  product.nature.color = selectedColors;
-  
-  // Cập nhật ảnh nếu có ảnh mới
-  if (newImage) {
-    product.image = newImage;
-  }
-
-  if (!newImage) {
-    alert("Please filled image value");
-    return;
-  }
+  product.nature.size = [...selectedSizes];
+  product.nature.color = [...selectedColors];
+  product.image = newImage;
 
   // Lưu vào localStorage
   localStorage.setItem(config.productKey, JSON.stringify(productList));

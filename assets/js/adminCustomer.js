@@ -20,8 +20,6 @@ function generateUniqueId() {
     return Date.now();
 }
 
-console.log(JSON.parse(localStorage.getItem('informationOrder')));
-
 function addCustomerFromOrder() {
     // Lấy thông tin khách hàng từ order
     const informationOrder = JSON.parse(localStorage.getItem('informationOrder')) || [];
