@@ -1,4 +1,3 @@
-
 function getOrders() {
     return JSON.parse(localStorage.getItem('informationOrder')) || [];
 }
@@ -155,7 +154,9 @@ function displayOrderSummary(orderId) {
             order.status = this.value;
             localStorage.setItem('informationOrder', JSON.stringify(orders));
             displayOrders(getOrders());
+            console.log("Orders loaded");
             alert('Đơn hàng đã được cập nhật thành công và không thể thay đổi trạng thái');
+            
         }
     });
 
@@ -177,6 +178,13 @@ function displayOrderSummary(orderId) {
         localStorage.setItem('informationOrder', JSON.stringify(orders));
         alert('cap nhap trang thai don hang thanh cong');
         displayOrders(getOrders());
+        
+        // Nếu trạng thái mới là "Giao hàng thành công", gọi hàm updateTrendingProducts
+        if (newStatus === "Giao hàng thành công") {
+            updateTrendingProducts();
+            updateBestSellerProduct();
+            analyticsProcessing();
+        }
     });
 
 }

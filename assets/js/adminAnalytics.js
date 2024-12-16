@@ -217,6 +217,124 @@ const clrGreenFlagRGBA = "rgba(0, 255, 0, 0.8)";
 
 // ### ĐỊNH NGHĨA MÀU ###
 
+// ### ORTHER FEATURE ###
+// Khai báo biến toàn cục để lưu trữ top 8 sản phẩm bán chạy nhất theo tháng
+const trendingMonth = [];
+const bestSellerMonth = [];
+
+function updateTrendingProducts() {
+    // Lấy tháng và năm hiện tại
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth(); // Tháng từ 0-11
+    const currentYear = currentDate.getFullYear();
+
+    // Lấy tất cả đơn hàng từ localStorage
+    const orders = JSON.parse(localStorage.getItem('informationOrder')) || [];
+
+    // Lọc các đơn hàng "Giao hàng thành công" trong tháng hiện tại
+    const successfulOrders = orders.filter(order => {
+        const orderDate = new Date(order.timeOrder);
+        return order.status === "Giao hàng thành công" &&
+               orderDate.getMonth() === currentMonth &&
+               orderDate.getFullYear() === currentYear;
+    });
+
+    // Tạo đối tượng đếm số lượng sản phẩm bán ra theo tên sản phẩm
+    const productSalesCount = {};
+
+    // Duyệt qua các đơn hàng thành công
+    successfulOrders.forEach(order => {
+        order.cart.forEach(product => {
+            const productName = product.name; // Sử dụng tên sản phẩm làm khóa
+            if (!productSalesCount[productName]) {
+                productSalesCount[productName] = product.quantity;
+            } else {
+                productSalesCount[productName] += product.quantity;
+            }
+        });
+    });
+
+    // Chuyển đối tượng thành mảng [productName, count]
+    const salesArray = Object.entries(productSalesCount);
+
+    // Sắp xếp mảng theo số lượng bán ra giảm dần
+    salesArray.sort((a, b) => b[1] - a[1]);
+
+    // Lấy top 8 sản phẩm và lưu vào trendingMonth dưới dạng { id: productId, name: productName }
+    trendingMonth.length = 0; // Xóa mảng cũ
+
+    salesArray.slice(0, 8).forEach(([productName]) => {
+        // Tìm sản phẩm trong productList để lấy id
+        const product = productList.find(p => p.name === productName);
+        if (product) {
+            trendingMonth.push({ id: product.id, name: product.name, price: product.price, image: product.image});
+        } else {
+            // Nếu không tìm thấy sản phẩm, có thể xử lý tùy ý
+            trendingMonth.push({ id: null, name: productName });
+        }
+    });
+}
+
+function updateBestSellerProduct() {
+    // Lấy tháng và năm hiện tại
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+
+    // Lấy tất cả đơn hàng từ localStorage
+    const orders = JSON.parse(localStorage.getItem('informationOrder')) || [];
+
+    // Lọc các đơn hàng trong tháng hiện tại
+    const monthOrders = orders.filter(order => {
+        const orderDate = new Date(order.timeOrder);
+        return orderDate.getMonth() === currentMonth &&
+               orderDate.getFullYear() === currentYear;
+    });
+
+    // Tạo đối tượng đếm số lượng sản phẩm bán ra theo tên sản phẩm
+    const productSalesCount = {};
+
+    // Duyệt qua các đơn hàng trong tháng
+    monthOrders.forEach(order => {
+        order.cart.forEach(product => {
+            const productName = product.name;
+            if (!productSalesCount[productName]) {
+                productSalesCount[productName] = product.quantity;
+            } else {
+                productSalesCount[productName] += product.quantity;
+            }
+        });
+    });
+
+    // Chuyển đối tượng thành mảng [productName, count]
+    const salesArray = Object.entries(productSalesCount);
+
+    // Sắp xếp mảng theo số lượng bán ra tăng dần (ít nhất lên đầu)
+    salesArray.sort((a, b) => a[1] - b[1]);
+
+    // Xóa mảng cũ
+    bestSellerMonth.length = 0;
+
+    // Lấy 8 sản phẩm bán ế nhất
+    salesArray.slice(0, 8).forEach(([productName]) => {
+        const product = productList.find(p => p.name === productName);
+        if (product) {
+            bestSellerMonth.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image
+            });
+        } else {
+            bestSellerMonth.push({
+                id: null,
+                name: productName
+            });
+        }
+    });
+}
+// ### ORTHER FEATURE ###
+
 // ### BIỂU ĐỒ DỮ LIỆU ###
 const labelsYear = [];
 const dataIncomeYear = new Array(3).fill(0);
