@@ -258,23 +258,127 @@ function closeModal(modalId) {
 
 // Khởi tạo hàm xem ảnh khi được tải lên
 function initializeImagePreview() {
+  // Handle Add Product Form
   const imgInput = document.getElementById("input-img");
+  const previewContainer = document.querySelector(".preview");
+  
+  // Add clear button for add form
+  const clearButton = document.createElement('button');
+  clearButton.type = 'button';
+  clearButton.className = 'clear-preview-btn';
+  clearButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  previewContainer.appendChild(clearButton);
+  clearButton.style.display = 'none';
 
-  imgInput.onchange = function () {
+  // Clear button click handler for add form
+  clearButton.addEventListener('click', () => {
+    imgInput.value = '';
+    previewContainer.innerHTML = '';
+    imgInput.dataset.base64 = '';
+    // Re-add the clear button after clearing
+    previewContainer.appendChild(clearButton);
+    clearButton.style.display = 'none';
+  });
+
+  // Image preview handler for add form
+  imgInput.onchange = function() {
     const file = this.files[0];
-    if (!file) return;
+    if (!file) {
+      previewContainer.innerHTML = '';
+      clearButton.style.display = 'none';
+      return;
+    }
 
     const reader = new FileReader();
-    reader.onload = function (e) {
-      document.querySelector(".preview").innerHTML = `
-          <img src="${e.target.result}" alt="Preview Image">
+    reader.onload = function(e) {
+      previewContainer.innerHTML = `
+        <img src="${e.target.result}" alt="Preview Image">
       `;
-      // Lưu base64 tạm thời
-      document.getElementById("input-img").dataset.base64 = e.target.result;
+      previewContainer.appendChild(clearButton);
+      clearButton.style.display = 'block';
+      imgInput.dataset.base64 = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Handle Edit Product Form
+  const editImgInput = document.getElementById("edit-input-img");
+  const editPreviewContainer = document.querySelector(".edit-preview");
+  
+  // Add clear button for edit form
+  const editClearButton = document.createElement('button');
+  editClearButton.type = 'button';
+  editClearButton.className = 'clear-preview-btn';
+  editClearButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  editPreviewContainer.appendChild(editClearButton);
+  editClearButton.style.display = 'none';
+
+  // Clear button click handler for edit form
+  editClearButton.addEventListener('click', () => {
+    editImgInput.value = '';
+    editPreviewContainer.innerHTML = '';
+    editImgInput.dataset.base64 = '';
+    // Re-add the clear button after clearing
+    editPreviewContainer.appendChild(editClearButton);
+    editClearButton.style.display = 'none';
+  });
+
+  // Image preview handler for edit form
+  editImgInput.onchange = function() {
+    const file = this.files[0];
+    if (!file) {
+      editPreviewContainer.innerHTML = '';
+      editClearButton.style.display = 'none';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      editPreviewContainer.innerHTML = `
+        <img src="${e.target.result}" alt="Preview Image">
+      `;
+      editPreviewContainer.appendChild(editClearButton);
+      editClearButton.style.display = 'block';
+      editImgInput.dataset.base64 = e.target.result;
     };
     reader.readAsDataURL(file);
   };
 }
+
+// Add CSS styles to admin.css
+/*
+.preview, .edit-preview {
+  position: relative;
+  display: inline-block;
+}
+
+.clear-preview-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  z-index: 10;
+}
+
+.clear-preview-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.preview img, .edit-preview img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+}
+*/
 
 function addProductForm () {
   displayModal('add-product-modal');
@@ -304,7 +408,9 @@ function addNewProduct() {
   }
 
   // Kiểm tra giá
-  if (isNaN(price) || price < 0) {
+  if ((isNaN(price) || price <= 0)) {
+    console.log(isNaN(price));
+    console.log(typeof(price));
     alert("Price not negative.");
     priceInput.focus();
     return;
@@ -394,11 +500,30 @@ function editProduct(productId) {
 
   // Hiển thị preview ảnh
   const previewContainer = document.querySelector(".edit-preview");
+  const clearButton = document.createElement('button');
+  clearButton.type = 'button';
+  clearButton.className = 'clear-preview-btn';
+  clearButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  
   if (previewContainer) {
     previewContainer.innerHTML = `
-      <img src="${product.image}" 
-           style="max-width: 200px; max-height: 200px; object-fit: cover;">
+      <img src="${product.image}" alt="Preview">
     `;
+    previewContainer.appendChild(clearButton);
+
+    clearButton.style.display = 'block';
+
+    // Clear button click handler
+    clearButton.addEventListener('click', () => {
+      const editImgInput = document.getElementById("edit-input-img");
+      editImgInput.value = '';
+      previewContainer.innerHTML = '';
+      editImgInput.dataset.base64 = '';
+      
+      // Re-add clear button but hide it
+      previewContainer.appendChild(clearButton);
+      clearButton.style.display = 'none';
+    });
   }
 
   // Reset và fill các size buttons
@@ -489,6 +614,11 @@ function updateProduct() {
   // Cập nhật ảnh nếu có ảnh mới
   if (newImage) {
     product.image = newImage;
+  }
+
+  if (!newImage) {
+    alert("Please filled image value");
+    return;
   }
 
   // Lưu vào localStorage

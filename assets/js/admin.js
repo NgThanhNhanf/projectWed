@@ -53,7 +53,7 @@ function ordersProcessing() {
 // SỰ KIỆN SIDE BAR
 function sideBarProcessing() {
   // Lấy trang hiện tại từ localStorage
-  const activePage = localStorage.getItem("activePage") || "dashboard";
+  const activePage = localStorage.getItem("activePage") || "customers";
   const menuItems = document.querySelectorAll(".menuSideBar");
   const contentPages = document.querySelectorAll(".content-page");
   const contentTitle = document.querySelector(".left-content-title p");
@@ -98,9 +98,6 @@ function sideBarProcessing() {
 
       // Cập nhật tiêu đề trang
       switch (target) {
-        case "dashboard":
-          document.title = "ALESIA - Dashboard";
-          break;
         case "customers":
           document.title = "ALESIA - Customers";
           break;
@@ -166,9 +163,6 @@ function sideBarProcessing() {
 // SỰ KIỆN LEFT CONTENT
 function leftContentProcessing(activePage) {
   switch (activePage) {
-    case "dashboard":
-      dashboardProcessing();
-      break;
     case "customers":
       customerProcessing();
       break;
@@ -182,7 +176,7 @@ function leftContentProcessing(activePage) {
       analyticsProcessing();
       break;
     default:
-      dashboardProcessing();
+      customerProcessing();
       break;
   }
 }
@@ -217,7 +211,7 @@ function handleLoginModal() {
   if (isLoggedIn === 'true') {
     loginModal.style.display = 'none'; // Ẩn modal nếu đã đăng nhập
     // Khởi chạy các xử lý giao diện sau khi đã đăng nhập
-    const activePage = localStorage.getItem("activePage") || "dashboard";
+    const activePage = localStorage.getItem("activePage") || "customer";
     sideBarProcessing();
     leftContentProcessing(activePage);
   } else {
@@ -241,7 +235,7 @@ function handleLoginModal() {
         console.log('Đăng nhập thành công!');
 
         // Sau khi đăng nhập, hiển thị lại trang đã lưu
-        const activePage = localStorage.getItem("activePage") || "dashboard";
+        const activePage = localStorage.getItem("activePage") || "customer";
         sideBarProcessing();
         leftContentProcessing(activePage);
       } else {
