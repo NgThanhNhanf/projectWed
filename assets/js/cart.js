@@ -390,7 +390,7 @@ function displayCheckout(cart) {
         const city = formPayment.city.value;
         const phone = formPayment.phone.value;
 
-        if (!country || !address || !city || !phone || !email) {
+        if (!country || !address || !city || !phone) {
             alert("Vui lòng điền đầy đủ thông tin địa chỉ!");
             return false;
         }
@@ -515,7 +515,7 @@ function displayCheckout(cart) {
         });
 
         if(checknewAddressIsOld) {
-            alert('địa chỉ này đã tồn tại')
+            alert('Địa chỉ được cập nhật')
             return;
         }
 
@@ -597,6 +597,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Thanh toán thành công! Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.");
         form.reset(); // Reset form sau khi thanh toán thành công
         openMethodOfCard(false)
+        clearCart();
     });
     openMethodOfCard(false)
 });
@@ -611,31 +612,6 @@ function getOrderInLocal() {
 function OrderInLocal(informationOrder) {
     localStorage.setItem('informationOrder', JSON.stringify(informationOrder));
 }
-
-
-// function saveCurrentAddress() {
-//     const address = document.getElementById('address').value;
-//     const country = document.getElementById('country').value;
-//     const city = document.getElementById('city').value;
-//     const phone = document.getElementById('phone').value;
-
-    
-//     if (!address || !country || !city || !phone) {
-//         alert('Vui lòng điền đầy đủ thông tin địa chỉ!');
-//         return;
-//     }
-
-    
-//     const currentAddress = {
-//         address: address,
-//         country: country,
-//         city: city,
-//         phone: phone
-//     };
-
-//     localStorage.setItem('currentAddress', JSON.stringify(currentAddress));
-//     alert('Địa chỉ hiện tại đã được lưu!');
-// }
 
 
 function saveOrder(cart, customer, address) {

@@ -344,9 +344,7 @@ function calculateTotalSpendingDay(date) {
     dataSpendingDay[index] = productList
       .filter((product) => {
         const productDate = new Date(product.date);
-        const isStatusSuccess = product.orderStatus === "Giao hàng thành công"; // Nếu có trường trạng thái trong product
         return (
-          isStatusSuccess &&
           productDate.getFullYear() === selectedDate.getFullYear() &&
           productDate.getMonth() === selectedDate.getMonth() &&
           productDate.getDate() === selectedDate.getDate() &&
@@ -361,8 +359,7 @@ function calculateTotalSpendingMonth(year) {
   dataSpendingMonth.fill(0);
   productList.forEach((product) => {
     const productDate = new Date(product.date);
-    const isStatusSuccess = product.orderStatus === "Giao hàng thành công"; // Nếu có trường trạng thái trong product
-    if (isStatusSuccess && productDate.getFullYear() === year) {
+    if (productDate.getFullYear() === year) {
       const month = productDate.getMonth();
       dataSpendingMonth[month] += product.price * product.quantity;
     }
@@ -373,11 +370,9 @@ function calculateTotalSpendingYear() {
   dataSpendingYear.length = 0;
   labelsYear.forEach(() => dataSpendingYear.push(0));
   productList.forEach((product) => {
-    const productDate = new Date(product.date);
-    const year = productDate.getFullYear();
+    const year = new Date(product.date).getFullYear();
     const yearIndex = labelsYear.indexOf(year);
-    const isStatusSuccess = product.orderStatus === "Giao hàng thành công"; // Nếu có trường trạng thái trong product
-    if (isStatusSuccess && yearIndex !== -1) {
+    if (yearIndex !== -1) {
       const spending = product.price * product.quantity;
       dataSpendingYear[yearIndex] += spending;
     }
@@ -406,13 +401,7 @@ function calculateLowDemandDay(date) {
   // Tính doanh số cho từng sản phẩm trong ngày được chọn
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    const isStatusSuccess =
-      order.customer &&
-      order.customer.length > 0 &&
-      order.customer[0].status === "Giao hàng thành công"; // Kiểm tra trạng thái
-
     if (
-      isStatusSuccess &&
       orderDate.getFullYear() === selectedDate.getFullYear() &&
       orderDate.getMonth() === selectedDate.getMonth() &&
       orderDate.getDate() === selectedDate.getDate()
@@ -467,13 +456,7 @@ function calculateHighDemandDay(date) {
   // Tính doanh số cho từng sản phẩm trong ngày được chọn
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    const isStatusSuccess =
-      order.customer &&
-      order.customer.length > 0 &&
-      order.customer[0].status === "Giao hàng thành công"; // Kiểm tra trạng thái
-
     if (
-      isStatusSuccess &&
       orderDate.getFullYear() === selectedDate.getFullYear() &&
       orderDate.getMonth() === selectedDate.getMonth() &&
       orderDate.getDate() === selectedDate.getDate()
@@ -526,12 +509,7 @@ function calculateLowDemandMonth(currentDate) {
 
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    const isStatusSuccess =
-      order.customer &&
-      order.customer.length > 0 &&
-      order.customer[0].status === "Giao hàng thành công"; // Kiểm tra trạng thái
-
-    if (isStatusSuccess && orderDate.getFullYear() === year && orderDate.getMonth() === month) {
+    if (orderDate.getFullYear() === year && orderDate.getMonth() === month) {
       order.cart.forEach((item) => {
         const currentSales = productSales.get(item.name) || 0;
         productSales.set(item.name, currentSales + item.quantity);
@@ -550,12 +528,7 @@ function calculateHighDemandMonth(currentDate) {
 
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    const isStatusSuccess =
-      order.customer &&
-      order.customer.length > 0 &&
-      order.customer[0].status === "Giao hàng thành công"; // Kiểm tra trạng thái
-
-    if (isStatusSuccess && orderDate.getFullYear() === year && orderDate.getMonth() === month) {
+    if (orderDate.getFullYear() === year && orderDate.getMonth() === month) {
       order.cart.forEach((item) => {
         const currentSales = productSales.get(item.name) || 0;
         productSales.set(item.name, currentSales + item.quantity);
@@ -572,12 +545,7 @@ function calculateLowDemandYear(currentYear) {
 
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    const isStatusSuccess =
-      order.customer &&
-      order.customer.length > 0 &&
-      order.customer[0].status === "Giao hàng thành công"; // Kiểm tra trạng thái
-
-    if (isStatusSuccess && orderDate.getFullYear() === currentYear) {
+    if (orderDate.getFullYear() === currentYear) {
       order.cart.forEach((item) => {
         const currentSales = productSales.get(item.name) || 0;
         productSales.set(item.name, currentSales + item.quantity);
@@ -594,12 +562,7 @@ function calculateHighDemandYear(currentYear) {
 
   orderList.forEach((order) => {
     const orderDate = new Date(order.timeOrder);
-    const isStatusSuccess =
-      order.customer &&
-      order.customer.length > 0 &&
-      order.customer[0].status === "Giao hàng thành công"; // Kiểm tra trạng thái
-
-    if (isStatusSuccess && orderDate.getFullYear() === currentYear) {
+    if (orderDate.getFullYear() === currentYear) {
       order.cart.forEach((item) => {
         const currentSales = productSales.get(item.name) || 0;
         productSales.set(item.name, currentSales + item.quantity);
