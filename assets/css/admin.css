@@ -312,7 +312,7 @@ body {
 .tool-bar-product {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .tool-bar-product > * {
@@ -1654,3 +1654,67 @@ canvas#top-demand-product-chart {
   font-weight: bold;
 }
 /* ##DashBoard */
+
+.preview, .edit-preview {
+  position: relative;
+  display: inline-block;
+}
+
+.clear-preview-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  z-index: 10;
+}
+
+.clear-preview-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.preview img, .edit-preview img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.preview, .edit-preview {
+  position: relative;
+  display: inline-block;
+}
+
+.clear-preview-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  z-index: 10;
+}
+
+.clear-preview-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.preview img, .edit-preview img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+}
