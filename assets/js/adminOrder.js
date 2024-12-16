@@ -56,17 +56,34 @@ function displayOrders(filOrder) {
     if (filOrder.length == 0) {
         orderList.innerHTML = `<p>Không có đơn hàng</p>`;
     } else {
-        orderList.innerHTML = filOrder.map(order =>
-            `
+        orderList.innerHTML = filOrder.map(order  => {
+            let colorStatus = '';
+            switch(order.status) {
+                case "Chưa xử lý":
+                colorStatus = 'status-chuaxuly';
+                break;    
+                case "Đã xác nhận":
+                colorStatus = 'status-daxacnhan';
+                break;
+                case "Giao hàng thành công":
+                colorStatus = 'status-giaohangthanhcong';
+                break;
+                case "Đã hủy":
+                colorStatus = 'status-dahuy';
+                break;
+                default:
+                    break;
+            }
+             return `
                 <div class="order-row">
                     <h3>#${order.id}</h3>
-                    <p id= "isStatus">${order.status}</p>
+                    <p id= "isStatus" class = "order-status ${colorStatus}">${order.status}</p>
                     <p>${new Date(order.timeOrder).toLocaleString()}</p>
                     <p>${order.total} VND</p>
                     <button class="view" data-id="${order.id}">Chi tiết</button>
                 </div>
             `
-        ).join('');
+        }).join('');
     }
 }
 
@@ -128,9 +145,12 @@ function displayOrderSummary(orderId) {
 
     // Lắng nghe sự kiện thay đổi trạng thái
     document.getElementById('status-section').addEventListener('change', function() {
-        if (this.value === "Giao hàng thành công") {
+        if (this.value === "Giao hàng thành công" || this.value === "Đã hủy") {
             this.disabled = true;
             const updateBtn = document.getElementById('updateStatus');
+            if(!confirm('bạn có chắc chắn trước khi thay đổi trạng thái ?')) {
+                return;
+            }
             updateBtn.disabled = true;
             order.status = this.value;
             localStorage.setItem('informationOrder', JSON.stringify(orders));

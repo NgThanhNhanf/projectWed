@@ -882,6 +882,10 @@ canvas#top-demand-product-chart {
   flex: 0 0 20%;
 }
 
+.order-row p:nth-of-type(1){
+  flex: 0 0 10%;
+}
+
 .order-row p:last-of-type {
   flex: 0 0 20%;
   display: flex;
@@ -921,6 +925,28 @@ canvas#top-demand-product-chart {
   border-radius: 6px;
   font-size: 14px;
   transition: border-color 0.3s ease;
+}
+
+/* màu cho trạng thái */
+.order-status {
+  display: inline-block;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+.status-chuaxuly {
+  background: #B0B0B0;
+}
+
+.status-daxacnhan {
+  background: #007BFF;
+}
+
+.status-giaohangthanhcong {
+  background: #2df05b;
+}
+
+.status-dahuy {
+    background: #DC3545;
 }
 
 .modal-popup {
@@ -1052,8 +1078,10 @@ canvas#top-demand-product-chart {
   padding: 18px 25px;
   border-bottom: 1px solid #f0f0f0;
   transition: background-color 0.2s ease;
-  justify-content: flex-end;
+  justify-content: space-around;
 }
+
+
 
 .customer-row:hover {
   background-color: #fafafa;
@@ -1082,6 +1110,28 @@ canvas#top-demand-product-chart {
   flex: 0 0 10%;
   text-align: center;
   justify-content: space-evenly;
+}
+
+/* màu cho status customer */
+
+.customer-status {
+  border-radius: 10px;
+}
+
+.customer-row div:nth-of-type(6) {
+  flex: 0 0 8%;
+}
+
+.status-block {
+  background: #FF4D4D;
+}
+
+.status-customer {
+  background: #4CAF50;
+}
+
+.status-premium {
+  background: #FFD700;
 }
 
 /* Adjusting text styles */
@@ -1197,15 +1247,18 @@ canvas#top-demand-product-chart {
 
 /* don hang cua khach */
 .viewOrders {
-  background-color: #007bff;
-  color: white;
+  color: #000;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
+  border: 2px solid palevioletred;
+  transition: all 0.3s;
+  border-radius: 0 20% 0 20%;
+  padding: 2px;
 }
 .viewOrders:hover {
-  background-color: #0056b3;
+  border: 2px solid palevioletred;
+  color: plum;
+  border-radius: 20% 0 20% 0;
 }
 
 #customer-orders-modal {
