@@ -613,31 +613,6 @@ function OrderInLocal(informationOrder) {
 }
 
 
-// function saveCurrentAddress() {
-//     const address = document.getElementById('address').value;
-//     const country = document.getElementById('country').value;
-//     const city = document.getElementById('city').value;
-//     const phone = document.getElementById('phone').value;
-
-    
-//     if (!address || !country || !city || !phone) {
-//         alert('Vui lòng điền đầy đủ thông tin địa chỉ!');
-//         return;
-//     }
-
-    
-//     const currentAddress = {
-//         address: address,
-//         country: country,
-//         city: city,
-//         phone: phone
-//     };
-
-//     localStorage.setItem('currentAddress', JSON.stringify(currentAddress));
-//     alert('Địa chỉ hiện tại đã được lưu!');
-// }
-
-
 function saveOrder(cart, customer, address) {
     const orders = getOrderInLocal();
 
