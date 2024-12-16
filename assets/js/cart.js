@@ -515,7 +515,7 @@ function displayCheckout(cart) {
         });
 
         if(checknewAddressIsOld) {
-            alert('địa chỉ này đã tồn tại')
+            alert('Địa chỉ được cập nhật')
             return;
         }
 
@@ -597,6 +597,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Thanh toán thành công! Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.");
         form.reset(); // Reset form sau khi thanh toán thành công
         openMethodOfCard(false)
+        clearCart();
     });
     openMethodOfCard(false)
 });
@@ -611,31 +612,6 @@ function getOrderInLocal() {
 function OrderInLocal(informationOrder) {
     localStorage.setItem('informationOrder', JSON.stringify(informationOrder));
 }
-
-
-// function saveCurrentAddress() {
-//     const address = document.getElementById('address').value;
-//     const country = document.getElementById('country').value;
-//     const city = document.getElementById('city').value;
-//     const phone = document.getElementById('phone').value;
-
-    
-//     if (!address || !country || !city || !phone) {
-//         alert('Vui lòng điền đầy đủ thông tin địa chỉ!');
-//         return;
-//     }
-
-    
-//     const currentAddress = {
-//         address: address,
-//         country: country,
-//         city: city,
-//         phone: phone
-//     };
-
-//     localStorage.setItem('currentAddress', JSON.stringify(currentAddress));
-//     alert('Địa chỉ hiện tại đã được lưu!');
-// }
 
 
 function saveOrder(cart, customer, address) {
@@ -655,28 +631,71 @@ function saveOrder(cart, customer, address) {
 }
 
 function clearCart() {
-    localStorage.removeItem('cart');
-    const cartUser = JSON.parse(localStorage.getItem('users'))
-    if(cartUser && Array.isArray(cartUser[0].cartItem)) {
-        cartUser[0].cartItem = [];
+    try {
+        // Get current user
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+            throw new Error('No user logged in');
+        }
+
+        // Get users array and find current user
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const userIndex = users.findIndex(user => user.email === currentUser.email);
+        if (userIndex === -1) {
+            throw new Error('User not found');
+        }
+
+        // Clear cart in all locations
+        localStorage.removeItem('cart');
+        users[userIndex].cartItem = [];
+        currentUser.cartItem = [];
+
+        // Update storage
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+        // Update UI
+        displayCart([]);
+        amountInIconCart();
+
+        return true; // Indicate success
+
+    } catch (error) {
+        console.error('Error in clearCart:', error);
+        return false; // Indicate failure
     }
-    localStorage.setItem('users',JSON.stringify(cartUser))
 }
 
-
-document.getElementById('payment-form').addEventListener('submit', (e) => {
+// Update payment form submission
+document.getElementById('payment-form').addEventListener('submit', async (e) => {
     e.preventDefault();
+        if (!isCheckPayment()) return;
 
-    if (!isCheckPayment()) return;
+        const inforCart = getCartFromLocalStorage();
+        const inforCustomer = getCusTomerFromLocalStorage();
+        const inforAddress = getAddressCusInLocal();
 
-    const inforCart = getCartFromLocalStorage();
-    const inforCustomer = getCusTomerFromLocalStorage();
-    const inforAddress = getAddressCusInLocal();
+        if (!inforCart.length || !inforCustomer.length || !inforAddress.length) {
+            alert("Vui lòng kiểm tra lại thông tin!");
+            return;
+        }
 
-    if (!inforCart.length || !inforCustomer.length || !inforAddress.length) {
-        alert("vui long kiem tra lai thong tin!");
-        return;
-    }
-    saveOrder(inforCart, inforCustomer, inforAddress);
-    clearCart();
-});    
+        // Save order first
+        await saveOrder(inforCart, inforCustomer, inforAddress);
+        
+        // Clear cart and verify success
+        const clearSuccess = clearCart();
+        if (!clearSuccess) {
+            throw new Error('Không thể xóa giỏ hàng');
+        }
+
+        // Final verification
+        const verifyCart = getCartFromLocalStorage();
+        if (verifyCart.length > 0) {
+            throw new Error('Giỏ hàng chưa được xóa hoàn toàn');
+        }
+
+        alert('Đặt hàng thành công!');
+        location.reload();
+
+});

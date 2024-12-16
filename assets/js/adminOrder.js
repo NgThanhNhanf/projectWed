@@ -56,17 +56,34 @@ function displayOrders(filOrder) {
     if (filOrder.length == 0) {
         orderList.innerHTML = `<p>Không có đơn hàng</p>`;
     } else {
-        orderList.innerHTML = filOrder.map(order =>
-            `
+        orderList.innerHTML = filOrder.map(order  => {
+            let colorStatus = '';
+            switch(order.status) {
+                case "Chưa xử lý":
+                colorStatus = 'status-chuaxuly';
+                break;    
+                case "Đã xác nhận":
+                colorStatus = 'status-daxacnhan';
+                break;
+                case "Giao hàng thành công":
+                colorStatus = 'status-giaohangthanhcong';
+                break;
+                case "Đã hủy":
+                colorStatus = 'status-dahuy';
+                break;
+                default:
+                    break;
+            }
+             return `
                 <div class="order-row">
                     <h3>#${order.id}</h3>
-                    <p id= "isStatus">${order.status}</p>
+                    <p id= "isStatus" class = "order-status ${colorStatus}">${order.status}</p>
                     <p>${new Date(order.timeOrder).toLocaleString()}</p>
                     <p>${order.total} VND</p>
                     <button class="view" data-id="${order.id}">Chi tiết</button>
                 </div>
             `
-        ).join('');
+        }).join('');
     }
 }
 
@@ -93,6 +110,9 @@ function displayOrderSummary(orderId) {
             SĐT: ${addr.phone || "Không có số điện thoại"}`
     ).join('<br>');
 
+    // Check if order is already completed
+    const isCompleted = order.status === "Giao hàng thành công";
+
     const orderSummary = `
         <div class="order-summary">
             <h3>Chi tiết đơn hàng #${order.id}</h3>
@@ -106,14 +126,14 @@ function displayOrderSummary(orderId) {
             </ul>
             <h4>Danh sách địa chỉ:</h4>
             <p>${listAddress}</p>
-            <p> Trạng thái: </p>
-                <select id="status-section">
-                    <option value = "Chưa xử lý" ${order.status === "Chưa xử lý" ? "selected" : ""}>Chưa xử lý </option>
-                    <option value = "Đã xác nhận" ${order.status === "Đã xác nhận" ? "selected" : ""}>Đã xác nhận </option>
-                    <option value = "Giao hàng thành công" ${order.status === "Giao hàng thành công" ? "selected" : ""}>Giao hàng thành công </option>
-                    <option value = "Đã hủy" ${order.status === "Đã hủy" ? "selected" : ""}>Đã hủy</option>
+            <p>Trạng thái:</p>
+                <select id="status-section" ${isCompleted ? 'disabled' : ''}>
+                    <option value="Chưa xử lý" ${order.status === "Chưa xử lý" ? "selected" : ""}>Chưa xử lý</option>
+                    <option value="Đã xác nhận" ${order.status === "Đã xác nhận" ? "selected" : ""}>Đã xác nhận</option>
+                    <option value="Giao hàng thành công" ${order.status === "Giao hàng thành công" ? "selected" : ""}>Giao hàng thành công</option>
+                    <option value="Đã hủy" ${order.status === "Đã hủy" ? "selected" : ""}>Đã hủy</option>
                 </select>
-                <button id= "updateStatus"> Cập nhật trạng thái</button>
+                <button id="updateStatus" ${isCompleted ? 'disabled' : ''}>Cập nhật trạng thái</button>
             <button id="close-modal">Đóng</button>
         </div>`;
 
@@ -122,6 +142,22 @@ function displayOrderSummary(orderId) {
 
     document.getElementById('modal-popup').classList.remove('hidden');
     modalContainer.classList.remove('hidden');
+
+    // Lắng nghe sự kiện thay đổi trạng thái
+    document.getElementById('status-section').addEventListener('change', function() {
+        if (this.value === "Giao hàng thành công" || this.value === "Đã hủy") {
+            this.disabled = true;
+            const updateBtn = document.getElementById('updateStatus');
+            if(!confirm('bạn có chắc chắn trước khi thay đổi trạng thái ?')) {
+                return;
+            }
+            updateBtn.disabled = true;
+            order.status = this.value;
+            localStorage.setItem('informationOrder', JSON.stringify(orders));
+            displayOrders(getOrders());
+            alert('Đơn hàng đã được cập nhật thành công và không thể thay đổi trạng thái');
+        }
+    });
 
     document.getElementById('close-modal').addEventListener('click', () => {
         document.getElementById('modal-popup').classList.add('hidden');

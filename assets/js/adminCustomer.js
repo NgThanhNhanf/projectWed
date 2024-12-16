@@ -20,8 +20,6 @@ function generateUniqueId() {
     return Date.now();
 }
 
-console.log(JSON.parse(localStorage.getItem('informationOrder')));
-
 function addCustomerFromOrder() {
     // Lấy thông tin khách hàng từ order
     const informationOrder = JSON.parse(localStorage.getItem('informationOrder')) || [];
@@ -58,7 +56,6 @@ function displayCustomers(customers) {
 
     customers.forEach(customer => {
         const orders = getOrdersForCustomer(customer.email);
-
         const customerRow = document.createElement('div');
         customerRow.classList.add('customer-row');
         customerRow.dataset.id = customer.id;
@@ -73,6 +70,21 @@ function displayCustomers(customers) {
             formattedDate = `${day}/${month}/${year}`;
         }
 
+        let colorCustomerStatus = '';
+        switch(customer.status) {
+            case "Block":
+                colorCustomerStatus = 'status-block';
+                break;
+            case "Customer":
+                colorCustomerStatus = 'status-customer'
+                break;
+            case "Premium":
+                colorCustomerStatus = 'status-premium';
+                break;
+            default:
+                break;
+        }
+
         customerRow.innerHTML = `
                 <div class="checkbox"><input type="checkbox" class="select-customer"></div>
                 <div class="customer-info">
@@ -81,8 +93,8 @@ function displayCustomers(customers) {
                 <div class="customer-email">${customer.email}</div>
                 <div class="customer-phone">${customer.phone}</div>
                 <div class="customer-join-date">${formattedDate}</div>
-                <div class="customer-status">${customer.status}</div>
-                <button class="viewOrders">Orders</button> 
+                <div class="customer-status ${colorCustomerStatus}">${customer.status}</div>
+                <span class="viewOrders">Orders</span> 
                 <div class="customer-actions">
                     <i class="fa-solid fa-pen-to-square edit-customer" title="Edit"></i>
                     <i class="fa-solid fa-trash delete-customer" title="Delete"></i>

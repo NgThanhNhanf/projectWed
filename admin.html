@@ -19,10 +19,6 @@
         <div id="sidebar">
             <div class="logo text">ALESIA</div>
             <div class="side-menu top">
-                <div class="menuSideBar active" data-target="dashboard">
-                    <i class="fa-brands fa-windows"></i>
-                    <span class="text">Dashboard</span>
-                </div>
                 <div class="menuSideBar" data-target="customers">
                     <i class="fa-solid fa-users"></i>
                     <span class="text">Customers</span>
@@ -51,9 +47,6 @@
             <!-- <<LEFT CONTENT TITLE>> -->
             <div class="left-content-title">
                 <p>Dashboard</p>
-            </div>
-            <!-- Dashboard content (empty) -->
-            <div id="content-dashboard" class="content-page">
             </div>
             <!-- Customers content -->
             <div id="content-customers" class="content-page" style="display: none;">
@@ -208,12 +201,7 @@
             <!-- Products content -->
             <div id="content-products" class="content-page" style="display: none;">
                 <div class="tool-bar-product">
-                    <div class="search-box">
-                        <input type="text" class="search-input" />
-                        <button class="search-btn">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
+                    
                     <div class="function">
                         <button class="reLoad" onclick="resetFilter()"><i class="fa-solid fa-rotate-right"></i>
                             Clear</button>
@@ -518,7 +506,15 @@
                             <option value="...">...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
                             <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                             <option value="Tân Phú">Tân Phú</option>
                             <option value="Bình Tân">Bình Tân</option>
                             <option value="Khác">Khác</option>
@@ -535,6 +531,7 @@
                             <option value="More 400000">More 400.000 VNĐ</option>
                         </select>
                     </div>
+                    
                     <button id="filter-orders">Reset Order</button>
                 </div>
                 <!-- hien thi danh sach don hang -->
@@ -588,15 +585,15 @@
                         </div>
                         <div class="date-product-navigation">
                             <button class="previous-pie-btn" onclick="setTopTime('top-selling-product-chart', -1)">
-                                < </button>
+                                 </button>
                                     <div class="time-text-circle">26/11/2024</div>
                                     <button class="next-pie-btn" onclick="setTopTime('top-selling-product-chart', 1)"> >
                                     </button>
                         </div>
                         <div class="date-filter">
-                            <button class='active' data-source="day" onclick="setTopProduct('top-selling-product-chart', 'day')">Day</button>
-                            <button data-source="month" onclick="setTopProduct('top-selling-product-chart', 'month')">Month</button>
-                            <button data-source="year" onclick="setTopProduct('top-selling-product-chart', 'year')">Year</button>
+                            <button class='active' data-source="day">Day</button>
+                            <button data-source="month">Month</button>
+                            <button data-source="year">Year</button>
                         </div>
                     </div>
                     <div class="product-content">
@@ -604,33 +601,17 @@
                             <div class="main-chart-content">
                                 <canvas id="top-demand-product-chart"></canvas>
                             </div>
-                            <div class="total-purchasing-power">
-                                <div>Total Purchasing Power</div>
-                                <div>+ 25.46%</div>
-                            </div>
                         </div>
                         <div class="tool-box"></div>
                     </div>
                 </div>
-                <div class="collection-distribution"></div>
             </div>
         </div>
         <!-- <<LEFT CONTENT>> -->
 
         <!-- <<RIGHT CONTENT>> -->
         <div id="right-content">
-            <!-- Dashboard content (empty) -->
-            <div id="content-dashboard" class="content-page">
-            </div>
-            <!-- Customers content -->
-            <div id="content-customers" class="content-page" style="display: none;">
-            </div>
-            <!-- Products content -->
-            <div id="content-products" class="content-page" style="display: none;">
-            </div>
-            <!-- Orders content -->
-            <div id="content-orders" class="content-page" style="display: none;">
-            </div>
+            
         </div>
     </div>
     <!-- Login Modal -->
