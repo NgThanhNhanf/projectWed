@@ -665,20 +665,53 @@ const modalDetail = document.querySelector('.detail-content');
 const closeModal = document.querySelector('.close');
 const quantity = document.getElementById('quantity');
 const product = document.querySelectorAll('.product');
+const sizeSelect = document.getElementById('sizeSelect');
 let qualityProduct = 1;
 // Hàm mở modal và hiển thị thông tin sản phẩm
 function openModal(product) {
     const productImage = product.querySelector('img').src;
     const productName = product.querySelector('h4').textContent;
     const productPrice = product.querySelector('p').textContent;
-    // const allProduct = getProductFromLocalStorage();
+    
+    // Tìm sản phẩm trong danh sách
+    const curProduct = allProduct.find(p => p.name === productName);
+    
+    if (!curProduct) {
+        console.error('Không tìm thấy sản phẩm');
+        return;
+    }
+
+    // Cập nhật thông tin modal
     modalImage.src = productImage;
     modalName.textContent = productName;
     modalPrice.textContent = productPrice;
-    const curProduct = allProduct.find(product => product.name === productName);
     modalDetail.textContent = curProduct.detail;
     productModal.style.display = 'block';
     qualityProduct = curProduct.quantity;
+
+    // Reset và cập nhật select box với sizes của sản phẩm hiện tại
+    sizeSelect.innerHTML = ''; // Xóa tất cả options cũ
+    
+    // Thêm option mặc định
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Chọn kích thước';
+    defaultOption.disabled = true;
+    defaultOption.hidden = true;
+    defaultOption.selected = true;
+    sizeSelect.appendChild(defaultOption);
+
+    // Thêm các options size từ sản phẩm
+    curProduct.nature.size.forEach(size => {
+        const option = document.createElement('option');
+        option.value = size;
+        option.textContent = size;
+        sizeSelect.appendChild(option);
+    });
+
+    // Reset số lượng về 1
+    quantityCount = 1;
+    quantity.textContent = quantityCount;
 }
 
 
