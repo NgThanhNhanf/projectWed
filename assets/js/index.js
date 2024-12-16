@@ -62,7 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
     closeModal.addEventListener('click', () => {
         productModal.style.display = 'none';
     });
-    function displayProductLC(start, end) {
+    function displayProductLC(allProduct) {
+        let start = 0;
+        let end = 8;
         const itemInPage = allProduct.slice(start, end);
         let product_content = document.querySelector('.product-content');
         itemInPage.forEach(p => {
@@ -91,6 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const productList = document.querySelector('#product-list');
+    const allProductSort = getProductFromLocalStorage();
+    allProductSort.sort((a, b) => new Date(b.date) - new Date(a.date));
     function displayBestProduct() {
         for (let i = 0; i < 5; ++i) {
             const div = document.createElement('div');
@@ -111,28 +115,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let nav_list = document.querySelectorAll('.our-product .product-header .product-nav .nav-list .nav-item');
     let product_content = document.querySelector('.product-content');
-    let hotProduct = document.querySelector('#nav-product1');
     let trending = document.querySelector('#nav-product2');
+    let hotProduct = document.querySelector('#nav-product1');
     let newProduct = document.querySelector('#nav-product3');
+    updateTrendingProducts();
+    updateBestSellerProduct();
+    const TrendingList = trendingMonth;
+    const BestProductsList = bestSellerMonth;
   
     function displayProduct(id) {
         switch (id) {
             case 0:
                 hotProduct.classList.add('nav-item-active');
                 product_content.innerHTML = ``;
-                displayProductLC(0, 8);
+                displayProductLC(TrendingList);
                 addClickEventToProducts();
                 break;
             case 1:
                 trending.classList.add('nav-item-active');
                 product_content.innerHTML = ``;
-                displayProductLC(8, 16);
+                displayProductLC(BestProductsList);
                 addClickEventToProducts();
                 break;
             case 2:
                 newProduct.classList.add('nav-item-active');
                 product_content.innerHTML = ``;
-                displayProductLC(16, 24);
+                displayProductLC(allProductSort);
                 addClickEventToProducts();
                 break;
         }
